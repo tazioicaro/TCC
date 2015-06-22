@@ -14,6 +14,7 @@
 	
 	<dependencies>
 	
+	<!-- Prime Faces 5.2 -->
 	<dependency>  
     <groupId>org.primefaces</groupId>  
     <artifactId>primefaces</artifactId>  
@@ -21,6 +22,7 @@
     <scope>compile</scope>   
   </dependency>
   
+  <!-- JSF MOJARRA 2.2 -->
   <dependency>
 	<groupId>org.glassfish</groupId>
 	<artifactId>javax.faces</artifactId>
