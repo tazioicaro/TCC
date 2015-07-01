@@ -11,8 +11,9 @@
 	<h:outputScript library="js" name="jquery.maskMoney.js"/>
 </h:head>
 <h:body>
-	<!-- Inserindo componente AJAX Status -->
-	<p:ajaxStatus styleClass="ajax-status">
+	<!-- Inserindo componente AJAX Status 
+	  quando houver uma nova renderização , o onsuccess chamará a reconfiguração da mascara de dinheiro-->
+	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
 
 		<!--  Inserir o que será ixibido quando uma requisição ajax for iniciada -->
 		<f:facet name="start">
@@ -46,6 +47,22 @@
 		<a href="http://Nãosei" target="_blank">LinkDaEmpresa</a>
 
 	</footer>
+	
+	<!--  Selecionando todos os componentes que com a classe css moeda (que apenas tem na pagina) 
+	     chamando o script maskMoney com as propriedade desejadas que são:
+	     simbolo decimal, simbolo de milhar e se aceita zero-->
+	<script>
+	 function configurarMoeda(){
+		 $(".moeda").maskMoney({decimal: ",", thousands: ".", allowZero:true});
+	 }
+	  
+	 <!--Quando este documento estiver pronto executar o configurar moeda-->
+	 $(document).ready(function(){
+		 configurarMoeda();
+		 
+	 });
+	 
+	</script>
 </h:body>
 </html>
 
