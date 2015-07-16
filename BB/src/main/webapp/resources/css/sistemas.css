@@ -61,3 +61,25 @@ footer {
 }
 
 /* Fim da customizaçao do menu-sistema */
+
+/* INICIO Botões do menubar - laranja : */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
+	background: #F79805 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.6)), to(rgba(255,255,255,0)));
+	}
+/* FIM Botões do menubar - laranja : */	
+
+
+/* INICIO menus de seleção*/
+.ui-menu, .ui-menu .ui-menu-child {
+
+background: #F7ECEC -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+}
+/* FINAL menus de seleção*/
+
+
+/* Bordar do menu de selecao
+.ui-widget-content{
+
+border: 1px solid #917C6A
+}
+*/
