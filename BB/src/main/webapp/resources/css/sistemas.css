@@ -6,7 +6,8 @@ body{
 	font-family:'Irish Grover',Arial,sans-serif;
 	margin:0px;
 	font-weight:normal;
-	background-color: #F3E9DD;
+	/*background-color: #F3E9DD;*/
+	background-image:  url("/DeployTomcatTCC/javax.faces.resource/papel-de-parede-padrao.jpg.xhtml?ln=images");
 }
 
 
