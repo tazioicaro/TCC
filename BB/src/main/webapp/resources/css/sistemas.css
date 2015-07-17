@@ -3,9 +3,10 @@
 body{
 	
 	font-size: 12px;
-	font-family: Arial, Helvetica, sans-serif;
+	font-family:'Irish Grover',Arial,sans-serif;
 	margin:0px;
 	font-weight:normal;
+	background-color: #F3E9DD;
 }
 
 
@@ -14,7 +15,7 @@ header{
 	padding: 5px 0px;
 	margin-bottom:20px;
 	height:70px;
-	background-color: #CD853F;
+	background-color: #644E43;
 	color: #fff;
 	
 	box-shadow: 0px; 2px; 2px #ccc;
@@ -53,7 +54,7 @@ footer {
 }
 
 .menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text{
-	color: #ffffff !important;
+	color: #ffffff;
 }
 
 .menu-sistema .ui-icon-triangle-1-s {	
@@ -83,3 +84,10 @@ background: #F7ECEC -webkit-gradient(linear, left top, left bottom, from(rgba(25
 border: 1px solid #917C6A
 }
 */
+
+/*Alterando cor do primeiro submenu */
+.subMenuPreto > a > span{
+	color: black !important;
+	}
+
+
