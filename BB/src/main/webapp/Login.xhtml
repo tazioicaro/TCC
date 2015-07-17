@@ -15,17 +15,27 @@
 	<h:outputStylesheet library="css" name="fonte.css" />
 	<h:link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'/>
 	
+	
 
 	<style>
 
-#ms1{
-font-family: 'Irish Grover', cursive;
-}
 	
 .ui-widget-content {
 	border: none;
 	background: transparent;
 	color: #4f4f4f;
+}
+
+.ui-widget {
+  font-family: Lato, sans-serif;
+  font-size: 1em;
+}
+
+.ui-button .ui-button-text {
+  display: block;
+  line-height: normal;
+  font-family: Lato, sans-serif;
+
 }
 
 #principal {
@@ -37,30 +47,45 @@ font-family: 'Irish Grover', cursive;
 	width: 37%;
 	height: 37%;
 	border: 4px solid #E87824;
-	padding: 10px;
+	padding: 1%;
 	text-align: left;
 	font-family: calibri;
-	font-size: 1em;
-	border-radius: 50px;
+	font-size: 1.1em;
+	border-radius: 10%;
 	background-color: #E1C8A9;
 }
 
 #msg1 {
 	float: left;
-	padding: 10px;
-	font-family: Cambria;
-	font-size: 21px;
-	color: #6495ED;
-	text-align: left;
+	padding-top: 3%;
+	padding-left:1%;
+	padding-bottom:6%;	
+	font-size: 2em;
+	color: #644e43;
+	text-align: center;
+	font-family: Irish Grover, sans-serif;
 }
 
 #msg2 {
 	float: left;
-	padding: 10px;
-	font-family: calibri;
-	color: #6495ED;
-	font-size: 15px;
+	padding-top: 7%;
+	padding-bottom:5%;
+	color: #644e43;
+	font-size: 1.2em;
+	font-weight:bold;
 	text-align: left;
+	font-family: Lato, sans-serif;
+	
+}
+
+#msg3 {
+	float: left;
+	padding-top: 12%;
+	padding-bottom:2%;	
+	color: #644e43;
+	font-size: 0.9em;
+	text-align: left;
+	font-family: Lato, sans-serif;
 }
 </style>
 
@@ -74,40 +99,37 @@ font-family: 'Irish Grover', cursive;
 		<p:layout style="min-width: 100%;  min-height: 100%; max-width: 100%; max-height: 100%;" id="layout">
 			<p:layoutUnit position="west" resizable="true" size="200"
 				minSize="250" styleClass="semFundo">
-				<div id="msg1">Seja Bem vindo</div>
+				<div id="msg1" style="width: 80%; txt-align:center">Seja Bem Vindo!</div>
 				<br />
-				<div id="msg2">Identifique-se por favor para utilizar o
-					sistema.</div>
+				<div id="msg2" style="width: 80%;">Login:</div>
 				<br />
 				<h:panelGrid columns="2" columnClasses="rotulo, campo"
 					styleClass="semFundo">
-					<h:outputLabel value="Nome:" for="nome" />
+					<h:outputLabel value="Nome:" for="nome"/>
 					<h:inputText id="nome" label="Nome" value="#{usuarioBean.nome}"
 						required="true"
 						style="min-width: 100%;  min-height: 100%; max-width: 100%; max-height: 100%;" />
 					<h:outputLabel value="Senha:" for="senha" style="align: right" />
 					<h:inputSecret id="senha" label="Senha"
 						value="#{usuarioBean.senha}" required="true"
-						style="width:180px; height: 20px; line-height: 15px;" />
+						style="width:100%; height: 100%; line-height: 0.9em;" />
 				</h:panelGrid>
 
-				<div align="right">
-					<h:commandButton action="#{usuarioBean.salvar}" value="Salvar" />
+				<div align="right" style="padding-right: 9%">
+					<p:commandButton action="#{usuarioBean.salvar}" value="Entrar" />
 				</div>
 
 
-				<div id="msg2">
-					Esqueceu sua senha?
+				<div id="msg3">					
 					<h:form>
-						<h:commandLink action="inicio" value="Enviar Senha" />
+						<h:commandLink action="inicio" value="Esqueceu sua senha?" />
 					</h:form>
-				</div>
-				<br />
+				</div>			
 			</p:layoutUnit>
 
 			<p:layoutUnit position="center" resizable="true" size="200"
 				minSize="250">
-				<h:graphicImage library="images" name="teste.png" />
+				<h:graphicImage library="images" name="teste.png"  style="width:100%; height:90%"/>
 			</p:layoutUnit>
 		</p:layout>
 	</div>
