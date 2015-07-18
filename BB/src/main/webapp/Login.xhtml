@@ -18,7 +18,19 @@
 	
 
 	<style>
+	
+	body{
+	background-color: #E1C8A9;
+	}
 
+.ui-layout-pane-center{
+
+width: 48% !important;
+}
+.ui-layout-pane-west{
+
+width: 51% !important;
+}
 	
 .ui-widget-content {
 	border: none;
@@ -41,25 +53,28 @@
 #principal {
 	position: absolute;
 	left: 50%;
-	top: 40%;
+	top: 42%;
 	margin-left: -260px;
 	margin-top: -135px;
 	width: 37%;
-	height: 37%;
+	height: 35%;
 	border: 4px solid #E87824;
 	padding: 1%;
 	text-align: left;
-	font-family: calibri;
+	font-family: Lato;
 	font-size: 1.1em;
 	border-radius: 10%;	
 	background-color: #E1C8A9;
 }
 
 #msg1 {
+   width: 90%; 
+   text-align:center;
 	float: left;
 	padding-top: 3%;
 	padding-left:1%;
 	padding-bottom:6%;	
+	max-height:14%;
 	font-size: 2em;
 	color: #644e43;
 	text-align: center;
@@ -75,10 +90,12 @@
 	font-weight:bold;
 	text-align: left;
 	font-family: Lato, sans-serif;
+	max-height: 8%;
 	
 }
 
 #msg3 {
+     max-height: 2%;
 	float: left;
 	padding-top: 12%;
 	padding-bottom:2%;	
@@ -86,6 +103,7 @@
 	font-size: 0.9em;
 	text-align: left;
 	font-family: Lato, sans-serif;
+	
 }
 </style>
 
@@ -96,39 +114,35 @@
 <h:body>
 
 	<div id="principal">
-		<p:layout style="min-width: 100%;  min-height: 100%; max-width: 100%; max-height: 100%;" id="layout">
-			<p:layoutUnit position="west" resizable="true" size="200"
-				minSize="250" styleClass="semFundo">
-				<div id="msg1" style="width: 80%; txt-align:center">Seja Bem Vindo!</div>
-				<br />
+		<p:layout style="width: 100%; height: 100%;" id="layout">
+			<p:layoutUnit position="west" resizable="false" size="200"	minSize="250" styleClass="semFundo" >
+				<div id="msg1">Seja Bem Vindo!</div>
+				
 				<div id="msg2" style="width: 80%;">Login:</div>
-				<br />
-				<h:panelGrid columns="2" columnClasses="rotulo, campo"
-					styleClass="semFundo">
+				
+				<h:panelGrid columns="2" columnClasses="rotulo, campo"	styleClass="semFundo">
+					
 					<h:outputLabel value="Nome:" for="nome"/>
-					<h:inputText id="nome" label="Nome" value="#{usuarioBean.nome}"
-						required="true"
-						style="min-width: 100%;  min-height: 100%; max-width: 100%; max-height: 100%;" />
+					<h:inputText id="nome" label="Nome" required="true"	style="width: 100%; height: 100%; " />
+					
 					<h:outputLabel value="Senha:" for="senha" style="align: right" />
-					<h:inputSecret id="senha" label="Senha"
-						value="#{usuarioBean.senha}" required="true"
-						style="width:100%; height: 100%; line-height: 0.9em;" />
+					<h:inputSecret id="senha" label="Senha"	 required="true" style="width:100%; height: 100%; 
+					line-height: 0.9em;" />
 				</h:panelGrid>
 
-				<div align="right" style="padding-right: 9%">
-					<p:commandButton action="#{usuarioBean.salvar}" value="Entrar" />
+				<div align="right" style="width:82.5%;">
+					<p:commandButton  value="Entrar" />
 				</div>
 
 
 				<div id="msg3">					
 					<h:form>
-						<h:commandLink action="inicio" value="Esqueceu sua senha?" />
+						<h:commandLink  value="Esqueceu sua senha?" />
 					</h:form>
 				</div>			
 			</p:layoutUnit>
 
-			<p:layoutUnit position="center" resizable="true" size="200"
-				minSize="250">
+			<p:layoutUnit position="center" resizable="false" size="200" 	minSize="250">
 				<h:graphicImage library="images" name="teste.png"  style="width:100%; height:90%"/>
 			</p:layoutUnit>
 		</p:layout>

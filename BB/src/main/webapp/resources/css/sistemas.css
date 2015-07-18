@@ -6,8 +6,8 @@ body{
 	font-family: Lato, Irish Grover, sans-serif;;
 	margin:0px;
 	font-weight:normal;
-	/*background-color: #F3E9DD;*/
-	background-image:  url("/DeployTomcatTCC/javax.faces.resource/papel-de-parede-padrao.jpg.xhtml?ln=images");
+	background-color: #F3E9DD;
+	/*background-image:  url("/DeployTomcatTCC/javax.faces.resource/papel-de-parede-padrao.jpg.xhtml?ln=images");*/
 }
 
 
@@ -90,5 +90,8 @@ border: 1px solid #917C6A
 .subMenuPreto > a > span{
 	color: black !important;
 	}
+	
+
+
 
 
