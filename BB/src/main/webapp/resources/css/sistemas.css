@@ -11,6 +11,13 @@ body{
 }
 
 
+h1{
+	
+	color: #41210a;
+	margin-bottom: 1.3%;
+	padding-left: 1%;
+}
+
 header{
 	
 	padding: 5px 0px;
@@ -43,8 +50,11 @@ footer {
 /* # é id */
 
 #conteudo {
-	padding: 0px 8px;
+	padding: 0px 3.8%;
+	margin-top: 2%;
 }
+
+
 
 /* Customização do Menu Sistema - Barra principal */
 
@@ -55,7 +65,7 @@ footer {
 }
 
 .menu-sistema .ui-menu-parent > a .ui-menuitem-text, .menu-sistema > .ui-menu-list > .ui-menuitem > a > .ui-menuitem-text{
-	color: #ffffff;
+	color: #f3e9dd;
 }
 
 .menu-sistema .ui-icon-triangle-1-s {	
@@ -64,11 +74,15 @@ footer {
 
 /* Fim da customizaçao do menu-sistema */
 
+
+
 /* INICIO Botões do menubar - laranja : */
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
 	background: #F79805 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.6)), to(rgba(255,255,255,0)));
 	}
 /* FIM Botões do menubar - laranja : */	
+
+
 
 
 /* INICIO menus de seleção*/
@@ -79,12 +93,16 @@ background: #F7ECEC -webkit-gradient(linear, left top, left bottom, from(rgba(25
 /* FINAL menus de seleção*/
 
 
+
+
 /* Bordar do menu de selecao
 .ui-widget-content{
 
 border: 1px solid #917C6A
 }
 */
+
+
 
 /*Alterando cor do primeiro submenu */
 .subMenuPreto > a > span{
