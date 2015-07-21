@@ -47,5 +47,12 @@ border-color: #876758;
   font-family: Lato,sans-serif;
 }
 
-
+.ui-menu .ui-menuitem-link .ui-menuitem-icon {
+  display: inline-block;
+  float: left;
+  color: white;
+  margin-right: 8px;
+  text-align: left;
+  font-size: 1.4em;
+}
 
