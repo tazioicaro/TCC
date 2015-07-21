@@ -64,7 +64,7 @@
 			<h:form style="display: inline-block">
 				<p:menubar styleClass="menu-sistema">
 					<p:submenu label="Cadastro" icon="fa fa-folder">
-						<p:menuitem value="Clientes" />
+						<p:menuitem value="Clientes"  outcome="/clientes/CadastroCliente"/>
 						<p:menuitem value="Funcionarios" />
 						<p:separator />
 						<p:menuitem value="Categorias" />
@@ -77,8 +77,13 @@
 					<p:submenu label="Agendamento" icon="fa fa-calendar">
 					  <p:menuitem value="Novo agendamento" />
 					  <p:menuitem value="Pesquisar" />
-					  </p:submenu>
-					 			
+					  </p:submenu>						
+										
+						<p:submenu label="Pedido" icon="fa fa-list-alt">
+					  <p:menuitem value="Novo pedido" />
+					  <p:menuitem value="Pesquisa" />					
+					</p:submenu>
+					
 					<p:submenu label="Localizar" icon="fa fa-search">
 						<p:menuitem value="Clintes" />						
 						<p:separator />
@@ -89,12 +94,7 @@
 						<p:menuitem value="Serviços"  />
 						<p:separator />
 						<p:menuitem value="Fornecedores"  />
-					</p:submenu>				
-										
-						<p:submenu label="Pedido" icon="fa fa-list-alt">
-					  <p:menuitem value="Novo pedido" />
-					  <p:menuitem value="Pesquisa" />					
-					</p:submenu>
+					</p:submenu>	
 					
 					<p:menuitem value="Sair" style="margin-left:150%;"/>
 				</p:menubar>

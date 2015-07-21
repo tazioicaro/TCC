@@ -124,6 +124,8 @@ border: 1px solid #917C6A
 	padding-bottom: 0.2% !important;
 }
 
+
+
 /*INICIO Cor dentro do formulário ao Clicar*/
 .value > .ui-state-hover, .ui-state-focus {
 	background-color: #fef4d1 !important;

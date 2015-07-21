@@ -24,9 +24,9 @@
                  
     <p:growl id="growl" sticky="true" showDetail="true" />
  
-    <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"  id="passoApasso"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
+    <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"  id="passoApasso" nextLabel="Próximo" backLabel="Voltar"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
         <p:tab id="personal" title="Dados Pessoais" >
-            <p:panel style="border:0px !important" styleClass="formMenu">
+            <p:panel style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;" styleClass="formMenu">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Nome: *" />
@@ -34,11 +34,20 @@
  
                     <h:outputText value="Sobrenome: *" />
                     <p:inputText  required="true" label="Sobrenome"/>
+                    
+                     <h:outputText value="CPF: *" />
+                    <p:inputText  required="true" label="cpf"/>
+                    
+                     <h:outputText value="Sexo: " />
+                    <p:inputText   label="sexo"/>
  
                     <h:outputText value="Idade: " />
                     <p:inputText  />
                     
-                    <h:outputText value="Rua " />
+                    <h:outputText value="Rua: " />
+                    <p:inputText  />
+                    
+                    <h:outputText value="Número: " />
                     <p:inputText  />
                     
                     <h:outputText value="Bairro: " />
@@ -49,6 +58,12 @@
                     
                      <h:outputText value="Estado: " />
                     <p:inputText  /> 
+                    
+                    <h:outputText value="CEP: " />
+                    <p:inputText  /> 
+                    
+                    <h:outputText value="Referência: " />
+                    <p:inputTextarea rows="3" cols="22"  /> 
                     
  
                     <h:outputText value="Pular para o Final: " />
@@ -66,9 +81,12 @@
  
                     <h:outputText value="Telefone: " />
                     <p:inputText />
- 
-                    <h:outputText value="Informações adicionais: " />
+                    
+                    <h:outputText value="Celular: " />
                     <p:inputText />
+ 
+                    <h:outputText value="Obs.: " />
+                    <p:inputTextarea rows="5" cols="22" />
  
                     <h:outputText value="Pular para o Final: " />
                     <h:selectBooleanCheckbox  />
@@ -86,11 +104,23 @@
                     <h:outputText value="Serviços: " />
                     <p:inputText />
                     
+                    <h:outputText value="Codigo: " />
+                    <p:inputText />
+                    
+                      <h:outputText value="Valor: " />
+                    <p:inputText />
+                    
                      <h:outputText value="Profissional: " />
+                    <p:inputText />
+                    
+                     <h:outputText value="Duração Máxima: " />
                     <p:inputText />
  
                     <h:outputText value="Data de excução: " />
                     <p:inputText />
+                    
+                    <h:outputText value="Detalhes: " />
+                   <p:inputTextarea rows="5" cols="22" />
                 </h:panelGrid>
             </p:panel>
         </p:tab>
