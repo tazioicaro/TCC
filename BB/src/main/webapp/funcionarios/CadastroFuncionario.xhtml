@@ -9,7 +9,7 @@
 	
 
 
-	<ui:define name="titulo">Novo CLiente</ui:define>
+	<ui:define name="titulo">Novo Funcionário</ui:define>
 
 	<ui:define name="corpo">
 	
@@ -20,7 +20,7 @@
 
 <h:form id="form">
 
-<h1> Cadastro de Clientes</h1>
+<h1> Cadastro de Funcionários</h1>
                  
     <p:growl id="growl" sticky="true" showDetail="true" />
  
@@ -29,6 +29,7 @@
             <p:panel style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;" styleClass="formMenu">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
+                
                     <h:outputText value="Nome: *" />
                     <p:inputText  required="true" label="Nome"/>
  
@@ -36,13 +37,16 @@
                     <p:inputText  required="true" label="Sobrenome"/>
                     
                      <h:outputText value="CPF: *" />
-                    <p:inputText  required="true" label="cpf"/>
+                    <p:inputText  required="true" label="cpf"/>         
+                    
+                     <h:outputText value="RG: *" />
+                    <p:inputText  required="true" label="rg"/> 
                     
                      <h:outputText value="Sexo: " />
                     <p:inputText   label="sexo"/>
  
-                    <h:outputText value="Idade: " />
-                    <p:inputText  />
+                    <h:outputText value="Data Nascimento: " />
+                    <p:calendar  />
                     
                     <h:outputText value="Rua: " />
                     <p:inputText  />
@@ -94,33 +98,31 @@
             </p:panel>
         </p:tab>
  
-        <p:tab id="services" title="Serviços">
+        <p:tab id="services" title="Dados da Contratação">
             <p:panel >
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Especialidade: *" />
-                    <p:inputText  required="true" label="Email"/>
+                
+                
+                     <h:outputText value="CTPS: " />
+                    <p:inputText   label="ctps"/>
  
-                    <h:outputText value="Serviços: " />
+                    <h:outputText value="Função: " />
+                    <p:inputText label="funcao"/>
+                    
+                    <h:outputText value="Admissão: " />
+                    <p:calendar />
+                    
+                      <h:outputText value="Departamento: " />
                     <p:inputText />
                     
-                    <h:outputText value="Codigo: " />
-                    <p:inputText />
-                    
-                      <h:outputText value="Valor: " />
-                    <p:inputText />
-                    
-                     <h:outputText value="Profissional: " />
-                    <p:inputText />
-                    
-                     <h:outputText value="Duração Máxima: " />
-                    <p:inputText />
+                     <h:outputText value="Gerente Dep.: " />
+                    <p:inputText />                
  
-                    <h:outputText value="Data de excução: " />
+                    <h:outputText value="Permissão de Acesso: " />
                     <p:inputText />
                     
-                    <h:outputText value="Detalhes: " />
-                   <p:inputTextarea rows="5" cols="22" />
+                    
                 </h:panelGrid>
             </p:panel>
         </p:tab>
