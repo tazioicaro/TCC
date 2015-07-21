@@ -46,7 +46,8 @@
 
 .ui-helper-reset {
 
-  padding-bottom: 0.4%;
+  padding-bottom: 0.2%;
+
   
 }
 
@@ -62,26 +63,30 @@ border-color: #876758;
 
 .ui-widget {
   font-family: Lato,sans-serif;
+}
+
+
+
 
 </style>
 
 
-<h:form>
+<h:form id="form">
 
 <h1> Cadastro de Clientes</h1>
                  
-    <p:growl id="growl" sticky="true" showDetail="true"/>
+    <p:growl id="growl" sticky="true" showDetail="true" />
  
-    <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
-        <p:tab id="personal" title="Dados Pessoais">
-            <p:panel style="border:0px !important">
+    <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"  id="passoApasso"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
+        <p:tab id="personal" title="Dados Pessoais" >
+            <p:panel style="border:0px !important" styleClass="formMenu">
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Nome: *" />
-                    <p:inputText  required="true" label="Firstname"/>
+                    <p:inputText  required="true" label="Nome"/>
  
                     <h:outputText value="Sobrenome: *" />
-                    <p:inputText  required="true" label="Lastname"/>
+                    <p:inputText  required="true" label="Sobrenome"/>
  
                     <h:outputText value="Idade: " />
                     <p:inputText  />
@@ -99,7 +104,7 @@ border-color: #876758;
                     <p:inputText  /> 
                     
  
-                    <h:outputText value="Skip to last: " />
+                    <h:outputText value="Pular para o Final: " />
                     <h:selectBooleanCheckbox  />
                 </h:panelGrid>
             </p:panel>
@@ -118,7 +123,7 @@ border-color: #876758;
                     <h:outputText value="Informações adicionais: " />
                     <p:inputText />
  
-                    <h:outputText value="Skip to last: " />
+                    <h:outputText value="Pular para o Final: " />
                     <h:selectBooleanCheckbox  />
                 </h:panelGrid>
             </p:panel>
