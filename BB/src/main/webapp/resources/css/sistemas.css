@@ -130,7 +130,3 @@ border: 1px solid #917C6A
 }
 /*FIM Cor dentro do formulário ao Clicar*/
 
-
-.whiteIcon .ui-icon {
-    background-image: url("../javax.faces.resource/images/ui-icons_ffffff_256x240.png.jsf?ln=primefaces-aristo");
-}
