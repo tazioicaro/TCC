@@ -1,0 +1,188 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+	
+	
+
+
+	<ui:define name="titulo">Novo CLiente</ui:define>
+
+	<ui:define name="corpo">
+	
+	
+
+	<h:outputStylesheet library="css" name="cadastro.css" />
+
+
+<h:form id="form">
+
+<h1> Cadastro de Clientes</h1>
+                 
+    <p:growl id="growl" sticky="true" showDetail="true" />
+ 
+    <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"  id="passoApasso" nextLabel="Próximo" backLabel="Voltar"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
+        <p:tab id="personal" title="Dados Pessoais" >
+            <p:panel style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;" styleClass="formMenu">
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Nome: *" />
+                    <p:inputText  required="true" label="Nome"/>
+ 
+                    <h:outputText value="Sobrenome: *" />
+                    <p:inputText  required="true" label="Sobrenome"/>
+                    
+                     <h:outputText value="CPF: *" />
+                    <p:inputText  required="true" label="cpf"/>
+                    
+                     <h:outputText value="Sexo: " />
+                    <p:inputText   label="sexo"/>
+ 
+                    <h:outputText value="Idade: " />
+                    <p:inputText  />
+                    
+                    <h:outputText value="Rua: " />
+                    <p:inputText  />
+                    
+                    <h:outputText value="Número: " />
+                    <p:inputText  />
+                    
+                    <h:outputText value="Bairro: " />
+                    <p:inputText  />
+ 
+                    <h:outputText value="Cidade: " />
+                    <p:inputText  />
+                    
+                     <h:outputText value="Estado: " />
+                    <p:inputText  /> 
+                    
+                    <h:outputText value="CEP: " />
+                    <p:inputText  /> 
+                    
+                    <h:outputText value="Referência: " />
+                    <p:inputTextarea rows="3" cols="22"  /> 
+                    
+ 
+                    <h:outputText value="Pular para o Final: " />
+                    <h:selectBooleanCheckbox  />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="contact" title="Contatos" >
+            <p:panel >
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Email: *" />
+                    <p:inputText  required="true" label="Email"/>
+ 
+                    <h:outputText value="Telefone: " />
+                    <p:inputText />
+                    
+                    <h:outputText value="Celular: " />
+                    <p:inputText />
+ 
+                    <h:outputText value="Obs.: " />
+                    <p:inputTextarea rows="5" cols="22" />
+ 
+                    <h:outputText value="Pular para o Final: " />
+                    <h:selectBooleanCheckbox  />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="services" title="Serviços">
+            <p:panel >
+                <p:messages />
+                <h:panelGrid columns="2" columnClasses="label, value">
+                    <h:outputText value="Especialidade: *" />
+                    <p:inputText  required="true" label="Email"/>
+ 
+                    <h:outputText value="Serviços: " />
+                    <p:inputText />
+                    
+                    <h:outputText value="Codigo: " />
+                    <p:inputText />
+                    
+                      <h:outputText value="Valor: " />
+                    <p:inputText />
+                    
+                     <h:outputText value="Profissional: " />
+                    <p:inputText />
+                    
+                     <h:outputText value="Duração Máxima: " />
+                    <p:inputText />
+ 
+                    <h:outputText value="Data de excução: " />
+                    <p:inputText />
+                    
+                    <h:outputText value="Detalhes: " />
+                   <p:inputTextarea rows="5" cols="22" />
+                </h:panelGrid>
+            </p:panel>
+        </p:tab>
+ 
+        <p:tab id="confirm" title="Confirmação">
+            <p:panel header="Confirmação">
+                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Nome: " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Sobrenome: " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Idade: " />
+                        <h:outputText  styleClass="outputLabel"/>
+                        
+                        <h:outputText value="Rua: " />
+                        <h:outputText  styleClass="outputLabel"/>
+                        
+                        <h:outputText value="Bairro: " />
+                        <h:outputText  styleClass="outputLabel"/>
+                        
+                        <h:outputText value="Cidade: " />
+                        <h:outputText  styleClass="outputLabel"/>
+                        
+                        <h:outputText value="Estado: " />
+                        <h:outputText  styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="E-mail: " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Telefone: " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Informações Adicionais: " />
+                        <h:outputText  styleClass="outputLabel"/>
+                    </h:panelGrid>
+ 
+                    <h:panelGrid columns="2" columnClasses="label, value">
+                        <h:outputText value="Serviços: " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Profissional " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText value="Data de Execução: " />
+                        <h:outputText  styleClass="outputLabel"/>
+ 
+                        <h:outputText />
+                        <h:outputText />
+                    </h:panelGrid>
+                </h:panelGrid>
+ 
+                <p:commandButton value="Salvar"  update="growl" process="@this"/>
+            </p:panel>
+        </p:tab>
+    </p:wizard>
+ 
+</h:form>
+
+</ui:define>
+</ui:composition>
