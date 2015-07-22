@@ -1,4 +1,4 @@
-package models;
+package com.bb.models;
 
 /**
  * @author Tazio

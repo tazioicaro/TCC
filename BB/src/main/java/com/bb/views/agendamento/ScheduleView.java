@@ -1,4 +1,4 @@
-package models.agendamento;
+package com.bb.views.agendamento;
 
 import java.io.Serializable;
 import java.util.Calendar;
