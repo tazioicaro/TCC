@@ -1,5 +1,7 @@
 package com.bb.models;
 
-public class Unidade {
+import java.io.Serializable;
+
+public class Unidade implements Serializable{
 
 }

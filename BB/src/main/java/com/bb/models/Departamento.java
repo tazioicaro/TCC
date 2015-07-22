@@ -1,5 +1,7 @@
 package com.bb.models;
 
-public class Departamento {
+import java.io.Serializable;
+
+public class Departamento implements Serializable{
 
 }

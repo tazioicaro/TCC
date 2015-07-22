@@ -1,5 +1,7 @@
 package com.bb.models;
 
-public class Fornecedor {
+import java.io.Serializable;
+
+public class Fornecedor implements Serializable{
 
 }

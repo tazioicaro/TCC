@@ -1,5 +1,7 @@
 package com.bb.models;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco implements Serializable{
 
 }

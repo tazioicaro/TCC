@@ -1,9 +1,11 @@
 package com.bb.models;
 
+import java.io.Serializable;
+
 /**
  * @author Tazio
- *Cabe�alho nota Fiscal
+ *Cabeçalho nota Fiscal
  */
-public class CNF {
+public class CNF implements Serializable{
 
 }

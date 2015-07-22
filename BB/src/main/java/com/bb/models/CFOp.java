@@ -1,10 +1,12 @@
 package com.bb.models;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Tazio
- *Codigo Fiscal da Opera��o
+ *Codigo Fiscal da Operaçãoo
  */
-public class CFOp {
+public class CFOp implements Serializable{
 
 }

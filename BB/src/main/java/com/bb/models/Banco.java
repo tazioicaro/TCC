@@ -1,5 +1,7 @@
 package com.bb.models;
 
-public class Banco {
+import java.io.Serializable;
+
+public class Banco implements Serializable{
 
 }

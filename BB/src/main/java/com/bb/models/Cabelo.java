@@ -1,5 +1,7 @@
 package com.bb.models;
 
-public class Cabelo {
+import java.io.Serializable;
+
+public class Cabelo implements Serializable{
 
 }
