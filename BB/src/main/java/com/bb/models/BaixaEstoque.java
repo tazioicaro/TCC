@@ -3,6 +3,7 @@ package com.bb.models;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,10 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-
+@Named("baixa_estoque")
 public class BaixaEstoque  implements Serializable{
-	
-	
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer codigo;
