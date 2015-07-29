@@ -40,6 +40,8 @@ public class Funcionario implements Serializable{
 	
 	private String funcao;
 	private String rg;
+	private String orgaorg;
+	private String  cargo;
 
 	@JoinColumn(name="endereco_codigo_en")
 	@OneToOne
@@ -51,16 +53,10 @@ public class Funcionario implements Serializable{
 	private Departamento departamento_codigo;	
 	
 		
-	
-	private String orgaorg;
-	
-	
-	
-	private String email;
-	private String  cargo;
-	private Double comissao;
-	private String login;
+	private String email;	
+	private Integer login;
 	private String senha;
+	
 	private String auditoria;
 	private String actotal;
 	
@@ -129,16 +125,12 @@ public class Funcionario implements Serializable{
 	public void setCargo(String cargo) {
 		this.cargo = cargo;
 	}
-	public Double getComissao() {
-		return comissao;
-	}
-	public void setComissao(Double comissao) {
-		this.comissao = comissao;
-	}
-	public String getLogin() {
+
+	
+	public Integer getLogin() {
 		return login;
 	}
-	public void setLogin(String login) {
+	public void setLogin(Integer login) {
 		this.login = login;
 	}
 	public String getSenha() {
