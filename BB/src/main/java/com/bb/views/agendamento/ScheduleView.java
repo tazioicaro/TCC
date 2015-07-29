@@ -44,10 +44,10 @@ public class ScheduleView implements Serializable {
 			@Override
             public void loadEvents(Date start, Date end) {
                 Date random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 1", random, random));
+                addEvent(new DefaultScheduleEvent("Primeiro Evento ", random, random));
                  
                 random = getRandomDate(start);
-                addEvent(new DefaultScheduleEvent("Lazy Event 2", random, random));
+                addEvent(new DefaultScheduleEvent("Segundo Evento", random, random));
             }   
         };
     }
