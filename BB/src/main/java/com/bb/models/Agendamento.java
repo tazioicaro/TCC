@@ -3,14 +3,29 @@ package com.bb.models;
 import java.io.Serializable;
 import java.sql.Date;
 
+import javax.inject.Named;
+import javax.persistence.Column;
+import javax.persistence.Id;
+
+@Named
 public class Agendamento implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private Integer codigo;
+	
+	@Column(name="pedido_codigo_pe")
 	private Pedido pedido;
+	
+	@Column(name="cliente_codigo_cli")
 	private Cliente cliente;
+	
 	private String status;
+	
+	@Column(name="data_solicitacao")
 	private Date dataSolicitacao;
+	
+	@Column(name="data_sugerida")
 	private Date dataSugerida;
 	
 	
