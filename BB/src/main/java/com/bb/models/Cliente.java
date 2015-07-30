@@ -5,13 +5,18 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
+@Entity
 public class Cliente implements Serializable{	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	@Column(name="codigo_cli")
+	@GeneratedValue
 	private Integer codigo;
 	private String cpf;
 	private String nome;
@@ -24,8 +29,7 @@ public class Cliente implements Serializable{
 	private Boolean sexo;
 	private String complemento;
 	
-	@JoinColumn(name="endereco_codigo_en")
-	@OneToOne
+	@JoinColumn(name="endereco_codigo_en")		
 	private List<Endereco> enderecos;
 	private String obs;
 	private Integer login;

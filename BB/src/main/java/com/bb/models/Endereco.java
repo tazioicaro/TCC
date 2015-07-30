@@ -2,15 +2,17 @@ package com.bb.models;
 
 import java.io.Serializable;
 
-import javax.inject.Named;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Named
+@Entity
 public class Endereco implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@GeneratedValue
 	private Integer codigo;
 	private String rua;
 	private Integer numero; 
