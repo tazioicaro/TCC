@@ -2,6 +2,7 @@ package com.bb.models;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
@@ -25,7 +26,7 @@ public class Cliente implements Serializable{
 	
 	@JoinColumn(name="endereco_codigo_en")
 	@OneToOne
-	private Endereco endereco;
+	private List<Endereco> enderecos;
 	private String obs;
 	private Integer login;
 	private String senha;
@@ -87,11 +88,11 @@ public class Cliente implements Serializable{
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
-	public Endereco getEndereco() {
-		return endereco;
+	public List<Endereco> getEndereco() {
+		return enderecos;
 	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEndereco(List<Endereco> endereco) {
+		this.enderecos = endereco;
 	}
 	public String getObs() {
 		return obs;
@@ -111,6 +112,32 @@ public class Cliente implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cliente other = (Cliente) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
 
+	
 
 }
