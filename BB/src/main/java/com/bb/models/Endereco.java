@@ -2,9 +2,11 @@ package com.bb.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -15,16 +17,30 @@ public class Endereco implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer codigo;
-	private String rua;
+	
+	@Column( nullable= false, length= 150)
+	private String logradouro;
+	
+	@Column(nullable= false, length= 20)
 	private Integer numero; 
+	
 	private String bairro;
+	
+	@Column(nullable=false, length= 60)
 	private String cidade;
+	
+	@Column(nullable=false, length= 60)
 	private String estado;
+	
+	@Column(nullable=false, length=9)
 	private String cep;
+	
+	@Column(length= 150)
 	private String referencia;
 	
 	
 	@ManyToOne
+	@JoinColumn(name="cliente_codigo", nullable= false)
 	private Cliente cliente;
 	
 	
@@ -34,11 +50,11 @@ public class Endereco implements Serializable{
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 	public Integer getNumero() {
 		return numero;

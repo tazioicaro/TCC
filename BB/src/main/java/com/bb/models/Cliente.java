@@ -1,15 +1,21 @@
 package com.bb.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.bb.models.Enumerators.Sexo;
 
 @Entity
 public class Cliente implements Serializable{	
@@ -19,21 +25,41 @@ public class Cliente implements Serializable{
 	@Column(name="codigo_cli")
 	@GeneratedValue
 	private Integer codigo;
+	
+	@Column (nullable=false, length=14)
 	private String cpf;
+	
+	@Column(nullable= false, length = 100) //Not null de tamanho 100
 	private String nome;
 	
-	@Column(name="data_nascimento")
+	@Column(name="data_nascimento", nullable=false)
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
+	
+	@Column (nullable=false, length=12)
 	private String telefone;
+	
+	@Column (nullable=false, length=12)
 	private String celular;
+	
+	@Column (length=40)
 	private String email;
-	private Boolean sexo;
-	private String complemento;
+	
+	@Enumerated(EnumType.STRING)
+	@Column( length=10)
+	private Sexo sexo;
+	
 	
 	@OneToMany(mappedBy="cliente", cascade= CascadeType.ALL)	
 	private List<Endereco> enderecos;
+	
+	@Column( length=150)
 	private String obs;
+	
+	@Column( length=11)
 	private Integer login;
+	
+	@Column( length=20)
 	private String senha;
 	
 	
@@ -81,18 +107,13 @@ public class Cliente implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Boolean getSexo() {
+	public Sexo getSexo() {
 		return sexo;
 	}
-	public void setSexo(Boolean sexo) {
+	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
-	public String getComplemento() {
-		return complemento;
-	}
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+	
 	public List<Endereco> getEndereco() {
 		return enderecos;
 	}
