@@ -22,7 +22,7 @@ public class Endereco implements Serializable{
 	private String logradouro;
 	
 	@Column(nullable= false, length= 20)
-	private Integer numero; 
+	private String numero; 
 	
 	private String bairro;
 	
@@ -56,10 +56,10 @@ public class Endereco implements Serializable{
 	public void setLogradouro(String logradouro) {
 		this.logradouro = logradouro;
 	}
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 	public String getBairro() {

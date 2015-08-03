@@ -19,7 +19,7 @@ import org.hibernate.annotations.FetchMode;
  */
 
 
-@Named
+//@Named
 public class Unidade implements Serializable{
 	
 

@@ -1,6 +1,7 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.bb.models.Enumerators.TipoPessoa;
 import com.bb.models.Enumerators.Sexo;
 
 @Entity
@@ -26,13 +28,13 @@ public class Cliente implements Serializable{
 	@GeneratedValue
 	private Integer codigo;
 	
-	@Column (nullable=false, length=14)
-	private String cpf;
+	@Column(name="doc_receita_federal", nullable=false, length=14)
+	private String documentoReceitaFederal;
 	
 	@Column(nullable= false, length = 100) //Not null de tamanho 100
 	private String nome;
 	
-	@Column(name="data_nascimento", nullable=false)
+	@Column(name="data_nascimento")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
@@ -49,15 +51,18 @@ public class Cliente implements Serializable{
 	@Column( length=10)
 	private Sexo sexo;
 	
+	@Enumerated(EnumType.STRING)
+	@Column ( nullable=false, length = 12)
+    private TipoPessoa tipo;
 	
 	@OneToMany(mappedBy="cliente", cascade= CascadeType.ALL)	
-	private List<Endereco> enderecos;
+	private List<Endereco> enderecos = new ArrayList<>();
 	
 	@Column( length=150)
 	private String obs;
 	
 	@Column( length=11)
-	private Integer login;
+	private String login;
 	
 	@Column( length=20)
 	private String senha;
@@ -71,12 +76,7 @@ public class Cliente implements Serializable{
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	
 	public String getNome() {
 		return nome;
 	}
@@ -114,22 +114,16 @@ public class Cliente implements Serializable{
 		this.sexo = sexo;
 	}
 	
-	public List<Endereco> getEndereco() {
-		return enderecos;
-	}
-	public void setEndereco(List<Endereco> endereco) {
-		this.enderecos = endereco;
-	}
 	public String getObs() {
 		return obs;
 	}
 	public void setObs(String obs) {
 		this.obs = obs;
 	}
-	public Integer getLogin() {
+	public String getLogin() {
 		return login;
 	}
-	public void setLogin(Integer login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 	public String getSenha() {
@@ -137,6 +131,26 @@ public class Cliente implements Serializable{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	
+	public String getDocumentoReceitaFederal() {
+		return documentoReceitaFederal;
+	}
+	public void setDocumentoReceitaFederal(String documentoReceitaFederal) {
+		this.documentoReceitaFederal = documentoReceitaFederal;
+	}
+	public TipoPessoa getTipo() {
+		return tipo;
+	}
+	public void setTipo(TipoPessoa tipo) {
+		this.tipo = tipo;
+	}
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 	
 	

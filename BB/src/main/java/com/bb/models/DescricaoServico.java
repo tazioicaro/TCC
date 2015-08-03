@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 
-@Named
+//@Named
 public class DescricaoServico implements Serializable {
 	
 		private static final long serialVersionUID = 1L;

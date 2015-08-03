@@ -21,7 +21,7 @@ import org.hibernate.annotations.Cascade;
  *Cabeçalho nota Fiscal
  */
 
-@Named("cabecalho_nfe")
+//@Named("cabecalho_nfe")
 public class CNF implements Serializable{	
 
 	private static final long serialVersionUID = 1L;

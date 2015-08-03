@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.bb.models.Enumerators.TipoComissao;
+
 public class Comissao implements Serializable {
 
 	private static final long serialVersionUID = 1L;

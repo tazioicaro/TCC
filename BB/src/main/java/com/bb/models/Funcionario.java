@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 
-@Named
+//@Named
 public class Funcionario implements Serializable{
 
 	private static final long serialVersionUID = 1L;

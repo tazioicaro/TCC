@@ -11,7 +11,7 @@ import javax.persistence.Id;
  *Codigo Fiscal da Operaçãoo
  */
 
-@Named
+//@Named
 public class CFOp implements Serializable{
 	
 	

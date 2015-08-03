@@ -7,7 +7,7 @@ import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-@Named
+
 public class Agendamento implements Serializable {	
 	private static final long serialVersionUID = 1L;
 	

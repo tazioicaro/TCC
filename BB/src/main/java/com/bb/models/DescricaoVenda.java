@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-@Named
+//@Named
 public class DescricaoVenda implements Serializable {
 
 	private static final long serialVersionUID = 1L;

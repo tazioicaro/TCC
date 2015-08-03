@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-@Named
+//@Named
 public class Banco implements Serializable{
 	
 	private static final long serialVersionUID = 1L;

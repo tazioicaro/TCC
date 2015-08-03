@@ -18,7 +18,7 @@ import javax.persistence.ManyToOne;
  * Detalhe nota fiscal
  */
 
-@Named("descricao_nfe")
+//@Named("descricao_nfe")
 public class DNF implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
