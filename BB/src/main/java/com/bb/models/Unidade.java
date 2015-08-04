@@ -33,7 +33,7 @@ public class Unidade implements Serializable{
 	@Column(length=45)
 	private String descricao;
 	
-	@OneToMany
+	@OneToMany (mappedBy="unidade")
 	private List<Produto> produtos;
 	
 	

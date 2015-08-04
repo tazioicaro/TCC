@@ -68,12 +68,12 @@ public class Funcionario implements Serializable{
 	@Column(nullable=false, length=16)
 	private String  cargo;
 
-	@JoinColumn(name="endereco_codigo")
-	@OneToOne
+	@JoinColumn(nullable=false, name="endereco_codigo")
+	@OneToOne 
 	private Endereco endereco;	
 	
 	@ManyToOne
-	@JoinColumn(name="departamento_codigo")	
+	@JoinColumn(nullable=false, name="departamento_codigo")	
 	private Departamento departamento_codigo;	
 	
 	@Column (length=40)	

@@ -44,19 +44,19 @@ public class Produto implements Serializable{
 	private String auditoria;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="unidade_codigo")
+	@JoinColumn(nullable=false,name="unidade_codigo")
 	private Unidade unidade;
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="fornecedor_codigo")
+	@JoinColumn(nullable=false, name="fornecedor_codigo")
 	private Fornecedor fornecedor;
 	
 	
 	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="tipo_produto_codigo")
+	@JoinColumn(nullable=false, name="tipo_produto_codigo")
 	private TipoProduto tipoProduto;
 	
 	
