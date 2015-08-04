@@ -2,15 +2,20 @@ package com.bb.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.bb.models.Enumerators.StatusServico;
 import com.bb.models.Enumerators.TipoComissao;
@@ -30,24 +35,31 @@ public class Servicos implements Serializable {
 	@Column(nullable=false, precision=10, scale=2)
 	private BigDecimal preco;
 	
-	@Column(nullable=false, precision=10, scale=2)
+	@ManyToOne
+	@JoinColumn(name="comissao_codigo", nullable=false)
 	private Comissao comissao;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false, length=20, name="tipo_comissao")
 	private TipoComissao tipoComissao;
 	
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn(name="funcionario_codigo", nullable=false)
 	private Funcionario funcionario;
 	
-	@ManyToOne
+	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn(name="produto_codigo", nullable=false)
 	private Produto produto;
 	
-	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="cfop_codigo", nullable=false)
 	private CFOp cfOp;
-	private String duracaoMaxima;
+	
+	@Column(nullable=false, name="duracao_maxima")
+	@Temporal(TemporalType.TIME)
+	private Date duracaoMaxima;
+	
+	@Column(length=150)
 	private String detalhes;
 	
 	@Enumerated(EnumType.STRING)
@@ -105,10 +117,10 @@ public class Servicos implements Serializable {
 	public void setCfOp(CFOp cfOp) {
 		this.cfOp = cfOp;
 	}
-	public String getDuracaoMaxima() {
+	public Date getDuracaoMaxima() {
 		return duracaoMaxima;
 	}
-	public void setDuracaoMaxima(String duracaoMaxima) {
+	public void setDuracaoMaxima(Date duracaoMaxima) {
 		this.duracaoMaxima = duracaoMaxima;
 	}
 	public String getDetalhes() {

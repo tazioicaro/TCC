@@ -3,6 +3,7 @@ package com.bb.models;
 import java.io.Serializable;
 
 import javax.inject.Named;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 /**
@@ -11,7 +12,7 @@ import javax.persistence.Id;
  *Codigo Fiscal da Operaçãoo
  */
 
-//@Named
+@Entity
 public class CFOp implements Serializable{
 	
 	
