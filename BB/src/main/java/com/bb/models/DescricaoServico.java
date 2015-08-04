@@ -1,6 +1,7 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,8 +26,19 @@ public class DescricaoServico implements Serializable {
 	@Column( columnDefinition = "text")
 	private String descricao;
 	
+	@Column(nullable=false, precision=10, scale=2, name="valor_total")
+	private BigDecimal valorTotal;
 	
 	
+	
+	
+	
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
 	public Long getCodigo() {
 		return codigo;
 	}

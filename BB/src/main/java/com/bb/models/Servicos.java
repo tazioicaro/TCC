@@ -31,8 +31,11 @@ public class Servicos implements Serializable {
 	@Column(nullable=false, length=25)
 	private String nome;
 	
-	@Column(nullable=false, precision=10, scale=2)
-	private BigDecimal preco;
+	@Column(nullable=false, precision=10, scale=2, name="valor_servico")
+	private BigDecimal valor;
+	
+	@Column(nullable=false, precision=10, scale=2, name="valor_desconto")
+	private BigDecimal valorDesconto;
 	
 	@ManyToOne
 	@JoinColumn(name="comissao_codigo", nullable=false)
@@ -72,6 +75,8 @@ public class Servicos implements Serializable {
 	
 	
 	
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -85,10 +90,10 @@ public class Servicos implements Serializable {
 		this.nome = nome;
 	}
 	public BigDecimal getPreco() {
-		return preco;
+		return valor;
 	}
 	public void setPreco(BigDecimal preco) {
-		this.preco = preco;
+		this.valor = preco;
 	}
 	public Comissao getComissao() {
 		return comissao;
