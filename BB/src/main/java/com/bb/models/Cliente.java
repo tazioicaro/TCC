@@ -38,7 +38,7 @@ public class Cliente implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
-	@Column (nullable=false, length=12)
+	@Column (length=12)
 	private String telefone;
 	
 	@Column (nullable=false, length=12)

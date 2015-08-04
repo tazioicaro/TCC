@@ -3,17 +3,23 @@ package com.bb.models;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.inject.Named;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.bb.models.Enumerators.Sexo;
 
 
-//@Named
+@Entity
 public class Funcionario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -21,43 +27,67 @@ public class Funcionario implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="codigo_f")
+	@Column(name="codigo")
 	private Integer codigo;
 	
 	private String nome;
 	
+	@Column(nullable=false, length=14)
 	private String cpf;
-	private Boolean sexo;
+	
+	@Enumerated(EnumType.STRING)
+	@Column( length=10)
+	private Sexo sexo;
+	
+	@Column( length=10)
 	private String ctps;
 	
 	@Column(name="data_admissao")
+	@Temporal(TemporalType.DATE)
 	private Date dataAdmissao;
+	
+	@Column (length=12)
 	private String telefone;
+	
+	@Column (nullable=false, length=12)
 	private String celular;
 	
 	@Column(name="data_nascimento")
 	private Date dataNascimento;
 	
+	@Column (nullable=false, length=12)
 	private String funcao;
+	
+	@Column(nullable=false, length=14)
 	private String rg;
+	
+	@Column(nullable=false, length=10)
 	private String orgaorg;
+	
+	@Column(nullable=false, length=16)
 	private String  cargo;
 
-	@JoinColumn(name="endereco_codigo_en")
+	@JoinColumn(name="endereco_codigo")
 	@OneToOne
 	private Endereco endereco;	
 	
-	
-	@JoinColumn(name="departamento_codigo_dep")
 	@ManyToOne
+	@JoinColumn(name="departamento_codigo")	
 	private Departamento departamento_codigo;	
 	
-		
-	private String email;	
+	@Column (length=40)	
+	private String email;
+	
+	@Column( length=11)
 	private Integer login;
+	
+	@Column( length=20)
 	private String senha;
 	
+	@Column( columnDefinition = "text")
 	private String auditoria;
+	
+	@Column( length=10)
 	private String actotal;
 	
 			
@@ -157,10 +187,10 @@ public class Funcionario implements Serializable{
 	public void setCtps(String ctps) {
 		this.ctps = ctps;
 	}
-	public boolean isSexo() {
+	public Sexo isSexo() {
 		return sexo;
 	}
-	public void setSexo(boolean sexo) {
+	public void setSexo(Sexo sexo) {
 		this.sexo = sexo;
 	}
 	public Date getDataAdmissao() {
@@ -181,6 +211,32 @@ public class Funcionario implements Serializable{
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionario other = (Funcionario) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+	
+	
+	
 	
 
 }
