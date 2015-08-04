@@ -3,7 +3,7 @@ package com.bb.models;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Named;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,16 +25,22 @@ public class Unidade implements Serializable{
 	
 
 	private static final long serialVersionUID = 1L;
-	private Integer codigo;
-	private String descricao;
-	private List<Produto> produtos;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public Integer getCodigo() {
+	private Long codigo;
+	
+	@Column(length=45)
+	private String descricao;
+	
+	@OneToMany
+	private List<Produto> produtos;
+	
+	
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getDescricao() {
