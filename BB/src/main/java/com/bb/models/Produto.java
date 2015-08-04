@@ -1,6 +1,7 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,21 +18,49 @@ import javax.persistence.Transient;
 public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private Integer codigo;
-	private String descricao;
-	private Double vlrcompra;
-	private Double vlrvenda;
-	private Integer estoque;
-	private Integer critico;
-	private String auditoria;
-	
-	private Unidade unidade;
-	private Fornecedor fornecedor;
-	private TipoProduto tipoProduto;
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="codigo_pro")
+	private Integer codigo;
+	
+	@Column(length=30)
+	private String nome;
+	
+	@Column(length=30)
+	private String descricao;
+	
+	@Column(nullable=false, precision=10, scale=2, name="valor_compra")
+	private BigDecimal vlrcompra;
+	
+	@Column(nullable=false, precision=10, scale=2, name="valor_venda")
+	private BigDecimal vlrvenda;
+	
+	
+	private Integer estoque;
+	
+	private Integer critico;
+	
+	@Column (columnDefinition = "text") 
+	private String auditoria;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="unidade_codigo")
+	private Unidade unidade;
+	
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="fornecedor_codigo")
+	private Fornecedor fornecedor;
+	
+	
+	
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="tipo_produto_codigo")
+	private TipoProduto tipoProduto;
+	
+	
+
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -44,16 +73,16 @@ public class Produto implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Double getVlrcompra() {
+	public BigDecimal getVlrcompra() {
 		return vlrcompra;
 	}
-	public void setVlrcompra(Double vlrcompra) {
+	public void setVlrcompra(BigDecimal vlrcompra) {
 		this.vlrcompra = vlrcompra;
 	}
-	public Double getVlrvenda() {
+	public BigDecimal getVlrvenda() {
 		return vlrvenda;
 	}
-	public void setVlrvenda(Double vlrvenda) {
+	public void setVlrvenda(BigDecimal vlrvenda) {
 		this.vlrvenda = vlrvenda;
 	}
 	public Integer getEstoque() {
@@ -74,8 +103,7 @@ public class Produto implements Serializable{
 	public void setAuditoria(String auditoria) {
 		this.auditoria = auditoria;
 	}
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="unidade_codigo")
+	
 	public Unidade getUnidade() {
 		return unidade;
 	}
@@ -83,18 +111,14 @@ public class Produto implements Serializable{
 		this.unidade = unidade;
 	}
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="fornecedor_codigo_for")
+	
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
-	
-	@Transient
-	//@ManyToOne(fetch=FetchType.LAZY)
-	//@JoinColumn(name="tipo_produtos_codigo_tpr")
+
 	public TipoProduto getTipoProduto() {
 		return tipoProduto;
 	}
@@ -109,6 +133,12 @@ public class Produto implements Serializable{
 		if(descricao != null && descricao.length()> 3 && unidade !=null && fornecedor !=null)
 			return true;
 		return false;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	
 	

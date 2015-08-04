@@ -1,15 +1,11 @@
 package com.bb.models;
 
 import java.io.Serializable;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -28,49 +24,63 @@ public class Fornecedor implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 
-
-	private Integer codigo;
+	@Id
+	@GeneratedValue
+	@Column(name="codigo")
+	private Long codigo;
 	
+	@Column(nullable= false, length = 100) //Not null de tamanho 100
 	private String nome;
 
+	@Column(nullable= false, length=40)
 	private String email;
 	
-	private String telefone;
-	private String celular;
-	private String fax;
-	private String cpf;
-	private String cnpj;
-	private String obs;
-	private String rg;
-	private String orgaorg;
-	private Date desde;
 	
-	@Column(name="inscricao_estadual")
+	@Column (nullable=false, length=16)
+	private String telefone;
+	
+	
+	@Column (length=16)
+	private String celular;
+	
+	@Column (length=18)
+	private String fax;
+	
+	@Column(name="doc_receita_federal", nullable=false, length=14)
+	private String documentoReceitaFederal;
+	
+	@Column(length=100)
+	private String obs;
+
+	
+	@Column(name="inscricao_estadual", length=12)
 	private String insest;
 	
-	@Column(name="inscricao_municipal")
-	private String insemn;
-
+	@Column(length=40)
 	private String contato;
+	
+	@Column( columnDefinition = "text")
 	private String auditoria;
 	
 	@JoinColumn(name="banco_codigo")
 	@ManyToOne
 	private Banco banco;
 	
-	@JoinColumn(name="endereco_codigo_en")
+	@JoinColumn(name="endereco_codigo")
 	@OneToOne
 	private Endereco endereco;
 	
+		
+	//mappeBy informa que dentro da classe produto tem um Fornecedor Muitos para um
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="fornecedor",orphanRemoval=true)
+	@Fetch(value=FetchMode.SELECT)
 	private List<Produto> produtos;
 	
-	@Id
-	@GeneratedValue
-	@Column(name="codigo_for")
-	public Integer getCodigo() {
+
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
@@ -93,52 +103,14 @@ public class Fornecedor implements Serializable{
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+	
 	public String getObs() {
 		return obs;
 	}
 	public void setObs(String obs) {
 		this.obs = obs;
-	}
-	public String getRg() {
-		return rg;
-	}
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-	public String getOrgaorg() {
-		return orgaorg;
-	}
-	public void setOrgaorg(String orgaorg) {
-		this.orgaorg = orgaorg;
-	}
-	public Date getDesde() {
-		return desde;
-	}
-	public void setDesde(Date desde) {
-		this.desde = desde;
-	}
+	}	
 	
-	
-	public void setDesdeString(String desdeString) throws ParseException {
-		if(desdeString != null && !desdeString.equals(""))
-		{
-			DateFormat df = new SimpleDateFormat("dd/MM/yyyy"); 
-			setDesde(new Date(df.parse(desdeString).getTime()));
-		}
-	}
-	
-	public String getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
 	public String getInsest() {
 		return insest;
 	}
@@ -162,11 +134,8 @@ public class Fornecedor implements Serializable{
 	}
 	public void setAuditoria(String auditoria) {
 		this.auditoria = auditoria;
-	}
-	
-	//mappeBy informa que dentro da classe produto tem um Fornecedor Muitos para um
-	@OneToMany(fetch= FetchType.LAZY, mappedBy="fornecedor")
-	@Fetch(value=FetchMode.SELECT)
+	}	
+
 	public List<Produto> getProdutos() {
 		return produtos;
 	}
@@ -197,12 +166,7 @@ public class Fornecedor implements Serializable{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	public String getInsemn() {
-		return insemn;
-	}
-	public void setInsemn(String insemn) {
-		this.insemn = insemn;
-	}
+	
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -215,5 +179,13 @@ public class Fornecedor implements Serializable{
 	public void setBanco(Banco banco) {
 		this.banco = banco;
 	}
+	public String getDocumentoReceitaFederal() {
+		return documentoReceitaFederal;
+	}
+	public void setDocumentoReceitaFederal(String documentoReceitaFederal) {
+		this.documentoReceitaFederal = documentoReceitaFederal;
+	}
+	
+	
 
 }

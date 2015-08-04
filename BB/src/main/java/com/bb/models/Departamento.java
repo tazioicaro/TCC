@@ -2,6 +2,7 @@ package com.bb.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +15,8 @@ public class Departamento implements Serializable{
 	@Id
 	@GeneratedValue
 	private Integer codigo;
+	
+	@Column(length=30)
 	private String gerente;
 	private String nome;
 	

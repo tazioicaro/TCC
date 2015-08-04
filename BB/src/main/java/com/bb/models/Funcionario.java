@@ -43,7 +43,7 @@ public class Funcionario implements Serializable{
 	private String ctps;
 	
 	@Column(name="data_admissao")
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataAdmissao;
 	
 	@Column (length=12)
@@ -53,6 +53,7 @@ public class Funcionario implements Serializable{
 	private String celular;
 	
 	@Column(name="data_nascimento")
+	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
 	@Column (nullable=false, length=12)
