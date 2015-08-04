@@ -18,6 +18,8 @@ public class Departamento implements Serializable{
 	
 	@Column(length=30)
 	private String gerente;
+	
+	@Column(length=45)
 	private String nome;
 	
 	

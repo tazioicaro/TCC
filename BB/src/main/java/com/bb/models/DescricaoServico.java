@@ -2,32 +2,43 @@ package com.bb.models;
 
 import java.io.Serializable;
 
-import javax.inject.Named;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
-//@Named
+@Entity (name="descricao_servico")
 public class DescricaoServico implements Serializable {
 	
 		private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="codigo_ds")
-	private Integer codigo;
+	@Id	
+	private Long codigo;
 	
-	@Column(name="servico_codigo_s")
-	@OneToMany
+	
+	@ManyToOne
+	@JoinColumn(name="servico_codigo")	
 	private Servicos servicos;
 	
+	@Column( columnDefinition = "text")
+	private String descricao;
 	
 	
-	public Integer getCodigo() {
+	
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
+	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	public Servicos getServicos() {
 		return servicos;
@@ -35,6 +46,10 @@ public class DescricaoServico implements Serializable {
 	public void setServicos(Servicos servicos) {
 		this.servicos = servicos;
 	}
+	
+	
+	
+	
 	
 	
 

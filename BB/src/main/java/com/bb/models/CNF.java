@@ -1,18 +1,21 @@
 package com.bb.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Set;
 
-import javax.inject.Named;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.Cascade;
 
 
@@ -21,33 +24,43 @@ import org.hibernate.annotations.Cascade;
  *Cabeçalho nota Fiscal
  */
 
-//@Named("cabecalho_nfe")
+@Entity(name="cnf")
 public class CNF implements Serializable{	
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
 	private Long numero;
 	
 	@ManyToOne(fetch=FetchType.LAZY) //vários cabeçalhos para uma operação
-	@JoinColumn(name="cfop_codigo")
+	@JoinColumn(nullable=false, name="cfop_codigo")
 	private CFOp codFiscalOp;
 	
 
 	@ManyToOne(fetch=FetchType.LAZY) //varios cabeçalhos para um fornecedor
-	@JoinColumn(name="fornecedor_codigo_for")
+	@JoinColumn(nullable=false, name="fornecedor_codigo")
 	private Fornecedor fornecedor;
 	
+	
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date emissao; // Sql o video util
+	
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date entrada;
-	private Double total;
+	
+	@Column(nullable=false, precision=10, scale=2, name="total")
+	private BigDecimal total;
+	
+	@Column (columnDefinition = "text") 
 	private String auditoria;
 	
-	@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="cnf") //Existe o CNF na classe DNF
-	@Cascade(value={org.hibernate.annotations.CascadeType.SAVE_UPDATE}) //Salva e atualiza no Set
-	@JoinColumn(name="nfe_numero", insertable=true, updatable=true)
-	private Set<DNF> detalheNF; //Mapeamento bidirecional /** devido ao Set necessita de um cascateamento*/
+	//@Cache(usage=CacheConcurrencyStrategy.READ_WRITE)
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="cnf") 
+	@Cascade(value={org.hibernate.annotations.CascadeType.SAVE_UPDATE}) 
+	//@JoinColumn(name="cnf_numero", insertable=true, updatable=true)
+	private Set<DNF> detalheNF; 
 	
 	
 
@@ -99,11 +112,11 @@ public class CNF implements Serializable{
 		this.entrada = entrada;
 	}
 
-	public Double getTotal() {
+	public BigDecimal getTotal() {
 		return total;
 	}
 
-	public void setTotal(Double total) {
+	public void setTotal(BigDecimal total) {
 		this.total = total;
 	}
 

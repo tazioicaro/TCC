@@ -13,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -65,6 +64,10 @@ public class Servicos implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false, length=25, name="status_servico")
 	private StatusServico statusServico;
+	
+	@ManyToOne
+	@JoinColumn(name="dservico_codigo")
+	private DescricaoServico servicos;
 	
 	
 	
@@ -157,6 +160,12 @@ public class Servicos implements Serializable {
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+	public DescricaoServico getServicos() {
+		return servicos;
+	}
+	public void setServicos(DescricaoServico servicos) {
+		this.servicos = servicos;
 	}
 	
 	

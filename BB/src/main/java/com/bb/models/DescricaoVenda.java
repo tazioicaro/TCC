@@ -1,13 +1,15 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-import javax.inject.Named;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-//@Named
+@Entity
 public class DescricaoVenda implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -15,17 +17,21 @@ public class DescricaoVenda implements Serializable {
 	@Id	
 	private Integer codigo;
 	
-	@Column(name="venda_codigo")
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name="venda_codigo")	
 	private Venda venda;
 	
-	@Column(name="produtos_idprodutos")
-	@OneToMany
+	
+	@ManyToOne	
+	@JoinColumn(name="produto_idprodutos")	
 	private Produto produto;
 	
-	@Column(name="serviços_codigo_s")
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name="servico_codigo")	
 	private Servicos servicos;
+	
+	@Column(name="valor_unitario", nullable=false, precision=10, scale=2)
+	private BigDecimal vlrUnitario;
 	
 	
 
@@ -59,6 +65,14 @@ public class DescricaoVenda implements Serializable {
 
 	public void setServicos(Servicos servicos) {
 		this.servicos = servicos;
+	}
+
+	public BigDecimal getVlrUnitario() {
+		return vlrUnitario;
+	}
+
+	public void setVlrUnitario(BigDecimal vlrUnitario) {
+		this.vlrUnitario = vlrUnitario;
 	}
 	
 	

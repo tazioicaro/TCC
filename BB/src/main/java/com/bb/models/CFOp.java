@@ -2,7 +2,7 @@ package com.bb.models;
 
 import java.io.Serializable;
 
-import javax.inject.Named;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -17,8 +17,10 @@ public class CFOp implements Serializable{
 	
 	
 	private static final long serialVersionUID = 1L;
-	@Id
+	@Id	
 	private Long codigo;
+	
+	@Column(length=25)
 	private String descricao;
 
 	

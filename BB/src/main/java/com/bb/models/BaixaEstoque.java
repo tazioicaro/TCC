@@ -3,8 +3,8 @@ package com.bb.models;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.inject.Named;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-//@Named("baixa_estoque")
+@Entity
 public class BaixaEstoque  implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class BaixaEstoque  implements Serializable{
 	private Integer codigo;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="produtos_codigo_pro")
+	@JoinColumn(nullable=false, name="produto_codigo")
 	private Produto produto;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -34,7 +34,7 @@ public class BaixaEstoque  implements Serializable{
 	private Funcionario autorizante;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="solicitante_codigo")
+	@JoinColumn(nullable=false, name="solicitante_codigo")
 	private Funcionario solicitante;
 	
 	

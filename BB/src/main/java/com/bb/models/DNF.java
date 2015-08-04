@@ -1,9 +1,10 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
-import javax.inject.Named;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +19,7 @@ import javax.persistence.ManyToOne;
  * Detalhe nota fiscal
  */
 
-//@Named("descricao_nfe")
+@Entity(name="dnf")
 public class DNF implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -28,20 +29,25 @@ public class DNF implements Serializable{
 	private Long codigo;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "produtos_codigo_pro")
+	@JoinColumn(name = "produto_codigo")
 	private Produto produto;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "nfe_numero")
+	@JoinColumn(nullable=false, name = "cnf_numero")
 	private CNF cnf;
 	
 	@Column(name="qtde")
 	private Integer quantidade;
 	
+	@Column(nullable=false, precision=10, scale=2, name="valor_unitario")
+	private BigDecimal vlrunitario;
 	
-	private Double vlrunitario;
-	private Double vlrtotal;
+	@Column(nullable=false, precision=10, scale=2, name="valor_total")
+	private BigDecimal vlrtotal;
 
+	
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -74,19 +80,19 @@ public class DNF implements Serializable{
 		this.quantidade = quantidade;
 	}
 
-	public Double getVlrunitario() {
+	public BigDecimal getVlrunitario() {
 		return vlrunitario;
 	}
 
-	public void setVlrunitario(Double vlrunitario) {
+	public void setVlrunitario(BigDecimal vlrunitario) {
 		this.vlrunitario = vlrunitario;
 	}
 
-	public Double getVlrtotal() {
+	public BigDecimal getVlrtotal() {
 		return vlrtotal;
 	}
 
-	public void setVlrtotal(Double vlrtotal) {
+	public void setVlrtotal(BigDecimal vlrtotal) {
 		this.vlrtotal = vlrtotal;
 	}
 

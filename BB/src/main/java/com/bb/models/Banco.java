@@ -2,7 +2,6 @@ package com.bb.models;
 
 import java.io.Serializable;
 
-import javax.inject.Named;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,17 +20,17 @@ public class Banco implements Serializable{
 	private Integer codigo;
 	
 	
-	@Column(name="cod_banco", nullable=false)
+	@Column(name="cod_banco", nullable=false, length=5)
 	private Integer codBanco;
 	
 	
-	@Column(nullable=false)
+	@Column(nullable=false, length=30)
 	private String nome;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, length=7)
 	private Integer agencia;
 	
-	@Column(nullable=false)
+	@Column(nullable=false, length=7)
 	private Integer conta;
 	
 	
