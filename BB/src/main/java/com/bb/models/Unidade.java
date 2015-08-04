@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Named;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,7 +20,7 @@ import org.hibernate.annotations.FetchMode;
  */
 
 
-//@Named
+@Entity
 public class Unidade implements Serializable{
 	
 

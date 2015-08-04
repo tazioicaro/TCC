@@ -2,8 +2,8 @@ package com.bb.models;
 
 import java.io.Serializable;
 
-import javax.inject.Named;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 
-//@Named
+@Entity
 public class Produto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -92,9 +92,9 @@ public class Produto implements Serializable{
 		this.fornecedor = fornecedor;
 	}
 	
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="tipo_produtos_codigo_tpr")
+	@Transient
+	//@ManyToOne(fetch=FetchType.LAZY)
+	//@JoinColumn(name="tipo_produtos_codigo_tpr")
 	public TipoProduto getTipoProduto() {
 		return tipoProduto;
 	}
