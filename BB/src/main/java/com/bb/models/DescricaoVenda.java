@@ -33,7 +33,19 @@ public class DescricaoVenda implements Serializable {
 	@Column(name="valor_unitario", nullable=false, precision=10, scale=2)
 	private BigDecimal vlrUnitario;
 	
+	@Column(name="valor_total", nullable=false, precision=10, scale=2)
+	private BigDecimal vlrTotal;
 	
+	
+	
+
+	public BigDecimal getVlrTotal() {
+		return vlrTotal;
+	}
+
+	public void setVlrTotal(BigDecimal vlrTotal) {
+		this.vlrTotal = vlrTotal;
+	}
 
 	public Integer getCodigo() {
 		return codigo;
