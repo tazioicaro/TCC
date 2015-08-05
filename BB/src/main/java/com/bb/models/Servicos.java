@@ -3,6 +3,7 @@ package com.bb.models;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,9 +52,13 @@ public class Servicos implements Serializable {
 	@JoinColumn(name="funcionario_codigo", nullable=false)
 	private Funcionario funcionario;
 	
-	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name="produto_codigo", nullable=false)
-	private Produto produto;
+	
+	
+	@ManyToMany
+	@JoinTable(name="servicos_e_produtos", joinColumns=
+     {@JoinColumn(name="servico_codigo")}, inverseJoinColumns=
+     {@JoinColumn(name="produto_codigo")})	
+	private List<Produto> produto;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cfop_codigo", nullable=false)
@@ -113,12 +120,7 @@ public class Servicos implements Serializable {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	public Produto getProduto() {
-		return produto;
-	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
+	
 	public CFOp getCfOp() {
 		return cfOp;
 	}
@@ -142,6 +144,29 @@ public class Servicos implements Serializable {
 	}
 	public void setStatusServico(StatusServico statusServico) {
 		this.statusServico = statusServico;
+	}
+	
+	
+	
+	
+	
+	public BigDecimal getValor() {
+		return valor;
+	}
+	public void setValor(BigDecimal valor) {
+		this.valor = valor;
+	}
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+	public List<Produto> getProduto() {
+		return produto;
+	}
+	public void setProduto(List<Produto> produto) {
+		this.produto = produto;
 	}
 	@Override
 	public int hashCode() {

@@ -2,6 +2,7 @@ package com.bb.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
@@ -51,16 +53,24 @@ public class Produto implements Serializable{
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(nullable=false, name="fornecedor_codigo")
 	private Fornecedor fornecedor;
-	
-	
-	
+			
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(nullable=false, name="tipo_produto_codigo")
 	private TipoProduto tipoProduto;
 	
-	
+	@ManyToMany(mappedBy="produto")	
+	private List<Servicos> servicos;
 
+	
+	
+	
+	public List<Servicos> getServicos() {
+		return servicos;
+	}
+	public void setServicos(List<Servicos> servicos) {
+		this.servicos = servicos;
+	}
 	public Integer getCodigo() {
 		return codigo;
 	}
