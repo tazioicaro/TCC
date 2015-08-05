@@ -67,6 +67,11 @@ public class Cliente implements Serializable{
 	@Column( length=20)
 	private String senha;
 	
+	@OneToMany(mappedBy="cliente", cascade= CascadeType.ALL)
+	private List<Agendamento> agendamento;
+	
+	
+	
 	
 	
 	
@@ -154,6 +159,14 @@ public class Cliente implements Serializable{
 	}
 	
 	
+	
+	
+	public List<Agendamento> getAgendamento() {
+		return agendamento;
+	}
+	public void setAgendamento(List<Agendamento> agendamento) {
+		this.agendamento = agendamento;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -177,7 +190,7 @@ public class Cliente implements Serializable{
 			return false;
 		return true;
 	}
-
+	
 	
 
 }

@@ -27,7 +27,8 @@ public class Agendamento implements Serializable {
 	@JoinColumn(nullable=false, name="pedido_codigo")
 	private Pedido pedido;
 	
-	@Column(name="cliente_codigo")
+	@ManyToOne
+	@JoinColumn(name="cliente_codigo")
 	private Cliente cliente;
 	
 	@Enumerated(EnumType.STRING)

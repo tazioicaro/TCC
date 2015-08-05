@@ -77,6 +77,9 @@ public class Fornecedor implements Serializable{
 	private List<Produto> produtos;
 	
 
+	
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}

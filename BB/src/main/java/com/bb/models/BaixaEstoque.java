@@ -37,8 +37,10 @@ public class BaixaEstoque  implements Serializable{
 	@JoinColumn(nullable=false, name="solicitante_codigo")
 	private Funcionario solicitante;
 	
-	
+	@Column(length=10)
 	private Integer qtde;
+	
+	@Column(length=10)
 	private Integer autorizado;
 	
 	
@@ -52,7 +54,7 @@ public class BaixaEstoque  implements Serializable{
 	private Date dataAutorizacao;	
 	
 	
-	@Column(name="qtde_entregue")
+	@Column(name="qtde_entregue", length=10)
 	private Integer  qtdeEntreque;
 	
 	//Gets-Sets

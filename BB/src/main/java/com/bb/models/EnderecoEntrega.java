@@ -31,6 +31,7 @@ public class EnderecoEntrega implements Serializable {
 	
 	
 	
+	
 	public String getLogradouro() {
 		return logradouro;
 	}

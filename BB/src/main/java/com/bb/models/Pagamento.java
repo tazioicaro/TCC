@@ -53,6 +53,8 @@ public class Pagamento implements Serializable {
 	private Banco banco;
 	
 		
+	
+	
 
 	public String getDescricao() {
 		return descricao;

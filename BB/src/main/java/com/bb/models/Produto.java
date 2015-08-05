@@ -37,9 +37,11 @@ public class Produto implements Serializable{
 	@Column(nullable=false, precision=10, scale=2, name="valor_venda")
 	private BigDecimal vlrvenda;
 	
-	
+	@Column(length=10)
 	private Integer estoque;
 	
+	
+	@Column(length=10)
 	private Integer critico;
 	
 	@Column (columnDefinition = "text") 
@@ -62,6 +64,7 @@ public class Produto implements Serializable{
 	@ManyToMany(mappedBy="produto")	
 	private List<Servicos> servicos;
 
+	
 	
 	
 	

@@ -24,6 +24,8 @@ public class CFOp implements Serializable{
 	private String descricao;
 
 	
+	
+	
 	public Long getCodigo() {
 		return codigo;
 	}

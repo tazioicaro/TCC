@@ -30,7 +30,7 @@ public class Unidade implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codigo;
 	
-	@Column(length=45)
+	@Column(length=50)
 	private String descricao;
 	
 	@OneToMany (mappedBy="unidade")

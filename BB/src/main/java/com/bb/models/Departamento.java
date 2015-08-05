@@ -23,6 +23,7 @@ public class Departamento implements Serializable{
 	private String nome;
 	
 	
+	
 	public Integer getCodigo() {
 		return codigo;
 	}
