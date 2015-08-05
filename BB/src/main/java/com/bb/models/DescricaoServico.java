@@ -2,12 +2,15 @@ package com.bb.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 @Entity (name="descricao_servico")
@@ -29,10 +32,32 @@ public class DescricaoServico implements Serializable {
 	@Column(nullable=false, precision=10, scale=2, name="valor_total")
 	private BigDecimal valorTotal;
 	
+	@Column(name="duracao_unitaria")
+	@Temporal(TemporalType.TIME)
+	private Date tempoPorServico;
+	
+	
+	@Column(name="duracao_total")
+	@Temporal(TemporalType.TIME)
+	private Date tempoTotalServivo;
 	
 	
 	
 	
+	
+	
+	public Date getTempoPorServico() {
+		return tempoPorServico;
+	}
+	public void setTempoPorServico(Date tempoPorServico) {
+		this.tempoPorServico = tempoPorServico;
+	}
+	public Date getTempoTotalServivo() {
+		return tempoTotalServivo;
+	}
+	public void setTempoTotalServivo(Date tempoTotalServivo) {
+		this.tempoTotalServivo = tempoTotalServivo;
+	}
 	public BigDecimal getValorTotal() {
 		return valorTotal;
 	}
