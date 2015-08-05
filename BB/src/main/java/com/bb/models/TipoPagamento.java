@@ -2,6 +2,7 @@ package com.bb.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +16,7 @@ public class TipoPagamento implements Serializable{
 	@GeneratedValue
 	private Long codigo;
 	
+	@Column(length=50)
 	private String descricao;
 	
 	
