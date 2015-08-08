@@ -18,6 +18,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Cascade;
 
+import com.bb.models.Enumerators.TipoNFE;
+
 
 /**
  * @author Tazio
@@ -62,6 +64,8 @@ public class CNF implements Serializable{
 	//@JoinColumn(name="cnf_numero", insertable=true, updatable=true)
 	private Set<DNF> detalheNF; 
 	
+	
+	private TipoNFE tipoNfe;
 	
 
 	public Set<DNF> getDetalheNF() {
@@ -126,6 +130,14 @@ public class CNF implements Serializable{
 
 	public void setAuditoria(String auditoria) {
 		this.auditoria = auditoria;
+	}
+
+	public TipoNFE getTipoNfe() {
+		return tipoNfe;
+	}
+
+	public void setTipoNfe(TipoNFE tipoNfe) {
+		this.tipoNfe = tipoNfe;
 	}
 	
 
