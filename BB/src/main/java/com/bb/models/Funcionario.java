@@ -68,19 +68,19 @@ public class Funcionario implements Serializable{
 	@Column(nullable=false, length=16)
 	private String  cargo;
 
-	@JoinColumn(nullable=false, name="endereco_codigo")
+	@JoinColumn(nullable=true, name="endereco_codigo") //Alterar para obrigatório o endereço
 	@OneToOne 
 	private Endereco endereco;	
 	
 	@ManyToOne
-	@JoinColumn(nullable=false, name="departamento_codigo")	
+	@JoinColumn(nullable=true, name="departamento_codigo")	
 	private Departamento departamento_codigo;	
 	
 	@Column (length=40)	
 	private String email;
 	
 	@Column( length=11)
-	private Integer login;
+	private String login;
 	
 	@Column( length=20)
 	private String senha;
@@ -158,10 +158,10 @@ public class Funcionario implements Serializable{
 	}
 
 	
-	public Integer getLogin() {
+	public String getLogin() {
 		return login;
 	}
-	public void setLogin(Integer login) {
+	public void setLogin(String login) {
 		this.login = login;
 	}
 	public String getSenha() {
@@ -211,6 +211,18 @@ public class Funcionario implements Serializable{
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	
+	
+	public Date getDataNascimento() {
+		return dataNascimento;
+	}
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	public Sexo getSexo() {
+		return sexo;
 	}
 	@Override
 	public int hashCode() {

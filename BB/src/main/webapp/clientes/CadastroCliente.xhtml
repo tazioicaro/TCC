@@ -27,7 +27,7 @@
     <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"  id="passoApasso" nextLabel="Próximo" backLabel="Voltar"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
         <p:tab id="personal" title="Dados Pessoais" >
             <p:panel style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;" styleClass="formMenu">
-                <p:messages />
+                <p:messages  autoUpdate="true" closable="true"/>
                 <h:panelGrid columns="2" columnClasses="label, value">
                     <h:outputText value="Nome: *" />
                     <p:inputText  required="true" label="Nome"/>

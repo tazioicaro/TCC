@@ -16,20 +16,7 @@
 	
 </h:head>
 <h:body>
-	<!-- Inserindo componente AJAX Status 
-	  quando houver uma nova renderização , o onsuccess chamará a reconfiguração da mascara de dinheiro-->
-	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()">
 
-		<!--  Inserir o que será ixibido quando uma requisição ajax for iniciada -->
-		<f:facet name="start">
-			<h:graphicImage library="images" name="loading.gif" />
-		</f:facet>
-
-		<!-- Quando for carregado a imagem será substituido por nada -->
-		<f:facet name="complete">
-			<h:outputText value="" />
-		</f:facet>
-	</p:ajaxStatus>
 
 	<header>
 	<div style="border-bottom: 1px solid #f3e9dd;; width: 98.7%; height: 65%">
@@ -50,9 +37,13 @@
 				<p:menubar styleClass="menu-sistema">		
 					<p:submenu label="Administração"  icon="fa fa-cogs">					
 					<p:submenu label="Financeiro" styleClass="subMenuPreto" >
-					  <p:menuitem value="Novo pedido" />
-					  <p:menuitem value="Pesquisa" />					
-					</p:submenu>
+					  <p:menuitem value="Planos de Contas" />						  
+					   <p:menuitem value="Tipos Pgtos/Recbmtos" />								
+					</p:submenu>								
+					
+					  <p:menuitem value="Departamentos" />
+					  <p:menuitem value="Unidades" />					
+					
 					</p:submenu>
 				</p:menubar>
 			</h:form>
@@ -104,6 +95,23 @@
 		<!-- Limpar as flutuações para não afetar outros componentes abaixo-->
 		<div style="clear: both"></div>
 	</header>
+	
+		<!-- Inserindo componente AJAX Status 
+	  quando houver uma nova renderização , o onsuccess chamará a reconfiguração da mascara de dinheiro-->
+	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()" style="float:right; margin-right: 8%">
+
+		<!--  Inserir o que será ixibido quando uma requisição ajax for iniciada -->
+		<f:facet name="start">
+		
+			<!--<p:button icon="fa fa-spinner" />-->
+	 <h:graphicImage library="images" name="loading.gif" /> 
+		</f:facet>
+
+		<!-- Quando for carregado a imagem será substituido por nada -->
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
 
 
 

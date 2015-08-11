@@ -10,7 +10,7 @@
 	 <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 	 
 	 
-	 <property name="hibernate.hbm2ddl.auto" value="create"/> <!-- O create sempre irá dropar as tabelas, e o update apenas atualizar -->
+	 <property name="hibernate.hbm2ddl.auto" value="update"/> <!-- O create sempre irá dropar as tabelas, e o update apenas atualizar -->
 	 <property name="hibernate.show_sql" value="true"/>
 	 <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect"/>
 	  

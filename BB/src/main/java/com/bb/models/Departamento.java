@@ -14,7 +14,7 @@ public class Departamento implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	private Integer codigo;
+	private Long codigo;
 	
 	@Column(length=30)
 	private String gerente;
@@ -24,10 +24,12 @@ public class Departamento implements Serializable{
 	
 	
 	
-	public Integer getCodigo() {
+	
+	
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getGerente() {

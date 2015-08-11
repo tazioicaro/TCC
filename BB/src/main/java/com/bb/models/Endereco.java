@@ -16,7 +16,7 @@ public class Endereco implements Serializable{
 	
 	@Id
 	@GeneratedValue
-	private Integer codigo;
+	private Long codigo;
 	
 	@Column( nullable= false, length= 150)
 	private String logradouro;
@@ -41,14 +41,14 @@ public class Endereco implements Serializable{
 	
 	
 	@ManyToOne
-	@JoinColumn(name="cliente_codigo", nullable= false)
+	@JoinColumn(name="cliente_codigo", nullable= true) 
 	private Cliente cliente;
 	
 	
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getLogradouro() {
