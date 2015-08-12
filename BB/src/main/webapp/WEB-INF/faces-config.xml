@@ -5,4 +5,20 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
     version="2.2">
 
+
+	<application>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+		</locale-config>
+
+
+		<message-bundle>com.bb.Messages</message-bundle>
+
+	</application>
+
+	<factory>
+		<exception-handler-factory>com.bb.controller.util.jsf.JsfExceptionHandlerFactory</exception-handler-factory>
+
+	</factory>
+
 </faces-config>
