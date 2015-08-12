@@ -21,13 +21,12 @@
 			<version>2.2.14.Final</version>
 		</dependency>
 		
-				<dependency>
-   <groupId>org.jboss</groupId>
-   <artifactId>jandex</artifactId>
-   <version>1.2.2.Final</version>
-   <scope>compile</scope>
-     
-</dependency>
+		<dependency>
+  		 <groupId>org.jboss</groupId>
+   		<artifactId>jandex</artifactId>
+   		<version>1.2.2.Final</version>
+   		<scope>compile</scope>     
+		</dependency>
 
 		<!-- Prime Faces 5.2 -->
 		<dependency>
@@ -77,6 +76,14 @@
 			<version>4.3.10.Final</version>
 			<scope>compile</scope>
 		</dependency>
+		
+			<!-- Implementação Bean Validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.1.3.Final</version>
+			<scope>compile</scope>
+		</dependency>
 
 		<!-- Driver JDBC do Mysql -->
 		<dependency>
@@ -85,14 +92,13 @@
 			<version>5.1.36</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- Fonts Awesome -->
- 
-<dependency>
-	<groupId>org.webjars</groupId>
-	<artifactId>font-awesome</artifactId>
-	<version>4.3.0-3</version>
-</dependency>
-
+		
+		<!-- Fonts Awesome --> 
+	<dependency>
+		<groupId>org.webjars</groupId>
+		<artifactId>font-awesome</artifactId>
+		<version>4.3.0-3</version>
+	</dependency>
 
 	</dependencies>
 

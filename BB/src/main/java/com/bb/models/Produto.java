@@ -14,6 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -37,7 +40,9 @@ public class Produto implements Serializable{
 	@Column(nullable=false, precision=10, scale=2, name="valor_venda")
 	private BigDecimal vlrvenda;
 	
+
 	@Column(length=10)
+	@NotNull @Min(0) @Max(9999)
 	private Integer estoque;
 	
 	
