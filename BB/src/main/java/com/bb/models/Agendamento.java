@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.bb.models.Enumerators.StatusAgendamento;
 
@@ -23,18 +24,22 @@ public class Agendamento implements Serializable {
 	@GeneratedValue
 	private Integer codigo;
 	
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(nullable=false, name="pedido_codigo")
 	private Pedido pedido;
 	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="cliente_codigo")
 	private Cliente cliente;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable=false, length=25, name="status_agendamento")
 	private StatusAgendamento status;
 	
+	@NotNull
 	@Column(name="data_solicitacao")
 	private Date dataSolicitacao;
 	

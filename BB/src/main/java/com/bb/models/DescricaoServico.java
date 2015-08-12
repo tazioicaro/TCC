@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity (name="descricao_servico")
@@ -21,13 +24,15 @@ public class DescricaoServico implements Serializable {
 	@Id	
 	private Long codigo;
 	
-	
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name="servico_codigo")	
 	private Servicos servicos;
 	
+	@NotBlank
 	@Column( columnDefinition = "text")
 	private String descricao;
+	
 	
 	@Column(nullable=false, precision=10, scale=2, name="valor_total")
 	private BigDecimal valorTotal;

@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.bb.models.Enumerators.TipoComissao;
 
@@ -17,9 +20,10 @@ public class Comissao implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
+	@NotBlank
 	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_comissao", length=25)	
 	private TipoComissao tipoComissao;

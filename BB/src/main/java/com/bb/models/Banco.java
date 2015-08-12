@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Banco implements Serializable{
@@ -19,17 +22,19 @@ public class Banco implements Serializable{
 	@GeneratedValue (strategy= GenerationType.IDENTITY)
 	private Integer codigo;
 	
-	
-	@Column(name="cod_banco", nullable=false, length=5)
+	@NotBlank @Size (max=7)
+	@Column(name="cod_banco", nullable=false, length=7)
 	private Integer codBanco;
 	
 	
 	@Column(nullable=false, length=30)
 	private String nome;
 	
+	@NotBlank @Size(max=7)
 	@Column(nullable=false, length=7)
 	private Integer agencia;
 	
+	@NotBlank @Size (max=7)
 	@Column(nullable=false, length=7)
 	private Integer conta;
 	

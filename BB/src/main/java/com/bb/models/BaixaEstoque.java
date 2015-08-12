@@ -11,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity(name="baixa_estoque")
 public class BaixaEstoque  implements Serializable{
@@ -21,29 +25,35 @@ public class BaixaEstoque  implements Serializable{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(nullable=false, name="produto_codigo")
 	private Produto produto;
+	
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="funci_entrega_codigo")
 	private Funcionario funciEntrega;
 	
+
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="autorizante_codigo")
 	private Funcionario autorizante;
 	
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(nullable=false, name="solicitante_codigo")
 	private Funcionario solicitante;
 	
+	@NotBlank @Size (max=10)
 	@Column(length=10)
 	private Integer qtde;
 	
+	@Size (max=10)
 	@Column(length=10)
 	private Integer autorizado;
 	
-	
+	@NotNull
 	@Column(name="data_solicitacao")
 	private Date dataSolicitacao;
 	
@@ -53,7 +63,7 @@ public class BaixaEstoque  implements Serializable{
 	@Column(name="data_autorizacao")
 	private Date dataAutorizacao;	
 	
-	
+	@NotBlank @Size (max=10)
 	@Column(name="qtde_entregue", length=10)
 	private Integer  qtdeEntreque;
 	

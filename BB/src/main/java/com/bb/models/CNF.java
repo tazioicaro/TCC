@@ -9,12 +9,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Cascade;
 
@@ -32,14 +34,15 @@ public class CNF implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy=GenerationType.AUTO)
 	private Long numero;
 	
+	@NotNull
 	@ManyToOne(fetch=FetchType.LAZY) //vários cabeçalhos para uma operação
 	@JoinColumn(nullable=false, name="cfop_codigo")
 	private CFOp codFiscalOp;
 	
-
+    @NotNull
 	@ManyToOne(fetch=FetchType.LAZY) //varios cabeçalhos para um fornecedor
 	@JoinColumn(nullable=false, name="fornecedor_codigo")
 	private Fornecedor fornecedor;
@@ -52,6 +55,7 @@ public class CNF implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date entrada;
 	
+	@NotNull 
 	@Column(nullable=false, precision=10, scale=2, name="total")
 	private BigDecimal total;
 	
@@ -64,7 +68,7 @@ public class CNF implements Serializable{
 	//@JoinColumn(name="cnf_numero", insertable=true, updatable=true)
 	private Set<DNF> detalheNF; 
 	
-	
+	@Column (name="nfe_tipo")
 	private TipoNFE tipoNfe;
 	
 

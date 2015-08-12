@@ -11,13 +11,20 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import com.bb.models.Enumerators.TipoPessoa;
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.bb.models.Enumerators.Sexo;
+import com.bb.models.Enumerators.TipoPessoa;
 
 @Entity
 public class Cliente implements Serializable{	
@@ -25,32 +32,40 @@ public class Cliente implements Serializable{
 	
 	@Id
 	@Column(name="codigo_cli")
-	@GeneratedValue
+	@GeneratedValue (strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
+	@NotBlank @Min(12) @Max(14) 
 	@Column(name="doc_receita_federal", nullable=false, length=14)
 	private String documentoReceitaFederal;
 	
+	@NotBlank @Size (max=100)
 	@Column(nullable= false, length = 100) //Not null de tamanho 100
 	private String nome;
 	
+	@NotNull
 	@Column(name="data_nascimento")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+	@Size (max=12)
 	@Column (length=12)
 	private String telefone;
 	
+	@NotBlank @Size (max=12)
 	@Column (nullable=false, length=12)
 	private String celular;
 	
+	@Size (max=40)
 	@Column (length=40)
 	private String email;
 	
+	@Size (max=10)
 	@Enumerated(EnumType.STRING)
 	@Column( length=10)
 	private Sexo sexo;
 	
+	@NotNull @Size (max=12)
 	@Enumerated(EnumType.STRING)
 	@Column ( nullable=false, length = 12)
     private TipoPessoa tipo;
@@ -58,12 +73,15 @@ public class Cliente implements Serializable{
 	@OneToMany(mappedBy="cliente", cascade= CascadeType.ALL)	
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	@Size (max=150)
 	@Column( length=150)
 	private String obs;
 	
+	@NotNull @Size (max=11)
 	@Column( length=11)
 	private String login;
 	
+	@Size (max=20)
 	@Column( length=20)
 	private String senha;
 	
