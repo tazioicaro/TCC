@@ -21,6 +21,7 @@ import com.bb.models.Enumerators.TipoPessoa;
 			EntityTransaction trx = manager.getTransaction();
 			trx.begin();
 			
+			/*
 			Cliente cliente = new Cliente();
 			
 			cliente.setNome("João das Couves dois");
@@ -49,7 +50,7 @@ import com.bb.models.Enumerators.TipoPessoa;
 			//Adicionando o endereço na lista de endereços do cliente (Graças ao Cascade)
 			cliente.getEnderecos().add(endereco);
 			
-			manager.persist(cliente);
+			manager.persist(cliente);*/
 			
 			trx.commit();
 		}

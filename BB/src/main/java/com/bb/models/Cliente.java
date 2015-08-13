@@ -35,7 +35,7 @@ public class Cliente implements Serializable{
 	@GeneratedValue (strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
-	@NotBlank  @Max(14) @Min(11)
+	@NotBlank 
 	@Column(name="doc_receita_federal", nullable=false, length=14)
 	private String documentoReceitaFederal;
 	
@@ -72,7 +72,7 @@ public class Cliente implements Serializable{
     private TipoPessoa tipo;
 	
 	@OneToMany(mappedBy="cliente", cascade= CascadeType.ALL)	
-	private List<Endereco> enderecos = new ArrayList<>();
+	private List<Endereco> enderecos = new ArrayList<Endereco>();
 	
 	@Size (max=150)
 	@Column( length=150)

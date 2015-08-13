@@ -28,6 +28,8 @@ public class Comissao implements Serializable {
 	@Column(name="tipo_comissao", length=25)	
 	private TipoComissao tipoComissao;
 	
+	@Column(name="porcentagem_comissao")
+	private Integer valorComissao;
 	
 
 	public Integer getCodigo() {
@@ -44,6 +46,14 @@ public class Comissao implements Serializable {
 
 	public void setTipoComissao(TipoComissao tipoComissao) {
 		this.tipoComissao = tipoComissao;
+	}
+
+	public Integer getValorComissao() {
+		return valorComissao;
+	}
+
+	public void setValorComissao(Integer valorComissao) {
+		this.valorComissao = valorComissao;
 	}
 	
 	

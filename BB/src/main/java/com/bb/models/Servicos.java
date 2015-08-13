@@ -44,9 +44,9 @@ public class Servicos implements Serializable {
 	@JoinColumn(name="comissao_codigo", nullable=false)
 	private Comissao comissao;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable=false, length=20, name="tipo_comissao")
-	private TipoComissao tipoComissao;
+	//@Enumerated(EnumType.STRING)
+	//@Column(nullable=false, length=20, name="tipo_comissao")
+	//private TipoComissao tipoComissao;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
 	@JoinColumn(name="funcionario_codigo", nullable=false)
@@ -79,8 +79,8 @@ public class Servicos implements Serializable {
 	@JoinColumn(name="dservico_codigo")
 	private DescricaoServico servicos;
 	
-	
-	
+	@ManyToOne
+	private Especialidade especialidade;
 	
 	
 	
@@ -108,12 +108,12 @@ public class Servicos implements Serializable {
 	public void setComissao(Comissao comissao) {
 		this.comissao = comissao;
 	}
-	public TipoComissao getTipoComissao() {
-		return tipoComissao;
-	}
-	public void setTipoComissao(TipoComissao tipoComissao) {
-		this.tipoComissao = tipoComissao;
-	}
+	//public TipoComissao getTipoComissao() {
+	//	return tipoComissao;
+	//}
+	//public void setTipoComissao(TipoComissao tipoComissao) {
+	//	this.tipoComissao = tipoComissao;
+	//}
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -145,11 +145,7 @@ public class Servicos implements Serializable {
 	public void setStatusServico(StatusServico statusServico) {
 		this.statusServico = statusServico;
 	}
-	
-	
-	
-	
-	
+			
 	public BigDecimal getValor() {
 		return valor;
 	}
@@ -168,6 +164,21 @@ public class Servicos implements Serializable {
 	public void setProduto(List<Produto> produto) {
 		this.produto = produto;
 	}
+	
+	public DescricaoServico getServicos() {
+		return servicos;
+	}
+	public void setServicos(DescricaoServico servicos) {
+		this.servicos = servicos;
+	}
+	public Especialidade getEspecialidade() {
+		return especialidade;
+	}
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -191,15 +202,6 @@ public class Servicos implements Serializable {
 			return false;
 		return true;
 	}
-	public DescricaoServico getServicos() {
-		return servicos;
-	}
-	public void setServicos(DescricaoServico servicos) {
-		this.servicos = servicos;
-	}
-	
-	
-	
 	
 
 }
