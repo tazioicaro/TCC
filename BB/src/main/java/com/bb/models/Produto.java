@@ -18,6 +18,10 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.NotBlank;
+
+import com.bb.controller.services.validation.SKU;
+
 
 @Entity
 public class Produto implements Serializable{
@@ -27,6 +31,10 @@ public class Produto implements Serializable{
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer codigo;
+	
+	@NotBlank @SKU
+	@Column(nullable = false, length = 20, unique = true)
+	private String sku;
 	
 	@Column(length=30)
 	private String nome;
