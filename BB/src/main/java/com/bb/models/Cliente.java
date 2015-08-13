@@ -35,7 +35,7 @@ public class Cliente implements Serializable{
 	@GeneratedValue (strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
-	@NotBlank @Min(12) @Max(14) 
+	@NotBlank  @Max(14) @Min(11)
 	@Column(name="doc_receita_federal", nullable=false, length=14)
 	private String documentoReceitaFederal;
 	
@@ -60,12 +60,13 @@ public class Cliente implements Serializable{
 	@Column (length=40)
 	private String email;
 	
-	@Size (max=10)
+	 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column( length=10)
 	private Sexo sexo;
 	
-	@NotNull @Size (max=12)
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column ( nullable=false, length = 12)
     private TipoPessoa tipo;

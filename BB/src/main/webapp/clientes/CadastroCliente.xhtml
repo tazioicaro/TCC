@@ -35,8 +35,11 @@
                     <h:outputText value="CPF: *" />
                     <p:inputText  required="true" label="cpf" value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"/>
                     
-                     <h:outputText value="Sexo: " />
-                    <p:inputText   label="sexo" value="#{cadastroClienteBean.cliente.sexo}"/>
+                     <h:outputText value="Sexo: " />                     
+                     <h:selectOneMenu value="#{cadastroClienteBean.cliente.sexo}" label="Sexo" >
+                       <f:selectItem itemLabel="Selecione o Sexo" />
+                       <f:selectItems value="#{conversoresEnuns.sexoes}" var="status" itemValue="#{status}" itemLabel="#{status.label}" />
+                      </h:selectOneMenu>                  
  
                     <h:outputText value="Data Nascimento: " />
                     <p:inputText label="idade" value="#{cadastroClienteBean.cliente.dataNascimento}" />
