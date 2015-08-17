@@ -14,6 +14,8 @@
 	<ui:define name="corpo">
 	
 	
+	
+	
 
 	<h:outputStylesheet library="css" name="cadastro.css" />
 
@@ -29,40 +31,42 @@
             <p:panel style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;" styleClass="formMenu">
                 <p:messages  autoUpdate="true" closable="true"/>
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Nome: *" />
+                    <p:outputLabel value="Nome: *" />
                     <p:inputText  required="true" label="Nome" value="#{cadastroClienteBean.cliente.nome}"/>
                                         
-                    <h:outputText value="CPF: *" />
+                    <p:outputLabel value="CPF: *" />
                     <p:inputText  required="true" label="cpf" value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"/>
                     
-                     <h:outputText value="Sexo: " />                     
-                     <h:selectOneMenu value="#{cadastroClienteBean.cliente.sexo}" label="Sexo" >
+                     <p:outputLabel value="Sexo: " />                     
+                     <p:selectOneMenu value="#{cadastroClienteBean.cliente.sexo}" label="Sexo" >
                        <f:selectItem itemLabel="Selecione o Sexo" />
                        <f:selectItems value="#{conversoresEnuns.sexoes}" var="status" itemValue="#{status}" itemLabel="#{status.label}" />
-                      </h:selectOneMenu>                  
+                      </p:selectOneMenu>                  
  
-                    <h:outputText value="Data Nascimento: " />
-                    <p:inputText label="idade" value="#{cadastroClienteBean.cliente.dataNascimento}" />
+                    <p:outputLabel value="Data Nascimento: " />
+                    <p:calendar label="idade" value="#{cadastroClienteBean.cliente.dataNascimento}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </p:calendar>
                     
-                    <h:outputText value="Logradouro: " />
+                    <p:outputLabel value="Logradouro: " />
                     <p:inputText  label="rua" value="#{cadastroClienteBean.endereco.logradouro}"/>
                     
-                    <h:outputText value="Número: " />
+                    <p:outputLabel value="Número: " />
                     <p:inputText   value="#{cadastroClienteBean.endereco.numero}"/>
                     
-                    <h:outputText value="Bairro: " />
+                    <p:outputLabel value="Bairro: " />
                     <p:inputText  value="#{cadastroClienteBean.endereco.bairro}"/>
  
-                    <h:outputText value="Cidade: " />
+                    <p:outputLabel value="Cidade: " />
                     <p:inputText  value="#{cadastroClienteBean.endereco.cidade}"/>
                     
-                     <h:outputText value="Estado: " />
+                     <p:outputLabel value="Estado: " />
                     <p:inputText  value="#{cadastroClienteBean.endereco.estado}"/> 
                     
-                    <h:outputText value="CEP: " />
+                    <p:outputLabel value="CEP: " />
                     <p:inputText  value="#{cadastroClienteBean.endereco.cep}"/> 
                     
-                    <h:outputText value="Referência: " />
+                    <p:outputLabel value="Referência: " />
                     <p:inputTextarea rows="3" cols="22"  value="#{cadastroClienteBean.endereco.referencia}"/> 
                     
  
@@ -76,50 +80,63 @@
             <p:panel >
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Email: *" />
+                    <p:outputLabel value="Email: *" />
                     <p:inputText  required="true" label="Email" value="#{cadastroClienteBean.cliente.email}"/>
  
-                    <h:outputText value="Telefone: " />
+                    <p:outputLabel value="Telefone: " />
                     <p:inputText  value="#{cadastroClienteBean.cliente.telefone}"/>
                     
-                    <h:outputText value="Celular: " />
+                    <p:outputLabel value="Celular: " />
                     <p:inputText value="#{cadastroClienteBean.cliente.celular}"/>
  
-                    <h:outputText value="Obs.: " />
+                    <p:outputLabel value="Obs.: " />
                     <p:inputTextarea rows="5" cols="22"  value="#{cadastroClienteBean.cliente.obs}"/>
  
-                    <h:outputText value="Pular para o Final: " />
+                    <p:outputLabel value="Pular para o Final: " />
                     <h:selectBooleanCheckbox  />
                 </h:panelGrid>
             </p:panel>
         </p:tab>
  
         <p:tab id="services" title="Serviços">
+        <f:metadata>	
+	      <f:viewParam name="dummy"/>
+	      <f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView"/>	
+	    </f:metadata>
+        
             <p:panel >
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Especialidade: *" />
-                    <p:inputText  required="true" label="Email"/>
+                   
+                   
+                    <p:outputLabel value="Especialidade: *" />
+                  <p:selectOneMenu id="especialidade" >
+                       <f:selectItem itemLabel="Selecione a Especialidade" />
+                       <f:selectItems value="#{cadastroClienteBean.especialidadesRaizes}" var="especialidade" itemValue="#{especialidade}" itemLabel="#{especialidade.descricao}" />
+                   </p:selectOneMenu>              
+                   
  
-                    <h:outputText value="Serviços: " />
+                    <p:outputLabel value="Serviços: " />
+                  	<p:selectOneMenu id="serviços" value="#{cadastroClienteBean.servicos.nome}">
+					    <f:selectItem itemLabel="Selecione o Serviço" />
+				    </p:selectOneMenu>  
+                    
+                    <p:outputLabel value="Codigo: " />
                     <p:inputText />
                     
-                    <h:outputText value="Codigo: " />
+                      <p:outputLabel value="Valor: " />
                     <p:inputText />
                     
-                      <h:outputText value="Valor: " />
+                     <p:outputLabel value="Profissional: " />
                     <p:inputText />
                     
-                     <h:outputText value="Profissional: " />
-                    <p:inputText />
-                    
-                     <h:outputText value="Duração Máxima: " />
+                     <p:outputLabel value="Duração Máxima: " />
                     <p:inputText />
  
-                    <h:outputText value="Data de excução: " />
+                    <p:outputLabel value="Data de excução: " />
                     <p:inputText />
                     
-                    <h:outputText value="Detalhes: " />
+                    <p:outputLabel value="Detalhes: " />
                    <p:inputTextarea rows="5" cols="22" />
                 </h:panelGrid>
             </p:panel>
@@ -129,44 +146,45 @@
             <p:panel >
                 <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
                     <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Nome: " />
+                        
+                        <p:outputLabel value="Nome: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.cliente.nome}"/>
                        
-                        <h:outputText value="Idade: " />
+                        <p:outputLabel value="Idade: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.cliente.dataNascimento}"/>
                         
-                        <h:outputText value="Logradouro: " />
+                        <p:outputLabel value="Logradouro: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.endereco.logradouro}"/>
                         
-                        <h:outputText value="Bairro: " />
+                        <p:outputLabel value="Bairro: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.endereco.bairro}"/>
                         
-                        <h:outputText value="Cidade: " />
+                        <p:outputLabel value="Cidade: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.endereco.cidade}"/>
                         
-                        <h:outputText value="Estado: " />
+                        <p:outputLabel value="Estado: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.endereco.estado}"/>
                     </h:panelGrid>
  
                     <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="E-mail: " />
+                        <p:outputLabel value="E-mail: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.cliente.email}"/>
  
-                        <h:outputText value="Telefone: " />
+                        <p:outputLabel value="Telefone: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.cliente.telefone}"/>
  
-                        <h:outputText value="Informações Adicionais: " />
+                        <p:outputLabel value="Informações Adicionais: " />
                         <h:outputText  styleClass="outputLabel" value="#{cadastroClienteBean.cliente.obs}"/>
                     </h:panelGrid>
  
                     <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Serviços: " />
+                        <p:outputLabel value="Serviços: " />
                         <h:outputText  styleClass="outputLabel"/>
  
-                        <h:outputText value="Profissional " />
+                        <p:outputLabel value="Profissional " />
                         <h:outputText  styleClass="outputLabel"/>
  
-                        <h:outputText value="Data de Execução: " />
+                        <p:outputLabel value="Data de Execução: " />
                         <h:outputText  styleClass="outputLabel"/>
  
                         <h:outputText />

@@ -4,15 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.SessionScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.bb.controller.control.repository.Especialidades;
 import com.bb.models.Cliente;
 import com.bb.models.Endereco;
+import com.bb.models.Especialidade;
 import com.bb.models.Servicos;
 
 @Named
-@SessionScoped
+@ViewScoped
 public class CadastroClienteBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +24,10 @@ public class CadastroClienteBean implements Serializable {
 	private Endereco endereco;
 	private Servicos servicos;
 	private List<Endereco> enderecos;
+	private List<Especialidade> especialidadesRaizes;
+	
+	@Inject
+	private Especialidades especialidades;
 	
 	
 	
@@ -36,6 +43,19 @@ public class CadastroClienteBean implements Serializable {
 		enderecos.add(endereco);		
 		cliente.setEnderecos(enderecos);
 	}
+	
+	
+	public void inicializar(){
+		
+		especialidadesRaizes = especialidades.raizes();
+		
+	}
+	
+	
+	
+	
+	
+	
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -58,5 +78,9 @@ public class CadastroClienteBean implements Serializable {
 		return servicos;
 	}
 
+
+	public List<Especialidade> getEspecialidadesRaizes() {
+		return especialidadesRaizes;
+	}
 
 }

@@ -20,7 +20,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.bb.models.Enumerators.StatusServico;
-import com.bb.models.Enumerators.TipoComissao;
 
 @Entity
 public class Servicos implements Serializable {
