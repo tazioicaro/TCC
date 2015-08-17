@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
+
 import com.bb.models.Especialidade;
 
 public class Especialidades implements Serializable {
@@ -19,5 +20,9 @@ public class Especialidades implements Serializable {
 		
 		return manager.createQuery("from Especialidade", Especialidade.class).getResultList();
 		
+	}
+	
+	public Especialidade porCodigo(Long codigo){
+		return manager.find(Especialidade.class, codigo);
 	}
 }

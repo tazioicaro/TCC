@@ -110,7 +110,7 @@
                    
                    
                     <p:outputLabel value="Especialidade: *" />
-                  <p:selectOneMenu id="especialidade" >
+                  <p:selectOneMenu id="especialidade" value="#{cadastroClienteBean.categoriaPai}">
                        <f:selectItem itemLabel="Selecione a Especialidade" />
                        <f:selectItems value="#{cadastroClienteBean.especialidadesRaizes}" var="especialidade" itemValue="#{especialidade}" itemLabel="#{especialidade.descricao}" />
                    </p:selectOneMenu>              
