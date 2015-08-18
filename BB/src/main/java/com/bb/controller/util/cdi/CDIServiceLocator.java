@@ -23,7 +23,7 @@ private static BeanManager getBeanManager(){
 	
 	
 	@SuppressWarnings("unchecked")
-	public static <T> T gerBean(Class<T> clazz){
+	public static <T> T getBean(Class<T> clazz){
 		BeanManager bm = getBeanManager();
 		Set<Bean<?>> beans = (Set<Bean<?>>)bm.getBeans(clazz);
 	     if(beans == null || beans.isEmpty()){

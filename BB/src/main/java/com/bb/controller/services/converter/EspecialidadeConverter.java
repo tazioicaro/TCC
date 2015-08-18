@@ -7,10 +7,14 @@ import javax.faces.convert.Converter;
 
 
 
+import javax.faces.convert.FacesConverter;
+
+
 import com.bb.controller.control.repository.Especialidades;
 import com.bb.controller.util.cdi.CDIServiceLocator;
 import com.bb.models.Especialidade;
 
+@FacesConverter(forClass=Especialidade.class)
 public class EspecialidadeConverter implements Converter {
 
 	//@Inject Verificar na versão Mojarra 2.3 pronta o funcionamento do  Inject
@@ -18,7 +22,7 @@ public class EspecialidadeConverter implements Converter {
 	
 	//Para driblar a falta do Inject
 	public EspecialidadeConverter() {
-		especialidades = CDIServiceLocator.gerBean(Especialidades.class);
+		especialidades = CDIServiceLocator.getBean(Especialidades.class);
 	}
 	
 	

@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import com.bb.models.Enumerators.StatusServico;
 
@@ -78,7 +79,9 @@ public class Servicos implements Serializable {
 	@JoinColumn(name="dservico_codigo")
 	private DescricaoServico servicos;
 	
+	@NotNull
 	@ManyToOne
+	@JoinColumn(name="especialidade_codigo", nullable=false )
 	private Especialidade especialidade;
 	
 	

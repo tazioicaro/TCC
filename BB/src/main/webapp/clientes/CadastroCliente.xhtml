@@ -14,8 +14,6 @@
 	<ui:define name="corpo">
 	
 	
-	
-	
 
 	<h:outputStylesheet library="css" name="cadastro.css" />
 
@@ -99,26 +97,33 @@
         </p:tab>
  
         <p:tab id="services" title="Serviços">
-        <f:metadata>	
-	      <f:viewParam name="dummy"/>
-	      <f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView"/>	
-	    </f:metadata>
-        
+            	               
             <p:panel >
+            
+            <f:metadata>	
+	            <f:viewParam name="dummy"/>
+	            <f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView"/>	
+	        </f:metadata>
+	        
+	        
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">
                    
                    
-                    <p:outputLabel value="Especialidade: *" />
-                  <p:selectOneMenu id="especialidade" value="#{cadastroClienteBean.categoriaPai}">
+                    <p:outputLabel value="Especialidade: " for="especialidades"/>
+                  <p:selectOneMenu id="especialidades" value="#{cadastroClienteBean.especialidadePai}">
                        <f:selectItem itemLabel="Selecione a Especialidade" />
                        <f:selectItems value="#{cadastroClienteBean.especialidadesRaizes}" var="especialidade" itemValue="#{especialidade}" itemLabel="#{especialidade.descricao}" />
+                  
+                   <p:ajax listener="#{cadastroClienteBean.carregarServicoDeEspecialidades}" update="servicoEsp"/>
                    </p:selectOneMenu>              
                    
  
-                    <p:outputLabel value="Serviços: " />
-                  	<p:selectOneMenu id="serviços" value="#{cadastroClienteBean.servicos.nome}">
+                    <p:outputLabel value="Serviço: "  for="servicoEsp"/>
+                  	<p:selectOneMenu id="servicoEsp" value="#{cadastroClienteBean.servicos.especialidade}">
 					    <f:selectItem itemLabel="Selecione o Serviço" />
+					    <f:selectItems value="#{cadastroClienteBean.servicoDeEspecialidades}" var="servicos"
+					    itemValue="#{servicos}" itemLabel="#{servicos.descricao}"/>
 				    </p:selectOneMenu>  
                     
                     <p:outputLabel value="Codigo: " />

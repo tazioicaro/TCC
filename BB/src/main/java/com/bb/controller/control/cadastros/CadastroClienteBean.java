@@ -7,7 +7,9 @@ import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 
+import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.controller.control.repository.Especialidades;
 import com.bb.models.Cliente;
 import com.bb.models.Endereco;
@@ -23,9 +25,15 @@ public class CadastroClienteBean implements Serializable {
 	private  Cliente cliente;
 	private Endereco endereco;
 	private Servicos servicos;
-	private List<Endereco> enderecos;
-	private List<Especialidade> especialidadesRaizes;
 	
+	@NotNull
+	private Especialidade especialidadePai;
+	
+	private List<Especialidade> especialidadesRaizes;	
+	private List<Especialidade> servicoDeEspecialidades;
+	private List<Endereco> enderecos;
+	
+
 	@Inject
 	private Especialidades especialidades;
 	
@@ -46,14 +54,35 @@ public class CadastroClienteBean implements Serializable {
 	
 	
 	public void inicializar(){
-		
+		if(FacesUtil.isPostBack()){
 		especialidadesRaizes = especialidades.raizes();
+		}
+	}
+	
+	public void carregarServicoDeEspecialidades(){
+		
+		servicoDeEspecialidades = especialidades.servicoDe(especialidadePai);
+		
+	}
+	
+	
+public void salvar(){
+		
+		System.out.println("ESPECIALIDADE Selecionada: " +especialidadePai.getDescricao());
+		
+		System.out.println("Serviço Selecionado: " +servicos.getEspecialidade().getDescricao());
+		
+		
 		
 	}
 	
 	
 	
 	
+	
+	
+	
+	//G&S
 	
 	
 	public Cliente getCliente() {
@@ -83,4 +112,39 @@ public class CadastroClienteBean implements Serializable {
 		return especialidadesRaizes;
 	}
 
-}
+
+	public List<Especialidade> getServicoDeEspecialidades() {
+		return servicoDeEspecialidades;
+	}
+
+
+	public Especialidades getEspecialidades() {
+		return especialidades;
+	}
+
+
+	public void setEspecialidades(Especialidades especialidades) {
+		this.especialidades = especialidades;
+	}
+
+
+	public Especialidade getEspecialidadePai() {
+		return especialidadePai;
+	}
+
+
+	public void setEspecialidadePai(Especialidade especialidadePai) {
+		this.especialidadePai = especialidadePai;
+	}
+
+
+	public void setServicos(Servicos servicos) {
+		this.servicos = servicos;
+	}
+
+
+
+
+	
+	
+	}

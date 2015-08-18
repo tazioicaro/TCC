@@ -16,13 +16,24 @@ public class Especialidades implements Serializable {
 	@Inject
 	private EntityManager manager;
 	
-	public List<Especialidade> raizes(){
-		
-		return manager.createQuery("from Especialidade", Especialidade.class).getResultList();
-		
-	}
 	
 	public Especialidade porCodigo(Long codigo){
 		return manager.find(Especialidade.class, codigo);
+	}
+	
+	
+	
+	public List<Especialidade> raizes(){
+		
+		return manager.createQuery("from Especialidade where especialidadePai is null", 
+				Especialidade.class).getResultList();
+		
+	}
+	
+		
+	public List<Especialidade> servicoDe (Especialidade especialidadePai){
+		return manager.createQuery("from Especialidade where especialidadePai = :raiz", 
+				Especialidade.class).setParameter("raiz", especialidadePai).getResultList();
+		
 	}
 }
