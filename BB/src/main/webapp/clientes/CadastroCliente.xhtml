@@ -13,6 +13,11 @@
 
 	<ui:define name="corpo">
 	
+	       <f:metadata>	
+	            <f:viewParam name="dummy"/>
+	            <f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView"/>	
+	        </f:metadata>
+	        
 	
 
 	<h:outputStylesheet library="css" name="cadastro.css" />
@@ -98,13 +103,7 @@
  
         <p:tab id="services" title="Serviços">
             	               
-            <p:panel >
-            
-            <f:metadata>	
-	            <f:viewParam name="dummy"/>
-	            <f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView"/>	
-	        </f:metadata>
-	        
+            <p:panel >   
 	        
                 <p:messages />
                 <h:panelGrid columns="2" columnClasses="label, value">

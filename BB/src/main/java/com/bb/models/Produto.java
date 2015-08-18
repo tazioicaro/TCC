@@ -78,7 +78,13 @@ public class Produto implements Serializable{
 	private List<Servicos> servicos;
 
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="especialidade_codigo", nullable=false )
+	private Especialidade especialidade;
 	
+	
+	//G&S
 	
 	
 	public List<Servicos> getServicos() {
@@ -166,6 +172,20 @@ public class Produto implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public String getSku() {
+		return sku;
+	}
+	public void setSku(String sku) {
+		this.sku = sku;
+	}
+	public Especialidade getEspecialidade() {
+		return especialidade;
+	}
+	public void setEspecialidade(Especialidade especialidade) {
+		this.especialidade = especialidade;
+	}
+	
+	
 	
 	
 
