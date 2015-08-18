@@ -13,6 +13,10 @@
 
 	<ui:define name="corpo">
 
+   <f:metadata>	
+	            <f:viewParam name="dummy"/>
+	            <f:event listener="#{cadastroProdutoBean.inicializar()}" type="preRenderView"/>	
+</f:metadata>
 
 
 		<h:outputStylesheet library="css" name="cadastro.css" />
@@ -36,33 +40,35 @@
 						styleClass="formMenu">
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
-							<h:outputText value="SKU: *" />
-							<p:inputText required="true" label="sku" />
+							<p:outputLabel value="SKU: " for="sku"/>
+							<p:inputText required="true" label="sku" id="sku"/>
 
-							<h:outputText value="Nome: *" />
-							<p:inputText required="true" label="Nome" />
+							<p:outputLabel value="Nome: " for="nome"/>
+							<p:inputText required="true" label="Nome" id="nome" />
 
-							<h:outputText value="Unid. de Medida: *" />
-							<p:inputText required="true" label="medida" />
+							<p:outputLabel value="Unid. de Medida: *" for="medida"/>							                   
+                               <p:selectOneMenu value="#{cadastroProdutoBean.produto.unidade}" label="medida" id="medida" >
+                               <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="true"/>
+                                <f:selectItems value="#{cadastroProdutoBean.listaUnidade}" var="mdd" itemValue="#{mdd}" itemLabel="#{mdd.descricao}" />
+                            </p:selectOneMenu>  
+										
 
-							<h:outputText value="Tamanho: *" />
-							<p:inputText required="true" label="tamanho" />
+							<p:outputLabel value="Tamanho: " for="tamanho"/>
+							<p:inputText required="true" id="tamanho" />
 
-							<h:outputText value="Qtde: *" />
-							<p:inputText required="true" label="qtde" />
-
-							<h:outputText value="Cat. do produto: *" />
-							<p:inputText required="true" label="qtde" />
-
-							<h:outputText value="Data inclusão: *" />
-							<p:calendar required="true" />
+							<p:outputLabel value="Qtde: " for="qtde"/>
+							<p:inputText required="true" id="qtde" />
 
 
-							<h:outputText value="Descrição: " />
-							<p:inputTextarea rows="3" cols="22" />
+							<p:outputLabel value="Data inclusão: *" for="dataInclusao"/>
+							<p:calendar required="true"  id="dataInclusao" label="dataInclusao"/>
 
 
-							<h:outputText value="Pular para o Final: " />
+							<p:outputLabel value="Descrição: " for="descricao" />
+							<p:inputTextarea rows="3" cols="22" id="descricao" label="descricao"/>
+
+
+							<p:outputLabel value="Pular para o Final: " />
 							<h:selectBooleanCheckbox />
 						</h:panelGrid>
 					</p:panel>
@@ -75,19 +81,19 @@
 						<h:panelGrid columns="2" columnClasses="label, value">
 
 
-							<h:outputText value="Fornecedor: " />
-							<p:inputText label="nFornecedor" />
+							<p:outputLabel value="Fornecedor: " for="fornecedor"/>
+							<p:inputText id="fornecedor" />
 
-							<h:outputText value="Codigo: *" />
-							<p:inputText label="cdFornecedor" />
+							<p:outputLabel value="Codigo: *" for="codigo"/>
+							<p:inputText id="codigo" label="codigo"/>
 
-							<h:outputText value="Celular: " />
+							<p:outputLabel value="Celular: " for="celular"/>
+							<p:inputText label="celular" id="celular"/>
+
+							<p:outputLabel value="E-mail.: " />
 							<p:inputText />
 
-							<h:outputText value="E-mail.: " />
-							<p:inputText />
-
-							<h:outputText value="Pular para o Final: " />
+							<p:outputLabel value="Pular para o Final: " />
 							<h:selectBooleanCheckbox />
 						</h:panelGrid>
 					</p:panel>
@@ -98,25 +104,29 @@
 						<p:messages />
 						<h:panelGrid columns="2" columnClasses="label, value">
 
-							<h:outputText value="Categoria de Serviço: *" />
+						
+				  <p:outputLabel value="Categoria de Serviço:: " for="categoria"/>
+                        <p:selectOneMenu id="categoria" value="#{cadastroProdutoBean.categoriaPai}">
+                        <f:selectItem itemLabel="Selecione a Especialidade" />
+                        <f:selectItems value="#{cadastroProdutoBean.categoriaRaizes}" var="especialidade" itemValue="#{especialidade}" itemLabel="#{especialidade.descricao}" />
+                  
+                       <p:ajax listener="#{cadastroProdutoBean.carregarCategoriasDe}" update="subcategoria"/>
+                   </p:selectOneMenu>              
+                   
+ 
+                    <p:outputLabel value="Serviço: "  for="subcategoria"/>
+                  	<p:selectOneMenu id="subcategoria" value="#{cadastroProdutoBean.produto.especialidade}">
+					    <f:selectItem itemLabel="Selecione o Serviço" />
+					    <f:selectItems value="#{cadastroProdutoBean.carregarCategoriasDe}" var="categorias"
+					    itemValue="#{categorias}" itemLabel="#{categorias.descricao}"/>
+				    </p:selectOneMenu>  
 
-							<h:panelGroup>
-								<p:selectOneMenu>
-									<f:selectItem itemLabel="Selecione a Categoria"
-										noSelectionOption="true" />
-								</p:selectOneMenu>
-							</h:panelGroup>
 
-
-							<h:outputText value="Serviços: " />
+							<p:outputLabel value="Consumo por Serviço: " />
 							<p:inputText />
 
 
-							<h:outputText value="Consumo por Serviço: " />
-							<p:inputText />
-
-
-							<h:outputText value="Detalhes: " />
+							<p:outputLabel value="Detalhes: " />
 							<p:inputTextarea rows="5" cols="22" />
 						</h:panelGrid>
 					</p:panel>
@@ -128,58 +138,58 @@
 							columnClasses="grid,grid,grid">
 							<h:panelGrid columns="2" columnClasses="label, value">
 							
-								<h:outputText value="SKU: " />
+								<p:outputLabel value="SKU: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Nome: " />
+								<p:outputLabel value="Nome: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Unid. Medida: " />
+								<p:outputLabel value="Unid. Medida: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Tamanho: " />
+								<p:outputLabel value="Tamanho: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Qtde: " />
+								<p:outputLabel value="Qtde: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Categoria do Produto: " />
+								<p:outputLabel value="Categoria do Produto: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Data Inclusão: " />
+								<p:outputLabel value="Data Inclusão: " />
 								<h:outputText styleClass="outputLabel" />
 								
-								<h:outputText value="Descrição: " />
+								<p:outputLabel value="Descrição: " />
 								<h:outputText styleClass="outputLabel" />
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" columnClasses="label, value">
 								
-								<h:outputText value="Fornecedor: " />
+								<p:outputLabel value="Fornecedor: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Código: " />
+								<p:outputLabel value="Código: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Celular: " />
+								<p:outputLabel value="Celular: " />
 								<h:outputText styleClass="outputLabel" />
 								
-								<h:outputText value="E-mail: " />
+								<p:outputLabel value="E-mail: " />
 								<h:outputText styleClass="outputLabel" />
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" columnClasses="label, value">
 							
-								<h:outputText value="Categoria de Serviço: " />
+								<p:outputLabel value="Categoria de Serviço: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Serviços: " />
+								<p:outputLabel value="Serviços: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Consumo por Serviço: " />
+								<p:outputLabel value="Consumo por Serviço: " />
 								<h:outputText styleClass="outputLabel" />
 
-								<h:outputText value="Detalhes: "/>
+								<p:outputLabel value="Detalhes: "/>
 								<h:outputText styleClass="outputLabel" />
 							</h:panelGrid>
 						</h:panelGrid>					

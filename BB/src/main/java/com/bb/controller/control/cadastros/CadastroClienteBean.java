@@ -54,7 +54,7 @@ public class CadastroClienteBean implements Serializable {
 	
 	
 	public void inicializar(){
-		if(FacesUtil.isPostBack()){
+		if(FacesUtil.notIsPostBack()){
 		especialidadesRaizes = especialidades.raizes();
 		}
 	}

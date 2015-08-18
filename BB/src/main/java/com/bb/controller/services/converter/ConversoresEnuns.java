@@ -1,4 +1,4 @@
-package com.bb.controller.control;
+package com.bb.controller.services.converter;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
@@ -29,5 +29,6 @@ public class ConversoresEnuns  {
 		
 		return TipoNFE.values();
 	}
+	
 
 }
