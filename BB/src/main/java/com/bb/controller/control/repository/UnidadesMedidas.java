@@ -15,8 +15,8 @@ public class UnidadesMedidas implements Serializable {
 	@Inject
 	private EntityManager manager;
 	
-	public Unidade porCodigo(Long codigo){
-		
+	
+	public Unidade porCodigo(Long codigo){		
 		 return manager.find(Unidade.class, codigo);		
 	}
 	

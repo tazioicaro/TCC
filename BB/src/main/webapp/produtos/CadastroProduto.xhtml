@@ -38,7 +38,7 @@
 					<p:panel
 						style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;"
 						styleClass="formMenu">
-						<p:messages />
+						<p:messages  autoUpdate="true" closable="true"/>
 						<h:panelGrid columns="2" columnClasses="label, value">
 							<p:outputLabel value="SKU: " for="sku"/>
 							<p:inputText required="true" label="sku" id="sku"/>
@@ -46,7 +46,7 @@
 							<p:outputLabel value="Nome: " for="nome"/>
 							<p:inputText required="true" label="Nome" id="nome" />
 
-							<p:outputLabel value="Unid. de Medida: *" for="medida"/>							                   
+							<p:outputLabel value="Unid. de Medida: " for="medida"/>							                   
                                <p:selectOneMenu value="#{cadastroProdutoBean.produto.unidade}" label="medida" id="medida" >
                                <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="true"/>
                                 <f:selectItems value="#{cadastroProdutoBean.listaUnidade}" var="mdd" itemValue="#{mdd}" itemLabel="#{mdd.descricao}" />

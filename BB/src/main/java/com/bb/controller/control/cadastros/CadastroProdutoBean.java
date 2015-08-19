@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -37,8 +40,7 @@ public class CadastroProdutoBean implements Serializable {
 	private Especialidade categoriaPai;
 	
 	private List<Especialidade> categoriaRaizes;	
-	private List<Especialidade> subCategorias;
-	
+	private List<Especialidade> subCategorias;	
 	
 	@Inject
 	private Especialidades categorias;

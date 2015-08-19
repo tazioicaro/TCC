@@ -3,6 +3,7 @@ package com.bb.controller.services.converter;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+
 import javax.faces.convert.FacesConverter;
 
 import com.bb.controller.control.repository.UnidadesMedidas;
@@ -19,8 +20,7 @@ public class UnidadeConverter implements Converter {
 	}
 
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
+	public Object getAsObject(FacesContext context, UIComponent component,	String value) {
 
 		Unidade retorno = null;
 
@@ -35,13 +35,10 @@ public class UnidadeConverter implements Converter {
 	}
 
 	@Override
-	public String getAsString(FacesContext context, UIComponent component,
-			Object value) {
+	public String getAsString(FacesContext context, UIComponent component, Object value) {
 
-		if (value != null) {
-			
+		if (value != null) {			
 			return ((Unidade) value).getCodigo().toString();
-
 		}
 		return null;
 	}
