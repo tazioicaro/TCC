@@ -44,7 +44,7 @@ import com.bb.models.Enumerators.Sexo;
 		
 			
 	
-			 Endereco enderecoB = manager.find(Endereco.class, 1L);
+			 
 			
 			Departamento departamentoB = manager.find(Departamento.class, 1L);
 			
@@ -61,7 +61,7 @@ import com.bb.models.Enumerators.Sexo;
 			funcionario.setCargo("Manicure");
 			funcionario.setFuncao("Funcao");
 			funcionario.setOrgaorg("DETRAN");
-			funcionario.setEndereco(enderecoB);
+			funcionario.setEndereco(endereco);
 			funcionario.setRg("211116579");
 			funcionario.setDataAdmissao(new Date());
 			funcionario.setDataNascimento(new Date());

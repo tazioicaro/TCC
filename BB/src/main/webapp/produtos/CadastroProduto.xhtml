@@ -40,32 +40,31 @@
 						styleClass="formMenu">
 						<p:messages  autoUpdate="true" closable="true"/>
 						<h:panelGrid columns="2" columnClasses="label, value">
+							
 							<p:outputLabel value="SKU: " for="sku"/>
-							<p:inputText required="true" label="sku" id="sku"/>
+							<p:inputText required="true" label="sku" id="sku" value="#{cadastroProdutoBean.produto.sku}"/>
 
 							<p:outputLabel value="Nome: " for="nome"/>
-							<p:inputText required="true" label="Nome" id="nome" />
+							<p:inputText required="true" label="Nome" id="nome" value="#{cadastroProdutoBean.produto.nome}"/>
 
 							<p:outputLabel value="Unid. de Medida: " for="medida"/>							                   
                                <p:selectOneMenu value="#{cadastroProdutoBean.produto.unidade}" label="medida" id="medida" >
-                               <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="true"/>
+                               <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="false"/>
                                 <f:selectItems value="#{cadastroProdutoBean.listaUnidade}" var="mdd" itemValue="#{mdd}" itemLabel="#{mdd.descricao}" />
                             </p:selectOneMenu>  
 										
 
-							<p:outputLabel value="Tamanho: " for="tamanho"/>
-							<p:inputText required="true" id="tamanho" />
+							<p:outputLabel value="Volume Conteúdo " for="tamanho"/>
+							<p:inputText required="true" id="tamanho"  value="#{cadastroProdutoBean.produto.volumeConteudo}">
+							<f:validateDoubleRange maximum="0.00" minimum="10000.00"/>
+							</p:inputText>
 
 							<p:outputLabel value="Qtde: " for="qtde"/>
-							<p:inputText required="true" id="qtde" />
+							<p:inputText required="true" id="qtde" value="#{cadastroProdutoBean.produto.estoque}"/>
 
-
-							<p:outputLabel value="Data inclusão: *" for="dataInclusao"/>
-							<p:calendar required="true"  id="dataInclusao" label="dataInclusao"/>
-
-
+					
 							<p:outputLabel value="Descrição: " for="descricao" />
-							<p:inputTextarea rows="3" cols="22" id="descricao" label="descricao"/>
+							<p:inputTextarea rows="3" cols="22" id="descricao" label="descricao" value="#{cadastroProdutoBean.produto.descricao}"/>
 
 
 							<p:outputLabel value="Pular para o Final: " />
@@ -77,21 +76,24 @@
 				<p:tab id="contact" title="Dados do Fornecedor">
 
 					<p:panel>
-						<p:messages />
+						<p:messages autoUpdate="true" closable="true"/>
 						<h:panelGrid columns="2" columnClasses="label, value">
 
 
-							<p:outputLabel value="Fornecedor: " for="fornecedor"/>
-							<p:inputText id="fornecedor" />
+							<p:outputLabel value="Fornecedor: " for="fornecedor"/>													                   
+                               <p:selectOneMenu  label="fornecedor" id="fornecedor" >
+                               <f:selectItem itemLabel="Selecione o Fornecedor" noSelectionOption="true"/>                                
+                            </p:selectOneMenu>  
+							
 
 							<p:outputLabel value="Codigo: *" for="codigo"/>
-							<p:inputText id="codigo" label="codigo"/>
+							<p:inputText id="codigo" label="codigo" value="#{cadastroProdutoBean.fornecedor.codigo}"/>
 
 							<p:outputLabel value="Celular: " for="celular"/>
-							<p:inputText label="celular" id="celular"/>
+							<p:inputText label="celular" id="celular"  value="#{cadastroProdutoBean.fornecedor.celular}"/>
 
-							<p:outputLabel value="E-mail.: " />
-							<p:inputText />
+							<p:outputLabel value="E-mail: " for="email"/>
+							<p:inputText id="email"  value="#{cadastroProdutoBean.fornecedor.email}"/>
 
 							<p:outputLabel value="Pular para o Final: " />
 							<h:selectBooleanCheckbox />
@@ -101,7 +103,7 @@
 
 				<p:tab id="services" title="Associar a serviços">
 					<p:panel>
-						<p:messages />
+						<p:messages autoUpdate="true" closable="true"/>
 						<h:panelGrid columns="2" columnClasses="label, value">
 
 						
@@ -121,13 +123,13 @@
 					    itemValue="#{categorias}" itemLabel="#{categorias.descricao}"/>
 				    </p:selectOneMenu>  
 
+                   			
+							<p:outputLabel value="Consumo por Serviço: " for="consumoservico"/>
+							<p:inputText id="consumoservico"  value="#{cadastroProdutoBean.sp.consumo}"/>
 
-							<p:outputLabel value="Consumo por Serviço: " />
-							<p:inputText />
 
-
-							<p:outputLabel value="Detalhes: " />
-							<p:inputTextarea rows="5" cols="22" />
+							<p:outputLabel value="Detalhes: " for="detalhes"/>
+							<p:inputTextarea rows="5" cols="22" id="detalhes" />
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>

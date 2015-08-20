@@ -2,8 +2,10 @@ package com.bb.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +15,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -30,7 +36,7 @@ public class Produto implements Serializable{
 	
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer codigo;
+	private Long codigo;
 	
 	@NotBlank @SKU
 	@Column(nullable = false, length = 20, unique = true)
@@ -70,12 +76,16 @@ public class Produto implements Serializable{
 	private Fornecedor fornecedor;
 			
 	
+	@Column(name="volume_conteudo", precision=10, scale=2)
+	@NotNull @Min(0)
+	private double volumeConteudo;
+	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(nullable=false, name="tipo_produto_codigo")
 	private TipoProduto tipoProduto;
 	
-	@ManyToMany(mappedBy="produto")	
-	private List<Servicos> servicos;
+	@OneToMany(mappedBy="codigo.produto", cascade= CascadeType.ALL)
+	private List<ServicosProdutos> servicosProdutosList;
 
 	
 	@NotNull
@@ -83,20 +93,24 @@ public class Produto implements Serializable{
 	@JoinColumn(name="especialidade_codigo", nullable=false )
 	private Especialidade especialidade;
 	
+	@Column(name="data_inclusao")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataInclusao;
+	
 	
 	//G&S
 	
 	
-	public List<Servicos> getServicos() {
-		return servicos;
+	public List<ServicosProdutos> getServicosProdutosList() {
+		return servicosProdutosList;
 	}
-	public void setServicos(List<Servicos> servicos) {
-		this.servicos = servicos;
+	public void setServicos(List<ServicosProdutos> servicosProdutosList) {
+		this.servicosProdutosList = servicosProdutosList;
 	}
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getDescricao() {
@@ -183,6 +197,43 @@ public class Produto implements Serializable{
 	}
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
+	}
+	public double getVolumeConteudo() {
+		return volumeConteudo;
+	}
+	public void setVolumeConteudo(double volumeConteudo) {
+		this.volumeConteudo = volumeConteudo;
+	}
+	public Date getDataInclusao() {
+		return dataInclusao;
+	}
+	public void setDataInclusao(Date dataInclusao) {
+		this.dataInclusao = dataInclusao;
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 	
 	

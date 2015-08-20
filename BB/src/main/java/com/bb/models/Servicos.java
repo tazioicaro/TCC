@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,6 +17,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -53,12 +56,8 @@ public class Servicos implements Serializable {
 	private Funcionario funcionario;
 	
 	
-	
-	@ManyToMany
-	@JoinTable(name="servicos_e_produtos", joinColumns=
-     {@JoinColumn(name="servico_codigo")}, inverseJoinColumns=
-     {@JoinColumn(name="produto_codigo")})	
-	private List<Produto> produto;
+    @OneToMany(mappedBy="codigo.servicos", cascade= CascadeType.ALL)   
+	private List<ServicosProdutos> servicosProdutosList;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="cfop_codigo", nullable=false)
@@ -160,11 +159,11 @@ public class Servicos implements Serializable {
 	public void setValorDesconto(BigDecimal valorDesconto) {
 		this.valorDesconto = valorDesconto;
 	}
-	public List<Produto> getProduto() {
-		return produto;
+	public List<ServicosProdutos> getServicosProdutosList() {
+		return servicosProdutosList;
 	}
-	public void setProduto(List<Produto> produto) {
-		this.produto = produto;
+	public void setProduto(List<ServicosProdutos> servicosProdutosList) {
+		this.servicosProdutosList = servicosProdutosList;
 	}
 	
 	public DescricaoServico getServicos() {

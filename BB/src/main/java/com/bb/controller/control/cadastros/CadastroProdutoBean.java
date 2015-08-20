@@ -7,6 +7,8 @@ import java.util.List;
 
 
 
+
+
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +21,8 @@ import com.bb.models.Especialidade;
 import com.bb.models.Fornecedor;
 import com.bb.models.Produto;
 import com.bb.models.Servicos;
+import com.bb.models.ServicosProdutos;
+import com.bb.models.ServicosProdutosId;
 import com.bb.models.TipoProduto;
 import com.bb.models.Unidade;
 
@@ -35,6 +39,10 @@ public class CadastroProdutoBean implements Serializable {
 	private Fornecedor fornecedor;
 	private TipoProduto tipoProduto;
 	private List<Servicos> servicos;
+	private ServicosProdutosId spId;
+	private ServicosProdutos sp;
+	
+	
 	
 	@NotNull
 	private Especialidade categoriaPai;
@@ -56,6 +64,7 @@ public class CadastroProdutoBean implements Serializable {
 		fornecedor = new Fornecedor();	
 		produto = new Produto();
 		tipoProduto = new TipoProduto();
+		spId = new ServicosProdutosId();
 		
 	}
 	
@@ -129,6 +138,26 @@ public void carregarCategoriasDe(){
 
 	public void setCategorias(Especialidades categorias) {
 		this.categorias = categorias;
+	}
+
+
+	public ServicosProdutosId getSpId() {
+		return spId;
+	}
+
+
+	public void setSpId(ServicosProdutosId spId) {
+		this.spId = spId;
+	}
+
+
+	public ServicosProdutos getSp() {
+		return sp;
+	}
+
+
+	public void setSp(ServicosProdutos sp) {
+		this.sp = sp;
 	}
 	
 	
