@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<h:outputStylesheet library="css" name="sistemas.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+	<h:outputStylesheet library="css" name="fonte.css" />
+	<h:link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'/>
+	
+	
+
+	<style>
+	
+	body{
+	background-color: #E1C8A9;
+	}
+
+.ui-layout-pane-center{
+
+width: 48% !important;
+}
+.ui-layout-pane-west{
+
+width: 51% !important;
+}
+	
+.ui-widget-content {
+	border: none;
+	background: transparent;
+	color: #4f4f4f;
+}
+
+.ui-widget {
+  font-family: Lato, sans-serif;
+  font-size: 1em;
+}
+
+.ui-button .ui-button-text {
+  display: block;
+  line-height: normal;
+  font-family: Lato, sans-serif;
+
+}
+
+#principal {
+	position: absolute;
+	left: 50%;
+	top: 42%;
+	margin-left: -260px;
+	margin-top: -135px;
+	width: 37%;
+	height: 35%;
+	border: 1px solid #E87824;
+	padding: 1%;
+	text-align: left;
+	font-family: Lato;
+	font-size: 1.1em;
+	border-radius: 10%;	
+	background-color: #E1C8A9;
+}
+
+#msg1 {
+   width: 90%; 
+   text-align:center;
+	float: left;
+	padding-top: 3%;
+	padding-left:1%;
+	padding-bottom:6%;	
+	max-height:14%;
+	font-size: 2em;
+	color: #644e43;
+	text-align: center;
+	font-family: Irish Grover, sans-serif;
+}
+
+#msg2 {
+	float: left;
+	padding-top: 7%;
+	padding-bottom:5%;
+	color: #644e43;
+	font-size: 1.2em;
+	font-weight:bold;
+	text-align: left;
+	font-family: Lato, sans-serif;
+	max-height: 8%;
+	
+}
+
+#msg3 {
+     max-height: 2%;
+	float: left;
+	padding-top: 12%;
+	padding-bottom:2%;	
+	color: #644e43;
+	font-size: 0.9em;
+	text-align: left;
+	font-family: Lato, sans-serif;
+	
+}
+</style>
+
+	<title>Facelet Title</title>
+
+</h:head>
+
+<h:body>
+
+	<div id="principal">
+		<p:layout style="width: 100%; height: 100%;" id="layout">
+			<p:layoutUnit position="west" resizable="false" size="200"	minSize="250" styleClass="semFundo" >
+				<div id="msg1">Seja Bem Vindo!</div>
+				
+				<div id="msg2" style="width: 80%;">Login:</div>
+				
+				<h:panelGrid columns="2" columnClasses="rotulo, campo"	styleClass="semFundo">
+					
+					<h:outputLabel value="Nome:" for="nome"/>
+					<h:inputText id="nome" label="Nome" required="true"	style="width: 100%; height: 100%; " />
+					
+					<h:outputLabel value="Senha:" for="senha" style="align: right" />
+					<h:inputSecret id="senha" label="Senha"	 required="true" style="width:100%; height: 100%; 
+					line-height: 0.9em;" />
+				</h:panelGrid>
+
+				<div align="right" style="width:82.5%;">
+					<p:commandButton  value="Entrar" />
+				</div>
+
+
+				<div id="msg3">					
+					<h:form>
+						<h:commandLink  value="Esqueceu sua senha?" />
+					</h:form>
+				</div>			
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" resizable="false" size="200" 	minSize="250">
+				<h:graphicImage library="images" name="teste.png"  style="width:100%; height:90%"/>
+			</p:layoutUnit>
+		</p:layout>
+	</div>
+
+</h:body>
+
+</html>

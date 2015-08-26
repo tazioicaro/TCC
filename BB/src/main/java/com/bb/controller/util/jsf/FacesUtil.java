@@ -14,6 +14,13 @@ public class FacesUtil {
 	}
 	
 	
+	public static void addInforMessage(String message){
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, message, message));
+	
+	
+	}
+	
+	
 	
 	public static boolean isPostBack(){
 		

@@ -27,8 +27,7 @@ public class CadastroClienteBean implements Serializable {
 	private Servicos servicos;
 	
 	@NotNull
-	private Especialidade especialidadePai;
-	
+	private Especialidade especialidadePai;	
 	private List<Especialidade> especialidadesRaizes;	
 	private List<Especialidade> servicoDeEspecialidades;
 	private List<Endereco> enderecos;

@@ -56,7 +56,7 @@
 
 							<p:outputLabel value="Volume Conteúdo " for="tamanho"/>
 							<p:inputText required="true" id="tamanho"  value="#{cadastroProdutoBean.produto.volumeConteudo}">
-							<f:validateDoubleRange maximum="0.00" minimum="10000.00"/>
+							<f:validateDoubleRange maximum="10000.00" minimum="0.00"/>
 							</p:inputText>
 
 							<p:outputLabel value="Qtde: " for="qtde"/>
@@ -119,7 +119,7 @@
                     <p:outputLabel value="Serviço: "  for="subcategoria"/>
                   	<p:selectOneMenu id="subcategoria" value="#{cadastroProdutoBean.produto.especialidade}">
 					    <f:selectItem itemLabel="Selecione o Serviço" />
-					    <f:selectItems value="#{cadastroProdutoBean.carregarCategoriasDe}" var="categorias"
+					    <f:selectItems value="#{cadastroProdutoBean.subCategorias}" var="categorias"
 					    itemValue="#{categorias}" itemLabel="#{categorias.descricao}"/>
 				    </p:selectOneMenu>  
 
