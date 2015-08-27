@@ -58,6 +58,15 @@
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.2</version>
+			<scope>compile</scope>
+		</dependency>
+		
+		<!-- Commons Lang (Utilidades) -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+  			<artifactId>commons-lang3</artifactId>
+ 		    <version>3.4</version>
+			<scope>compile</scope>
 		</dependency>
 
 

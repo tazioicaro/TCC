@@ -3,7 +3,9 @@
 
 
 /*html { text-rendering: optimizeLegibility !important; -webkit-font-smoothing: antialiased !important;}*/
-
+html {
+  height: 100%;
+}
 body{	
 	margin: 0px;
     height: 100%;

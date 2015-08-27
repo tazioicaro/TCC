@@ -1,0 +1,96 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">pesquisa Produtos</ui:define>
+
+	<ui:define name="corpo">
+	
+	<h:outputStylesheet library="css" name="cadastro.css" />	
+
+	<h:outputStylesheet library="css" name="/login/login.css" />	
+	<h:outputStylesheet library="css" name="/login/primefaces.css" />
+
+	
+		<h:form>
+			<h1>Pesquisa produtos</h1>
+			
+			<p:messages autoUpdate="true" closable="true"/>
+
+			<p:toolbar style="margin-top:20px">
+			<p:toolbarGroup>
+
+					<p:commandButton value="Pesquisar" action="#{pesquisaProdutoBean.pesquisar}" update="@form"/>
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" />
+				</p:toolbarGroup>
+
+			</p:toolbar>
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="SKU" for="sku" />
+				<p:inputText id="sku" size="20"  value="#{pesquisaProdutoBean.filtro.sku}"/>
+
+				<p:outputLabel value="Nome " for="nome" />
+				<p:inputText id="nome" size="60" value="#{pesquisaProdutoBean.filtro.nome}"/>
+
+
+			</p:panelGrid>
+
+			<p:dataTable id="produtosTable"
+				value="#{pesquisaProdutoBean.produtosFiltrados}" var="produto"
+				style="margin-top:20px" emptyMessage="Produto não encontrado"
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column style="text-align:center; width:100px" headerText="SKU">
+					<h:outputText value="#{produto.sku}" />
+				</p:column>
+
+				<p:column headerText="Nome">
+					<h:outputText value="#{produto.nome}" />
+				</p:column>
+
+				<p:column headerText="Categoria" style="width:250px">
+					<h:outputText />
+				</p:column>
+
+				<p:column headerText="Valor Unitário"
+					style="width:120px; text-align:right">
+					<h:outputText >
+					<f:convertNumber type="currency"/>
+					</h:outputText>
+				</p:column>
+
+				<p:column headerText="Estoque"
+					style="text-align:center; width:100px">
+					<h:outputText />
+				</p:column>
+
+				<p:column style="width:100px; text-align:center">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:commandButton icon="ui-icon-trash" title="Excluir">
+						<p:confirm header="Exclusão de Produto"
+							message="Tem certeza que deseja excluir o produto?"
+							icon="ui-icon-alert" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:button value="Não" icon="ui-icon-close" styleClass="ui-confirmdialog-no" />
+				<p:commandButton type="button" value="Sim" icon="ui-icon-check"  styleClass="ui-confirmdialog-yes"/>
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+
+
+
+</ui:composition>

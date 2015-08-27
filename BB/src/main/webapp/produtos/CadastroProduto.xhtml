@@ -55,8 +55,8 @@
 										
 
 							<p:outputLabel value="Volume Conteúdo " for="tamanho"/>
-							<p:inputText required="true" id="tamanho"  value="#{cadastroProdutoBean.produto.volumeConteudo}">
-							<f:validateDoubleRange maximum="10000.00" minimum="0.00"/>
+							<p:inputText required="true" id="tamanho"  value="#{cadastroProdutoBean.produto.volumeConteudo}" styleClass="moeda">
+							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
 							</p:inputText>
 
 							<p:outputLabel value="Qtde: " for="qtde"/>
@@ -67,10 +67,14 @@
 
 					
 					        <p:outputLabel value="Vlr. Compra " for="vlrc"/>
-							<p:inputText required="true" id="vlrc" value="#{cadastroProdutoBean.produto.vlrcompra}"/>
+							<p:inputText required="true" id="vlrc" value="#{cadastroProdutoBean.produto.vlrcompra}" styleClass="moeda">
+							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+							</p:inputText>
 							
 							<p:outputLabel value="Vlr. Venda " for="vlrv"/>
-							<p:inputText required="true" id="vlrv" value="#{cadastroProdutoBean.produto.vlrvenda}"/>
+							<p:inputText required="true" id="vlrv" value="#{cadastroProdutoBean.produto.vlrvenda}" styleClass="moeda">
+							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+							</p:inputText>
 							
 							<p:outputLabel value="Descrição: " for="descricao" />
 							<p:inputTextarea rows="3" cols="22" id="descricao" label="descricao" value="#{cadastroProdutoBean.produto.descricao}"/>
@@ -136,7 +140,9 @@
 
                    			
 							<p:outputLabel value="Consumo por Serviço: " for="consumoservico"/>
-							<p:inputText id="consumoservico"  value="#{cadastroProdutoBean.sp.consumo}"/>
+							<p:inputText id="consumoservico"  value="#{cadastroProdutoBean.sp.consumo}" styleClass="moeda">
+							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
+							</p:inputText>
 
 
 							<p:outputLabel value="Detalhes: " for="detalhes"/>
