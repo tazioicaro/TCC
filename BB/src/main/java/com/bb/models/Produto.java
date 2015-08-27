@@ -81,7 +81,7 @@ public class Produto implements Serializable{
 	private double volumeConteudo;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(nullable=false, name="tipo_produto_codigo")
+	@JoinColumn(nullable=true, name="tipo_produto_codigo")
 	private TipoProduto tipoProduto;
 	
 	@OneToMany(mappedBy="codigo.produto", cascade= CascadeType.ALL)

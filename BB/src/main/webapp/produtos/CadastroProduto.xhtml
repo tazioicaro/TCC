@@ -49,7 +49,7 @@
 
 							<p:outputLabel value="Unid. de Medida: " for="medida"/>							                   
                                <p:selectOneMenu value="#{cadastroProdutoBean.produto.unidade}" label="medida" id="medida" >
-                               <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="false"/>
+                               <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="true"/>
                                 <f:selectItems value="#{cadastroProdutoBean.listaUnidade}" var="mdd" itemValue="#{mdd}" itemLabel="#{mdd.descricao}" />
                             </p:selectOneMenu>  
 										
@@ -61,13 +61,22 @@
 
 							<p:outputLabel value="Qtde: " for="qtde"/>
 							<p:inputText required="true" id="qtde" value="#{cadastroProdutoBean.produto.estoque}"/>
+							
+							<p:outputLabel value="Qtde Crítica " for="qtdeC"/>
+							<p:inputText required="true" id="qtdeC" value="#{cadastroProdutoBean.produto.critico}"/>
 
 					
+					        <p:outputLabel value="Vlr. Compra " for="vlrc"/>
+							<p:inputText required="true" id="vlrc" value="#{cadastroProdutoBean.produto.vlrcompra}"/>
+							
+							<p:outputLabel value="Vlr. Venda " for="vlrv"/>
+							<p:inputText required="true" id="vlrv" value="#{cadastroProdutoBean.produto.vlrvenda}"/>
+							
 							<p:outputLabel value="Descrição: " for="descricao" />
 							<p:inputTextarea rows="3" cols="22" id="descricao" label="descricao" value="#{cadastroProdutoBean.produto.descricao}"/>
 
 
-							<p:outputLabel value="Pular para o Final: " />
+							<!-- <p:outputLabel value="Pular para o Final: " /> -->
 							<h:selectBooleanCheckbox />
 						</h:panelGrid>
 					</p:panel>
@@ -81,8 +90,10 @@
 
 
 							<p:outputLabel value="Fornecedor: " for="fornecedor"/>													                   
-                               <p:selectOneMenu  label="fornecedor" id="fornecedor" >
-                               <f:selectItem itemLabel="Selecione o Fornecedor" noSelectionOption="true"/>                                
+                               <p:selectOneMenu  label="fornecedor" id="fornecedor" value="#{cadastroProdutoBean.produto.fornecedor}" >
+                               <f:selectItem itemLabel="Selecione o Fornecedor" noSelectionOption="true"/> 
+                               <f:selectItems value="#{cadastroProdutoBean.fornecedores}" var="fornecedores" itemValue="#{fornecedores}" itemLabel="#{fornecedores.nome}"/>                               
+                              <p:ajax listener="#{cadastroProdutoBean.carregarDadosFornecedor}" update="codigo, celular, email"/>
                             </p:selectOneMenu>  
 							
 
@@ -95,7 +106,7 @@
 							<p:outputLabel value="E-mail: " for="email"/>
 							<p:inputText id="email"  value="#{cadastroProdutoBean.fornecedor.email}"/>
 
-							<p:outputLabel value="Pular para o Final: " />
+							<!-- <p:outputLabel value="Pular para o Final: " /> -->
 							<h:selectBooleanCheckbox />
 						</h:panelGrid>
 					</p:panel>
@@ -141,43 +152,40 @@
 							<h:panelGrid columns="2" columnClasses="label, value">
 							
 								<p:outputLabel value="SKU: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel"  value="#{cadastroProdutoBean.produto.sku}"/>
 
 								<p:outputLabel value="Nome: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.nome}"/>
 
 								<p:outputLabel value="Unid. Medida: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.unidade}"/>
 
 								<p:outputLabel value="Tamanho: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.volumeConteudo}"/>
 
 								<p:outputLabel value="Qtde: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.estoque}"/>
 
 								<p:outputLabel value="Categoria do Produto: " />
-								<h:outputText styleClass="outputLabel" />
-
-								<p:outputLabel value="Data Inclusão: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.especialidade}"/>
 								
 								<p:outputLabel value="Descrição: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.descricao}"/>
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" columnClasses="label, value">
 								
 								<p:outputLabel value="Fornecedor: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel"  value="#{cadastroProdutoBean.produto.fornecedor.nome}"/>
 
 								<p:outputLabel value="Código: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.fornecedor.codigo}"/>
 
 								<p:outputLabel value="Celular: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.fornecedor.celular}" />
 								
 								<p:outputLabel value="E-mail: " />
-								<h:outputText styleClass="outputLabel" />
+								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.fornecedor.email}"/>
 							</h:panelGrid>
 
 							<h:panelGrid columns="2" columnClasses="label, value">
@@ -196,7 +204,7 @@
 							</h:panelGrid>
 						</h:panelGrid>					
 
-						<p:commandButton value="Salvar" update="growl"  process="@this" />
+						<p:commandButton value="Gravar" update="growl"  process="@this" action="#{cadastroProdutoBean.salvar}" />
 					</p:panel>
 				</p:tab>
 			</p:wizard>

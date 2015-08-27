@@ -2,6 +2,7 @@ package com.bb.controller.control.cadastros;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -10,6 +11,7 @@ import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
 import com.bb.controller.control.repository.Especialidades;
+import com.bb.controller.control.repository.FornecedorRepository;
 import com.bb.controller.control.repository.UnidadesMedidas;
 import com.bb.controller.services.CadastroProdutoService;
 import com.bb.controller.util.jsf.FacesUtil;
@@ -27,10 +29,23 @@ import com.bb.models.Unidade;
 public class CadastroProdutoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	
+	@Inject
+	private CadastroProdutoService produtoService;
 	private Produto produto;
+	
+	@Inject
+	private UnidadesMedidas unidades;
 	private List<Unidade> listaUnidade;
+	
+	
 	private Fornecedor fornecedor;
+	private List<Fornecedor> fornecedores;
+	@Inject
+	private FornecedorRepository fornecedorRp;
+	
 	private TipoProduto tipoProduto;
+	
 	private List<Servicos> servicos;
 	private ServicosProdutosId spId;
 	private ServicosProdutos sp;
@@ -39,15 +54,12 @@ public class CadastroProdutoBean implements Serializable {
 	private Especialidade categoriaPai;
 	private List<Especialidade> categoriaRaizes;
 	private List<Especialidade> subCategorias;
-
 	@Inject
 	private Especialidades categorias;
 
-	@Inject
-	private UnidadesMedidas unidades;
+	
 
-	@Inject
-	private CadastroProdutoService produtoService;
+	
 
 	public CadastroProdutoBean() {
 
@@ -59,29 +71,41 @@ public class CadastroProdutoBean implements Serializable {
 		if (FacesUtil.notIsPostBack()) {
 			categoriaRaizes = categorias.raizes();
 			listaUnidade = unidades.todas();
+			fornecedores = fornecedorRp.todos();
+			
 		}
 	}
+	
+	
 
 	public void carregarCategoriasDe() {
 
 		subCategorias = categorias.servicoDe(categoriaPai);
 
 	}
+	
+	
+	public void carregarDadosFornecedor(){
+		
+		fornecedor = fornecedorRp.porCodigo(this.produto.getFornecedor().getCodigo());
+		
+	}
 
 	public void limpar() {
 
 		servicos = new ArrayList<Servicos>();
-		fornecedor = new Fornecedor();
+		fornecedores = new ArrayList<Fornecedor>();;
 		produto = new Produto();
 		tipoProduto = new TipoProduto();
+		sp = new ServicosProdutos();
 		spId = new ServicosProdutosId();
 
 	}
 
 	public void salvar() {
-
+		
+		this.produto.setDataInclusao(new Date());
 		this.produto = produtoService.salvar(this.produto);
-
 		FacesUtil.addInforMessage("Produto Salvo com sucesso");
 
 		limpar();
@@ -100,13 +124,6 @@ public class CadastroProdutoBean implements Serializable {
 		return listaUnidade;
 	}
 
-	public Fornecedor getFornecedor() {
-		return fornecedor;
-	}
-
-	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
-	}
 
 	public TipoProduto getTipoProduto() {
 		return tipoProduto;
@@ -162,6 +179,22 @@ public class CadastroProdutoBean implements Serializable {
 
 	public void setSp(ServicosProdutos sp) {
 		this.sp = sp;
+	}
+
+	public List<Fornecedor> getFornecedores() {
+		return fornecedores;
+	}
+
+	public void setFornecedores(List<Fornecedor> fornecedores) {
+		this.fornecedores = fornecedores;
+	}
+
+	public Fornecedor getFornecedor() {
+		return fornecedor;
+	}
+
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
 	}
 
 }

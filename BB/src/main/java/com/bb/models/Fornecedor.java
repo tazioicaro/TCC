@@ -20,7 +20,6 @@ import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Fornecedor implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 	
 
@@ -163,6 +162,8 @@ public class Fornecedor implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
 	public String getTelefone() {
 		return telefone;
 	}
@@ -211,6 +212,9 @@ public class Fornecedor implements Serializable{
 			return false;
 		return true;
 	}
+	
+	
+
 	
 	
 	
