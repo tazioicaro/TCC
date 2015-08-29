@@ -58,19 +58,19 @@
 				</p:column>
 
 				<p:column headerText="Categoria" style="width:250px">
-					<h:outputText />
+					<h:outputText  value=" #{produto.especialidade.especialidadePai.descricao} - #{produto.especialidade.descricao} "/>
 				</p:column>
 
 				<p:column headerText="Valor Unitário"
 					style="width:120px; text-align:right">
-					<h:outputText >
+					<h:outputText value="#{produto.vlrcompra}">
 					<f:convertNumber type="currency"/>
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Estoque"
 					style="text-align:center; width:100px">
-					<h:outputText />
+					<h:outputText value="#{produto.estoque}"/>
 				</p:column>
 
 				<p:column style="width:100px; text-align:center">

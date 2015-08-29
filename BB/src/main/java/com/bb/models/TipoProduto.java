@@ -1,12 +1,16 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -26,6 +30,8 @@ public class TipoProduto implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInclusao;
 	
+	@OneToMany(cascade= CascadeType.ALL, mappedBy="tipoProduto")	
+	private List<Especialidade> especialidades = new ArrayList<Especialidade>();
 	
 
 	public Long getCodigo() {
@@ -51,6 +57,16 @@ public class TipoProduto implements Serializable{
 	public void setDataInclusao(Date dataInclusao) {
 		this.dataInclusao = dataInclusao;
 	}
+
+	public List<Especialidade> getEspecialidades() {
+		return especialidades;
+	}
+
+	public void setEspecialidades(List<Especialidade> especialidades) {
+		this.especialidades = especialidades;
+	}
+
+
 	
 	
 	

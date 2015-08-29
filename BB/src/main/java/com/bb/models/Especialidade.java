@@ -35,6 +35,17 @@ public class Especialidade implements Serializable {
 	private List<Especialidade> subEspecialidades = new ArrayList<Especialidade>();
 	
 	
+	
+	@ManyToOne
+	@JoinColumn(name="tipoProduto_codigo")
+	private TipoProduto tipoProduto;
+	
+	public TipoProduto getTipoProduto() {
+		return tipoProduto;
+	}
+	public void setTipoProduto(TipoProduto tipoProduto) {
+		this.tipoProduto = tipoProduto;
+	}
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -90,6 +101,7 @@ public class Especialidade implements Serializable {
 			return false;
 		return true;
 	}
+
 	
 	
 	
