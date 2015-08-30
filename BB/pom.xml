@@ -14,12 +14,21 @@
 
 	<dependencies>
 
-		<!-- Wel (Implementação do CDI) -->
-		<dependency>
+		<!-- Wel (Implementação do CDI 1.2) -->
+		 <dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
-			<version>2.2.14.Final</version>
+			<version>2.2.15.Final</version>
+			<scope>compile</scope> 
 		</dependency>
+		
+		<!-- Wel (Implementação do CDI 2.0) -->
+		<!--<dependency>
+    	 <groupId>org.jboss.weld.servlet</groupId>
+			<artifactId>weld-servlet</artifactId>
+   		  <version>3.0.0.Alpha13</version>
+   		  <scope>compile</scope> 
+		</dependency>-->
 		
 		<dependency>
   		 <groupId>org.jboss</groupId>
@@ -107,6 +116,7 @@
 		<groupId>org.webjars</groupId>
 		<artifactId>font-awesome</artifactId>
 		<version>4.3.0-3</version>
+		<scope>compile</scope> 
 	</dependency>
 
 	</dependencies>
