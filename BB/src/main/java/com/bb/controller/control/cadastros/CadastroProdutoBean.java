@@ -73,6 +73,11 @@ public class CadastroProdutoBean implements Serializable {
 			listaUnidade = unidades.todas();
 			fornecedores = fornecedorRp.todos();
 			
+			if (categoriaPai !=null){
+				
+				carregarCategoriasDe();
+			}
+						
 		}
 	}
 	
@@ -93,12 +98,14 @@ public class CadastroProdutoBean implements Serializable {
 
 	public void limpar() {
 
-		servicos = new ArrayList<Servicos>();
+		servicos = new ArrayList<Servicos>();		
 		fornecedores = new ArrayList<Fornecedor>();;
 		produto = new Produto();
 		tipoProduto = new TipoProduto();
 		sp = new ServicosProdutos();
 		spId = new ServicosProdutosId();
+		subCategorias = new ArrayList<Especialidade>();
+		categoriaPai = null;
 
 	}
 
@@ -110,6 +117,10 @@ public class CadastroProdutoBean implements Serializable {
 
 		limpar();
 	}
+	
+	public boolean isEditando(){
+		return this.produto.getCodigo() !=null;
+	}
 
 	// G&S
 	public Produto getProduto() {
@@ -118,6 +129,12 @@ public class CadastroProdutoBean implements Serializable {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+		
+		if(this.produto != null){
+			this.categoriaPai = this.produto.getEspecialidade().getEspecialidadePai();
+			this.fornecedor = this.produto.getFornecedor();	
+			listaUnidade = unidades.todas();
+		}
 	}
 
 	public List<Unidade> getListaUnidade() {
@@ -194,7 +211,8 @@ public class CadastroProdutoBean implements Serializable {
 	}
 
 	public void setFornecedor(Fornecedor fornecedor) {
-		this.fornecedor = fornecedor;
+		this.fornecedor = fornecedor;	
+		
 	}
 
 }

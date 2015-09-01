@@ -9,12 +9,12 @@
 
 
 
-	<ui:define name="titulo">Novo Produto</ui:define>
+	<ui:define name="titulo">#{cadastroProdutoBean.editando ? 'Edição de Produto': 'Novo Produto'}</ui:define>
 
 	<ui:define name="corpo">
 
    <f:metadata>	
-	            <f:viewParam name="dummy"/>
+	            <f:viewParam name="produto" value="#{cadastroProdutoBean.produto}"/>
 	            <f:event listener="#{cadastroProdutoBean.inicializar()}" type="preRenderView"/>	
 </f:metadata>
 
@@ -27,7 +27,7 @@
 
 		<h:form id="form">
 
-			<h1>Cadastro de Produtos</h1>
+			<h1>#{cadastroProdutoBean.editando ? 'Edição de Produto': 'Novo Produto'}</h1>
 
 			<p:growl id="growl" sticky="true" showDetail="true" />
 

@@ -28,7 +28,7 @@
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Novo" />
+					<p:button value="Novo" outcome="/produtos/CadastroProduto"/>
 				</p:toolbarGroup>
 
 			</p:toolbar>
@@ -74,7 +74,10 @@
 				</p:column>
 
 				<p:column style="width:100px; text-align:center">
-					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:button icon="ui-icon-pencil" title="Editar" outcome="/produtos/CadastroProduto">
+					<f:param name="produto" value="#{produto.codigo}"/>
+					</p:button>
+					
 					<p:commandButton icon="ui-icon-trash" title="Excluir">
 						<p:confirm header="Exclusão de Produto"
 							message="Tem certeza que deseja excluir o produto?"

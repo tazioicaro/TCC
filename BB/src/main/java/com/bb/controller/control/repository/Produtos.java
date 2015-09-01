@@ -60,5 +60,9 @@ public class Produtos implements Serializable {
 
 		return criteria.addOrder(Order.asc("nome")).list();
 	}
+	
+	public Produto porCodigo(Long codigo){		
+		 return manager.find(Produto.class, codigo);		
+	}
 
 }

@@ -13,6 +13,7 @@ import com.bb.models.Unidade;
 @FacesConverter(forClass = Unidade.class)
 public class UnidadeConverter implements Converter {
 
+	//@Inject
 	private UnidadesMedidas unidades;
 
 	public UnidadeConverter() {

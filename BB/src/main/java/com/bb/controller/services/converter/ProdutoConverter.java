@@ -5,30 +5,30 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.bb.controller.control.repository.FornecedorRepository;
+import com.bb.controller.control.repository.Produtos;
 import com.bb.controller.util.cdi.CDIServiceLocator;
-import com.bb.models.Fornecedor;
+import com.bb.models.Produto;
 
-@FacesConverter(forClass = Fornecedor.class)
-public class FornecedorConverter implements Converter {
+@FacesConverter(forClass = Produto.class)
+public class ProdutoConverter implements Converter {
 
 	//@Inject
-	private FornecedorRepository fornecedorRp;
+	private Produtos produtos;
 
-	public FornecedorConverter() {
-		fornecedorRp = CDIServiceLocator.getBean(FornecedorRepository.class);
+	public ProdutoConverter() {
+		produtos = CDIServiceLocator.getBean(Produtos.class);
 	}
 
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,	String value) {
 
-		Fornecedor retorno = null;
+		Produto retorno = null;
 
 		if (value != null) {
 
 			Long codigo = new Long(value);
 
-			retorno = fornecedorRp.porCodigo(codigo);
+			retorno = produtos.porCodigo(codigo);
 		}
 
 		return retorno;
@@ -37,10 +37,11 @@ public class FornecedorConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 
-		if (value != null) {			
-			return ((Fornecedor) value).getCodigo().toString();
+		if( value !=null){
+		    Produto produto = (Produto) value;				
+			return produto.getCodigo() == null ? null :produto.getCodigo().toString();
 		}
-		return null;
+		return "";
 	}
 
 }
