@@ -24,6 +24,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.bb.controller.services.validation.SKU;
@@ -71,7 +73,7 @@ public class Produto implements Serializable{
 	private Unidade unidade;
 	
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.EAGER)	
 	@JoinColumn(nullable=false, name="fornecedor_codigo")
 	private Fornecedor fornecedor;
 			
