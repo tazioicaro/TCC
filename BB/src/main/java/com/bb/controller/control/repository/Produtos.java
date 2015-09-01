@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -15,6 +16,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.bb.controller.control.repository.filter.ProdutosFilter;
+import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jpa.Transactional;
 import com.bb.models.Produto;
 
@@ -63,6 +65,20 @@ public class Produtos implements Serializable {
 	
 	public Produto porCodigo(Long codigo){		
 		 return manager.find(Produto.class, codigo);		
+	}
+	
+	
+	@Transactional //Será chamado direto na view
+	public void excluirproduto(Produto produto){
+		
+		try {
+			produto = porCodigo(produto.getCodigo());
+			
+			manager.remove(produto);
+			manager.flush();
+		} catch (PersistenceException e) {
+			throw new NegocioException("Produto não pode ser excluído");
+		}
 	}
 
 }

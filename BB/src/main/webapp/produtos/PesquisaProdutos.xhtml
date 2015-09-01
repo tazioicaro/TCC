@@ -15,7 +15,7 @@
 	<h:outputStylesheet library="css" name="/login/primefaces.css" />
 
 	
-		<h:form>
+		<h:form id="frmPesquisa">
 			<h1>Pesquisa produtos</h1>
 			
 			<p:messages autoUpdate="true" closable="true"/>
@@ -78,16 +78,17 @@
 					<f:param name="produto" value="#{produto.codigo}"/>
 					</p:button>
 					
-					<p:commandButton icon="ui-icon-trash" title="Excluir">
+					<p:commandButton icon="ui-icon-trash" title="Excluir" process="@this" update=":frmPesquisa:produtosTable, :frmPesquisa:confirmacaoDialog"
+					action="#{pesquisaProdutoBean.excluir}" >
 						<p:confirm header="Exclusão de Produto"
-							message="Tem certeza que deseja excluir o produto?"
-							icon="ui-icon-alert" />
+							message="Tem certeza que deseja excluir o produto #{pesquisaProdutoBean.produtoSelecionado.sku}?"	icon="ui-icon-alert" />
+					<f:setPropertyActionListener value="#{produto}" target="#{pesquisaProdutoBean.produtoSelecionado}"/>
 					</p:commandButton>
 				</p:column>
 
 			</p:dataTable>
 
-			<p:confirmDialog global="true">
+			<p:confirmDialog global="true" id="confirmacaoDialog">
 				<p:button value="Não" icon="ui-icon-close" styleClass="ui-confirmdialog-no" />
 				<p:commandButton type="button" value="Sim" icon="ui-icon-check"  styleClass="ui-confirmdialog-yes"/>
 			</p:confirmDialog>

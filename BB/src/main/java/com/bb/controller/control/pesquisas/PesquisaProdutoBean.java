@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import com.bb.controller.control.repository.Produtos;
 import com.bb.controller.control.repository.filter.ProdutosFilter;
+import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Produto;
 
 @Named
@@ -18,6 +19,7 @@ public class PesquisaProdutoBean implements Serializable {
 	
 	@Inject
 	private Produtos produtos;
+	private Produto produtoSelecionado;
 	
 	private ProdutosFilter filtro;
 	
@@ -38,6 +40,14 @@ public class PesquisaProdutoBean implements Serializable {
 		
 	}
 	
+	public void excluir(){
+		produtos.excluirproduto(produtoSelecionado);
+		
+		produtosFiltrados.remove(produtoSelecionado);
+		
+		FacesUtil.addInforMessage("Produto" + produtoSelecionado.getSku() + "excluído com sucesso");
+	}
+	
 	
 	//G&T
 
@@ -49,6 +59,18 @@ public class PesquisaProdutoBean implements Serializable {
 
 	public List<Produto> getProdutosFiltrados() {
 		return produtosFiltrados;
+	}
+
+
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 	
 	
