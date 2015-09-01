@@ -66,12 +66,12 @@ public class Produto implements Serializable{
 	@Column (columnDefinition = "text") 
 	private String auditoria;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(nullable=false,name="unidade_codigo")
 	private Unidade unidade;
 	
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(nullable=false, name="fornecedor_codigo")
 	private Fornecedor fornecedor;
 			

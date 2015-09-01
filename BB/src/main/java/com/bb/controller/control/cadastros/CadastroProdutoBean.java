@@ -68,6 +68,8 @@ public class CadastroProdutoBean implements Serializable {
 	}
 
 	public void inicializar() {
+		
+		
 		if (FacesUtil.notIsPostBack()) {
 			categoriaRaizes = categorias.raizes();
 			listaUnidade = unidades.todas();
@@ -133,14 +135,22 @@ public class CadastroProdutoBean implements Serializable {
 		if(this.produto != null){
 			this.categoriaPai = this.produto.getEspecialidade().getEspecialidadePai();
 			this.fornecedor = this.produto.getFornecedor();	
-			listaUnidade = unidades.todas();
+			//listaUnidade = unidades.todas();			
+			//fornecedores = fornecedorRp.todos();
+			
 		}
 	}
 
 	public List<Unidade> getListaUnidade() {
 		return listaUnidade;
 	}
+	
+	
 
+
+	public void setListaUnidade(List<Unidade> listaUnidade) {
+		this.listaUnidade = listaUnidade;
+	}
 
 	public TipoProduto getTipoProduto() {
 		return tipoProduto;

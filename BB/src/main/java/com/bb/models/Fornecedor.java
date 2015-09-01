@@ -189,6 +189,7 @@ public class Fornecedor implements Serializable{
 	public void setDocumentoReceitaFederal(String documentoReceitaFederal) {
 		this.documentoReceitaFederal = documentoReceitaFederal;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -3,12 +3,7 @@ package com.bb.controller.services.converter;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
-
-
-
-
 import javax.faces.convert.FacesConverter;
-
 
 import com.bb.controller.control.repository.Especialidades;
 import com.bb.controller.util.cdi.CDIServiceLocator;
@@ -44,8 +39,12 @@ public class EspecialidadeConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 	if(value != null){
-		return ((Especialidade) value).getCodigo().toString();
+		
+		Especialidade especialidade = (Especialidade) value;				
+		return especialidade.getCodigo() == null ? null :especialidade.getCodigo().toString();
+		
+		
 	}
-		return null;
+		return "";
 	}
 }

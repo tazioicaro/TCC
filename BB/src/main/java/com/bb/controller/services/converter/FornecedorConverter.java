@@ -37,10 +37,13 @@ public class FornecedorConverter implements Converter {
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 
-		if (value != null) {			
-			return ((Fornecedor) value).getCodigo().toString();
+		if (value != null) {
+			
+			Fornecedor fornecedor = (Fornecedor) value;				
+			return fornecedor.getCodigo() == null ? null :fornecedor.getCodigo().toString();
+			
 		}
-		return null;
+		return "";
 	}
 
 }

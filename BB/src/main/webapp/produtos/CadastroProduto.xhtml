@@ -99,7 +99,8 @@
 							<p:outputLabel value="Fornecedor: " for="fornecedor"/>													                   
                                <p:selectOneMenu  label="fornecedor" id="fornecedor" value="#{cadastroProdutoBean.produto.fornecedor}" >
                                <f:selectItem itemLabel="Selecione o Fornecedor" noSelectionOption="true"/> 
-                               <f:selectItems value="#{cadastroProdutoBean.fornecedores}" var="fornecedores" itemValue="#{fornecedores}" itemLabel="#{fornecedores.nome}"/>                               
+                               <f:selectItems value="#{cadastroProdutoBean.fornecedores}" var="fornecedores" itemValue="#{fornecedores}" 
+                               itemLabel="#{fornecedores.nome}"/>                               
                               <p:ajax listener="#{cadastroProdutoBean.carregarDadosFornecedor}" update="codigo, celular, email"/>
                             </p:selectOneMenu>  
 							
@@ -113,8 +114,8 @@
 							<p:outputLabel value="E-mail: " for="email"/>
 							<p:inputText id="email"  value="#{cadastroProdutoBean.fornecedor.email}"/>
 
-							<!-- <p:outputLabel value="Pular para o Final: " /> -->
-							<h:selectBooleanCheckbox />
+							<!-- <p:outputLabel value="Pular para o Final: " /> 
+							<h:selectBooleanCheckbox />-->
 						</h:panelGrid>
 					</p:panel>
 				</p:tab>
