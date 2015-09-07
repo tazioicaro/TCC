@@ -62,7 +62,6 @@ footer {
 }
 
 
-
 /* Customização do Menu Sistema - Barra principal */
 
 .menu-sistema {
@@ -86,6 +85,7 @@ footer {
 /* INICIO Botões do menubar - laranja : */
 .ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus {
 	background: #F79805 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.6)), to(rgba(255,255,255,0)));
+	box-shadow: 0px 0px 8px #F79805;
 	}
 /* FIM Botões do menubar - laranja : */	
 

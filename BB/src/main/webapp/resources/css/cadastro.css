@@ -44,7 +44,7 @@ border-color: #876758;
 }
 
 .ui-widget {
-  font-family: Lato,sans-serif;
+  font-family: Lato,sans-serif !important;
 }
 
 .ui-menu .ui-menuitem-link .ui-menuitem-icon {

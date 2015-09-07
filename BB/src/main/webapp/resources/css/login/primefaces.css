@@ -3975,3 +3975,23 @@ div.ui-button, .ui-splitbutton {
 	padding: 0.4em;
 	float: left;
 }
+
+/* Cor fundo botões checkbox*/
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+
+    background: #EAD42A  -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0)), to(rgba(255,255,255,0.4))) !important;
+}
+
+/* Barra com os botóes de pesquisa e novo*/
+.ui-widget-header{
+
+background:#F7F1F1 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+color: #b17f4a;
+}
+
+/* botao das barra de menu acima */
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+background:#F9F8F8 -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.8)), to(rgba(255,255,255,0)));
+
+
+} 
