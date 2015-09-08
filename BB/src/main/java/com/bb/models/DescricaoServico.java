@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-
+//ItemPedido
 @Entity (name="descricao_servico")
 public class DescricaoServico implements Serializable {
 	
@@ -27,15 +27,17 @@ public class DescricaoServico implements Serializable {
 	@NotNull
 	@ManyToOne
 	@JoinColumn(name="servico_codigo")	
-	private Servicos servicos;
+	private Servico servicos;
 	
 	@NotBlank
 	@Column( columnDefinition = "text")
 	private String descricao;
 	
+	@Column(nullable= false, length= 20)
+	private Integer qtde;
 	
-	@Column(nullable=false, precision=10, scale=2, name="valor_total")
-	private BigDecimal valorTotal;
+	@Column(nullable=false, precision=10, scale=2, name="valor_unitario")
+	private BigDecimal valorUnitario;
 	
 	@Column(name="duracao_unitaria")
 	@Temporal(TemporalType.TIME)
@@ -46,11 +48,12 @@ public class DescricaoServico implements Serializable {
 	@Temporal(TemporalType.TIME)
 	private Date tempoTotalServivo;
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="produto_codigo")
+	private Produto produto;
 	
-	
-	
-	
-	
+		
 	public Date getTempoPorServico() {
 		return tempoPorServico;
 	}
@@ -64,10 +67,10 @@ public class DescricaoServico implements Serializable {
 		this.tempoTotalServivo = tempoTotalServivo;
 	}
 	public BigDecimal getValorTotal() {
-		return valorTotal;
+		return valorUnitario;
 	}
 	public void setValorTotal(BigDecimal valorTotal) {
-		this.valorTotal = valorTotal;
+		this.valorUnitario = valorTotal;
 	}
 	public Long getCodigo() {
 		return codigo;
@@ -82,11 +85,23 @@ public class DescricaoServico implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Servicos getServicos() {
+	public Servico getServicos() {
 		return servicos;
 	}
-	public void setServicos(Servicos servicos) {
+	public void setServicos(Servico servicos) {
 		this.servicos = servicos;
+	}
+	public Produto getProduto() {
+		return produto;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+	public Integer getQtde() {
+		return qtde;
+	}
+	public void setQtde(Integer qtde) {
+		this.qtde = qtde;
 	}
 	
 	

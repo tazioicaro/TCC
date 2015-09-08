@@ -2,13 +2,15 @@ package com.bb.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Pedido implements Serializable {
@@ -20,21 +22,26 @@ public class Pedido implements Serializable {
 	@Id	
 	@GeneratedValue
 	private Long codigo;
-	
-	
-	@ManyToOne
-	@JoinColumn(name="dservico_codigo")	
-	private DescricaoServico servicos;
-	
+		
+
 	@Column( columnDefinition = "text")
 	private String descricao;
 	
 	@Column(nullable=false, precision=10, scale=2, name="valor_total")
 	private BigDecimal valorTotal;
 	
+	@OneToMany(mappedBy="pedido", cascade = CascadeType.ALL)
+	private List<Venda> vendas = new ArrayList<Venda>();
 	
 	
-	
+
+	public List<Venda> getVendas() {
+		return vendas;
+	}
+
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -44,14 +51,7 @@ public class Pedido implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public DescricaoServico getServicos() {
-		return servicos;
-	}
-
-	public void setServicos(DescricaoServico servicos) {
-		this.servicos = servicos;
-	}
-
+	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -68,8 +68,4 @@ public class Pedido implements Serializable {
 		this.valorTotal = valorTotal;
 	}
 	
-	
-	
-	
-
 }

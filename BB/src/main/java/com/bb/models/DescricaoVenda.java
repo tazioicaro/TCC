@@ -28,7 +28,7 @@ public class DescricaoVenda implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="servico_codigo")	
-	private Servicos servicos;
+	private Servico servicos;
 	
 	@Column(name="valor_unitario", nullable=false, precision=10, scale=2)
 	private BigDecimal vlrUnitario;
@@ -71,11 +71,11 @@ public class DescricaoVenda implements Serializable {
 		this.produto = produto;
 	}
 
-	public Servicos getServicos() {
+	public Servico getServicos() {
 		return servicos;
 	}
 
-	public void setServicos(Servicos servicos) {
+	public void setServicos(Servico servicos) {
 		this.servicos = servicos;
 	}
 

@@ -15,7 +15,7 @@ public class ServicosProdutosId implements Serializable{
 	private Produto produto;
 	
 	@ManyToOne(fetch=FetchType.LAZY)	
-	private Servicos servicos;
+	private Servico servicos;
 	
 	
 	
@@ -25,10 +25,10 @@ public class ServicosProdutosId implements Serializable{
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public Servicos getServicos() {
+	public Servico getServicos() {
 		return servicos;
 	}
-	public void setServicos(Servicos servicos) {
+	public void setServicos(Servico servicos) {
 		this.servicos = servicos;
 	}
 	

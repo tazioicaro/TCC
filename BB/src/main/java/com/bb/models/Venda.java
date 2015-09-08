@@ -16,8 +16,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Venda implements Serializable {
-	
-	
+		
 	private static final long serialVersionUID = 1L;
 	
 	@Id
@@ -28,7 +27,11 @@ public class Venda implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataVenda;
 	
-	
+
+	@ManyToOne	
+	private Pedido pedido;	
+
+
 	@Column(name="valor_unitario", nullable=false, precision=10, scale=2)
 	private BigDecimal vlrUnitario;
 	
@@ -48,6 +51,7 @@ public class Venda implements Serializable {
 	@JoinColumn(name="funcionario_codigo")
 	private Funcionario funcionario;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="cliente_codigo")
 	private Cliente cliente;
@@ -58,8 +62,13 @@ public class Venda implements Serializable {
 	
 	
 	
-	
-	
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 
 	public CFOp getCfOp() {
 		return cfOp;

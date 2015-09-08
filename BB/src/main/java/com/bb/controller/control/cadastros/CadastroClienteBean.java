@@ -14,7 +14,7 @@ import com.bb.controller.control.repository.Especialidades;
 import com.bb.models.Cliente;
 import com.bb.models.Endereco;
 import com.bb.models.Especialidade;
-import com.bb.models.Servicos;
+import com.bb.models.Servico;
 
 @Named
 @ViewScoped
@@ -24,7 +24,7 @@ public class CadastroClienteBean implements Serializable {
 	
 	private  Cliente cliente;
 	private Endereco endereco;
-	private Servicos servicos;
+	private Servico servicos;
 	
 	@NotNull
 	private Especialidade especialidadePai;	
@@ -44,7 +44,7 @@ public class CadastroClienteBean implements Serializable {
 		enderecos = new ArrayList<Endereco>();
 		cliente = new Cliente();
 		endereco = new Endereco();
-		servicos = new Servicos();
+		servicos = new Servico();
 		
 		
 		enderecos.add(endereco);		
@@ -102,7 +102,7 @@ public void salvar(){
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
 	}
-	public Servicos getServicos() {
+	public Servico getServicos() {
 		return servicos;
 	}
 
@@ -137,7 +137,7 @@ public void salvar(){
 	}
 
 
-	public void setServicos(Servicos servicos) {
+	public void setServicos(Servico servicos) {
 		this.servicos = servicos;
 	}
 

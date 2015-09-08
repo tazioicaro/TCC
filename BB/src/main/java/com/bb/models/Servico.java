@@ -23,10 +23,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+
 import com.bb.models.Enumerators.StatusServico;
 
+//Pedido
 @Entity
-public class Servicos implements Serializable {
+public class Servico implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -52,7 +54,7 @@ public class Servicos implements Serializable {
 	//private TipoComissao tipoComissao;
 	
 	@ManyToOne (fetch = FetchType.LAZY)
-	@JoinColumn(name="funcionario_codigo", nullable=false)
+	@JoinColumn(name="vendedor_codigo", nullable=false)
 	private Funcionario funcionario;
 	
 	
@@ -66,6 +68,10 @@ public class Servicos implements Serializable {
 	@Column(nullable=false, name="duracao_maxima")
 	@Temporal(TemporalType.TIME)
 	private Date duracaoMaxima;
+	
+	@Column(name="data_criacao")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCriacao;
 	
 	@Column(length=150)
 	private String detalhes;
@@ -83,8 +89,28 @@ public class Servicos implements Serializable {
 	@JoinColumn(name="especialidade_codigo", nullable=false )
 	private Especialidade especialidade;
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="cliente_codigo", nullable=false)
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name="forma_pagamento")
+	private TipoPagamento formaPagamento;
 	
 	
+	
+	//G&S
+	
+	public Cliente getCliente() {
+		return cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+	public void setServicosProdutosList(List<ServicosProdutos> servicosProdutosList) {
+		this.servicosProdutosList = servicosProdutosList;
+	}
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -195,7 +221,7 @@ public class Servicos implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Servicos other = (Servicos) obj;
+		Servico other = (Servico) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

@@ -29,9 +29,9 @@ public class Cliente implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="codigo_cli")
+	@Column(name="codigo_cliente")
 	@GeneratedValue (strategy=GenerationType.AUTO)
-	private Integer codigo;
+	private Long codigo;
 	
 	@NotBlank 
 	@Column(name="doc_receita_federal", nullable=false, length=14)
@@ -88,14 +88,13 @@ public class Cliente implements Serializable{
 	private List<Agendamento> agendamento;
 	
 	
+		
 	
 	
-	
-	
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	
@@ -153,8 +152,7 @@ public class Cliente implements Serializable{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-	
+	}	
 	
 	public String getDocumentoReceitaFederal() {
 		return documentoReceitaFederal;
@@ -173,9 +171,7 @@ public class Cliente implements Serializable{
 	}
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
-	}
-	
-	
+	}	
 	
 	
 	public List<Agendamento> getAgendamento() {

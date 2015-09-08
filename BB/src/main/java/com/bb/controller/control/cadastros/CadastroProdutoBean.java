@@ -18,7 +18,7 @@ import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Especialidade;
 import com.bb.models.Fornecedor;
 import com.bb.models.Produto;
-import com.bb.models.Servicos;
+import com.bb.models.Servico;
 import com.bb.models.ServicosProdutos;
 import com.bb.models.ServicosProdutosId;
 import com.bb.models.TipoProduto;
@@ -46,7 +46,7 @@ public class CadastroProdutoBean implements Serializable {
 	
 	private TipoProduto tipoProduto;
 	
-	private List<Servicos> servicos;
+	private List<Servico> servicos;
 	private ServicosProdutosId spId;
 	private ServicosProdutos sp;
 
@@ -100,7 +100,7 @@ public class CadastroProdutoBean implements Serializable {
 
 	public void limpar() {
 
-		servicos = new ArrayList<Servicos>();		
+		servicos = new ArrayList<Servico>();		
 		fornecedores = new ArrayList<Fornecedor>();;
 		produto = new Produto();
 		tipoProduto = new TipoProduto();
@@ -160,11 +160,11 @@ public class CadastroProdutoBean implements Serializable {
 		this.tipoProduto = tipoProduto;
 	}
 
-	public List<Servicos> getServicos() {
+	public List<Servico> getServicos() {
 		return servicos;
 	}
 
-	public void setServicos(List<Servicos> servicos) {
+	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
 	}
 
