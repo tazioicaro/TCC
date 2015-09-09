@@ -3,10 +3,10 @@ package com.bb.controller.control.repository.filter;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.bb.models.Enumerators.StatusPedido;
+import com.bb.models.Enumerators.StatusServico;
 
 
-public class PedidoFilter implements Serializable {
+public class ServicoFilter implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -16,7 +16,7 @@ public class PedidoFilter implements Serializable {
 	private Date dataCriacaoAte;
 	private String nomeVendedor;
 	private String nomeCliente;
-	private StatusPedido[] statuses;
+	private StatusServico[] statuses;
 	
 	
 	
@@ -58,11 +58,12 @@ public class PedidoFilter implements Serializable {
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
-	public StatusPedido[] getStatuses() {
+	public StatusServico[] getStatuses() {
 		return statuses;
 	}
-	public void setStatuses(StatusPedido[] statuses) {
+	public void setStatuses(StatusServico[] statuses) {
 		this.statuses = statuses;
 	}
+
 	
 }

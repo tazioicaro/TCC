@@ -14,15 +14,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
 
 import com.bb.models.Enumerators.StatusServico;
 
@@ -72,6 +68,10 @@ public class Servico implements Serializable {
 	@Column(name="data_criacao")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCriacao;
+	
+	@Column(name="data_conclusao")
+	@Temporal(TemporalType.TIMESTAMP)
+    private Date dataConclusao;
 	
 	@Column(length=150)
 	private String detalhes;
@@ -203,6 +203,27 @@ public class Servico implements Serializable {
 	}
 	public void setEspecialidade(Especialidade especialidade) {
 		this.especialidade = especialidade;
+	}
+	
+
+	
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+	public Date getDataConclusao() {
+		return dataConclusao;
+	}
+	public void setDataConclusao(Date dataConclusao) {
+		this.dataConclusao = dataConclusao;
+	}
+	public TipoPagamento getFormaPagamento() {
+		return formaPagamento;
+	}
+	public void setFormaPagamento(TipoPagamento formaPagamento) {
+		this.formaPagamento = formaPagamento;
 	}
 
 	

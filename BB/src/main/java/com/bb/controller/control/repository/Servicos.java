@@ -13,10 +13,11 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.bb.controller.control.repository.filter.PedidoFilter;
+import com.bb.controller.control.repository.filter.ServicoFilter;
 import com.bb.models.Pedido;
+import com.bb.models.Servico;
 
-public class Pedidos implements Serializable {
+public class Servicos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,30 +25,30 @@ public class Pedidos implements Serializable {
 	private EntityManager manager;
 
 	@SuppressWarnings("unchecked")
-	public List<Pedido> pedidosFiltrados(PedidoFilter filtro) {
+	public List<Pedido> pedidosFiltrados(ServicoFilter filtro) {
 
 		Session sessao = manager.unwrap(Session.class);
 
-		Criteria criteria = sessao.createCriteria(Pedido.class)
-				.createAlias("cliente", "c").createAlias("vendedor", "v");
+		Criteria criteria = sessao.createCriteria(Servico.class)
+				.createAlias("cliente", "c").createAlias("funcionario", "v");
 
 		if (filtro.getNumeroDe() != null) {
 
-			criteria.add(Restrictions.ge("id", filtro.getNumeroDe()));
+			criteria.add(Restrictions.ge("codigo", filtro.getNumeroDe()));
 		}
 
 		if (filtro.getNumeroAte() != null) {
 
-			criteria.add(Restrictions.le("id", filtro.getNumeroAte()));
+			criteria.add(Restrictions.le("codigo", filtro.getNumeroAte()));
 		}
 		if (filtro.getDataCriacaoDe() != null) {
 
-			criteria.add(Restrictions.ge("id", filtro.getDataCriacaoDe()));
+			criteria.add(Restrictions.ge("dataCriacao", filtro.getDataCriacaoDe()));
 		}
 
 		if (filtro.getDataCriacaoAte() != null) {
 
-			criteria.add(Restrictions.ge("id", filtro.getDataCriacaoAte()));
+			criteria.add(Restrictions.ge("dataCriacao", filtro.getDataCriacaoAte()));
 		}
 
 		if (StringUtils.isNotBlank(filtro.getNomeCliente())) {
@@ -66,11 +67,11 @@ public class Pedidos implements Serializable {
 
 		if (filtro.getStatuses() != null && filtro.getStatuses().length > 0) {
 
-			criteria.add(Restrictions.in("tatus", filtro.getStatuses()));
+			criteria.add(Restrictions.in("statusServico", filtro.getStatuses()));
 
 		}
 
-		return criteria.addOrder(Order.asc("id")).list();
+		return criteria.addOrder(Order.asc("codigo")).list();
 
 	}
 
