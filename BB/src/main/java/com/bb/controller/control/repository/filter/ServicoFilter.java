@@ -16,7 +16,7 @@ public class ServicoFilter implements Serializable {
 	private Date dataCriacaoAte;
 	private String nomeVendedor;
 	private String nomeCliente;
-	private StatusServico[] statuses;
+	private StatusServico[] statusServicoes;
 	
 	
 	
@@ -58,11 +58,11 @@ public class ServicoFilter implements Serializable {
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
 	}
-	public StatusServico[] getStatuses() {
-		return statuses;
+	public StatusServico[] getStatusServicoes() {
+		return statusServicoes;
 	}
-	public void setStatuses(StatusServico[] statuses) {
-		this.statuses = statuses;
+	public void setStatusServicoes(StatusServico[] statusServicoes) {
+		this.statusServicoes = statusServicoes;
 	}
 
 	

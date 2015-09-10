@@ -64,9 +64,9 @@ public class Servicos implements Serializable {
 
 		}
 
-		if (filtro.getStatuses() != null && filtro.getStatuses().length > 0) {
+		if (filtro.getStatusServicoes() != null && filtro.getStatusServicoes().length > 0) {
 
-			criteria.add(Restrictions.in("statusServico", filtro.getStatuses()));
+			criteria.add(Restrictions.in("statusServico", filtro.getStatusServicoes()));
 
 		}
 

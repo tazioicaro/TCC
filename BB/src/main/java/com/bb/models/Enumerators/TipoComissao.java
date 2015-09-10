@@ -2,7 +2,7 @@ package com.bb.models.Enumerators;
 
 public enum TipoComissao {
 	
-	CLASSE_1 ("Classe_1"),
+	CLASSE_1("Classe_1"),
 	CLASSE_2("Classe_2"),
 	CLASSE_3("Classe_3"),
 	CLASSE_4("Classe_4");
@@ -18,9 +18,16 @@ public enum TipoComissao {
 		this.label = label;
 	
 	}
+		
 
 	public String getLabel() {
 		return label;
+	}
+	
+	public static TipoComissao getTipoComissao (String value) {
+	    for(TipoComissao v : values())
+	        if(v.getLabel().equalsIgnoreCase(value)) return v;
+	    throw new IllegalArgumentException();
 	}
 
 

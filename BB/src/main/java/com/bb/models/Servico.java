@@ -20,6 +20,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import com.bb.models.Enumerators.StatusServico;
 
 //Pedido
@@ -54,7 +57,7 @@ public class Servico implements Serializable {
 	private Funcionario funcionario;
 	
 	
-    @OneToMany(mappedBy="codigo.servicos", cascade= CascadeType.ALL)   
+    @OneToMany(mappedBy="codigo.servicos", cascade= CascadeType.ALL)     
 	private List<ServicosProdutos> servicosProdutosList;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

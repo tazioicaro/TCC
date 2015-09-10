@@ -24,10 +24,10 @@ public class Comissao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
-	//@NotBlank
-	//@Enumerated(EnumType.STRING)
+	@NotBlank
+	@Enumerated(EnumType.STRING)
 	@Column(name="tipo_comissao", length=25)	
-	private String tipoComissao;
+	private TipoComissao tipoComissao;
 	
 	@Column(name="porcentagem_comissao")
 	private BigDecimal valorComissao;
@@ -41,11 +41,12 @@ public class Comissao implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getTipoComissao() {
+	public TipoComissao getTipoComissao() {
 		return tipoComissao;
 	}
+	
 
-	public void setTipoComissao(String tipoComissao) {
+	public void setTipoComissao(TipoComissao tipoComissao) {
 		this.tipoComissao = tipoComissao;
 	}
 

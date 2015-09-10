@@ -10,10 +10,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
@@ -22,10 +20,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.bb.controller.services.validation.SKU;
@@ -37,7 +32,7 @@ public class Produto implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private Long codigo;
 	
 	@NotBlank @SKU
@@ -53,7 +48,7 @@ public class Produto implements Serializable{
 	@Column(nullable=false, precision=10, scale=2, name="valor_compra")
 	private BigDecimal vlrcompra;
 	
-	@Column(nullable=false, precision=10, scale=2, name="valor_venda")
+	@Column(nullable=true, precision=10, scale=2, name="valor_venda")
 	private BigDecimal vlrvenda;
 	
 

@@ -1,7 +1,6 @@
 package com.bb.controller.control.pesquisas;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.view.ViewScoped;
@@ -10,9 +9,7 @@ import javax.inject.Named;
 
 import com.bb.controller.control.repository.Servicos;
 import com.bb.controller.control.repository.filter.ServicoFilter;
-import com.bb.models.Pedido;
 import com.bb.models.Servico;
-import com.bb.models.Enumerators.StatusPedido;
 import com.bb.models.Enumerators.StatusServico;
 
 @Named
@@ -22,14 +19,20 @@ public class PesquisaServicoBean implements Serializable {
 
 	@Inject
 	private Servicos pedidos;
-
-	private List<Servico> pedidosFiltrados;
+	
+	private Servico ServicoSelecionado;
+	
 	private ServicoFilter filtro;
+	
+	private List<Servico> pedidosFiltrados;
+	
+
+
 
 	public PesquisaServicoBean() {
-		setPedidosFiltrados(new ArrayList<Servico>());
+		//setPedidosFiltrados(new ArrayList<Servico>());
 		filtro = new ServicoFilter();
-		getStatuses();
+		
 
 	}
 
@@ -41,7 +44,7 @@ public class PesquisaServicoBean implements Serializable {
 
 	// G&S
 	
-	public StatusServico[] getStatuses() {
+	public StatusServico[] getstatusServicoes() {
 		return StatusServico.values();
 	}
 	
@@ -61,5 +64,16 @@ public class PesquisaServicoBean implements Serializable {
 	public void setFiltro(ServicoFilter filtro) {
 		this.filtro = filtro;
 	}
+
+	public Servico getServicoSelecionado() {
+		return ServicoSelecionado;
+	}
+
+	public void setServicoSelecionado(Servico servicoSelecionado) {
+		ServicoSelecionado = servicoSelecionado;
+	}
+
+		
+	
 
 }
