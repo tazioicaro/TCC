@@ -1,6 +1,7 @@
 package com.bb.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,13 +24,13 @@ public class Comissao implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer codigo;
 	
-	@NotBlank
-	@Enumerated(EnumType.STRING)
+	//@NotBlank
+	//@Enumerated(EnumType.STRING)
 	@Column(name="tipo_comissao", length=25)	
-	private TipoComissao tipoComissao;
+	private String tipoComissao;
 	
 	@Column(name="porcentagem_comissao")
-	private Integer valorComissao;
+	private BigDecimal valorComissao;
 	
 
 	public Integer getCodigo() {
@@ -40,19 +41,19 @@ public class Comissao implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public TipoComissao getTipoComissao() {
+	public String getTipoComissao() {
 		return tipoComissao;
 	}
 
-	public void setTipoComissao(TipoComissao tipoComissao) {
+	public void setTipoComissao(String tipoComissao) {
 		this.tipoComissao = tipoComissao;
 	}
 
-	public Integer getValorComissao() {
+	public BigDecimal getValorComissao() {
 		return valorComissao;
 	}
 
-	public void setValorComissao(Integer valorComissao) {
+	public void setValorComissao(BigDecimal valorComissao) {
 		this.valorComissao = valorComissao;
 	}
 	

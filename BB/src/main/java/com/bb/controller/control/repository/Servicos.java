@@ -14,7 +14,6 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.bb.controller.control.repository.filter.ServicoFilter;
-import com.bb.models.Pedido;
 import com.bb.models.Servico;
 
 public class Servicos implements Serializable {
@@ -25,7 +24,7 @@ public class Servicos implements Serializable {
 	private EntityManager manager;
 
 	@SuppressWarnings("unchecked")
-	public List<Pedido> pedidosFiltrados(ServicoFilter filtro) {
+	public List<Servico> pedidosFiltrados(ServicoFilter filtro) {
 
 		Session sessao = manager.unwrap(Session.class);
 

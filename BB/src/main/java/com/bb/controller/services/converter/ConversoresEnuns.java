@@ -6,6 +6,7 @@ import javax.inject.Named;
 import com.bb.models.Enumerators.Sexo;
 import com.bb.models.Enumerators.StatusAgendamento;
 import com.bb.models.Enumerators.StatusServico;
+import com.bb.models.Enumerators.TipoComissao;
 import com.bb.models.Enumerators.TipoNFE;
 
 @Named
@@ -28,6 +29,10 @@ public class ConversoresEnuns  {
 	public TipoNFE[] getTipoNFEes(){
 		
 		return TipoNFE.values();
+	}
+	
+	public TipoComissao[] getTipoComissaoes(){
+		return TipoComissao.values();
 	}
 	
 

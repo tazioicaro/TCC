@@ -11,7 +11,9 @@ import javax.inject.Named;
 import com.bb.controller.control.repository.Servicos;
 import com.bb.controller.control.repository.filter.ServicoFilter;
 import com.bb.models.Pedido;
+import com.bb.models.Servico;
 import com.bb.models.Enumerators.StatusPedido;
+import com.bb.models.Enumerators.StatusServico;
 
 @Named
 @ViewScoped
@@ -21,12 +23,13 @@ public class PesquisaServicoBean implements Serializable {
 	@Inject
 	private Servicos pedidos;
 
-	private List<Pedido> pedidosFiltrados;
+	private List<Servico> pedidosFiltrados;
 	private ServicoFilter filtro;
 
 	public PesquisaServicoBean() {
-		setPedidosFiltrados(new ArrayList<Pedido>());
+		setPedidosFiltrados(new ArrayList<Servico>());
 		filtro = new ServicoFilter();
+		getStatuses();
 
 	}
 
@@ -34,16 +37,20 @@ public class PesquisaServicoBean implements Serializable {
 		pedidosFiltrados = pedidos.pedidosFiltrados(filtro);
 	}
 
-	public StatusPedido[] getStatuses() {
-		return StatusPedido.values();
-	}
+	
 
 	// G&S
-	public List<Pedido> getPedidosFiltrados() {
+	
+	public StatusServico[] getStatuses() {
+		return StatusServico.values();
+	}
+	
+
+	public List<Servico> getPedidosFiltrados() {
 		return pedidosFiltrados;
 	}
 
-	public void setPedidosFiltrados(List<Pedido> pedidosFiltrados) {
+	public void setPedidosFiltrados(List<Servico> pedidosFiltrados) {
 		this.pedidosFiltrados = pedidosFiltrados;
 	}
 
