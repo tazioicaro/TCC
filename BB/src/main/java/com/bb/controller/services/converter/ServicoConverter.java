@@ -5,13 +5,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import com.bb.controller.control.repository.Produtos;
 import com.bb.controller.control.repository.Servicos;
 import com.bb.controller.util.cdi.CDIServiceLocator;
-import com.bb.models.Produto;
 import com.bb.models.Servico;
 
-@FacesConverter(forClass = Produto.class)
+@FacesConverter(forClass = Servico.class)
 public class ServicoConverter implements Converter {
 
 	//@Inject
@@ -24,7 +22,7 @@ public class ServicoConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component,	String value) {
 
-		Servico servico = null;
+		Servico retorno = null;
 
 		if (value != null) {
 

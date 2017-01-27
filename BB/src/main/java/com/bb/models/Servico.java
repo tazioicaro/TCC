@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,9 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 
 import com.bb.models.Enumerators.StatusServico;
 
@@ -57,7 +53,7 @@ public class Servico implements Serializable {
 	private Funcionario funcionario;
 	
 	
-    @OneToMany(mappedBy="codigo.servicos", cascade= CascadeType.ALL)     
+    @OneToMany(mappedBy="servico")     
 	private List<ServicosProdutos> servicosProdutosList;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

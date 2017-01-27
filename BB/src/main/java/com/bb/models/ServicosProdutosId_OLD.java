@@ -6,16 +6,19 @@ import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 @Embeddable
-public class ServicosProdutosId implements Serializable{
+public class ServicosProdutosId_OLD implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	@ManyToOne(fetch=FetchType.LAZY)	
+	@ManyToOne(fetch=FetchType.LAZY)
 	private Produto produto;
 	
-	@ManyToOne(fetch=FetchType.LAZY)	
-	private Servico servicos;
+	@ManyToOne(fetch=FetchType.LAZY)
+	private Servico servico;
 	
 	
 	
@@ -25,11 +28,11 @@ public class ServicosProdutosId implements Serializable{
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
-	public Servico getServicos() {
-		return servicos;
+	public Servico getServico() {
+		return servico;
 	}
-	public void setServicos(Servico servicos) {
-		this.servicos = servicos;
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 	
 	
@@ -40,7 +43,7 @@ public class ServicosProdutosId implements Serializable{
 		int result = 1;
 		result = prime * result + ((produto == null) ? 0 : produto.hashCode());
 		result = prime * result
-				+ ((servicos == null) ? 0 : servicos.hashCode());
+				+ ((servico == null) ? 0 : servico.hashCode());
 		return result;
 	}
 	@Override
@@ -51,16 +54,16 @@ public class ServicosProdutosId implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		ServicosProdutosId other = (ServicosProdutosId) obj;
+		ServicosProdutosId_OLD other = (ServicosProdutosId_OLD) obj;
 		if (produto == null) {
 			if (other.produto != null)
 				return false;
 		} else if (!produto.equals(other.produto))
 			return false;
-		if (servicos == null) {
-			if (other.servicos != null)
+		if (servico == null) {
+			if (other.servico != null)
 				return false;
-		} else if (!servicos.equals(other.servicos))
+		} else if (!servico.equals(other.servico))
 			return false;
 		return true;
 	}

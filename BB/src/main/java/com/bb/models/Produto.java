@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -81,7 +80,7 @@ public class Produto implements Serializable{
 	@JoinColumn(nullable=true, name="tipo_produto_codigo")
 	private TipoProduto tipoProduto;
 	
-	@OneToMany(mappedBy="codigo.produto", cascade= CascadeType.ALL)
+	@OneToMany(mappedBy="produto")
 	private List<ServicosProdutos> servicosProdutosList;
 
 	

@@ -73,5 +73,12 @@ public class Servicos implements Serializable {
 		return criteria.addOrder(Order.asc("codigo")).list();
 
 	}
+	
+	
+	public Servico porCodigo(Long codigo){		
+		 return manager.find(Servico.class, codigo);		
+	}
+	
+
 
 }

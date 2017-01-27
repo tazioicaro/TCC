@@ -20,7 +20,7 @@ import com.bb.models.Fornecedor;
 import com.bb.models.Produto;
 import com.bb.models.Servico;
 import com.bb.models.ServicosProdutos;
-import com.bb.models.ServicosProdutosId;
+import com.bb.models.ServicosProdutosId_OLD;
 import com.bb.models.TipoProduto;
 import com.bb.models.Unidade;
 
@@ -47,13 +47,14 @@ public class CadastroProdutoBean implements Serializable {
 	private TipoProduto tipoProduto;
 	
 	private List<Servico> servicos;
-	private ServicosProdutosId spId;
+	private ServicosProdutosId_OLD spId;
 	private ServicosProdutos sp;
 
 	@NotNull
 	private Especialidade categoriaPai;
 	private List<Especialidade> categoriaRaizes;
 	private List<Especialidade> subCategorias;
+	
 	@Inject
 	private Especialidades categorias;
 
@@ -105,7 +106,7 @@ public class CadastroProdutoBean implements Serializable {
 		produto = new Produto();
 		tipoProduto = new TipoProduto();
 		sp = new ServicosProdutos();
-		spId = new ServicosProdutosId();
+		spId = new ServicosProdutosId_OLD();
 		subCategorias = new ArrayList<Especialidade>();
 		categoriaPai = null;
 
@@ -192,11 +193,11 @@ public class CadastroProdutoBean implements Serializable {
 		this.categorias = categorias;
 	}
 
-	public ServicosProdutosId getSpId() {
+	public ServicosProdutosId_OLD getSpId() {
 		return spId;
 	}
 
-	public void setSpId(ServicosProdutosId spId) {
+	public void setSpId(ServicosProdutosId_OLD spId) {
 		this.spId = spId;
 	}
 
