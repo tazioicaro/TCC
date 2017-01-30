@@ -13,7 +13,6 @@
 	</properties>
 
 	<dependencies>
-
 		<!-- Wel (Implementação do CDI 1.2)  Atualizar aos poucos-->
 		 <dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
