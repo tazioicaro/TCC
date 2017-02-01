@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head id="j_idt2">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <meta name="apple-mobile-web-app-capable" content="yes" /><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/theme.css.xhtml?ln=primefaces-verona-green" /><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/fa/font-awesome.css.xhtml?ln=primefaces&amp;v=6.0" /><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/components.css.xhtml?ln=primefaces&amp;v=6.0" /><script type="text/javascript" src="/verona/javax.faces.resource/jquery/jquery.js.xhtml?ln=primefaces&amp;v=6.0"></script><script type="text/javascript" src="/verona/javax.faces.resource/core.js.xhtml?ln=primefaces&amp;v=6.0"></script><script type="text/javascript" src="/verona/javax.faces.resource/components.js.xhtml?ln=primefaces&amp;v=6.0"></script><script type="text/javascript" src="/verona/javax.faces.resource/jquery/jquery-plugins.js.xhtml?ln=primefaces&amp;v=6.0"></script><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/charts/charts.css.xhtml?ln=primefaces&amp;v=6.0" /><script type="text/javascript" src="/verona/javax.faces.resource/charts/charts.js.xhtml?ln=primefaces&amp;v=6.0"></script><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/schedule/schedule.css.xhtml?ln=primefaces&amp;v=6.0" /><script type="text/javascript" src="/verona/javax.faces.resource/moment/moment.js.xhtml?ln=primefaces&amp;v=6.0"></script><script type="text/javascript" src="/verona/javax.faces.resource/schedule/schedule.js.xhtml?ln=primefaces&amp;v=6.0"></script><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/css/nanoscroller.css.xhtml?ln=verona-layout" /><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/css/animate.css.xhtml?ln=verona-layout" /><link type="text/css" rel="stylesheet" href="/verona/javax.faces.resource/css/layout.css.xhtml?ln=verona-layout" /><script type="text/javascript">if(window.PrimeFaces){PrimeFaces.settings.locale='en_US';}</script>
+        <title>Dashboard</title><script type="text/javascript" src="/verona/javax.faces.resource/js/nanoscroller.js.xhtml?ln=verona-layout"></script><script type="text/javascript" src="/verona/javax.faces.resource/js/layout.js.xhtml?ln=verona-layout"></script>
+           <script type="text/javascript">
+               //<![CDATA[
+               function skinBar() {
+                   this.cfg.shadow = false;
+                   this.cfg.title = '';
+                   this.cfg.seriesColors = ['#9fd037','#f7cb00'];
+                   this.cfg.grid = {
+                       background: '#ffffff',
+                       borderColor: '#ffffff',
+                       gridLineColor: '#dce2e7',
+                       shadow: false
+                   };
+                   this.cfg.axesDefaults = {
+                       borderWidth: 0.1,
+                       borderColor: 'dce2e7',
+                       rendererOptions: {
+                           textColor: '#2d353c'
+                       }
+                   };
+                   this.cfg.seriesDefaults = {
+                       shadow: false,
+                       lineWidth: 1,
+                       renderer: $.jqplot.BarRenderer,
+                       markerOptions: {
+                           shadow: false,
+                           size: 7,
+                           style: 'circle'
+                       }
+                   }
+               }
+               //]]>  
+           </script>
+           <style type="text/css">
+               .main-content {
+                   padding: 0;
+               }
+           </style></head><body class="main-body">
+        <div class="layout-wrapper layout-menu-static">
+
+    <div class="topbar">
+        <div class="topbar-main">
+            <a href="#" id="menu-button">
+                <span class="fa fa-bars"></span>
+            </a><a href="/verona/dashboard.xhtml"><img id="j_idt14" src="/verona/javax.faces.resource/images/logo-main.png.xhtml?ln=verona-layout" alt="" class="logo" /></a>
+            <div class="app-name">VERONA</div>
+            
+            <a href="#" id="user-display">
+                <span class="username">Samanta Owens</span>
+                <span class="userrole">Admin</span><img id="j_idt16" src="/verona/javax.faces.resource/images/avatar.png.xhtml?ln=verona-layout" alt="" />
+            </a>
+            
+            <ul id="topbar-menu" class="fadeInDown animated">
+                <li class="search-item">
+                    <div><input id="j_idt18" name="j_idt18" type="text" placeholder="Search" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt18_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt18",{id:"j_idt18"});</script>
+                        <span class="fa fa-search"></span>
+                    </div>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="topbar-icon fa fa-fw fa-user"></i>
+                        <span class="topbar-item-name">PROFILE</span>
+                    </a>
+                    <ul>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-user"></i>
+                                <span>Profile</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-user-secret"></i>
+                                <span>Privacy</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-cog"></i>
+                                <span>Settings</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-sign-out"></i>
+                                <span>Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="topbar-icon fa fa-fw fa-cog"></i>
+                        <span class="topbar-item-name">SETTINGS</span>
+                    </a>
+                    <ul>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-paint-brush"></i>
+                                <span>Change Theme</span>
+                                <span class="topbar-submenuitem-badge">4</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-star-o"></i>
+                                <span>Favorites</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-lock"></i>
+                                <span>Lock Screen</span>
+                                <span class="topbar-submenuitem-badge">2</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-picture-o"></i>
+                                <span>Wallpaper</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="topbar-icon material-icons animated swing fa fa-fw fa-envelope-o"></i>
+                        <span class="topbar-item-name">MESSAGES</span>
+                        <span class="topbar-badge animated rubberBand">4</span>
+                    </a>
+                    <ul>
+                        <li role="menuitem">
+                            <a href="#" class="topbar-message"><img id="j_idt20" src="/verona/javax.faces.resource/images/avatar1.png.xhtml?ln=verona-layout" alt="" width="35" />
+                                <span>Give me a call</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#" class="topbar-message"><img id="j_idt22" src="/verona/javax.faces.resource/images/avatar2.png.xhtml?ln=verona-layout" alt="" width="35" />
+                                <span>Reports attached</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#" class="topbar-message"><img id="j_idt24" src="/verona/javax.faces.resource/images/avatar3.png.xhtml?ln=verona-layout" alt="" width="35" />
+                                <span>About your invoice</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#" class="topbar-message"><img id="j_idt26" src="/verona/javax.faces.resource/images/avatar2.png.xhtml?ln=verona-layout" alt="" width="35" />
+                                <span>Meeting today</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#" class="topbar-message"><img id="j_idt28" src="/verona/javax.faces.resource/images/avatar4.png.xhtml?ln=verona-layout" alt="" width="35" />
+                                <span>Out of office</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="topbar-icon fa fa-fw fa-bell-o"></i>
+                        <span class="topbar-item-name">NOTIFICATIONS</span>
+                        <span class="topbar-badge animated rubberBand">2</span>
+                    </a>
+                    <ul>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-tasks"></i>
+                                <span>Pending tasks</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-calendar-check-o"></i>
+                                <span>Meeting today</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-download"></i>
+                                <span>Download</span>
+                            </a>
+                        </li>
+                        <li role="menuitem">
+                            <a href="#">
+                                <i class="fa fa-fw fa-plane"></i>
+                                <span>Book flight</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    
+    <div class="layout-menu-wrapper fadeInDown">
+        <div class="nano">
+            <div class="nano-content sidebar-scroll-content">
+                <div class="layout-menu-container">
+<form id="j_idt31" name="j_idt31" method="post" action="/verona/dashboard.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt31" value="j_idt31" />
+<ul id="j_idt31:j_idt32" class="layout-menu" class="layout-menu"><li id="j_idt31:om_dashboard" role="menuitem"><a href="/verona/dashboard.xhtml"><i class="fa fa-home fa-fw"></i><span>DASHBOARD</span></a></li><li id="j_idt31:om_components" role="menuitem"><a href="#"><i class="fa fa-sitemap fa-fw"></i><span>COMPONENTS</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_sample" role="menuitem"><a href="/verona/sample.xhtml"><i class="fa fa-columns fa-fw"></i><span>Sample Page</span></a></li><li id="j_idt31:om_forms" role="menuitem"><a href="/verona/forms.xhtml"><i class="fa fa-code fa-fw"></i><span>Forms</span></a></li><li id="j_idt31:om_data" role="menuitem"><a href="/verona/data.xhtml"><i class="fa fa-table fa-fw"></i><span>Data</span></a></li><li id="j_idt31:om_panels" role="menuitem"><a href="/verona/panel.xhtml"><i class="fa fa-list-alt fa-fw"></i><span>Panels</span></a></li><li id="j_idt31:om_overlays" role="menuitem"><a href="/verona/overlay.xhtml"><i class="fa fa-square fa-fw"></i><span>Overlays</span></a></li><li id="j_idt31:om_menus" role="menuitem"><a href="/verona/menu.xhtml"><i class="fa fa-minus-square-o fa-fw"></i><span>Menus</span></a></li><li id="j_idt31:om_messages" role="menuitem"><a href="/verona/messages.xhtml"><i class="fa fa-circle-o-notch fa-fw"></i><span>Messages</span></a></li><li id="j_idt31:om_charts" role="menuitem"><a href="/verona/charts.xhtml"><i class="fa fa-area-chart fa-fw"></i><span>Charts</span></a></li><li id="j_idt31:om_file" role="menuitem"><a href="/verona/file.xhtml"><i class="fa fa-arrow-circle-o-up fa-fw"></i><span>File</span></a></li><li id="j_idt31:om_misc" role="menuitem"><a href="/verona/misc.xhtml"><i class="fa fa-user-secret fa-fw"></i><span>Misc</span></a></li></ul></li><li id="j_idt31:om_customization" role="menuitem"><a href="#"><i class="fa fa-cog fa-fw"></i><span>CUSTOMIZATION</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_static_menu" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_static_menu':'j_idt31:om_static_menu'}).submit('j_idt31');return false;"><i class="fa fa-bars fa-fw"></i><span>Static Menu</span></a></li><li id="j_idt31:om_overlay_menu" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_overlay_menu':'j_idt31:om_overlay_menu'}).submit('j_idt31');return false;"><i class="fa fa-bars fa-fw"></i><span>Popup Menu</span></a></li><li id="j_idt31:om_theme_green" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_theme_green':'j_idt31:om_theme_green'}).submit('j_idt31');return false;"><i class="fa fa-paint-brush fa-fw"></i><span>Green Theme</span></a></li><li id="j_idt31:om_theme_teal" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_theme_teal':'j_idt31:om_theme_teal'}).submit('j_idt31');return false;"><i class="fa fa-paint-brush fa-fw"></i><span>Teal Theme</span></a></li><li id="j_idt31:om_theme_blue" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_theme_blue':'j_idt31:om_theme_blue'}).submit('j_idt31');return false;"><i class="fa fa-paint-brush fa-fw"></i><span>Blue Theme</span></a></li><li id="j_idt31:om_theme_amber" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_theme_amber':'j_idt31:om_theme_amber'}).submit('j_idt31');return false;"><i class="fa fa-paint-brush fa-fw"></i><span>Amber Theme</span></a></li><li id="j_idt31:om_theme_purple" role="menuitem"><a href="#" onclick="PrimeFaces.addSubmitParam('j_idt31',{'j_idt31:om_theme_purple':'j_idt31:om_theme_purple'}).submit('j_idt31');return false;"><i class="fa fa-paint-brush fa-fw"></i><span>Purple Theme</span></a></li></ul></li><li id="j_idt31:om_default" role="menuitem"><a href="#"><i class="fa fa-life-saver fa-fw"></i><span>TEMPLATE PAGES</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_empty" role="menuitem"><a href="/verona/empty.xhtml"><i class="fa fa-square-o fa-fw"></i><span>Empty Page</span></a></li><li id="j_idt31:om_landing" role="menuitem"><a href="/verona/landing.xhtml" target="_blank"><i class="fa fa-globe fa-fw"></i><span>Landing Page</span></a></li><li id="j_idt31:om_login" role="menuitem"><a href="/verona/login.xhtml" target="_blank"><i class="fa fa-sign-in fa-fw"></i><span>Login Page</span></a></li><li id="j_idt31:om_error" role="menuitem"><a href="/verona/error.xhtml" target="_blank"><i class="fa fa-exclamation-circle fa-fw"></i><span>Error Page</span></a></li><li id="j_idt31:om_404" role="menuitem"><a href="/verona/404.xhtml" target="_blank"><i class="fa fa-times fa-fw"></i><span>404 Page</span></a></li><li id="j_idt31:om_access" role="menuitem"><a href="/verona/access.xhtml" target="_blank"><i class="fa fa-exclamation-triangle fa-fw"></i><span>Access Denied Page</span></a></li></ul></li><li id="j_idt31:om_hierarchy" role="menuitem"><a href="#"><i class="fa fa-gg fa-fw"></i><span>MENU HIERARCHY</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_sm1" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Submenu 1</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_sm11" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Submenu 1.1</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_lnk111" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 1.1.1</span></a></li><li id="j_idt31:om_lnk112" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 1.1.2</span></a></li><li id="j_idt31:om_lnk113" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 1.1.3</span></a></li></ul></li><li id="j_idt31:om_sm12" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Submenu 1.2</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_lnk121" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 1.2.1</span></a></li></ul></li></ul></li><li id="j_idt31:om_sm2" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Submenu 2</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_sm21" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Submenu 2.1</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_lnk211" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 2.1.1</span></a></li><li id="j_idt31:om_lnk212" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 2.1.2</span></a></li></ul></li><li id="j_idt31:om_sm22" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Submenu 2.2</span><i class="fa fa-fw fa-angle-down"></i></a><ul role="menu"><li id="j_idt31:om_lnk221" role="menuitem"><a href="#"><i class="fa fa-sign-in fa-fw"></i><span>Link 2.2.1</span></a></li></ul></li></ul></li></ul></li><li id="j_idt31:om_doc" role="menuitem"><a href="/verona/docs.xhtml"><i class="fa fa-book fa-fw"></i><span>DOCUMENTATION</span></a></li></ul><script id="j_idt31:j_idt32_s" type="text/javascript">PrimeFaces.cw("Verona","widget_j_idt31_j_idt32",{id:"j_idt31:j_idt32"});</script><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:0" value="3771357910627166206:-2357332754283604888" autocomplete="off" />
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+        
+            <div class="layout-content">
+        <div class="ui-g dashboard">            
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <div class="ui-g card overview-box overview-box-1">
+                    <div class="ui-g-4 overview-box-icon"><img id="j_idt37" src="/verona/javax.faces.resource/images/icon-paper.png.xhtml?ln=verona-layout" alt="" />
+                    </div>
+                    <div class="ui-g-8">
+                        <span class="overview-box-count">253</span>
+                        <span class="overview-box-name">DOCUMENTS RECEIVED</span>
+                        <span class="overview-box-rate">+10%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <div class="ui-g card overview-box overview-box-2">
+                    <div class="ui-g-4 overview-box-icon"><img id="j_idt39" src="/verona/javax.faces.resource/images/icon-mail.png.xhtml?ln=verona-layout" alt="" />
+                    </div>
+                    <div class="ui-g-8">
+                        <span class="overview-box-count">3216</span>
+                        <span class="overview-box-name">EMAILS RECEIVED</span>
+                        <span class="overview-box-rate">+34%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <div class="ui-g card overview-box overview-box-3">
+                    <div class="ui-g-4 overview-box-icon"><img id="j_idt41" src="/verona/javax.faces.resource/images/icon-location.png.xhtml?ln=verona-layout" alt="" />
+                    </div>
+                    <div class="ui-g-8">
+                        <span class="overview-box-count">428</span>
+                        <span class="overview-box-name">CHECK-INS SAVED</span>
+                        <span class="overview-box-rate">-15%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-3">
+                <div class="ui-g card overview-box overview-box-4">
+                    <div class="ui-g-4 overview-box-icon"><img id="j_idt43" src="/verona/javax.faces.resource/images/icon-orders.png.xhtml?ln=verona-layout" alt="" />
+                    </div>
+                    <div class="ui-g-8">
+                        <span class="overview-box-count">924</span>
+                        <span class="overview-box-name">NEW ORDERS</span>
+                        <span class="overview-box-rate">+24%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui-g-12 ui-md-6 ui-lg-4 task-list"><div id="j_idt45" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="min-height:360px" data-widget="widget_j_idt45"><div id="j_idt45_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">TASKS</span></div><div id="j_idt45_content" class="ui-panel-content ui-widget-content">
+                    <ul>
+                        <li><div id="j_idt47" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt47_input" name="j_idt47_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt47_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt47",{id:"j_idt47"});</script>
+                            <span class="task-name">Sales Reports</span>
+                            <i class="fa fa-briefcase"></i>
+                        </li>
+                        <li><div id="j_idt49" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt49_input" name="j_idt49_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt49_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt49",{id:"j_idt49"});</script>
+                            <span class="task-name">Pay Invoices</span>
+                            <i class="fa fa-credit-card"></i>
+                        </li>
+                        <li><div id="j_idt51" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt51_input" name="j_idt51_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt51_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt51",{id:"j_idt51"});</script>
+                            <span class="task-name">Dinner with Tony</span>
+                            <i class="fa fa-cutlery"></i>
+                        </li>
+                        <li><div id="j_idt53" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt53_input" name="j_idt53_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt53_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt53",{id:"j_idt53"});</script>
+                            <span class="task-name">Client Meeting</span>
+                            <i class="fa fa-user"></i>
+                        </li>
+                        <li><div id="j_idt55" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt55_input" name="j_idt55_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt55_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt55",{id:"j_idt55"});</script>
+                            <span class="task-name">New Theme</span>
+                            <i class="fa fa-paint-brush"></i>
+                        </li>
+                        <li><div id="j_idt57" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt57_input" name="j_idt57_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt57_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt57",{id:"j_idt57"});</script>
+                            <span class="task-name">Flight Ticket</span>
+                            <i class="fa fa-fighter-jet"></i>
+                        </li>
+                        <li><div id="j_idt59" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt59_input" name="j_idt59_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt59_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt59",{id:"j_idt59"});</script>
+                            <span class="task-name">Generate Charts</span>
+                            <i class="fa fa-area-chart"></i>
+                        </li>
+                        <li><div id="j_idt61" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt61_input" name="j_idt61_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt61_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt61",{id:"j_idt61"});</script>
+                            <span class="task-name">Call Client</span>
+                            <i class="fa fa-phone"></i>
+                        </li>
+                        <li><div id="j_idt63" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt63_input" name="j_idt63_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt63_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt63",{id:"j_idt63"});</script>
+                            <span class="task-name">Share location</span>
+                            <i class="fa fa-map-marker"></i>
+                        </li>
+                        <li><div id="j_idt65" class="ui-chkbox ui-widget"><div class="ui-helper-hidden-accessible"><input id="j_idt65_input" name="j_idt65_input" type="checkbox" autocomplete="off" aria-checked="false" /></div><div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default"><span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span></div></div><script id="j_idt65_s" type="text/javascript">PrimeFaces.cw("SelectBooleanCheckbox","widget_j_idt65",{id:"j_idt65"});</script>
+                            <span class="task-name">Create Feed</span>
+                            <i class="fa fa-rss"></i>
+                        </li>
+                    </ul></div></div><script id="j_idt45_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt45",{id:"j_idt45"});</script>
+            </div>
+            <div class="ui-g-12 ui-md-6 ui-lg-4 ui-fluid contact-form"><div id="j_idt68" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="min-height:360px" data-widget="widget_j_idt68"><div id="j_idt68_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">CONTACT US</span></div><div id="j_idt68_content" class="ui-panel-content ui-widget-content">
+                    <div class="ui-g">
+                        <div class="ui-g-12"><div id="console" class="ui-selectonemenu ui-widget ui-state-default ui-corner-all"><div class="ui-helper-hidden-accessible"><input id="console_focus" name="console_focus" type="text" autocomplete="off" role="combobox" aria-haspopup="true" aria-expanded="false" /></div><div class="ui-helper-hidden-accessible"><select id="console_input" name="console_input" tabindex="-1"><option value="">Select One</option><option value="Xbox One">Xbox One</option><option value="PS4">PS4</option><option value="Wii U">Wii U</option></select></div><label id="console_label" class="ui-selectonemenu-label ui-inputfield ui-corner-all">&nbsp;</label><div class="ui-selectonemenu-trigger ui-state-default ui-corner-right"><span class="ui-icon ui-icon-triangle-1-s ui-c"></span></div><div id="console_panel" class="ui-selectonemenu-panel ui-widget ui-widget-content ui-corner-all ui-helper-hidden ui-shadow"><div class="ui-selectonemenu-items-wrapper" style="height:auto"><ul id="console_items" class="ui-selectonemenu-items ui-selectonemenu-list ui-widget-content ui-widget ui-corner-all ui-helper-reset" role="listbox"><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="Select One" tabindex="-1" role="option">Select One</li><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="Xbox One" tabindex="-1" role="option">Xbox One</li><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="PS4" tabindex="-1" role="option">PS4</li><li class="ui-selectonemenu-item ui-selectonemenu-list-item ui-corner-all" data-label="Wii U" tabindex="-1" role="option">Wii U</li></ul></div></div></div><script id="console_s" type="text/javascript">$(function(){PrimeFaces.cw("SelectOneMenu","widget_console",{id:"console",autoWidth:false});});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt75" name="j_idt75" type="text" placeholder="Name" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt75_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt75",{id:"j_idt75"});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt77" name="j_idt77" type="text" placeholder="Email" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt77_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt77",{id:"j_idt77"});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt79" name="j_idt79" type="text" placeholder="Age" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt79_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt79",{id:"j_idt79"});</script>
+                        </div>
+                        <div class="ui-g-12"><input id="j_idt81" name="j_idt81" type="text" placeholder="Location" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" /><script id="j_idt81_s" type="text/javascript">PrimeFaces.cw("InputText","widget_j_idt81",{id:"j_idt81"});</script>
+                        </div>
+                        <div class="ui-g-12"><textarea id="j_idt83" name="j_idt83" cols="5" rows="3" placeholder="Message" maxlength="2147483647" class="ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all ui-inputtextarea-resizable"></textarea><script id="j_idt83_s" type="text/javascript">$(function(){PrimeFaces.cw("InputTextarea","widget_j_idt83",{id:"j_idt83",autoResize:true});});</script>
+                        </div>
+                    </div><button id="j_idt85" name="j_idt85" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left rounded-btn raised-btn" style="margin-top:16px;" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-paper-plane-o"></span><span class="ui-button-text ui-c">Send</span></button><script id="j_idt85_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt85",{id:"j_idt85"});</script></div></div><script id="j_idt68_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt68",{id:"j_idt68"});</script>
+            </div>
+            <div class="ui-g-12 ui-lg-4 contacts"><div id="j_idt87" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="min-height:360px" data-widget="widget_j_idt87"><div id="j_idt87_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">CONTACTS</span></div><div id="j_idt87_content" class="ui-panel-content ui-widget-content">
+                    <ul>
+                        <li class="clearfix"><img id="j_idt89" src="/verona/javax.faces.resource/images/avatar.png.xhtml?ln=verona-layout" alt="" width="45" />
+                            <div class="contact-info">
+                                <span class="name">Samantha Owens (me)</span>
+                                <span class="location">jane@pf-verona.com</span>
+                            </div>
+                            <div class="contact-actions">
+                                <span class="connection-status online">online</span>
+                                <i class="fa fa-paper-plane-o"></i>
+                                <i class="fa fa-phone"></i>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img id="j_idt91" src="/verona/javax.faces.resource/images/avatar1.png.xhtml?ln=verona-layout" alt="" width="45" />
+                            <div class="contact-info">
+                                <span class="name">Joshua Williams</span>
+                                <span class="location">joshua@pf-verona.com</span>
+                            </div>
+                            <div class="contact-actions">
+                                <span class="connection-status online">online</span>
+                                <i class="fa fa-paper-plane-o"></i>
+                                <i class="fa fa-phone"></i>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img id="j_idt93" src="/verona/javax.faces.resource/images/avatar2.png.xhtml?ln=verona-layout" alt="" width="45" />
+                            <div class="contact-info">
+                                <span class="name">Emily Clark</span>
+                                <span class="location">emily@pf-verona.com</span>
+                            </div>
+                            <div class="contact-actions">
+                                <span class="connection-status offline">offline</span>
+                                <i class="fa fa-paper-plane-o"></i>
+                                <i class="fa fa-phone"></i>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img id="j_idt95" src="/verona/javax.faces.resource/images/avatar3.png.xhtml?ln=verona-layout" alt="" width="45" />
+                            <div class="contact-info">
+                                <span class="name">Tim Johnson</span>
+                                <span class="location">tim@pf-verona.com</span>
+                            </div>                                
+                            <div class="contact-actions">
+                                <span class="connection-status online">online</span>
+                                <i class="fa fa-paper-plane-o"></i>
+                                <i class="fa fa-phone"></i>
+                            </div>
+                        </li>
+                        <li class="clearfix"><img id="j_idt97" src="/verona/javax.faces.resource/images/avatar4.png.xhtml?ln=verona-layout" alt="" width="45" />
+                            <div class="contact-info">
+                                <span class="name">David Stark</span>
+                                <span class="location">kelly@pf-verona.com</span>
+                            </div>
+                            <div class="contact-actions">
+                                <span class="connection-status offline">offline</span>
+                                <i class="fa fa-paper-plane-o"></i>
+                                <i class="fa fa-phone"></i>
+                            </div>
+                        </li>
+                    </ul></div></div><script id="j_idt87_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt87",{id:"j_idt87"});</script>
+            </div>
+            
+            <div class="ui-g-12 ui-md-4">
+                <div class="user-card">
+                    <div class="user-card-header"></div>
+                    <div class="user-card-content"><img id="j_idt100" src="/verona/javax.faces.resource/images/avatar.png.xhtml?ln=verona-layout" alt="" />
+                        <span class="user-card-name">Samantha Owens</span>
+                        <span class="user-card-role">System Admin</span>
+                        <p>
+                            Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage. 
+                            Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse. Dreamcatcher locavore iPhone chillwave, occupy trust fund slow-carb distillery art party narwhal.
+                        </p><button id="j_idt102" name="j_idt102" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only rounded-btn raised-btn" type="button"><span class="ui-button-text ui-c">Connect</span></button><script id="j_idt102_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt102",{id:"j_idt102"});</script>
+                    </div>
+                    <div class="user-card-footer">
+                        <div class="ui-g">
+                            <div class="ui-g-4">
+                                <span>Issues</span>
+                                <span>52</span>
+                            </div>
+                            <div class="ui-g-4">
+                                <span>Open</span>
+                                <span>25</span>
+                            </div>
+                            <div class="ui-g-4">
+                                <span>Closed</span>
+                                <span>27</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui-g-12 ui-md-8 chat"><div id="j_idt104" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_j_idt104"><div id="j_idt104_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">Chat</span></div><div id="j_idt104_content" class="ui-panel-content ui-widget-content">
+                    <ul>
+                        <li class="clearfix message-from"><img id="j_idt106" src="/verona/javax.faces.resource/images/avatar2.png.xhtml?ln=verona-layout" alt="" />
+                            <span>Retro occupy organic, stumptown shabby chic pour-over roof party DIY normcore.</span>
+                        </li>
+                        <li class="clearfix message-own"><img id="j_idt108" src="/verona/javax.faces.resource/images/avatar.png.xhtml?ln=verona-layout" alt="" />
+                            <span>Actually artisan organic occupy, Wes Anderson ugh whatever pour-over gastropub selvage.</span>
+                        </li>
+                        <li class="clearfix message-from"><img id="j_idt110" src="/verona/javax.faces.resource/images/avatar2.png.xhtml?ln=verona-layout" alt="" />
+                            <span>Chillwave craft beer tote bag stumptown quinoa hashtag.</span>
+                        </li>
+                        <li class="clearfix message-own"><img id="j_idt112" src="/verona/javax.faces.resource/images/avatar.png.xhtml?ln=verona-layout" alt="" />
+                            <span>Dreamcatcher locavore iPhone chillwave, occupy trust fund slow-carb distillery art party narwhal.</span>
+                        </li>
+                        <li class="clearfix message-own">
+                            <span>Sed ut perspiciatis unde omnis iste natus.</span>
+                        </li>
+                        <li class="clearfix message-from"><img id="j_idt114" src="/verona/javax.faces.resource/images/avatar2.png.xhtml?ln=verona-layout" alt="" />
+                            <span>Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse.</span>
+                        </li>
+                        <li class="clearfix message-own"><img id="j_idt116" src="/verona/javax.faces.resource/images/avatar.png.xhtml?ln=verona-layout" alt="" />
+                            <span>At vero eos et accusamus.</span>
+                        </li>
+                    </ul>
+                    <div class="new-message">
+                        <div class="message-attachment">
+                            <i class="fa fa-paperclip"></i>
+                        </div>
+                        <div class="message-input">
+                            <input type="text" placeholder="Write a message" />
+                        </div>
+                    </div></div></div><script id="j_idt104_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt104",{id:"j_idt104"});</script>
+            </div>
+
+            <div class="ui-g-12 ui-lg-4">
+                <div class="card timeline ui-fluid">
+                    <div class="ui-g">
+                        <div class="ui-g-3">
+                            <span class="event-time">just now</span>
+                            <i class="fa fa-map-signs" style="color:#f7cb00"></i>
+                        </div>
+                        <div class="ui-g-9">
+                            <span class="event-owner" style="color:#ff9c59">Katherine May</span>
+                            <span class="event-text">Lorem ipsun dolor amet</span>
+                            <div class="event-content"><img id="j_idt119" src="/verona/javax.faces.resource/images/dashboard/bridge.png.xhtml?ln=verona-layout" alt="" width="100" />
+                            </div>
+                        </div>
+                        
+                        <div class="ui-g-3">
+                            <span class="event-time">12h ago</span>
+                            <i class="fa fa-star" style="color:#985edb"></i>
+                        </div>
+                        <div class="ui-g-9">
+                            <span class="event-owner" style="color:#f18983">Brandon Santos</span>
+                            <span class="event-text">Ab nobis, magnam sunt eum. Laudantium, repudiandae, similique!.</span>
+                        </div>
+                        
+                        <div class="ui-g-3">
+                            <span class="event-time">15h ago</span>
+                            <i class="fa fa-comment" style="color:#9fd037"></i>
+                        </div>
+                        <div class="ui-g-9">
+                            <span class="event-owner" style="color:#525262">Stephan Ward</span>
+                            <span class="event-text">Omnis veniam quibusdam ratione est repellat qui nam quisquam ab mollitia dolores ullam voluptates, similique, dignissimos.</span>
+                        </div>
+                        
+                        <div class="ui-g-3">
+                            <span class="event-time">2d ago</span>
+                            <i class="fa fa-map" style="color:#f7cb00"></i>
+                        </div>
+                        <div class="ui-g-9">
+                            <span class="event-owner" style="color:#9fd037">Jason Smith</span>
+                            <span class="event-text">Laudantium, repudiandae, similique!</span>
+                            <div class="event-content"><img id="j_idt121" src="/verona/javax.faces.resource/images/dashboard/map.png.xhtml?ln=verona-layout" alt="" />
+                            </div>
+                        </div>
+                        
+                        <div class="ui-g-3">
+                            <span class="event-time">1w ago</span>
+                            <i class="fa fa-heart" style="color:#ff9c59"></i>
+                        </div>
+                        <div class="ui-g-9">
+                            <span class="event-owner">Kevin Cox</span>
+                            <span class="event-text">Quibusdam ratione est repellat qui nam quisquam veniam quibusdam ratione.</span>
+                        </div>
+                        
+                        <div class="ui-g-3">
+                            <span class="event-time">2w ago</span>
+                            <i class="fa fa-history" style="color:#9fd037"></i>
+                        </div>
+                        <div class="ui-g-9">
+                            <span class="event-owner" style="color:#ff9c59">Walter White</span>
+                            <span class="event-text">I am the one who knocks!</span>
+                        </div>
+                        
+                        <div class="ui-g-12"><button id="j_idt123" name="j_idt123" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left rounded-btn raised-btn" type="button"><span class="ui-button-icon-left ui-icon ui-c ui-icon-refresh"></span><span class="ui-button-text ui-c">Refresh</span></button><script id="j_idt123_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt123",{id:"j_idt123"});</script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="ui-g-12 ui-lg-8">
+                <div class="card">
+<form id="j_idt125" name="j_idt125" method="post" action="/verona/dashboard.xhtml" enctype="application/x-www-form-urlencoded">
+<input type="hidden" name="j_idt125" value="j_idt125" />
+<div id="j_idt125:j_idt126" class="ui-datatable ui-widget ui-datatable-reflow" style="margin-bottom:20px"><label id="j_idt125:j_idt126_reflowDD_label" for="j_idt125:j_idt126_reflowDD" class="ui-reflow-label">Sort</label><select id="j_idt125:j_idt126_reflowDD" name="j_idt125:j_idt126_reflowDD" class="ui-reflow-dropdown ui-state-default"><option value="0_0">Id Ascending</option><option value="0_1">Id Descending</option><option value="1_0">Year Ascending</option><option value="1_1">Year Descending</option><option value="2_0">Brand Ascending</option><option value="2_1">Brand Descending</option><option value="3_0">Color Ascending</option><option value="3_1">Color Descending</option></select><div class="ui-datatable-header ui-widget-header ui-corner-top">Recent Sales</div><div class="ui-datatable-tablewrapper"><table role="grid"><thead id="j_idt125:j_idt126_head"><tr role="row"><th id="j_idt125:j_idt126:j_idt128" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Id"><span class="ui-column-title">Id</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span></th><th id="j_idt125:j_idt126:j_idt130" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Year"><span class="ui-column-title">Year</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span></th><th id="j_idt125:j_idt126:j_idt132" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Brand"><span class="ui-column-title">Brand</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span></th><th id="j_idt125:j_idt126:j_idt134" class="ui-state-default ui-sortable-column" role="columnheader" aria-label="Color"><span class="ui-column-title">Color</span><span class="ui-sortable-column-icon ui-icon ui-icon-carat-2-n-s"></span></th></tr></thead><tbody id="j_idt125:j_idt126_data" class="ui-datatable-data ui-widget-content" tabindex="0"><tr data-ri="0" data-rk="99a74df5" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">99a74df5</td><td role="gridcell">1988</td><td role="gridcell">Ford</td><td role="gridcell">Orange</td></tr><tr data-ri="1" data-rk="2ce87531" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">2ce87531</td><td role="gridcell">1966</td><td role="gridcell">Honda</td><td role="gridcell">Blue</td></tr><tr data-ri="2" data-rk="849ee49e" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">849ee49e</td><td role="gridcell">1969</td><td role="gridcell">Volkswagen</td><td role="gridcell">Brown</td></tr><tr data-ri="3" data-rk="1e1e6d04" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">1e1e6d04</td><td role="gridcell">2002</td><td role="gridcell">Renault</td><td role="gridcell">Maroon</td></tr><tr data-ri="4" data-rk="0e3af681" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">0e3af681</td><td role="gridcell">2001</td><td role="gridcell">Ford</td><td role="gridcell">White</td></tr><tr data-ri="5" data-rk="daf04b89" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">daf04b89</td><td role="gridcell">1980</td><td role="gridcell">Ford</td><td role="gridcell">Blue</td></tr><tr data-ri="6" data-rk="f9fd39a5" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">f9fd39a5</td><td role="gridcell">1978</td><td role="gridcell">Volkswagen</td><td role="gridcell">Orange</td></tr><tr data-ri="7" data-rk="788fc4e4" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">788fc4e4</td><td role="gridcell">1995</td><td role="gridcell">Fiat</td><td role="gridcell">Silver</td></tr><tr data-ri="8" data-rk="ba98036f" class="ui-widget-content ui-datatable-even ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">ba98036f</td><td role="gridcell">1974</td><td role="gridcell">BMW</td><td role="gridcell">Black</td></tr><tr data-ri="9" data-rk="d1180a2e" class="ui-widget-content ui-datatable-odd ui-datatable-selectable" role="row" aria-selected="false"><td role="gridcell">d1180a2e</td><td role="gridcell">2001</td><td role="gridcell">BMW</td><td role="gridcell">Green</td></tr></tbody></table></div><input type="hidden" id="j_idt125:j_idt126_selection" name="j_idt125:j_idt126_selection" autocomplete="off" value="" /></div><script id="j_idt125:j_idt126_s" type="text/javascript">$(function(){PrimeFaces.cw("DataTable","widget_j_idt125_j_idt126",{id:"j_idt125:j_idt126",selectionMode:"single",reflow:true});});</script><div id="j_idt125:j_idt136" class="ui-panel ui-widget ui-widget-content ui-corner-all chart-panel" data-widget="widget_j_idt125_j_idt136"><div id="j_idt125:j_idt136_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">Sales Graph</span></div><div id="j_idt125:j_idt136_content" class="ui-panel-content ui-widget-content"><div id="j_idt125:j_idt137"></div><script id="j_idt125:j_idt137_s" type="text/javascript">$(function(){PrimeFaces.cw('Chart','widget_j_idt125_j_idt137',{id:'j_idt125:j_idt137',type:'bar',responsive:true,data:[[120,100,44,150,25],[52,60,110,135,120]],title:"Bar Chart",legendPosition:"ne",extender:skinBar,axes:{yaxis: {label:"Births",min:0,max:200,renderer:$.jqplot.LinearAxisRenderer,tickOptions:{angle:0}},xaxis: {label:"Gender",renderer:$.jqplot.CategoryAxisRenderer,tickOptions:{angle:0}}},series:[{label:'Boys'},{label:'Girls'}],ticks:["2004","2005","2006","2007","2008"],orientation:"vertical",datatip:true},'charts');});</script></div></div><script id="j_idt125:j_idt136_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt125_j_idt136",{id:"j_idt125:j_idt136"});</script><input type="hidden" name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:34" value="3771357910627166206:-2357332754283604888" autocomplete="off" />
+</form>
+                </div>
+            </div>
+            
+            <div class="ui-g-12 ui-lg-6">
+                <div class="card verona-overview"><img id="j_idt139" src="/verona/javax.faces.resource/images/dashboard/verona-photo.png.xhtml?ln=verona-layout" alt="" />
+                    <span class="article-date">January 2017</span>
+                    <h3>VERONA</h3>
+                    <p>Verona is a city on the Adige river in Veneto, northern Italy, 
+                        with approximately 265,000 inhabitants and one of the seven provincial capitals of the region. It is the second largest city municipality in the 
+                        region and the third largest in northeast Italy. The metropolitan area of Verona covers an area of 1,426 km2 (550.58 sq mi) and has a population of 714,274 inhabitants. 
+                        It is one of the main tourist destinations in northern Italy, owing to its artistic heritage, several annual fairs, shows, 
+                        and operas, such as the lyrical season in the Arena, the ancient amphitheatre built by the Romans.</p>
+                        
+                    <p>Three of Shakespeare's plays are set in Verona: Romeo and Juliet, The Two Gentlemen of Verona, and The Taming of the Shrew. 
+                        It is unknown if Shakespeare ever visited Verona or Italy at all, but his plays have lured many visitors to Verona and surrounding cities many times over. 
+                        The city has been awarded World Heritage Site status by UNESCO because of its urban structure and architecture.</p>
+                
+                    <p>The etymology of the name "Verona" is unknown. It may be derived from Vera, perhaps an Etruscan person's name; or it might be of Gallic origin; it may be the name of a Roman 
+                        family or come from the Latin "ver", meaning "spring". But according to one legend the legendary founder of the city, the Gallic chieftain Brenno, called the new inhabited centre "Vae Roma", 
+                        that is "Accursed Rome", which then over the centuries became Verona.</p>
+                        
+                    <p>Another theory is that it is connected to the river. "Vera" was a name of the river Adige previously 
+                        to the adoption of the current name. As in many similar instances in Europe the name of the town is formed with the 
+                        addition of suffix -ona which means settlement over.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="ui-g-12 ui-lg-6">
+                <div class="card activity-feed"><div id="j_idt141" class="ui-panel ui-widget ui-widget-content ui-corner-all" data-widget="widget_j_idt141"><div id="j_idt141_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">ACTIVITY FEED</span></div><div id="j_idt141_content" class="ui-panel-content ui-widget-content">
+                        <h3>Last Activity</h3>
+                        <p>Updated 1 minute ago</p>
+                        <div class="ui-g">
+                            <div class="ui-g-12 ui-md-6">
+                                <span>INCOME</span>
+                                <div class="knob income">$900</div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6">
+                                <span>TAX</span>
+                                <div class="knob tax">$250</div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6">
+                                <span>INVOICES</span>
+                                <div class="knob invoice">$125</div>
+                            </div>
+                            <div class="ui-g-12 ui-md-6">
+                                <span>EXPENSES</span>
+                                <div class="knob expense">$250</div>
+                            </div>
+                        </div></div></div><script id="j_idt141_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt141",{id:"j_idt141"});</script>
+                </div>
+            </div>
+            
+            <div class="ui-g-12 ui-md-8"><div id="j_idt144" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt144"><div id="j_idt144_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">Calendar</span></div><div id="j_idt144_content" class="ui-panel-content ui-widget-content"><div id="j_idt145"><div id="j_idt145_container"></div><input type="hidden" id="j_idt145_view" name="j_idt145_view" autocomplete="off" value="month" /></div><script id="j_idt145_s" type="text/javascript">$(function(){PrimeFaces.cw("Schedule","widget_j_idt145",{id:"j_idt145",defaultView:"month",locale:"en_US",lazyFetching:false,header:{left:'prev,next',center:"title",right:"month,agendaWeek,agendaDay"}});});</script></div></div><script id="j_idt144_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt144",{id:"j_idt144"});</script>
+            </div>
+            <div class="ui-g-12 ui-md-4"><div id="j_idt147" class="ui-panel ui-widget ui-widget-content ui-corner-all" style="height:100%" data-widget="widget_j_idt147"><div id="j_idt147_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all"><span class="ui-panel-title">Activity</span></div><div id="j_idt147_content" class="ui-panel-content ui-widget-content">
+                    <div class="activity-header">
+                        <div class="ui-g">
+                            <div class="ui-g-6">
+                                <span style="font-weight:bold">Last Activity</span>
+                                <p>Updated 1 minute ago</p>
+                            </div>
+                            <div class="ui-g-6" style="text-align:right"><button id="j_idt149" name="j_idt149" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only raised-btn" type="button"><span class="ui-button-icon-left ui-icon ui-c fa fa-refresh"></span><span class="ui-button-text ui-c">ui-button</span></button><script id="j_idt149_s" type="text/javascript">PrimeFaces.cw("CommandButton","widget_j_idt149",{id:"j_idt149"});</script>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="activity-list">
+                        <li>
+                            <div class="count">$900</div>
+                            <div class="ui-g">
+                                <div class="ui-g-6">Income</div>
+                                <div class="ui-g-6">95%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="count" style="background-color:#9fd037">$250</div>
+                            <div class="ui-g">
+                                <div class="ui-g-6">Tax</div>
+                                <div class="ui-g-6">24%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="count" style="background-color:#ff9c59">$125</div>
+                            <div class="ui-g">
+                                <div class="ui-g-6">Invoices</div>
+                                <div class="ui-g-6">55%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="count" style="background-color:#985edb">$250</div>
+                            <div class="ui-g">
+                                <div class="ui-g-6">Expenses</div>
+                                <div class="ui-g-6">15%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="count" style="background-color:#f18983">$350</div>
+                            <div class="ui-g">
+                                <div class="ui-g-6">Bonus</div>
+                                <div class="ui-g-6">5%</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="count" style="background-color:#9fd037">$500</div>
+                            <div class="ui-g">
+                                <div class="ui-g-6">Revenue</div>
+                                <div class="ui-g-6">25%</div>
+                            </div>
+                        </li>
+                    </ul></div></div><script id="j_idt147_s" type="text/javascript">PrimeFaces.cw("Panel","widget_j_idt147",{id:"j_idt147"});</script>
+            </div>
+        </div>
+            </div>
+    
+    <div class="footer clearfix"><img id="j_idt154" src="/verona/javax.faces.resource/images/logo-dark.png.xhtml?ln=verona-layout" alt="" />
+        <span class="app-name">VERONA</span>
+        <div class="footer-right">
+            <a href="https://github.com/primefaces"><i class="fa fa-github"></i></a>
+            <a href="https://www.facebook.com/groups/primefaces"><i class="fa fa-facebook"></i></a>
+            <a href="http://twitter.com/primefaces"><i class="fa fa-twitter"></i></a>
+            <span>All Rights Reserved - 2017</span>
+        </div>
+        
+    </div>
+        </div><div id="j_idt157" style="width:32px;height:32px;position:fixed;right:7px;bottom:7px"><div id="j_idt157_start" style="display:none">
+               <i class="fa fa-circle-o-notch fa-spin ajax-loader" aria-hidden="true"></i></div><div id="j_idt157_complete" style="display:none"></div></div><script id="j_idt157_s" type="text/javascript">$(function(){PrimeFaces.cw("AjaxStatus","widget_j_idt157",{id:"j_idt157"});});</script></body>
+
+</html>

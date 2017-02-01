@@ -13,10 +13,10 @@
 
 	<ui:define name="corpo">
 	
-	   		<f:metadata>
-			<f:viewParam name="cliente" value="#{cadastroClienteBean.cliente}" />
-			<f:event listener="#{cadastroClienteBean.inicializar}"	type="preRenderView" />
-		</f:metadata>
+	       <f:metadata>	
+	            <f:viewParam name="dummy"/>
+	            <f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView"/>	
+	        </f:metadata>
 	        
 	
 
@@ -111,8 +111,42 @@
                     
                     <p:outputLabel value="Referência: " />
                     <p:inputTextarea rows="3" cols="22"  value="#{cadastroClienteBean.endereco.referencia}"/> 
-                                     
+                    
+                    
+                   <!--  
+                    <p:outputLabel value="Especialidade: " for="especialidades"/>
+                  <p:selectOneMenu id="especialidades" value="#{cadastroClienteBean.especialidadePai}">
+                       <f:selectItem itemLabel="Selecione a Especialidade" />
+                       <f:selectItems value="#{cadastroClienteBean.especialidadesRaizes}" var="especialidade" itemValue="#{especialidade}" itemLabel="#{especialidade.descricao}" />
                   
+                   <p:ajax listener="#{cadastroClienteBean.carregarServicoDeEspecialidades}" update="servicoEsp"/>
+                   </p:selectOneMenu>              
+                   
+ 
+                    <p:outputLabel value="Serviço: "  for="servicoEsp"/>
+                  	<p:selectOneMenu id="servicoEsp" value="#{cadastroClienteBean.servicos.especialidade}">
+					    <f:selectItem itemLabel="Selecione o Serviço" />
+					    <f:selectItems value="#{cadastroClienteBean.servicoDeEspecialidades}" var="servicos"
+					    itemValue="#{servicos}" itemLabel="#{servicos.descricao}"/>
+				    </p:selectOneMenu>  
+                    
+                    <p:outputLabel value="Codigo: " />
+                    <p:inputText />
+                    
+                      <p:outputLabel value="Valor: " />
+                    <p:inputText />
+                    
+                     <p:outputLabel value="Profissional: " />
+                    <p:inputText />
+                    
+                     <p:outputLabel value="Duração Máxima: " />
+                    <p:inputText />
+ 
+                    <p:outputLabel value="Data de excução: " />
+                    <p:inputText />
+                    
+                    <p:outputLabel value="Detalhes: " />
+                   <p:inputTextarea rows="5" cols="22" />-->
                 </h:panelGrid>
             </p:panel>
         </p:tab>
@@ -171,94 +205,7 @@
             </p:panel>
         </p:tab>
     </p:wizard>
-    
-    <div style="background-color: white; border-color: black; border-left: medium;">
-    <p:messages autoUpdate="true" closable="true" />
-
-			<p:toolbar style="margin-top:20px">
-				<p:toolbarGroup>
-
-					<p:commandButton value="Pesquisar" update="@form" />
-
-				</p:toolbarGroup>
-
-				<p:toolbarGroup align="right">
-					<p:button value="Novo" outcome="/clientes/CadastroCliente" />
-				</p:toolbarGroup>
-
-			</p:toolbar>
-
-			<p:panelGrid columns="2" id="panel"
-				style="width:100%; margin-top:20px" columnClasses="rotuloP, campoP">
-				<p:outputLabel value="Nome " for="nome" />
-				<p:inputText id="nome" 
-					size="60" />
-
-				<p:outputLabel value="E-mail " for="email" />
-				<p:inputText id="email" 
-					size="60" />
-
-				<p:outputLabel value="Doc. Identificação " for="doc" />
-				<p:inputText id="doc"
-					 />
-
-			</p:panelGrid>
-
-			<p:dataTable id="clientesTable" value="#{pesquisaClienteBean.model}" 
-			var="cliente" style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado" rows="10"
-				paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom" lazy="true" >
-
-				<p:column style="text-align:center; width:110px" headerText="Nome" sortBy="#{cliente.nome}">
-					<h:outputText value="#{cliente.nome}" />
-				</p:column>
-
-				<p:column style="text-align:center; width:80px" headerText="E-mail" sortBy="#{cliente.email}">
-					<h:outputText value="#{cliente.email}" />
-				</p:column>
-
-				<p:column style="text-align:center; width:50px"
-					headerText="Identificação">
-					<h:outputText  />
-				</p:column>
-				
-				<p:column style="text-align:center; width:40px"
-					headerText="Telefone">
-					<h:outputText  />
-				</p:column>
-				
-					<p:column style="text-align:center; width:20px"
-					headerText="Ramal">
-					<h:outputText  />
-				</p:column>
-
-				<p:column style="width:30px; text-align:center" headerText="Opções">
-
-					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/clientes/CadastroCliente">
-						<f:param name="cliente" value="#{cliente.id}" />
-					</p:button>
-
-					<p:commandButton id="botaoYes" icon="ui-icon-trash" title="Excluir"
-						process="@this"
-						update=":frmPesquisa:clientesTable, :frmPesquisa:confirmacaoExDlg"
-						action="#{pesquisaClienteBean.excluir}" validateClient="true">
-
-						<p:confirm header="Exclusão de Usuário "
-							message="Tem certeza que deseja excluir o cliente #{ciente.nome} ?"
-							icon="ui-icon-alert" />
-						
-							 />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
-
-			<p:confirmDialog global="true" id="confirmacaoExDlg">
-				<p:button value="Não" icon="ui-icon-close" 	styleClass="ui-confirmdialog-no"
-					/>
-				<p:commandButton type="button" value="Sim" icon="ui-icon-check"
-					styleClass="ui-confirmdialog-yes" process="@this" />
-			</p:confirmDialog>
- </div>
+ 
 </h:form>
 
 </ui:define>
