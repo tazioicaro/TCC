@@ -24,20 +24,24 @@
 	font-style: normal;
 	font-weight: 300;
 	src:
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-300.eot.xhtml?ln=verona-layout");
+	    url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.eot']}");
+	
 	/* IE9 Compat Modes */
 	src: local("Lato Light"), local("Lato-Light"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-300.eot.xhtml?ln=verona-layout?#iefix")
-		format("embedded-opentype"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-300.woff2.xhtml?ln=verona-layout")
-		format("woff2"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-300.woff.xhtml?ln=verona-layout")
-		format("woff"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-300.ttf.xhtml?ln=verona-layout")
-		format("truetype"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-300.svg.xhtml?ln=verona-layout#Lato")
-		format("svg");
-	/* Legacy iOS */
+		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.eot']}?#iefix")
+		format('embedded-opentype'),		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.woff2']}")
+		format('woff2'),		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.woff']}")
+		format('woff'),		
+			url('../fonts/lato-v11-latin-ext_latin-300.ttf')
+		format('truetype'),		
+		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.svg']}#Lato")
+		format('svg');			
+	
+	/* Legacy iOS */	
+	
 }
 /* lato-regular - latin-ext_latin */
 @font-face {
@@ -45,20 +49,21 @@
 	font-style: normal;
 	font-weight: 400;
 	src:
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-regular.eot.xhtml?ln=verona-layout");
+		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.eot']}");
 	/* IE9 Compat Modes */
 	src: local("Lato Regular"), local("Lato-Regular"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-regular.eot.xhtml?ln=verona-layout?#iefix")
-		format("embedded-opentype"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-regular.woff2.xhtml?ln=verona-layout")
-		format("woff2"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-regular.woff.xhtml?ln=verona-layout")
-		format("woff"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-regular.ttf.xhtml?ln=verona-layout")
-		format("truetype"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-regular.svg.xhtml?ln=verona-layout#Lato")
-		format("svg");
-	/* Legacy iOS */
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.eot']}?#iefix")
+		format('embedded-opentype'),		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.woff2']}")
+		format('woff2'),		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.woff']}")
+		format('woff'),		
+			url('../fonts/lato-v11-latin-ext_latin-regular.ttf')
+		format('truetype'),		
+		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.svg']}#Lato")
+		format('svg');	
+	/* Legacy iOS */	
+	
 }
 /* lato-700 - latin-ext_latin */
 @font-face {
@@ -66,20 +71,22 @@
 	font-style: normal;
 	font-weight: 700;
 	src:
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-700.eot.xhtml?ln=verona-layout");
+		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.eot']}");
 	/* IE9 Compat Modes */
 	src: local("Lato Bold"), local("Lato-Bold"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-700.eot.xhtml?ln=verona-layout?#iefix")
-		format("embedded-opentype"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-700.woff2.xhtml?ln=verona-layout")
-		format("woff2"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-700.woff.xhtml?ln=verona-layout")
-		format("woff"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-700.ttf.xhtml?ln=verona-layout")
-		format("truetype"),
-		url("/verona/javax.faces.resource/fonts/lato-v11-latin-ext_latin-700.svg.xhtml?ln=verona-layout#Lato")
-		format("svg");
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.eot']}?#iefix")
+		format('embedded-opentype'),		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.woff2']}")
+		format('woff2'),		
+			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.woff']}")
+		format('woff'),		
+			url('../fonts/lato-v11-latin-ext_latin-700.ttf')
+		format('truetype'),		
+		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.svg']}#Lato")
+		format('svg');	
 	/* Legacy iOS */
+	
+
 }
 
 html {
