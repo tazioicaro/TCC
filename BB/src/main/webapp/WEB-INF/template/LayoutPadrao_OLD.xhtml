@@ -1,0 +1,173 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+
+
+	<title><ui:insert name="titulo">Sistema de Pedidos de venda</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistemas.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+	<h:outputStylesheet library="css" name="fonte.css" />
+
+
+	<h:outputStylesheet library="css" name="perfect-scrollbar.css" />
+	<h:outputScript library="js" name="perfect-scrollbar.js" />
+
+	<!-- <h:outputStylesheet library="css" name="/fontes/fontAwesome/css/font-awesome.min.css" /> -->
+	<link
+		href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css'
+		rel='stylesheet' type='text/css' />
+
+</h:head>
+<h:body>
+
+
+	<header>
+		<div
+			style="border-bottom: 1px solid #f3e9dd;; width: 98.7%; height: 65%">
+			<div style="float: none; text-align: center;">
+				<h:link outcome="/Login">
+					<h:graphicImage library="images" name="logoInicial_2.png" />
+
+				</h:link>
+			</div>
+
+		</div>
+
+		<div style="float: left; margin-left: 4.2%; width: 26.9%">
+			<span
+				style="float: right; height: 1.875em; line-height: 1.875em; margin-top: 0.9%;">
+				Olá Tázio Fernandes! </span>
+
+			<h:form style="display: inline-block">
+				<p:menubar styleClass="menu-sistema">
+
+					<p:submenu label="Administração" icon="fa fa-cogs">
+						<p:submenu label="Financeiro" styleClass="subMenuPreto">
+							<p:menuitem value="Planos de Contas" />
+							<p:menuitem value="Tipos Pgtos/Recbmtos" />
+							<p:menuitem value="Comissões" />
+						</p:submenu>
+
+						<p:menuitem value="Departamentos" />
+						<p:menuitem value="Unidades" />
+
+					</p:submenu>
+				</p:menubar>
+			</h:form>
+
+		</div>
+		<div
+			style="float: right; margin-right: 8%; width: 60%; text-align: right;">
+
+
+			<h:form style="display: inline-block">
+				<p:menubar styleClass="menu-sistema">
+
+					<p:submenu label="Cadastro" icon="fa fa-folder">
+
+						<p:menuitem value="Clientes" outcome="/clientes/CadastroCliente" />
+						<p:menuitem value="Funcionarios"
+							outcome="/funcionarios/CadastroFuncionario" />
+						<p:separator />
+						<p:menuitem value="Categorias" />
+						<p:menuitem value="Produtos" outcome="/produtos/CadastroProduto" />
+						<p:menuitem value="Serviços" />
+						<p:separator />
+						<p:menuitem value="Fornecedores" />
+					</p:submenu>
+
+					<p:submenu label="Agendamento" icon="fa fa-calendar">
+						<p:menuitem value="Novo agendamento"
+							outcome="/agendamentos/Agendamentos" />
+						<p:menuitem value="Pesquisar" />
+					</p:submenu>
+
+					<p:submenu label="Pedido" icon="fa fa-list-alt">
+						<p:menuitem value="Novo pedido" />
+						<p:menuitem value="Pesquisa"  outcome="/pedidos/PesquisaPedidos"/>
+					</p:submenu>
+
+					<p:submenu label="Localizar" icon="fa fa-search">
+						<p:menuitem value="Clientes" />
+						<p:separator />
+						<p:menuitem value="Produtos" outcome="/produtos/PesquisaProdutos"/>
+						<p:separator />
+						<p:menuitem value="Funcionários" />
+						<p:separator />
+						<p:menuitem value="Serviços" />
+						<p:separator />
+						<p:menuitem value="Fornecedores" />
+					</p:submenu>
+
+					<p:menuitem value="Sair" style="margin-left:150%;" />
+				</p:menubar>
+			</h:form>
+		</div>
+
+		<!-- Limpar as flutuações para não afetar outros componentes abaixo-->
+		<div style="clear: both"></div>
+	</header>
+
+	<!-- Inserindo componente AJAX Status 
+	  quando houver uma nova renderização , o onsuccess chamará a reconfiguração da mascara de dinheiro-->
+	<p:ajaxStatus styleClass="ajax-status" onsuccess="configurarMoeda()"
+		style="float:right; margin-right: 8%">
+
+		<!--  Inserir o que será ixibido quando uma requisição ajax for iniciada -->
+		<f:facet name="start">
+
+			<!--<p:button icon="fa fa-spinner" />-->
+			<h:graphicImage library="images" name="loading.gif" />
+		</f:facet>
+
+		<!-- Quando for carregado a imagem será substituido por nada -->
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+
+
+
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+
+	<p:separator style="margin-top:20px;" />
+
+	<footer style="text-align: center">
+		Beleza Brasileira - Sistema de Gestão de Beleza <a
+			href="http://Nãosei" target="_blank">LinkDaEmpresa</a>
+
+	</footer>
+
+	<!--  Selecionando todos os componentes que com a classe css moeda (que apenas tem na pagina) 
+	     chamando o script maskMoney com as propriedade desejadas que são:
+	     simbolo decimal, simbolo de milhar e se aceita zero-->
+	<script>
+	 function configurarMoeda(){
+		 $(".moeda").maskMoney({decimal: ",", thousands: ".", allowZero:true});
+	 }
+	  
+	 <!--Quando este documento estiver pronto executar o configurar moeda-->
+	 $(document).ready(function(){
+		 configurarMoeda();
+		 
+	 });
+	 
+	</script>
+</h:body>
+</html>
+
+
+
+
