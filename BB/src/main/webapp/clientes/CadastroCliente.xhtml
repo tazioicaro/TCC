@@ -20,10 +20,11 @@
 		<h:form id="form" styleClass="ui-fluid">
 
 			<div id="features"
-				style="padding: 10px 0; text-align: center; text-align: center;">
+				style="padding: 10px 0; text-align: center; text-align: center; background-color:  #f5f8f9;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro</h1>
+					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; 
+					display: inline-block; padding-bottom: 5px;">Cadastro</h1>
 			</div>
 
 			<h:form id="form"
@@ -40,66 +41,20 @@
 
 				<!-- Refazer Toolsbar -->
 
-
-div id="j_idt168:j_idt169" class="ui-toolbar ui-widget ui-widget-header ui-corner-all ui-helper-clearfix" role="toolbar"><div
-					class="ui-toolbar-group-left">
-					<button id="j_idt168:j_idt170" name="j_idt168:j_idt170"
-						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
-						type="button" role="button" aria-disabled="false">
-						<span class="ui-button-icon-left ui-icon ui-c fa fa-plus"></span><span
-							class="ui-button-text ui-c">New</span>
-					</button>
-					<button id="j_idt168:j_idt171" name="j_idt168:j_idt171"
-						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
-						type="button" role="button" aria-disabled="false">
-						<span class="ui-button-icon-left ui-icon ui-c fa fa-folder-open"></span><span
-							class="ui-button-text ui-c">Open</span>
-					</button>
-
-					<span class="ui-separator" style="padding-right: 5px;"> <span
-						class="fa fa-ellipsis-v SoftGray"></span>
-					</span>
-					<button id="j_idt168:j_idt173" name="j_idt168:j_idt173"
-						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"
-						title="Save" type="button" role="button" aria-disabled="false">
-						<span class="ui-button-icon-left ui-icon ui-c fa fa-save"></span><span
-							class="ui-button-text ui-c">Save</span>
-					</button>
-					<button id="j_idt168:j_idt174" name="j_idt168:j_idt174"
-						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"
-						title="Delete" type="button" role="button" aria-disabled="false">
-						<span class="ui-button-icon-left ui-icon ui-c fa fa-trash"></span><span
-							class="ui-button-text ui-c">Delete</span>
-					</button>
-					<button id="j_idt168:j_idt175" name="j_idt168:j_idt175"
-						class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only"
-						title="Print" type="button" role="button" aria-disabled="false">
-						<span class="ui-button-icon-left ui-icon ui-c fa fa-print"></span><span
-							class="ui-button-text ui-c">Print</span>
-					</button>
-				</div>
-				<div class="ui-toolbar-group-right">
-					<span id="j_idt168:j_idt176" class="ui-menubutton"><button
-							id="j_idt168:j_idt176_button" name="j_idt168:j_idt176_button"
-							type="button"
-							class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left"
-							role="button" aria-disabled="false">
-							<span
-								class="ui-button-icon-left ui-icon ui-c ui-icon-triangle-1-s"></span><span
-								class="ui-button-text ui-c">Options</span>
-						</button></span>
-				</div>
-				<!--  Nova Tools bar acaba aqui -->
+				<!--  Nova Tools bar acaba aqui 
+				
+				<div id="j_idt45_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
+								<span class="ui-panel-title">TASKS</span>
+							</div>-->
+				
 				<p:toolbar style="margin-top:20px">
-					<p:toolbarGroup styleClass="ui-toolbar-group-left">
+					<p:toolbarGroup style="display: inline-flex;" >
 
-						<p:button value="Novo" outcome="/clientes/CadastroCliente"
-							styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" />
+						<p:button value="Novo" outcome="/clientes/CadastroCliente" />
 
 						<p:commandButton value="Salvar" id="botaoSalvar"
 							action="#{cadastroClienteBean.cadastrar}" update="@form"
-							ajax="true" validateClient="true"
-							styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" />
+							ajax="true" validateClient="true" />
 
 					</p:toolbarGroup>
 
@@ -110,7 +65,7 @@ div id="j_idt168:j_idt169" class="ui-toolbar ui-widget ui-widget-header ui-corne
 
 
 				<p:panelGrid columns="2" id="painel"
-					style="width:100%; margin-top:20px" columnClasses="rotuloP, campoP"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;" columnClasses="rotuloP, campoP"
 					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 					<p:outputLabel value="Nome" for="nome" />
 					<p:inputText id="nome" size="120" maxlength="120"
