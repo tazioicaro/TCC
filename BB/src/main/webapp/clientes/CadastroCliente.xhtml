@@ -6,6 +6,98 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
+
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/theme.css" />
+	
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/fa/font-awesome.css" />
+	
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/components.css" />
+	
+<script type="text/javascript"
+	src="../resources/css/verona/jquery/jquery.js"></script>
+	
+<script type="text/javascript"
+	src="../resources/css/verona/core.js"></script>
+	
+<script type="text/javascript"
+	src="../resources/css/verona/components.js"></script>
+	
+<script type="text/javascript"
+	src="../resources/css/verona/jquery/jquery-plugins.js"></script>
+	
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/charts/charts.css" />
+	
+<script type="text/javascript"
+	src="../resources/css/verona/charts/charts.js"></script>
+	
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/schedule/schedule.css" />
+	
+<script type="text/javascript"
+	src="../resources/css/verona/moment/moment.js"></script>
+	
+<script type="text/javascript"
+	src="../resources/css/verona/schedule/schedule.js"></script>
+	
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/css/nanoscroller.css" />
+	
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/css/animate.css" />
+<link type="text/css" rel="stylesheet"
+	href="../resources/css/verona/css/layout.css" />
+<script type="text/javascript">
+	if (window.PrimeFaces) {
+		PrimeFaces.settings.locale = 'en_US';
+	}
+</script>
+<script type="text/javascript"
+	src="../resources/css/verona/js/nanoscroller.js"></script>
+<script type="text/javascript"
+	src="../resources/css/verona/js/layout.js"></script>
+
+<script type="text/javascript">
+	//<![CDATA[
+	function skinBar() {
+		this.cfg.shadow = false;
+		this.cfg.title = '';
+		this.cfg.seriesColors = [ '#9fd037', '#f7cb00' ];
+		this.cfg.grid = {
+			background : '#ffffff',
+			borderColor : '#ffffff',
+			gridLineColor : '#dce2e7',
+			shadow : false
+		};
+		this.cfg.axesDefaults = {
+			borderWidth : 0.1,
+			borderColor : 'dce2e7',
+			rendererOptions : {
+				textColor : '#2d353c'
+			}
+		};
+		this.cfg.seriesDefaults = {
+			shadow : false,
+			lineWidth : 1,
+			renderer : $.jqplot.BarRenderer,
+			markerOptions : {
+				shadow : false,
+				size : 7,
+				style : 'circle'
+			}
+		}
+	}
+	//]]>
+</script>
+
+
+
+
+
+
 	<ui:define name="titulo">Novo CLiente</ui:define>
 
 	<ui:define name="corpo">
