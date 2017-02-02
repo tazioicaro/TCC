@@ -51,13 +51,13 @@ public class CadastroClienteBean implements Serializable {
 		cliente.setEnderecos(enderecos);
 	}
 	
-	
+	//Remover
 	public void inicializar(){
 		if(FacesUtil.notIsPostBack()){
 		especialidadesRaizes = especialidades.raizes();
 		}
 	}
-	
+	//Remover
 	public void carregarServicoDeEspecialidades(){
 		
 		servicoDeEspecialidades = especialidades.servicoDe(especialidadePai);
@@ -65,12 +65,20 @@ public class CadastroClienteBean implements Serializable {
 	}
 	
 	
-public void salvar(){
+public void cadastrar(){
 		
-		System.out.println("ESPECIALIDADE Selecionada: " +especialidadePai.getDescricao());
+//		System.out.println("ESPECIALIDADE Selecionada: " +especialidadePai.getDescricao());
+//		
+//		System.out.println("Serviço Selecionado: " +servicos.getEspecialidade().getDescricao());
 		
-		System.out.println("Serviço Selecionado: " +servicos.getEspecialidade().getDescricao());
+	
+	try{
+		//Fazer Service de Cadastro de cliente
+		//this.cliente = cadastr
 		
+	}catch(Exception e){
+		
+	}
 		
 		
 	}
