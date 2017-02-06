@@ -23,23 +23,24 @@
 	font-family: 'Lato';
 	font-style: normal;
 	font-weight: 300;
-	src:
-	    url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.eot']}");
-	
+	src:  url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-300.eot']}");	
 	/* IE9 Compat Modes */
 	src: local("Lato Light"), local("Lato-Light"),
-		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.eot']}?#iefix")
-		format('embedded-opentype'),		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.woff2']}")
-		format('woff2'),		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.woff']}")
+			
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-300.eot']}?#iefix")
+		format('embedded-opentype'),
+				
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-300.woff2']}")
+		format('woff2'),	
+			
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-300.woff']}")
 		format('woff'),		
-			url('../fonts/lato-v11-latin-ext_latin-300.ttf')
+		
+			url('../fonts/lato-v11-latin-ext_latin-700.ttf')
 		format('truetype'),		
-		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-300.svg']}#Lato")
-		format('svg');			
-	
+		
+		url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-300.svg']}#Lato")
+		format('svg');
 	/* Legacy iOS */	
 	
 }
@@ -52,15 +53,20 @@
 		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.eot']}");
 	/* IE9 Compat Modes */
 	src: local("Lato Regular"), local("Lato-Regular"),
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.eot']}?#iefix")
-		format('embedded-opentype'),		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.woff2']}")
-		format('woff2'),		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.woff']}")
+	
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-regular.eot']}?#iefix")
+		format('embedded-opentype'),	
+			
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-regular.woff2']}")
+		format('woff2'),	
+			
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-regular.woff']}")
 		format('woff'),		
+		
 			url('../fonts/lato-v11-latin-ext_latin-regular.ttf')
-		format('truetype'),		
-		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-regular.svg']}#Lato")
+		format('truetype'),	
+			
+		url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-regular.svg']}#Lato")
 		format('svg');	
 	/* Legacy iOS */	
 	
@@ -70,20 +76,25 @@
 	font-family: 'Lato';
 	font-style: normal;
 	font-weight: 700;
-	src:
-		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.eot']}");
+	src:  url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-700.eot']}");
+	
 	/* IE9 Compat Modes */
-	src: local("Lato Bold"), local("Lato-Bold"),
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.eot']}?#iefix")
-		format('embedded-opentype'),		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.woff2']}")
-		format('woff2'),		
-			url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.woff']}")
+	src: local("Lato Light"), local("Lato-Light"),
+			
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-700.eot']}?#iefix")
+		format('embedded-opentype'),
+				
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-700.woff2']}")
+		format('woff2'),	
+			
+			url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-700.woff']}")
 		format('woff'),		
+		
 			url('../fonts/lato-v11-latin-ext_latin-700.ttf')
 		format('truetype'),		
-		url("#{resource['css/verona:fonts/lato-v11-latin-ext_latin-700.svg']}#Lato")
-		format('svg');	
+		
+		url("#{resource['css/verona/fonts/lato-v11-latin-ext_latin-700.svg']}#Lato")
+		format('svg'); 		
 	/* Legacy iOS */
 	
 

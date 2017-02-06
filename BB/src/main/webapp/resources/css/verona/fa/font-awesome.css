@@ -4,78 +4,23 @@
  */
 @font-face {
 	font-family: 'FontAwesome';
-	src: 
-	url("#{resource['css/verona:fa/fontawesome-webfont.eot']}");
-		
-	src:
-		url("#{resource['css/verona:fa/fontawesome-webfont.eot']}?#iefix")
-		format('embedded-opentype'),		 
-		 
-		url("#{resource['css/verona:fa/fontawesome-webfont.woff2']}")
-		format('woff2'),		
-		
-		url("#{resource['css/verona:fa/fontawesome-webfont.woff']}")
-		format('woff'),
-					
-		url('../fa/fontawesome-webfont.ttf')
-		format('truetype'),
-		
-		url("#{resource['css/verona:fa/fontawesome-webfont.svg']}#fontawesomeregular")
-		format('svg');		 
+	src: 		
+		url("#{resource['css/verona/fa/fontawesome-webfont.eot']}");	
+
+	src: 			
+			url("#{resource['css/verona/fa/fontawesome-webfont.eot']}?#iefix")
+		format('embedded-opentype'),				
+			url("#{resource['css/verona/fa/fontawesome-webfont.woff2']}")
+		format('woff2'),				
+			url("#{resource['css/verona/fa/fontawesome-webfont.woff']}")
+		format('woff'),	
+			url('../fa/fontawesome-webfont.ttf')
+			format('truetype'),		
+		   url("#{resource['css/verona/fa/fontawesome-webfont.svg']}#fontawesomeregular")
+		format('svg');	 
        
-	font-weight: normal;
-	font-style: normal 
-	
-	/*!
-	 src:url("#{resource['awesome/fonts/fontawesome-webfont.eot']}?v=4.0.3");
- src:url("#{resource['awesome/fonts/fontawesome-webfont.eot']}?#iefix&v=4.0.3") format('embedded-opentype'),
- url("#{resource['awesome/fonts/fontawesome-webfont.woff']}?v=4.0.3") format('woff'),
- url("#{resource['awesome/fonts/fontawesome-webfont.ttf']}?v=4.0.3") format('truetype'),
- url("#{resource['awesome/fonts/fontawesome-webfont.svg']}?v=4.0.3#fontawesomeregular") format('svg'); 
- 
- 
- @font-face { font-family: 'FontAwesome';
-	src:
-		url("../resources/css/verona/fa/fontawesome-webfont.eot?v=6.0?v=4.6.1");
-	src:
-		url("../resources/css/verona/fa/fontawesome-webfont.eot?v=6.0&#iefix&v=4.6.1")
-		format('embedded-opentype'),
-		url("../resources/css/verona/fa/fontawesome-webfont.woff2?v=6.0?v=4.6.1")
-		format('woff2'),
-		url("/verona/javax.faces.resource/fa/fontawesome-webfont.woff.xhtml?v=6.0?v=4.6.1")
-		format('woff'),
-		url("/verona/javax.faces.resource/fa/fontawesome-webfont.ttf.xhtml?v=6.0?v=4.6.1")
-		format('truetype'),
-		url("/verona/javax.faces.resource/fa/fontawesome-webfont.svg.xhtml?v=6.0?v=4.6.1#fontawesomeregular")
-		format('svg');
 	font-weight: normal;
 	font-style: normal
-}
-
-
-src: url("#{resource['bootstrap-3.3.5-dist:fonts/glyphicons-halflings-regular.eot']}");
- 
-  src: url("#{resource['bootstrap-3.3.5-dist:fonts/glyphicons-halflings-regular.eot']}?#iefix")
-       format('embedded-opentype'),
-   
-       url("#{resource['bootstrap-3.3.5-dist:fonts/glyphicons-halflings-regular.woff2']}")
-        format('woff2'),
-        
-       url("#{resource['bootstrap-3.3.5-dist:fonts/glyphicons-halflings-regular.woff']}")
-        format('woff'),
-        
-       url('../fonts/glyphicons-halflings-regular.ttf')
-        format('truetype'),
-        
-       url("#{resource['bootstrap-3.3.5-dist:fonts/glyphicons-halflings-regular.svg']}#glyphicons_halflingsregular"
-       ) format('svg');
-       
-
-*/
-
-	
-	
-
 }
 .fa {
 	display: inline-block;

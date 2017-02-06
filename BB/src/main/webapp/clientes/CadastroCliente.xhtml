@@ -38,15 +38,7 @@
 
 
 
-				<p:messages autoUpdate="true" closable="true" />
-
-				<!-- Refazer Toolsbar -->
-
-				<!--  Nova Tools bar acaba aqui 
-				
-				<div id="j_idt45_header" class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all">
-								<span class="ui-panel-title">TASKS</span>
-							</div>-->
+				<p:messages autoUpdate="true" closable="true" />				
 				
 				<p:toolbar style="margin-top:20px">
 					<p:toolbarGroup style="display: inline-flex;" >
@@ -54,8 +46,8 @@
 						<p:button value="Novo" outcome="/clientes/CadastroCliente" />
 
 						<p:commandButton value="Salvar" id="botaoSalvar"
-							action="#{cadastroClienteBean.cadastrar}" update="@form"
-							ajax="true" validateClient="true" />
+							actionListener="#{cadastroClienteBean.cadastrar}" 
+							 validateClient="true"   process="form"/>
 
 					</p:toolbarGroup>
 
@@ -93,16 +85,10 @@
                     <p:outputLabel value="Data Nascimento: " />
                     <p:calendar label="idade" value="#{cadastroClienteBean.cliente.dataNascimento}" >
                     <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </p:calendar>
-
- 
-                   
-
+                    </p:calendar>     
 
 				</p:panelGrid>
 			</h:form>
-
-
 
 		</h:form>
 
