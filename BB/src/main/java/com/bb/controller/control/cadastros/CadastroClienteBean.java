@@ -40,9 +40,9 @@ public class CadastroClienteBean implements Serializable {
 	private boolean cpf;
 	private boolean cnpj;
 
-	@Inject
-	private Especialidades especialidades;
-	
+//	@Inject
+//	private Especialidades especialidades;
+//	
 	@Inject
 	private CadastroClienteService cadastroClienteService;
 
@@ -61,27 +61,19 @@ public class CadastroClienteBean implements Serializable {
 			limpar();
 
 		}
+		
+		enderecos.add(endereco);
+		cliente.setEnderecos(enderecos);
 
-	}
-	// Remover
-	// public void carregarServicoDeEspecialidades(){
-	//
-	// servicoDeEspecialidades = especialidades.servicoDe(especialidadePai);
-	//
-	// }
+	}	
 
 	public void cadastrar() {
 
-		// System.out.println("ESPECIALIDADE Selecionada: "
-		// +especialidadePai.getDescricao());
-		//
-		// System.out.println("Serviço Selecionado: "
-		// +servicos.getEspecialidade().getDescricao());
-
+	
 		try {
 			
 			this.cliente = cadastroClienteService.salvar(this.cliente);
-			FacesUtil.addInforMessage("Cleinte Cadastrado com sucesso!");
+			FacesUtil.addInforMessage("Cliente Cadastrado com sucesso!");
 			limpar();
 
 		} catch (NegocioException ne) {
@@ -95,9 +87,7 @@ public class CadastroClienteBean implements Serializable {
 
 		enderecos = new ArrayList<Endereco>();
 		cliente = new Cliente();
-		endereco = new Endereco();
-		enderecos.add(endereco);
-		cliente.setEnderecos(enderecos);
+		endereco = new Endereco();		
 		cpf = false;
 		cnpj = false;
 		radio = null;

@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,8 +30,9 @@ import com.bb.models.Enumerators.TipoPessoa;
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
+	
 	@Column(name = "codigo_cliente")
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
@@ -71,7 +73,7 @@ public class Cliente implements Serializable {
 	@Column(nullable = false, length = 12)
 	private TipoPessoa tipo;
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<Endereco> enderecos = new ArrayList<Endereco>();
 
 	@Size(max = 150)
