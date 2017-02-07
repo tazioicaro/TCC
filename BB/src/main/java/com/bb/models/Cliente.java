@@ -10,7 +10,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -73,8 +72,8 @@ public class Cliente implements Serializable {
 	@Column(nullable = false, length = 12)
 	private TipoPessoa tipo;
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	private List<Endereco> enderecos = new ArrayList<Endereco>();
+	@OneToMany(mappedBy="cliente", cascade= CascadeType.ALL) //Quando salvar o cliente, Persisitir o seu endereço 
+	private List<Endereco> enderecos = new ArrayList<>();		
 
 	@Size(max = 150)
 	@Column(length = 150)
@@ -101,6 +100,24 @@ public class Cliente implements Serializable {
 	public boolean isCNPJ(){
 		return TipoPessoa.JURIDICA.equals(this.tipo);
 	}
+	
+	
+	@Transient
+	public boolean isVazio(){
+		return getCodigo()== null;
+	}
+	
+	@Transient
+	public void clienteEndereco(){
+		if (!isVazio()){
+			Endereco end = new Endereco();
+			
+			end.setCliente(this);
+			
+		}
+	}
+	
+	
 
 	public Long getCodigo() {
 		return codigo;

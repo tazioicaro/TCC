@@ -38,10 +38,10 @@ public class Endereco implements Serializable{
 	
 	@Column(length= 150)
 	private String referencia;
-	
-	
+		
+
 	@ManyToOne
-	@JoinColumn(name="cliente_codigo", nullable= false) 
+	@JoinColumn(name="cliente_codigo", nullable=false)
 	private Cliente cliente;
 	
 	

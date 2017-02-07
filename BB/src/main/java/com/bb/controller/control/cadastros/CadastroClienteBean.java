@@ -27,7 +27,7 @@ public class CadastroClienteBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Cliente cliente;
-	private Endereco endereco;
+	//private Endereco endereco;
 	// private Servico servicos;
 
 //	@NotNull
@@ -62,8 +62,8 @@ public class CadastroClienteBean implements Serializable {
 
 		}
 		
-		enderecos.add(endereco);
-		cliente.setEnderecos(enderecos);
+//		enderecos.add(endereco);
+//		cliente.setEnderecos(enderecos);
 
 	}	
 
@@ -87,7 +87,7 @@ public class CadastroClienteBean implements Serializable {
 
 		enderecos = new ArrayList<Endereco>();
 		cliente = new Cliente();
-		endereco = new Endereco();		
+		//endereco = new Endereco();		
 		cpf = false;
 		cnpj = false;
 		radio = null;
@@ -130,13 +130,13 @@ public class CadastroClienteBean implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
+//	public Endereco getEndereco() {
+//		return endereco;
+//	}
+//
+//	public void setEndereco(Endereco endereco) {
+//		this.endereco = endereco;
+//	}
 
 	public List<Endereco> getEnderecos() {
 		return enderecos;
