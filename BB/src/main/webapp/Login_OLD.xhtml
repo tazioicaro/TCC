@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+	<h:outputScript library="js" name="/login/jqueryPF18.js" />
+	<h:outputScript library="js" name="/login/primefaces.js" />
+	
+	
+	<h:outputStylesheet library="css" name="/login/SistemaLoginRioLayout.css" />	
+	<h:outputStylesheet library="css" name="/login/core-layout.css" />
+	<h:outputStylesheet library="css" name="/login/login.css" />	
+	<h:outputStylesheet library="css" name="/login/primefaces.css" />
+	<h:outputStylesheet library="css" name="/login/theme.css" />
+		
+
+	
+	 <!-- <h:outputStylesheet library="css" name="/login/animacao.css" />
+	<h:outputStylesheet library="css" name="/login/efeitos.css" />-->
+	<h:outputStylesheet library="css" name="fonte.css" />
+	
+	
+	
+	
+	<h:link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'/>
+	
+	
+
+	<title>Facelet Title</title>
+
+</h:head>
+
+<h:body styleClass="loginbodyblue">
+
+<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
+
+<div class="Wid33 MarAuto WidAutoOnMobile">
+            <!--  --> <h:graphicImage library="images" name="teste.png"  style="width:40%; max-width:200px; height:100px;"/>
+	<div class="EmptyBox30"></div>
+	
+	<div class="Card ShadowEffect">
+               
+                <div class="EmptyBox20"></div>
+                
+                
+                <div class="Wid100 OvHidden BigTopic Fs30">
+                <i class="fa fa-users Fs30"></i> Login </div>
+                
+                
+                 <div class="EmptyBox20"></div>
+                 
+                 
+                 <div class="Wid100">
+                     <input id="j_idt9" name="j_idt9" type="text" placeholder="CPF" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all Wid80 TexAlCenter Fs18" role="textbox" aria-disabled="false" aria-readonly="false"/>
+                  </div>
+                     
+                    <div class="EmptyBox10"></div> 
+                    
+                    <div class="Wid100">
+                    <input id="j_idt11" name="j_idt11" type="password" placeholder="Senha" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all Wid80 TexAlCenter Fs18" role="textbox" aria-disabled="false" aria-readonly="false"/>
+                    </div>
+                    
+                    <div class="EmptyBox30"></div>
+                    
+                   <!--  <div id="j_idt13" class="ui-chkbox ui-widget">                   
+                    
+                    <div class="ui-helper-hidden-accessible">
+                        <input id="j_idt13_input" name="j_idt13_input" type="checkbox" aria-checked="false"/>
+                    </div>
+                    
+                    <div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+                    <span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c">
+                    </span>
+                    </div>
+                    <span class="ui-chkbox-label">I Accept Terms And Policies</span>
+                    </div>
+                    
+                    <div class="EmptyBox30"></div> -->
+                    
+                    <div class="Wid100">
+                    <button id="j_idt15" name="j_idt15" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left Wid60 Fs18 White RaisedButton" onclick="window.open('/clientes/CadastroCliente.xhtml','_self')" role="button" aria-disabled="false">
+                    <span class="ui-button-icon-left ui-icon ui-c fa fa-sign-in"></span>
+                    <span class="ui-button-text ui-c">Entrar</span>
+                    </button>
+                    </div>
+                   
+                   
+                    <div class="EmptyBox5"></div>
+                   
+                   
+                    <div class="Wid100">                    
+                    <button id="j_idt17" name="j_idt17" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left RedButton Wid60 Fs18 White RaisedButton" onclick="window.open('/rio/login.xhtml','_self')" role="button" aria-disabled="false">
+                    <span class="ui-button-icon-left ui-icon ui-c fa fa-lock"></span>
+                    <span class="ui-button-text ui-c">Esqueci a Senha</span>
+                    </button>
+                    </div>
+                   
+                   
+                    <div class="EmptyBox20"></div>
+                   
+                   
+                    <div class="Separator"></div>
+                   
+                   
+                                      
+                    <div class="EmptyBox10"></div>
+                    
+                    <div class="Wid100">
+                    <input id="j_idt11" name="j_idt11" type="text" placeholder="E-mail" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all Wid80 TexAlCenter Fs18" role="textbox" aria-disabled="false" aria-readonly="false"/>
+                    </div>
+                    
+                    <div class="EmptyBox10"></div>
+                    
+                    <div class="Wid100">
+                    <button id="j_idt19" name="j_idt19" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left GreenButton Wid60 Fs18 White RaisedButton" onclick="window.open('/rio/login.xhtml','_self')" role="button" aria-disabled="false">
+                    
+                    <span class="ui-button-icon-left ui-icon ui-c fa fa-key"></span>
+                    <span class="ui-button-text ui-c">Solicitar Acesso</span>
+                    </button>
+                    </div>
+                    
+                    <div class="EmptyBox20"></div>
+                </div>
+                <div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
+                       
+                    </div>
+	
+	
+	
+	</div>
+</div>
+</h:body>
+
+</html>

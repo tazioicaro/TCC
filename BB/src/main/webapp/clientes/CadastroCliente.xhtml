@@ -21,7 +21,7 @@
 		<h:form id="form" styleClass="ui-fluid">
 
 			<div id="features"
-				style="padding: 10px 0; text-align: center; text-align: center; background-color:  #f5f8f9;">
+				style="padding: 10px 0;text-align: center;text-align: center;background-color:  #f5f8f9;margin-top: 10px;">
 
 				<h1
 					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; 
@@ -63,11 +63,11 @@
 					
 				<p:outputLabel value="Nome: *" />
                     <p:inputText  required="true" label="Nome" value="#{cadastroClienteBean.cliente.nome}" styleClass="ui-g-12" size="110"/>
-                                        
+                  <!--                        
                     <p:outputLabel value="CPF: *" />
                     <p:inputText  required="true" label="cpf" value="#{cadastroClienteBean.cliente.documentoReceitaFederal}" styleClass="ui-g-12"/>
-                    
-                    
+                    -->
+                    <p:outputLabel/>
 					<p:outputLabel value="Email: *" />
                     <p:inputText  required="true" label="Email" value="#{cadastroClienteBean.cliente.email}" styleClass="ui-g-12"/>
                     
@@ -85,7 +85,36 @@
                     <p:outputLabel value="Data Nascimento: " />
                     <p:calendar label="idade" value="#{cadastroClienteBean.cliente.dataNascimento}" >
                     <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </p:calendar>     
+                    </p:calendar>  
+                    
+                    <p:outputLabel value="Identificação:" for="pessoa" />
+                    				
+				<p:selectOneRadio value="#{cadastroClienteBean.cliente.tipo}"
+					id="pessoa" valueChangeListener="#{cadastroClienteBean.pegarDadosEscolhido}"
+					styleClass="ui-selectonemenu-label ui-inputfield ui-corner-all" >
+					<f:selectItems value="#{cadastroClienteBean.tipoPessoa}"
+						var="tipoPessoa" itemLabel="#{tipoPessoa.descricao}"
+						itemValue="#{tipoPessoa}" />
+
+					<p:ajax event="change" update="exibir exibirNome"
+						ignoreAutoUpdate="true" process="@this"
+						listener="#{cadastroClienteBean.carregarInputDocumentoIdentificacao}" />
+
+				</p:selectOneRadio>
+				<p:outputPanel id="exibirNome">
+					<p:outputLabel value="CPF" for="cpf" rendered="#{cadastroClienteBean.cpf}" />
+
+					<p:outputLabel value="CNPJ" for="cnpj" rendered="#{cadastroClienteBean.cnpj}" />
+				</p:outputPanel>
+
+				<p:outputPanel id="exibir">
+					<p:inputMask id="cpf" mask="999.999.999-99"
+						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
+						rendered="#{cadastroClienteBean.cpf}" />
+					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
+						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
+						rendered="#{cadastroClienteBean.cnpj}" />
+				</p:outputPanel>   
 
 				</p:panelGrid>
 			</h:form>

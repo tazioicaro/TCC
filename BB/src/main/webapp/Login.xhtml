@@ -1,143 +1,120 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
-
 <h:head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
 
-	
-	<h:outputScript library="js" name="jquery.maskMoney.js" />
-	<h:outputScript library="js" name="/login/jqueryPF18.js" />
-	<h:outputScript library="js" name="/login/primefaces.js" />
-	
-	
-	<h:outputStylesheet library="css" name="/login/SistemaLoginRioLayout.css" />	
-	<h:outputStylesheet library="css" name="/login/core-layout.css" />
-	<h:outputStylesheet library="css" name="/login/login.css" />	
-	<h:outputStylesheet library="css" name="/login/primefaces.css" />
-	<h:outputStylesheet library="css" name="/login/theme.css" />
-		
 
-	
-	 <!-- <h:outputStylesheet library="css" name="/login/animacao.css" />
-	<h:outputStylesheet library="css" name="/login/efeitos.css" />-->
-	<h:outputStylesheet library="css" name="fonte.css" />
-	
-	
-	
-	
-	<h:link href='http://fonts.googleapis.com/css?family=Irish+Grover' rel='stylesheet' type='text/css'/>
-	
-	
 
-	<title>Facelet Title</title>
+	<link type="text/css" rel="stylesheet"
+		href="/DeployTomcatTCC/resources/css/verona/theme.css" />
 
+	<link type="text/css" rel="stylesheet"
+		href="/DeployTomcatTCC/resources/css/verona/fa/font-awesome.css" />
+
+	<link type="text/css" rel="stylesheet"
+		href="/DeployTomcatTCC/resources/css/verona/components.css" />
+
+	<script type="text/javascript"
+		src="/DeployTomcatTCC/resources/css/verona/jquery/jquery.js"/>
+
+	<script type="text/javascript" 
+	src="/DeployTomcatTCC/resources/css/verona/core.js"/>
+
+	<script type="text/javascript"
+		src="/DeployTomcatTCC/resources/css/verona/components.js"/>
+
+	<script type="text/javascript"
+		src="/DeployTomcatTCC/resources/css/verona/jquery/jquery-plugins.js"/>
+
+	<script type="text/javascript"
+		src="/DeployTomcatTCC/resources/css/verona/moment/moment.js"/>
+
+	<link type="text/css" rel="stylesheet"
+		href="/DeployTomcatTCC/resources/css/verona/css/nanoscroller.css" />
+
+	<link type="text/css" rel="stylesheet"
+		href="/DeployTomcatTCC/resources/css/verona/css/animate.css" />
+	<link type="text/css" rel="stylesheet"
+		href="/DeployTomcatTCC/resources/css/verona/css/layout.css" />
+	<!-- 
+<script type="text/javascript">
+	if (window.PrimeFaces) {
+		PrimeFaces.settings.locale = 'en_US';
+	}
+</script> -->
+
+	<title>Beleza Brasileira</title>
 </h:head>
 
-<h:body styleClass="loginbodyblue">
-
-<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
-
-<div class="Wid33 MarAuto WidAutoOnMobile">
-            <!--  --> <h:graphicImage library="images" name="teste.png"  style="width:40%; max-width:200px; height:100px;"/>
-	<div class="EmptyBox30"></div>
-	
-	<div class="Card ShadowEffect">
-               
-                <div class="EmptyBox20"></div>
-                
-                
-                <div class="Wid100 OvHidden BigTopic Fs30">
-                <i class="fa fa-users Fs30"></i> Login </div>
-                
-                
-                 <div class="EmptyBox20"></div>
-                 
-                 
-                 <div class="Wid100">
-                     <input id="j_idt9" name="j_idt9" type="text" placeholder="CPF" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all Wid80 TexAlCenter Fs18" role="textbox" aria-disabled="false" aria-readonly="false"/>
-                  </div>
-                     
-                    <div class="EmptyBox10"></div> 
-                    
-                    <div class="Wid100">
-                    <input id="j_idt11" name="j_idt11" type="password" placeholder="Senha" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all Wid80 TexAlCenter Fs18" role="textbox" aria-disabled="false" aria-readonly="false"/>
-                    </div>
-                    
-                    <div class="EmptyBox30"></div>
-                    
-                   <!--  <div id="j_idt13" class="ui-chkbox ui-widget">                   
-                    
-                    <div class="ui-helper-hidden-accessible">
-                        <input id="j_idt13_input" name="j_idt13_input" type="checkbox" aria-checked="false"/>
-                    </div>
-                    
-                    <div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
-                    <span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c">
-                    </span>
-                    </div>
-                    <span class="ui-chkbox-label">I Accept Terms And Policies</span>
-                    </div>
-                    
-                    <div class="EmptyBox30"></div> -->
-                    
-                    <div class="Wid100">
-                    <button id="j_idt15" name="j_idt15" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left Wid60 Fs18 White RaisedButton" onclick="window.open('/clientes/CadastroCliente.xhtml','_self')" role="button" aria-disabled="false">
-                    <span class="ui-button-icon-left ui-icon ui-c fa fa-sign-in"></span>
-                    <span class="ui-button-text ui-c">Entrar</span>
-                    </button>
-                    </div>
-                   
-                   
-                    <div class="EmptyBox5"></div>
-                   
-                   
-                    <div class="Wid100">                    
-                    <button id="j_idt17" name="j_idt17" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left RedButton Wid60 Fs18 White RaisedButton" onclick="window.open('/rio/login.xhtml','_self')" role="button" aria-disabled="false">
-                    <span class="ui-button-icon-left ui-icon ui-c fa fa-lock"></span>
-                    <span class="ui-button-text ui-c">Esqueci a Senha</span>
-                    </button>
-                    </div>
-                   
-                   
-                    <div class="EmptyBox20"></div>
-                   
-                   
-                    <div class="Separator"></div>
-                   
-                   
-                                      
-                    <div class="EmptyBox10"></div>
-                    
-                    <div class="Wid100">
-                    <input id="j_idt11" name="j_idt11" type="text" placeholder="E-mail" class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all Wid80 TexAlCenter Fs18" role="textbox" aria-disabled="false" aria-readonly="false"/>
-                    </div>
-                    
-                    <div class="EmptyBox10"></div>
-                    
-                    <div class="Wid100">
-                    <button id="j_idt19" name="j_idt19" type="button" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left GreenButton Wid60 Fs18 White RaisedButton" onclick="window.open('/rio/login.xhtml','_self')" role="button" aria-disabled="false">
-                    
-                    <span class="ui-button-icon-left ui-icon ui-c fa fa-key"></span>
-                    <span class="ui-button-text ui-c">Solicitar Acesso</span>
-                    </button>
-                    </div>
-                    
-                    <div class="EmptyBox20"></div>
-                </div>
-                <div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
-                       
-                    </div>
-	
-	
-	
+<h:body styleClass="login-body">
+	<div class="login-panel ui-fluid">
+		<div class="ui-g">
+			<div class="ui-g-12 logo-container">
+				<img id="j_idt7" src="resources/css/verona/images/logo-dark.png.png"
+					alt="" />
+				<h1>Faça seu Login</h1>
+				<h2>BEM VINDO AO BB</h2>
+			</div>
+			<div class="ui-g-12">
+				<input id="j_idt9" name="j_idt9" type="text" placeholder="Usuário"
+					class="ui-inputfield ui-inputtext ui-widget ui-state-default ui-corner-all" />
+				<script id="j_idt9_s" type="text/javascript">
+					PrimeFaces.cw("InputText", "widget_j_idt9", {
+						id : "j_idt9"
+					});
+				</script>
+			</div>
+			<div class="ui-g-12">
+				<input id="j_idt11" name="j_idt11" type="password"
+					class="ui-inputfield ui-password ui-widget ui-state-default ui-corner-all"
+					placeholder="Senha" />
+				<script id="j_idt11_s" type="text/javascript">
+					$(function() {
+						PrimeFaces.cw("Password", "widget_j_idt11", {
+							id : "j_idt11"
+						});
+					});
+				</script>
+			</div>
+			<div class="ui-g-12 chkbox-container">
+				<div id="remember-me" class="ui-chkbox ui-widget">
+					<div class="ui-helper-hidden-accessible">
+						<input id="remember-me_input" name="remember-me_input"
+							type="checkbox" autocomplete="off" aria-checked="false" />
+					</div>
+					<div class="ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+						<span class="ui-chkbox-icon ui-icon ui-icon-blank ui-c"></span>
+					</div>
+				</div>
+				<script id="remember-me_s" type="text/javascript">
+					PrimeFaces.cw("SelectBooleanCheckbox",
+							"widget_remember_me", {
+								id : "remember-me"
+							});
+				</script>
+				<label id="j_idt13" class="ui-outputlabel ui-widget"
+					for="remember-me_input">Lembrar</label>
+			</div>
+			<div class="ui-g-12 button-container">
+				<button id="j_idt15" name="j_idt15" type="button"
+					class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left green-btn raised-btn rounded-btn"
+					onclick="window.open('/DeployTomcatTCC/dashboard.xhtml','_self')">
+					<span class="ui-button-icon-left ui-icon ui-c fa fa-user"></span><span
+						class="ui-button-text ui-c">Entrar</span>
+				</button>
+				<script id="j_idt15_s" type="text/javascript">
+					PrimeFaces.cw("Button", "widget_j_idt15", {
+						id : "j_idt15"
+					});
+				</script>
+			</div>
+		</div>
 	</div>
-</div>
 </h:body>
 
 </html>
