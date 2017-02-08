@@ -1,23 +1,17 @@
 package com.bb.controller.control.cadastros;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.faces.component.html.HtmlSelectOneRadio;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
 
-import com.bb.controller.control.repository.Especialidades;
 import com.bb.controller.services.CadastroClienteService;
 import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Cliente;
-import com.bb.models.Endereco;
-import com.bb.models.Especialidade;
 import com.bb.models.Enumerators.TipoPessoa;
 
 @Named
@@ -27,22 +21,23 @@ public class CadastroClienteBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Cliente cliente;
-	//private Endereco endereco;
-	// private Servico servicos;
-
+	
+//  private Endereco endereco;
+//  private Servico servicos;
 //	@NotNull
 //	private Especialidade especialidadePai;
 //	private List<Especialidade> especialidadesRaizes;
 //	private List<Especialidade> servicoDeEspecialidades;
-	private List<Endereco> enderecos;
+//	@Inject
+//	private Especialidades especialidades;
+//	private List<Endereco> enderecos;
 	
 	private HtmlSelectOneRadio radio;
 	private boolean cpf;
 	private boolean cnpj;
 
-//	@Inject
-//	private Especialidades especialidades;
-//	
+
+	
 	@Inject
 	private CadastroClienteService cadastroClienteService;
 
@@ -68,10 +63,8 @@ public class CadastroClienteBean implements Serializable {
 	}	
 
 	public void cadastrar() {
-
 	
-		try {
-			
+		try {			
 			this.cliente = cadastroClienteService.salvar(this.cliente);
 			FacesUtil.addInforMessage("Cliente Cadastrado com sucesso!");
 			limpar();
@@ -85,7 +78,7 @@ public class CadastroClienteBean implements Serializable {
 
 	void limpar() {
 
-		enderecos = new ArrayList<Endereco>();
+		//enderecos = new ArrayList<Endereco>();
 		cliente = new Cliente();
 		//endereco = new Endereco();		
 		cpf = false;
@@ -138,15 +131,41 @@ public class CadastroClienteBean implements Serializable {
 //		this.endereco = endereco;
 //	}
 
-	public List<Endereco> getEnderecos() {
-		return enderecos;
+//	public List<Endereco> getEnderecos() {
+//		return enderecos;
+//	}
+//
+//	public void setEnderecos(List<Endereco> enderecos) {
+//		this.enderecos = enderecos;
+//	}
+
+
+	public boolean isEditando(){
+		
+		if (this.cliente.getCodigo() != null){
+			
+			if(this.cliente.getDocumentoReceitaFederal().length()<=14 && isMaiorZero()){
+				
+				this.cpf = true;
+				this.cnpj= false;
+			}
+			
+			if (this.cliente.getDocumentoReceitaFederal().length() >14 && isMaiorZero()){
+				this.cnpj = true;
+				this.cpf = false;
+			}
+		}
+		
+		return true;
 	}
-
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+	
+	public boolean isMaiorZero(){
+		
+		return this.cliente.getDocumentoReceitaFederal().length() >= 0;
+		
 	}
-
-
+	
+	
 	public HtmlSelectOneRadio getRadio() {
 		return radio;
 	}
