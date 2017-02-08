@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
 
 
@@ -13,26 +14,26 @@
 
 		<f:metadata>
 			<f:viewParam name="cliente" value="#{cadastroClienteBean.cliente}" />
-			<f:event listener="#{cadastroClienteBean.inicializar}"
-				type="preRenderView" />
+			<f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView" />
 		</f:metadata>
 
 
 		<h:form id="form" styleClass="ui-fluid">
 
 			<div id="features"
-				style="padding: 10px 0;text-align: center;text-align: center;background-color:  #f5f8f9;margin-top: 10px;">
+				style="padding: 10px 0;text-align: center;text-align: center;background-color:  
+				#f5f8f9;margin-top: 10px;">
 
 				<h1
 					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; 
 					display: inline-block; padding-bottom: 5px;">Cadastro</h1>
 			</div>
 
-			<h:form id="form"
+			<!-- <h:form id="form"
 				style="display: block !important;
 		 height: 100% !important;font-size: 14px !important;  box-sizing: border-box !important;
     -moz-box-sizing: border-box !important; -webkit-box-sizing: border-box !important;
-    color: #282828 !important; vertical-align: top !important;  padding: 1rem !important;">
+    color: #282828 !important; vertical-align: top !important;  padding: 1rem !important;"> -->
 
 				<p:focus context="form" />
 
@@ -46,8 +47,8 @@
 						<p:button value="Novo" outcome="/clientes/CadastroCliente" />
 
 						<p:commandButton value="Salvar" id="botaoSalvar"
-							actionListener="#{cadastroClienteBean.cadastrar}" 
-							 validateClient="true"   process="form"/>
+							action="#{cadastroClienteBean.cadastrar}" 
+							 validateClient="true"   update="form"/>
 
 					</p:toolbarGroup>
 
@@ -117,9 +118,7 @@
 				</p:outputPanel>   
 
 				</p:panelGrid>
-			</h:form>
-
-		</h:form>
+			</h:form>	
 
 	</ui:define>
 </ui:composition>

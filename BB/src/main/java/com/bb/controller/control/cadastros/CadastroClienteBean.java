@@ -87,7 +87,7 @@ public class CadastroClienteBean implements Serializable {
 
 	}
 	
-	
+		
 	public void carregarInputDocumentoIdentificacao(){
 		if(this.radio.getValue().toString().equals("FISICA")){
 			cliente.setTipo(TipoPessoa.FISICA);
