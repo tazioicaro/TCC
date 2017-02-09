@@ -3,8 +3,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
 
 
 
@@ -14,85 +13,82 @@
 
 		<f:metadata>
 			<f:viewParam name="cliente" value="#{cadastroClienteBean.cliente}" />
-			<f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView" />
+			<f:event listener="#{cadastroClienteBean.inicializar}"
+				type="preRenderView" />
 		</f:metadata>
 
 
-		<h:form id="form" styleClass="ui-fluid">
+		<h:form id="form" styleClass="ui-fluid" >
 
 			<div id="features"
-				style="padding: 10px 0;text-align: center;text-align: center;background-color:  
-				#f5f8f9;margin-top: 10px;">
+				style="padding: 10px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; 
-					display: inline-block; padding-bottom: 5px;">Cadastro</h1>
+					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro</h1>
 			</div>
+	
 
-			<!-- <h:form id="form"
-				style="display: block !important;
-		 height: 100% !important;font-size: 14px !important;  box-sizing: border-box !important;
-    -moz-box-sizing: border-box !important; -webkit-box-sizing: border-box !important;
-    color: #282828 !important; vertical-align: top !important;  padding: 1rem !important;"> -->
+			<p:focus context="form" />
 
-				<p:focus context="form" />
+			<p:messages autoUpdate="true" closable="true" />
 
+			<p:toolbar style="margin-top:20px">
+				<p:toolbarGroup style="display: inline-flex;">
 
+					<p:button value="Novo" outcome="/clientes/CadastroCliente" />
 
-				<p:messages autoUpdate="true" closable="true" />				
-				
-				<p:toolbar style="margin-top:20px">
-					<p:toolbarGroup style="display: inline-flex;" >
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroClienteBean.cadastrar}" validateClient="true"
+						update="form" />
 
-						<p:button value="Novo" outcome="/clientes/CadastroCliente" />
+				</p:toolbarGroup>
 
-						<p:commandButton value="Salvar" id="botaoSalvar"
-							action="#{cadastroClienteBean.cadastrar}" 
-							 validateClient="true"   update="form"/>
-
-					</p:toolbarGroup>
-
-					<p:toolbarGroup align="right">
-						<p:button value="Pesquisar" outcome="/clientes/PesquisaClientes" />
-					</p:toolbarGroup>
-				</p:toolbar>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" outcome="/clientes/PesquisaClientes" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
 
-				<p:panelGrid columns="2" id="painel"
-					style="width:100%; margin-top:20px; background-color: #f5f8f9;" columnClasses="rotuloP, campoP"
-					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
-					
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+				columnClasses="rotuloP, campoP"
+				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+
 				<p:outputLabel value="Nome: *" />
-                    <p:inputText  required="true" label="Nome" value="#{cadastroClienteBean.cliente.nome}" styleClass="ui-g-12" size="110"/>
-                  <!--                        
-                    <p:outputLabel value="CPF: *" />
-                    <p:inputText  required="true" label="cpf" value="#{cadastroClienteBean.cliente.documentoReceitaFederal}" styleClass="ui-g-12"/>
-                    -->
-                    <p:outputLabel/>
-					<p:outputLabel value="Email: *" />
-                    <p:inputText  required="true" label="Email" value="#{cadastroClienteBean.cliente.email}" styleClass="ui-g-12"/>
-                    
-                                             
-                    <p:outputLabel value="Celular: " />
-                    <p:inputMask value="#{cadastroClienteBean.cliente.celular}" mask="9999-99999"/>
-                    
-                    
-                     <p:outputLabel value="Sexo: " />                     
-                     <p:selectOneMenu value="#{cadastroClienteBean.cliente.sexo}" label="Sexo" >
-                       <f:selectItem itemLabel="Selecione o Sexo" />
-                       <f:selectItems value="#{conversoresEnuns.sexoes}" var="status" itemValue="#{status}" itemLabel="#{status.label}" />
-                      </p:selectOneMenu>                  
- 
-                    <p:outputLabel value="Data Nascimento: " />
-                    <p:calendar label="idade" value="#{cadastroClienteBean.cliente.dataNascimento}" >
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                    </p:calendar>  
-                    
-                    <p:outputLabel value="Identificação:" for="pessoa" />
-                    				
+				<p:inputText required="true" label="Nome"
+					value="#{cadastroClienteBean.cliente.nome}" styleClass="ui-g-12"
+					size="110" />			
+				
+				<p:outputLabel value="Email: *" />
+				<p:inputText required="true" label="Email"
+					value="#{cadastroClienteBean.cliente.email}" styleClass="ui-g-12" />
+
+
+				<p:outputLabel value="Celular: " />
+				<p:inputMask value="#{cadastroClienteBean.cliente.celular}"
+					mask="9999-99999" />
+
+
+				<p:outputLabel value="Sexo: " />
+				<p:selectOneMenu value="#{cadastroClienteBean.cliente.sexo}"
+					label="Sexo">
+					<f:selectItem itemLabel="Selecione o Sexo" />
+					<f:selectItems value="#{conversoresEnuns.sexoes}" var="status"
+						itemValue="#{status}" itemLabel="#{status.label}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Data Nascimento: " />
+				<p:calendar label="idade"
+					value="#{cadastroClienteBean.cliente.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
+
+				<p:outputLabel value="Identificação:" for="pessoa" />
+
 				<p:selectOneRadio value="#{cadastroClienteBean.cliente.tipo}"
-					id="pessoa" valueChangeListener="#{cadastroClienteBean.pegarDadosEscolhido}"
-					styleClass="ui-selectonemenu-label ui-inputfield ui-corner-all" >
+					id="pessoa"
+					valueChangeListener="#{cadastroClienteBean.pegarDadosEscolhido}"
+					styleClass="ui-selectonemenu-label ui-inputfield ui-corner-all">
 					<f:selectItems value="#{cadastroClienteBean.tipoPessoa}"
 						var="tipoPessoa" itemLabel="#{tipoPessoa.descricao}"
 						itemValue="#{tipoPessoa}" />
@@ -103,9 +99,11 @@
 
 				</p:selectOneRadio>
 				<p:outputPanel id="exibirNome">
-					<p:outputLabel value="CPF" for="cpf" rendered="#{cadastroClienteBean.cpf}" />
+					<p:outputLabel value="CPF:" for="cpf"
+						rendered="#{cadastroClienteBean.cpf}" />
 
-					<p:outputLabel value="CNPJ" for="cnpj" rendered="#{cadastroClienteBean.cnpj}" />
+					<p:outputLabel value="CNPJ:" for="cnpj"
+						rendered="#{cadastroClienteBean.cnpj}" />
 				</p:outputPanel>
 
 				<p:outputPanel id="exibir">
@@ -115,10 +113,10 @@
 					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
 						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
 						rendered="#{cadastroClienteBean.cnpj}" />
-				</p:outputPanel>   
+				</p:outputPanel>
 
-				</p:panelGrid>
-			</h:form>	
+			</p:panelGrid>
+		</h:form>
 
 	</ui:define>
 </ui:composition>

@@ -8,21 +8,23 @@
 	<ui:define name="titulo">Pesquisa Clientes</ui:define>
 
 	<ui:define name="corpo">
-		<h:form id="frmPesquisa" styleClass="layout-portlets-cover"
-			style="display: block !important;
-    height: 100% !important; font-size: 14px !important; box-sizing: border-box !important;
-    -moz-box-sizing: border-box !important;  -webkit-box-sizing: border-box !important;  color: #282828 !important;
-    vertical-align: top !important;   padding: 1rem !important;">
 
-			<div id="titulosH1">
-				<h1>Pesquisa clientes</h1>
+		<h:form id="form" styleClass="ui-fluid" >			
+
+			<div id="features"
+				style="padding: 10px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
+
+				<h1
+					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Pesquisa
+					clientes</h1>
 			</div>
+
+               <p:focus context="form" />
 
 			<p:messages autoUpdate="true" closable="true" />
 
 			<p:toolbar style="margin-top:20px">
-				<p:toolbarGroup>
-
+				<p:toolbarGroup style="display: inline-flex;">
 					<p:commandButton value="Pesquisar" update="@form" />
 
 				</p:toolbarGroup>
@@ -33,50 +35,53 @@
 
 			</p:toolbar>
 
-			<p:panelGrid columns="2" id="panel"
-				style="width:100%; margin-top:20px" columnClasses="rotuloP, campoP">
-				<p:outputLabel value="Nome " for="nome" />
-				<p:inputText id="nome" 
-					size="60" />
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+				columnClasses="rotuloP, campoP"
+				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
-				<p:outputLabel value="E-mail " for="email" />
-				<p:inputText id="email" 
-					size="60" />
+				<p:outputLabel value="Nome: " for="nome" />
+				<p:inputText id="nome"  styleClass="ui-g-12" size="110"/>
 
-				<p:outputLabel value="Doc. Identificação " for="doc" />
-				<p:inputText id="doc"
-					 />
+				<p:outputLabel value="E-mail: " for="email" />
+				<p:inputText id="email" styleClass="ui-g-12"  />
+
+				<p:outputLabel value="Identificação: " for="doc" />
+				<p:inputText id="doc" styleClass="ui-g-12" />
 
 			</p:panelGrid>
 
-			<p:dataTable id="clientesTable" value="#{pesquisaClienteBean.model}" 
-			var="cliente" style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado" rows="10"
-				paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom" lazy="true" >
+			<p:dataTable id="clientesTable" value="#{pesquisaClienteBean.model}"
+				var="cliente" style="margin-top:20px"
+				emptyMessage="Nenhum usuário não encontrado" rows="10"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" lazy="true"  styleClass="ui-datatable-tablewrapper">
 
-				<p:column style="text-align:center; width:110px" headerText="Nome" sortBy="#{cliente.nome}">
+				<p:column style="width:20%;text-align:center;"  headerText="Nome"
+					sortBy="#{cliente.nome}" priority="1">
 					<h:outputText value="#{cliente.nome}" />
 				</p:column>
 
-				<p:column style="text-align:center; width:80px" headerText="E-mail" sortBy="#{cliente.email}">
+				<p:column style="width:24%; text-align:center; " headerText="E-mail"
+					sortBy="#{cliente.email}" priority="2">
 					<h:outputText value="#{cliente.email}" />
 				</p:column>
 
-				<p:column style="text-align:center; width:50px"
+				<p:column style="text-align:center; "
 					headerText="Identificação">
-					<h:outputText  />
-				</p:column>
-				
-				<p:column style="text-align:center; width:40px"
-					headerText="Telefone">
-					<h:outputText  />
-				</p:column>
-				
-					<p:column style="text-align:center; width:20px"
-					headerText="Ramal">
-					<h:outputText  />
+					<h:outputText />
 				</p:column>
 
-				<p:column style="width:30px; text-align:center" headerText="Opções">
+				<p:column style=" text-align:center; "
+					headerText="Telefone">
+					<h:outputText />
+				</p:column>
+
+				<p:column style=" text-align:center; " headerText="Ramal">
+					<h:outputText />
+				</p:column>
+
+				<p:column style=" text-align:center" headerText="Opções">
 
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/clientes/CadastroCliente">
@@ -91,16 +96,18 @@
 						<p:confirm header="Exclusão de Usuário "
 							message="Tem certeza que deseja excluir o cliente #{ciente.nome} ?"
 							icon="ui-icon-alert" />
-						
+
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
 			<p:confirmDialog global="true" id="confirmacaoExDlg">
-				<p:button value="Não" icon="ui-icon-close" 	styleClass="ui-confirmdialog-no"
+				<p:button value="Não" icon="ui-icon-close"
+					styleClass="ui-confirmdialog-no"
 					update=":frmPesquisa:clientesTable" />
 				<p:commandButton type="button" value="Sim" icon="ui-icon-check"
-					styleClass="ui-confirmdialog-yes" process="@this" update=":frmPesquisa:clientesTable" />
+					styleClass="ui-confirmdialog-yes" process="@this"
+					update=":frmPesquisa:clientesTable" />
 			</p:confirmDialog>
 
 		</h:form>
