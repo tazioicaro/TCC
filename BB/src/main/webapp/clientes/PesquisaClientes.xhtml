@@ -41,13 +41,16 @@
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
 				<p:outputLabel value="Nome: " for="nome" />
-				<p:inputText id="nome"  styleClass="ui-g-12" size="110"/>
+				<p:inputText id="nome"  styleClass="ui-g-12" size="110"
+				value="#{pesquisaClienteBean.filter.nome}"/>
 
 				<p:outputLabel value="E-mail: " for="email" />
-				<p:inputText id="email" styleClass="ui-g-12"  />
+				<p:inputText id="email" styleClass="ui-g-12"  
+				value="#{pesquisaClienteBean.filter.email}"/>
 
 				<p:outputLabel value="Identificação: " for="doc" />
-				<p:inputText id="doc" styleClass="ui-g-12" />
+				<p:inputText id="doc" styleClass="ui-g-12" 
+				value="#{pesquisaClienteBean.filter.documentoReceitaFederal}"/>
 
 			</p:panelGrid>
 
@@ -67,31 +70,28 @@
 					<h:outputText value="#{cliente.email}" />
 				</p:column>
 
-				<p:column style="text-align:center; "
-					headerText="Identificação">
-					<h:outputText />
+				<p:column style="text-align:center; " headerText="Identificação">
+					<h:outputText  value="#{cliente.documentoReceitaFederal}"/>
 				</p:column>
 
-				<p:column style=" text-align:center; "
-					headerText="Telefone">
-					<h:outputText />
+				<p:column style=" text-align:center; "	headerText="Telefone">
+					<h:outputText  value="#{cliente.telefone}"/>
 				</p:column>
 
-				<p:column style=" text-align:center; " headerText="Ramal">
-					<h:outputText />
+				<p:column style=" text-align:center; " headerText="Celular">
+					<h:outputText value="#{cliente.celular}"/>
 				</p:column>
 
-				<p:column style=" text-align:center" headerText="Opções">
+				<p:column style=" text-align:center" headerText="Opções" width="50">
 
 					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/clientes/CadastroCliente">
-						<f:param name="cliente" value="#{cliente.id}" />
+						outcome="/clientes/CadastroCliente" >
+						<f:param name="cliente" value="#{cliente.codigo}"  />
 					</p:button>
 
 					<p:commandButton id="botaoYes" icon="ui-icon-trash" title="Excluir"
-						process="@this"
-						update=":frmPesquisa:clientesTable, :frmPesquisa:confirmacaoExDlg"
-						action="#{pesquisaClienteBean.excluir}" validateClient="true">
+						process="@this"	update=":form:clientesTable, :form:confirmacaoExDlg"
+						action="#{pesquisaClienteBean.excluir}" validateClient="true" >
 
 						<p:confirm header="Exclusão de Usuário "
 							message="Tem certeza que deseja excluir o cliente #{ciente.nome} ?"
@@ -104,10 +104,10 @@
 			<p:confirmDialog global="true" id="confirmacaoExDlg">
 				<p:button value="Não" icon="ui-icon-close"
 					styleClass="ui-confirmdialog-no"
-					update=":frmPesquisa:clientesTable" />
+					update=":form:clientesTable" />
 				<p:commandButton type="button" value="Sim" icon="ui-icon-check"
 					styleClass="ui-confirmdialog-yes" process="@this"
-					update=":frmPesquisa:clientesTable" />
+					update=":form:clientesTable" />
 			</p:confirmDialog>
 
 		</h:form>

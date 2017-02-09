@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -13,16 +14,12 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
-
 import com.bb.controller.control.repository.filter.ClienteFilter;
 import com.bb.controller.util.jpa.Transactional;
 import com.bb.models.Cliente;
 
 public class Clientes implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
@@ -47,7 +44,7 @@ public class Clientes implements Serializable {
 		try {
 			return this.manage.createQuery("from Cliente where upper(nome) =:nome", Cliente.class)
 				.setParameter("nome",nome.toLowerCase()).getSingleResult();
-		} catch(Exception e){
+		} catch(NoResultException e){
 			
 			//Inserir tratamento da excessão
 		}
@@ -60,7 +57,7 @@ public class Clientes implements Serializable {
 			return this.manage.createQuery("from Cliente  where upper (email) =:email", Cliente.class)
 					.setParameter("email", email.toLowerCase()).getSingleResult();
 			
-		}catch(Exception e){
+		}catch(NoResultException e){
 			
 		}
 		return null;
@@ -73,7 +70,7 @@ public class Clientes implements Serializable {
 		try{
 			return this.manage.createQuery("from Cliente where upper (documentoReceitaFederal) =:documentoReceitaFederal", Cliente.class)
 					.setParameter("documentoReceitaFederal", documentoReceitaFederal.toLowerCase()).getSingleResult();
-		}catch(Exception e){
+		}catch(NoResultException e){
 			
 		}
 		
