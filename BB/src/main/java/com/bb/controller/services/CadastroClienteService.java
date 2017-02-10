@@ -22,13 +22,13 @@ public class CadastroClienteService implements Serializable {
 		Cliente usuarioExistenteEmail = repositorioClientes.porEmail(cliente.getEmail());
 		Cliente usuarioExistenteDoc = repositorioClientes.porDocIdentificacao(cliente.getDocumentoReceitaFederal());
 
-		if (usuarioExistenteNome != null && usuarioExistenteNome.equals(cliente.getNome())) {
+		if (usuarioExistenteNome != null && usuarioExistenteNome.getNome().equals(cliente.getNome())) {
 			throw new NegocioException("Já existe um usuário com o nome informado. ");
 		}
-		if (usuarioExistenteEmail != null && usuarioExistenteEmail.equals(cliente.getEmail())) {
+		if (usuarioExistenteEmail != null && usuarioExistenteEmail.getDocumentoReceitaFederal().equals(cliente.getEmail())) {
 			throw new NegocioException("Já existe um usuário com o e-mail informado. ");
 		}
-		if (usuarioExistenteDoc != null && usuarioExistenteDoc.equals(cliente.getDocumentoReceitaFederal())) {
+		if (usuarioExistenteDoc != null && usuarioExistenteDoc.getDocumentoReceitaFederal().equals(cliente.getDocumentoReceitaFederal())) {
 			throw new NegocioException("Já existe um usuário do o Documento de Identificação informado");
 		}
 

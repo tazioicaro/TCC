@@ -46,21 +46,16 @@ public class CadastroClienteBean implements Serializable {
 	}
 
 
-	public void inicializar() {
-		// if(FacesUtil.notIsPostBack()){
-		// especialidadesRaizes = especialidades.raizes();
-		// }
-
-		if (this.cliente == null) {
-
-			limpar();
-
-		}
-		
-//		enderecos.add(endereco);
-//		cliente.setEnderecos(enderecos);
-
-	}	
+	// Adicionar um inicalizar para que possa haver a edição do Usuário
+		public void inicializar() {
+			if (this.cliente == null) {	
+				
+				limpar();
+			}
+			
+			isEditando();
+			
+		}	
 
 	public void cadastrar() {
 	

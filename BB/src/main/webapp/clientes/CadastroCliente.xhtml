@@ -11,14 +11,15 @@
 	<ui:define name="titulo">Novo CLiente</ui:define>
 
 	<ui:define name="corpo">
+	
+	<f:metadata>
+    		<o:viewParam name="cliente" value="#{cadastroClienteBean.cliente}" />
+    		<f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView" />
+    	</f:metadata>
 
-		<f:metadata>
-			<f:viewParam name="cliente" value="#{cadastroClienteBean.cliente}" />
-			<f:event listener="#{cadastroClienteBean.inicializar}" type="preRenderView" />
-		</f:metadata>
+		
 
-
-		<h:form id="form" styleClass="ui-fluid" >
+		<h:form id="form" styleClass="ui-fluid">
 
 			<div id="features"
 				style="padding: 10px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
@@ -26,7 +27,7 @@
 				<h1
 					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro</h1>
 			</div>
-	
+
 
 			<p:focus context="form" />
 
@@ -57,8 +58,8 @@
 				<p:outputLabel value="Nome: *" />
 				<p:inputText required="true" label="Nome"
 					value="#{cadastroClienteBean.cliente.nome}" styleClass="ui-g-12"
-					size="110" />			
-				
+					size="110" />
+
 				<p:outputLabel value="Email: *" />
 				<p:inputText required="true" label="Email"
 					value="#{cadastroClienteBean.cliente.email}" styleClass="ui-g-12" />
@@ -96,8 +97,9 @@
 					<p:ajax event="change" update="exibir exibirNome"
 						ignoreAutoUpdate="true" process="@this"
 						listener="#{cadastroClienteBean.carregarInputDocumentoIdentificacao}" />
-
+												
 				</p:selectOneRadio>
+				
 				<p:outputPanel id="exibirNome">
 					<p:outputLabel value="CPF:" for="cpf"
 						rendered="#{cadastroClienteBean.cpf}" />
@@ -110,6 +112,7 @@
 					<p:inputMask id="cpf" mask="999.999.999-99"
 						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
 						rendered="#{cadastroClienteBean.cpf}" />
+					
 					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
 						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
 						rendered="#{cadastroClienteBean.cnpj}" />
