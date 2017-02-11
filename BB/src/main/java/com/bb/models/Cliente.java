@@ -36,7 +36,7 @@ public class Cliente implements Serializable {
 	private Long codigo;
 
 	@NotBlank
-	@Column(name = "doc_receita_federal", nullable = false, length = 14)
+	@Column(name = "doc_receita_federal", nullable = false, length = 18)
 	private String documentoReceitaFederal;
 
 	@NotBlank
@@ -49,10 +49,12 @@ public class Cliente implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 
+	//Será descontinuado
 	@Size(max = 12)
 	@Column(length = 12)
 	private String telefone;
 
+	//Virará o Contato
 	@NotBlank
 	@Size(max = 12)
 	@Column(nullable = false, length = 12)

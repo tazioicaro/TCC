@@ -48,7 +48,7 @@
 				<p:inputText id="email" styleClass="ui-g-12"  
 				value="#{pesquisaClienteBean.filter.email}"/>
 
-				<p:outputLabel value="Identificação: " for="doc" />
+				<p:outputLabel value="CPF/CNPJ: " for="doc" />
 				<p:inputText id="doc" styleClass="ui-g-12" 
 				value="#{pesquisaClienteBean.filter.documentoReceitaFederal}"/>
 
@@ -66,20 +66,26 @@
 				</p:column>
 
 				<p:column style="width:24%; text-align:center; " headerText="E-mail"
-					sortBy="#{cliente.email}" priority="2">
+					sortBy="#{cliente.email}" >
 					<h:outputText value="#{cliente.email}" />
 				</p:column>
 
-				<p:column style="text-align:center; " headerText="Identificação">
+				<p:column style="text-align:center; " headerText="CPF/CNPJ" priority="2">
 					<h:outputText  value="#{cliente.documentoReceitaFederal}"/>
 				</p:column>
-
+           <!--  
 				<p:column style=" text-align:center; "	headerText="Telefone">
 					<h:outputText  value="#{cliente.telefone}"/>
-				</p:column>
+				</p:column>-->  
 
-				<p:column style=" text-align:center; " headerText="Celular">
+				<p:column style=" text-align:center; " headerText="Contato">
 					<h:outputText value="#{cliente.celular}"/>
+				</p:column>
+				
+				<p:column style=" text-align:center; " headerText="Aniversário" priority="5">
+					<h:outputText value="#{cliente.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yy"/>
+					</h:outputText>
 				</p:column>
 
 				<p:column style=" text-align:center" headerText="Opções" width="50">

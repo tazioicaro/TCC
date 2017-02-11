@@ -65,7 +65,7 @@
 					value="#{cadastroClienteBean.cliente.email}" styleClass="ui-g-12" />
 
 
-				<p:outputLabel value="Celular: " />
+				<p:outputLabel value="Contato: " />
 				<p:inputMask value="#{cadastroClienteBean.cliente.celular}"
 					mask="9999-99999" />
 
@@ -111,11 +111,11 @@
 				<p:outputPanel id="exibir">
 					<p:inputMask id="cpf" mask="999.999.999-99"
 						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
-						rendered="#{cadastroClienteBean.cpf}" />
+						rendered="#{cadastroClienteBean.cpf}" maxlength="14"/>
 					
 					<p:inputMask id="cnpj" mask="99.999.999/9999-99"
 						value="#{cadastroClienteBean.cliente.documentoReceitaFederal}"
-						rendered="#{cadastroClienteBean.cnpj}" />
+						rendered="#{cadastroClienteBean.cnpj}" maxlength="18" />
 				</p:outputPanel>
 
 			</p:panelGrid>
