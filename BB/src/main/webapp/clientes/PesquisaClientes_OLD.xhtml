@@ -96,7 +96,7 @@
 					</p:button>
 					
 					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"
-	    					process="@this" update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
+	    					process="@this" update=":form:confirmacaoExclusaoDialog">
 	    				<f:setPropertyActionListener target="#{pesquisaClienteBean.clienteSelecionado}" 
 	    					value="#{cliente}" />
 	    			</p:commandButton>
@@ -105,16 +105,49 @@
 	    	
 	    	<p:confirmDialog header="Exclusão de cliente" 
 	    		message="Tem certeza que deseja excluir o cliente #{pesquisaClienteBean.clienteSelecionado.nome}?"
-	    		widgetVar="confirmacaoExclusao"	id="confirmacaoExclusaoDialog" >
+	    		widgetVar="confirmacaoExclusao"	id="confirmacaoExclusaoDialog">
 	    		<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
 	    		
 	    		<p:commandButton value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"
 	    			action="#{pesquisaClienteBean.excluir()}" process="@this"
 	    			update=":form:clientesTable" />
-	    	</p:confirmDialog>					
+	    	</p:confirmDialog>
+		
+
+					
 
 		</h:form>
-				
+		
+		<!-- 
+		
+		<p:commandButton id="botaoYes" icon="ui-icon-trash" title="Excluir"
+						process="@this"	update=":form:clientesTable, :form:confirmacaoExDlg"
+						action="#{pesquisaClienteBean.excluir}" validateClient="true" >
+
+						<p:confirm header="Exclusão de Usuário "
+							message="Tem certeza que deseja excluir o cliente #{ciente.nome} ?"
+							icon="ui-icon-alert" />
+
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog global="true" id="confirmacaoExDlg">
+				<p:button value="Não" icon="ui-icon-close"
+					styleClass="ui-confirmdialog-no"
+					update=":form:clientesTable" />
+				<p:commandButton type="button" value="Sim" icon="ui-icon-check"
+					styleClass="ui-confirmdialog-yes" process="@this"
+					update=":form:clientesTable" />
+			</p:confirmDialog>
+		
+		
+		
+		
+		
+		
+		
+		 -->
 
 
 	</ui:define>

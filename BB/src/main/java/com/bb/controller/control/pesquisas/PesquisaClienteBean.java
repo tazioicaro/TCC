@@ -58,8 +58,7 @@ public class PesquisaClienteBean implements Serializable {
 	public void excluir(){
 		try{
 		clientes.removerCliente(clienteSelecionado);
-		FacesUtil.addInforMessage("O cliente " + clienteSelecionado.getNome() + " foi excluído com sucesso!");
-		
+		FacesUtil.addInforMessage("O cliente " + clienteSelecionado.getNome() + " foi excluído com sucesso!");		
 		}catch(NegocioException ne){
 			FacesUtil.addErrorMessage(ne.getMessage());
 		}

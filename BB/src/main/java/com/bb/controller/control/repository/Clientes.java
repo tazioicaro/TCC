@@ -123,6 +123,7 @@ public class Clientes implements Serializable {
 		return manage.merge(cliente);
 	}
 
+	@Transactional
 	public void removerCliente(Cliente clienteSelecionado) {
 		manage.remove(clienteSelecionado);
 
