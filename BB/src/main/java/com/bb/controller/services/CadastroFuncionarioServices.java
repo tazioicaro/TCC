@@ -1,5 +1,11 @@
 package com.bb.controller.services;
 
-public class CadastroFuncionarioServices {
+import java.io.Serializable;
+
+public class CadastroFuncionarioServices implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	
 
 }
