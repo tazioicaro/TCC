@@ -20,7 +20,6 @@ import com.bb.models.Cliente;
 @Named
 @ViewScoped
 public class PesquisaClienteBean implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	

@@ -39,7 +39,7 @@ public class Clientes implements Serializable {
 
 	public Cliente consultarNome(String nome) {
 		try {
-			return this.manage.createQuery("from Cliente where upper(nome) =:nome", Cliente.class)
+			return this.manage.createQuery("from Cliente where lower(nome) =:nome", Cliente.class)
 					.setParameter("nome", nome.toLowerCase()).getSingleResult();
 		} catch (NoResultException e) {
 
@@ -86,6 +86,10 @@ public class Clientes implements Serializable {
 
 		if (StringUtils.isNotEmpty(filtro.getDocumentoReceitaFederal())) {
 			criteria.add(Restrictions.eq("documentoReceitaFederal", filtro.getDocumentoReceitaFederal()));
+		}
+		
+		if (StringUtils.isNotEmpty(filtro.getEmail())) {
+			criteria.add(Restrictions.eq("email", filtro.getEmail()));
 		}
 
 		return criteria;

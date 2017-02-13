@@ -9,7 +9,7 @@ import javax.servlet.annotation.WebListener;
 import org.hibernate.validator.constraints.NotBlank;
 import org.primefaces.validate.bean.BeanValidationMetadataMapper;
 
-import com.algaworks.cursojavaee.validation.NotBlankClientValidationConstraint;
+import com.bb.controller.services.validation.NotBlankClientValidationConstraint;
 
 
 
