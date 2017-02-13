@@ -125,7 +125,9 @@ public class Clientes implements Serializable {
 
 	@Transactional
 	public void removerCliente(Cliente clienteSelecionado) {
-		manage.remove(clienteSelecionado);
+		//manage.remove(clienteSelecionado);
+		
+		manage.remove(manage.contains(clienteSelecionado) ? clienteSelecionado : manage.merge(clienteSelecionado));
 
 	}
 
