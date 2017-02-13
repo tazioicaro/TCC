@@ -8,27 +8,24 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-	@ApplicationScoped
-	public class EntityManagerProducer {
-		
-		private EntityManagerFactory factory;
+@ApplicationScoped
+public class EntityManagerProducer {
 
-		public EntityManagerProducer() {	
-			 factory= Persistence.createEntityManagerFactory("BB");
+	private EntityManagerFactory factory;
 
-		}
-		
-		@Produces @RequestScoped
-		public EntityManager createEntityManager(){		
-			return factory.createEntityManager();
-			
-		}
-		
-	
-		public void closeEntityManager(@Disposes EntityManager manager){
-			manager.close();
-		}
+	public EntityManagerProducer() {
+		factory = Persistence.createEntityManagerFactory("BB");
+
 	}
 
+	@Produces
+	@RequestScoped
+	public EntityManager createEntityManager() {
+		return factory.createEntityManager();
 
+	}
 
+	public void closeEntityManager(@Disposes EntityManager manager) {
+		manager.close();
+	}
+}
