@@ -7,7 +7,13 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
-import com.bb.controller.services.NegocioException;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+
+import com.bb.controller.control.repository.filter.FuncionarioFilter;
+import com.bb.controller.util.jpa.Transactional;
 import com.bb.models.Funcionario;
 
 public class Funcionarios implements Serializable {
@@ -42,6 +48,36 @@ public class Funcionarios implements Serializable {
 		}
 		
 		return funcionario;
+		
+	}
+	
+	@Transactional
+	public Funcionario guardar (Funcionario funcionario){
+		return this.manage.merge(funcionario);
+	}
+	
+	public void remover(Funcionario funcionario){
+		manage.remove(funcionario);
+		
+	}
+	
+	
+	public Criteria criarCriteriaParaFiltro(FuncionarioFilter filter){
+		
+		Session session = manage.unwrap(Session.class);
+		
+		//Confirmar se existe grupos no banco
+		Criteria criteria = session.createCriteria(Funcionario.class).createAlias("Grupos", "gp");
+		
+		if(StringUtils.isNotBlank(filter.getNome())){
+			criteria.add(Restrictions.eq("nome", filter.getNome()));
+		}
+		
+		if(filter.)
+		
+		
+		
+		return criteria;
 		
 	}
 	
