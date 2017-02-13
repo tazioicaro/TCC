@@ -83,5 +83,13 @@ public class Funcionarios implements Serializable {
 		
 	}
 	
+	
+	public List<Funcionario> filtrados (FuncionarioFilter filter){
+		
+		
+		return null;
+		
+	}
+	
 
 }
