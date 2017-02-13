@@ -3,7 +3,7 @@ package com.bb.controller.control.repository.filter;
 import java.io.Serializable;
 import java.util.List;
 
-import com.algaworks.cursojavaee.model.Grupo;
+import com.bb.models.Grupo;
 
 public class FuncionarioFilter implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -24,6 +24,12 @@ public class FuncionarioFilter implements Serializable{
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
 	}
 	
 	

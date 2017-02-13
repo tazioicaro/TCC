@@ -73,7 +73,9 @@ public class Funcionarios implements Serializable {
 			criteria.add(Restrictions.eq("nome", filter.getNome()));
 		}
 		
-		if(filter.)
+		if(filter.getGrupos()!= null && filter.getGrupos().size() > 0){
+			criteria.add(Restrictions.in("gp.descricao", filter.getGrupos()));
+		}
 		
 		
 		
