@@ -8,8 +8,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.hibernate.engine.jdbc.connections.internal.UserSuppliedConnectionProviderImpl;
-
 import com.bb.controller.control.repository.Grupos;
 import com.bb.controller.services.CadastroFuncionarioServices;
 import com.bb.models.Funcionario;
