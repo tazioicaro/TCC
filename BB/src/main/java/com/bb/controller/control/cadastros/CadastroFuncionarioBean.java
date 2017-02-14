@@ -1,6 +1,8 @@
 package com.bb.controller.control.cadastros;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.bb.controller.control.repository.Grupos;
+import com.bb.controller.security.GeradorSenha;
 import com.bb.controller.services.CadastroFuncionarioServices;
+import com.bb.controller.services.NegocioException;
+import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Funcionario;
 import com.bb.models.Grupo;
 
@@ -30,9 +35,8 @@ public class CadastroFuncionarioBean implements Serializable {
 	
 	
 	private Funcionario usuario;
-	private List<Grupo> listaGrupos;	
-	//Fazer depois
-	//private GeradorSenha geradorSenha;
+	private List<Grupo> listaGrupos;
+	private GeradorSenha geradorSenha;
 	
 	
 	public CadastroFuncionarioBean(){	
@@ -48,6 +52,24 @@ public class CadastroFuncionarioBean implements Serializable {
 		obterGrupos();
 	}
 	
+	public void cadastrar(){
+		
+		try{
+			this.usuario.setSenha(geradorSenha.geradorHash(this.usuario.getSenha()));
+			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
+			
+			FacesUtil.addInforMessage("Funcionário " + usuario.getNome() + " cadastrado com sucesso!");
+			limpar();
+			
+		}catch(NegocioException | NoSuchAlgorithmException | UnsupportedEncodingException ne){
+			
+			FacesUtil.addErrorMessage(ne.getMessage());
+			
+		}
+		
+		
+	}
+	
 	
 	List<Grupo> obterGrupos(){		
 		return this.listaGrupos = repositorioGrupos.porGrupos();		
@@ -58,6 +80,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	public void limpar(){
 		usuario = new Funcionario();
 		listaGrupos = new ArrayList<>();
+		geradorSenha = new GeradorSenha();
 	}
 	
 	public boolean isEditando(){
@@ -79,16 +102,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 	
 	
 }
