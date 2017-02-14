@@ -3,9 +3,7 @@ package com.bb.controller.security;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.text.MessageFormat;
 
-import org.hibernate.Session;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class GeradorSenha implements Serializable{

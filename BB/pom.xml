@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>			
+	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>br.com.bb</groupId>
 	<artifactId>BB</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -13,39 +14,35 @@
 	</properties>
 
 	<dependencies>
-	
-	
-	<!-- Usado para geração de arquivos Excel -->
+
+
+		<!-- Usado para geração de arquivos Excel -->
 		<dependency>
-		    <groupId>org.apache.poi</groupId>
-		    <artifactId>poi</artifactId>
-		    <version>3.11</version>
-		    <scope>compile</scope>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.11</version>
+			<scope>compile</scope>
 		</dependency>
-	
-	
-	
-		<!-- Wel (Implementação do CDI 1.2)  Atualizar aos poucos-->
-		 <dependency>
+
+
+
+		<!-- Wel (Implementação do CDI 1.2) Atualizar aos poucos -->
+		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
 			<version>2.4.1.Final</version>
-			<scope>compile</scope> 
+			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Wel (Implementação do CDI 2.0) -->
-		<!--<dependency>
-    	 <groupId>org.jboss.weld.servlet</groupId>
-			<artifactId>weld-servlet</artifactId>
-   		  <version>3.0.0.Alpha13</version>
-   		  <scope>compile</scope> 
-		</dependency>-->
-		
+		<!--<dependency> <groupId>org.jboss.weld.servlet</groupId> <artifactId>weld-servlet</artifactId> 
+			<version>3.0.0.Alpha13</version> <scope>compile</scope> </dependency> -->
+
 		<dependency>
-  		 <groupId>org.jboss</groupId>
-   		<artifactId>jandex</artifactId>
-   		<version>2.0.3.Final</version>
-   		<scope>compile</scope>     
+			<groupId>org.jboss</groupId>
+			<artifactId>jandex</artifactId>
+			<version>2.0.3.Final</version>
+			<scope>compile</scope>
 		</dependency>
 
 		<!-- Prime Faces 5.2 -->
@@ -55,15 +52,15 @@
 			<version>6.0</version>
 			<scope>compile</scope>
 		</dependency>
-		
-			<!-- OmniFaces (Utilitarios para JSF, utilização do viewparam) -->
+
+		<!-- OmniFaces (Utilitarios para JSF, utilização do viewparam) -->
 		<dependency>
 			<groupId>org.omnifaces</groupId>
 			<artifactId>omnifaces</artifactId>
 			<version>2.1</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 
 		<!-- JSF MOJARRA 2.2 -->
 		<dependency>
@@ -89,12 +86,12 @@
 			<version>1.2</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Commons Lang (Utilidades) -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
-  			<artifactId>commons-lang3</artifactId>
- 		    <version>3.4</version>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
 			<scope>compile</scope>
 		</dependency>
 
@@ -114,8 +111,8 @@
 			<version>4.3.10.Final</version>
 			<scope>compile</scope>
 		</dependency>
-		
-			<!-- Implementação Bean Validation -->
+
+		<!-- Implementação Bean Validation -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
@@ -130,21 +127,50 @@
 			<version>5.1.36</version>
 			<scope>compile</scope>
 		</dependency>
-		
-		<!-- Fonts Awesome --> 
-	<dependency>
-		<groupId>org.webjars</groupId>
-		<artifactId>font-awesome</artifactId>
-		<version>4.3.0-3</version>
-		<scope>compile</scope> 
-	</dependency>
-	
-	<!-- API Servlet -->
+
+		<!-- Fonts Awesome -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>font-awesome</artifactId>
+			<version>4.3.0-3</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- API Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
 			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- SPRING -->
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+
+
+		<!-- Spring Security (criptografia) -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-crypto</artifactId>
+			<version>4.2.1.RELEASE</version>
 		</dependency>
 
 	</dependencies>
@@ -175,8 +201,8 @@
 		</plugins>
 
 	</build>
-	
-	
+
+
 
 
 
