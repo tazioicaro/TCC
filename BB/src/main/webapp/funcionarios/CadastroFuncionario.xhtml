@@ -8,14 +8,13 @@
 
 
 
-
 	<ui:define name="titulo">Novo Funcionário</ui:define>
 
 	<ui:define name="corpo">
 
 
-		<!-- 
-	<h:outputStylesheet library="css" name="cadastro.css" /> -->
+		
+	<h:outputStylesheet library="css" name="cadastroFuncionario.css" /> 
 
 
 		<h:form id="form" styleClass="ui-fluid ui-g-12">
@@ -31,7 +30,8 @@
 
 			<p:focus context="form" />
 
-			<p:messages autoUpdate="true" closable="true"  id="msgs"/>
+			<p:messages autoUpdate="true" closable="true"  id="msn"/>
+			<p:growl id="msgs" showDetail="true" />
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -53,10 +53,10 @@
 						
 						
 		<p:panel id="toggleable" header="Básicos" toggleable="true" closable="false" toggleSpeed="500" 
-		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px" styleClass="ui-g-12">
+		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12">
  
-        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}" />
-        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  />
+        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}"  update="msgs"/>
+        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  update="msgs"/>
  
          <p:panelGrid columns="2" id="painel"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
@@ -117,8 +117,8 @@
 		<p:panel id="toggleableJob" header="Trabalhistas" toggleable="true" closable="false" 
 		toggleSpeed="500" closeSpeed="500" widgetVar="panelJob" style="margin-bottom:20px" styleClass="ui-g-12">
  
-        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}"  />
-        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  />
+        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}"  update="msgs"/>
+        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  update="msgs"/>
  
          <p:panelGrid columns="2" id="painel2"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
@@ -167,10 +167,10 @@
 			<!-- Detahes endereço  -->		
 						
 		<p:panel id="toggleableEnd" header="Endereço" toggleable="true" closable="false" 
-		toggleSpeed="500" closeSpeed="500" widgetVar="panelEnd" style="margin-bottom:20px" styleClass="ui-g-12">
+		toggleSpeed="500" closeSpeed="500" widgetVar="panelEnd" style="margin-bottom:20px;" styleClass="ui-g-12">
  
-        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}" />
-        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}" />
+        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}" update="msgs"/>
+        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}" update="msgs"/>
  
          <p:panelGrid columns="2" id="painel3"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				

@@ -94,7 +94,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		return this.usuario.getCodigo()!= null;
 	}
 	
-	//Para funcioanr o painel
+	//Para funcioanr as mensagens do  painel
 	
 	public void onClose(CloseEvent event) {
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel Closed", "Closed panel id:'" + event.getComponent().getId() + "'");
