@@ -12,6 +12,12 @@ public class FuncionarioFilter implements Serializable{
 	private String cpf;
 	private List<Grupo>grupos;
 	
+	private int primeiroRegistro;
+	private int qtdeRequistros;
+	private String propriedadeOrdenacao;
+	private boolean ascendente;
+	
+	
 	
 	public String getNome() {
 		return nome;
@@ -31,9 +37,29 @@ public class FuncionarioFilter implements Serializable{
 	public void setGrupos(List<Grupo> grupos) {
 		this.grupos = grupos;
 	}
+	public int getPrimeiroRegistro() {
+		return primeiroRegistro;
+	}
+	public void setPrimeiroRegistro(int primeiroRegistro) {
+		this.primeiroRegistro = primeiroRegistro;
+	}
+	public int getQtdeRequistros() {
+		return qtdeRequistros;
+	}
+	public void setQtdeRequistros(int qtdeRequistros) {
+		this.qtdeRequistros = qtdeRequistros;
+	}
+	public String getPropriedadeOrdenacao() {
+		return propriedadeOrdenacao;
+	}
+	public void setPropriedadeOrdenacao(String propriedadeOrdenacao) {
+		this.propriedadeOrdenacao = propriedadeOrdenacao;
+	}
+	public boolean isAscendente() {
+		return ascendente;
+	}
+	public void setAscendente(boolean ascendente) {
+		this.ascendente = ascendente;
+	}
 	
-	
-	
-	
-
 }

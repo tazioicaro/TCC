@@ -10,6 +10,8 @@ import javax.persistence.NoResultException;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.bb.controller.control.repository.filter.FuncionarioFilter;
@@ -83,12 +85,29 @@ public class Funcionarios implements Serializable {
 		
 	}
 	
-	
+	@SuppressWarnings("unchecked")
 	public List<Funcionario> filtrados (FuncionarioFilter filter){
 		
+		Criteria criteria = criarCriteriaParaFiltro(filter);
 		
-		return null;
+		criteria.setFirstResult(filter.getPrimeiroRegistro());
+		criteria.setMaxResults(filter.getQtdeRequistros());
 		
+		if (filter.isAscendente() && filter.getPropriedadeOrdenacao() != null){
+			criteria.addOrder(Order.asc(filter.getPropriedadeOrdenacao()));
+		} else if (filter.getPropriedadeOrdenacao() != null){
+			criteria.addOrder(Order.desc(filter.getPropriedadeOrdenacao()));
+			
+		}
+		
+		return criteria.list();
+		
+	}
+	
+	public int quantidadeFiltrados(FuncionarioFilter filter){
+		Criteria criteria = criarCriteriaParaFiltro(filter);
+		criteria.setProjection(Projections.rowCount());
+		return ((Number) criteria.uniqueResult()).intValue();
 	}
 	
 
