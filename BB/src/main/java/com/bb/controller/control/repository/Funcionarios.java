@@ -53,6 +53,21 @@ public class Funcionarios implements Serializable {
 		
 	}
 	
+	public Funcionario porCPF (String cpf){
+		
+		Funcionario funcionario = null;
+		
+		try{
+			funcionario = manage.createQuery("from Funcionario where  lower(cpf) =:cpf", Funcionario.class)
+					.setParameter("cpf",cpf.toLowerCase()).getSingleResult();
+		}catch(NoResultException ne){
+			
+		}
+		
+		return funcionario;
+		
+	}
+	
 	@Transactional
 	public Funcionario guardar (Funcionario funcionario){
 		return this.manage.merge(funcionario);

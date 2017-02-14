@@ -64,7 +64,7 @@ public class Clientes implements Serializable {
 
 		try {
 			return this.manage
-					.createQuery("from Cliente where upper (documentoReceitaFederal) =:doc",
+					.createQuery("from Cliente where upper(documentoReceitaFederal) =:doc",
 							Cliente.class)
 					.setParameter("doc", documentoReceitaFederal.toLowerCase()).getSingleResult();
 		} catch (NoResultException e) {
