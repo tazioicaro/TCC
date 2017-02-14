@@ -2,6 +2,7 @@ package com.bb.controller.control.cadastros;
 
 import java.io.Serializable;
 
+import com.bb.controller.control.repository.Departamentos;
 import com.bb.models.Departamento;
 
 public class CadastroDepartamentoBean implements Serializable {
@@ -9,7 +10,7 @@ public class CadastroDepartamentoBean implements Serializable {
 	
 	private Departamento departamento;
 	
-	
+	private Departamentos repositorioDepartamentos;
 	
 
 	public Departamento getDepartamento() {
