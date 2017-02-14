@@ -4,187 +4,143 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
-	
-	
-	
+
+
+
 
 
 	<ui:define name="titulo">Novo Funcionário</ui:define>
 
 	<ui:define name="corpo">
-	
-	
-
-	<h:outputStylesheet library="css" name="cadastro.css" />
 
 
-<h:form id="form">
+		<!-- 
+	<h:outputStylesheet library="css" name="cadastro.css" /> -->
 
-<h1> Cadastro de Funcionários</h1>
-                 
-    <p:growl id="growl" sticky="true" showDetail="true" />
- 
-    <p:wizard styleClass="menus" style="background-color:#fdbb4b!important;"  id="passoApasso" nextLabel="Próximo" backLabel="Voltar"> <!-- flowListener="#{userWizard.onFlowProcess}" -->
-        <p:tab id="personal" title="Dados Pessoais" >
-            <p:panel style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;" styleClass="formMenu">
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
-                
-                    <h:outputText value="Nome: *" />
-                    <p:inputText  required="true" label="Nome"/>
- 
-                    <h:outputText value="Sobrenome: *" />
-                    <p:inputText  required="true" label="Sobrenome"/>
-                    
-                     <h:outputText value="CPF: *" />
-                    <p:inputText  required="true" label="cpf"/>         
-                    
-                     <h:outputText value="RG: *" />
-                    <p:inputText  required="true" label="rg"/> 
-                    
-                     <h:outputText value="Sexo: " />
-                    <p:inputText   label="sexo"/>
- 
-                    <h:outputText value="Data Nascimento: " />
-                    <p:calendar  />
-                    
-                    <h:outputText value="Rua: " />
-                    <p:inputText  />
-                    
-                    <h:outputText value="Número: " />
-                    <p:inputText  />
-                    
-                    <h:outputText value="Bairro: " />
-                    <p:inputText  />
- 
-                    <h:outputText value="Cidade: " />
-                    <p:inputText  />
-                    
-                     <h:outputText value="Estado: " />
-                    <p:inputText  /> 
-                    
-                    <h:outputText value="CEP: " />
-                    <p:inputText  /> 
-                    
-                    <h:outputText value="Referência: " />
-                    <p:inputTextarea rows="3" cols="22"  /> 
-                    
- 
-                    <h:outputText value="Pular para o Final: " />
-                    <h:selectBooleanCheckbox  />
-                </h:panelGrid>
-            </p:panel>
-        </p:tab>
- 
-        <p:tab id="contact" title="Contatos" >
-            <p:panel >
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
-                    <h:outputText value="Email: *" />
-                    <p:inputText  required="true" label="Email"/>
- 
-                    <h:outputText value="Telefone: " />
-                    <p:inputText />
-                    
-                    <h:outputText value="Celular: " />
-                    <p:inputText />
- 
-                    <h:outputText value="Obs.: " />
-                    <p:inputTextarea rows="5" cols="22" />
- 
-                    <h:outputText value="Pular para o Final: " />
-                    <h:selectBooleanCheckbox  />
-                </h:panelGrid>
-            </p:panel>
-        </p:tab>
- 
-        <p:tab id="services" title="Dados da Contratação">
-            <p:panel >
-                <p:messages />
-                <h:panelGrid columns="2" columnClasses="label, value">
-                
-                
-                     <h:outputText value="CTPS: " />
-                    <p:inputText   label="ctps"/>
- 
-                    <h:outputText value="Função: " />
-                    <p:inputText label="funcao"/>
-                    
-                    <h:outputText value="Admissão: " />
-                    <p:calendar />
-                    
-                      <h:outputText value="Departamento: " />
-                    <p:inputText />
-                    
-                     <h:outputText value="Gerente Dep.: " />
-                    <p:inputText />                
- 
-                    <h:outputText value="Permissão de Acesso: " />
-                    <p:inputText />
-                    
-                    
-                </h:panelGrid>
-            </p:panel>
-        </p:tab>
- 
-        <p:tab id="confirm" title="Confirmação">
-            <p:panel >
-                <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Nome: " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText value="Sobrenome: " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText value="Idade: " />
-                        <h:outputText  styleClass="outputLabel"/>
-                        
-                        <h:outputText value="Rua: " />
-                        <h:outputText  styleClass="outputLabel"/>
-                        
-                        <h:outputText value="Bairro: " />
-                        <h:outputText  styleClass="outputLabel"/>
-                        
-                        <h:outputText value="Cidade: " />
-                        <h:outputText  styleClass="outputLabel"/>
-                        
-                        <h:outputText value="Estado: " />
-                        <h:outputText  styleClass="outputLabel"/>
-                    </h:panelGrid>
- 
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="E-mail: " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText value="Telefone: " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText value="Informações Adicionais: " />
-                        <h:outputText  styleClass="outputLabel"/>
-                    </h:panelGrid>
- 
-                    <h:panelGrid columns="2" columnClasses="label, value">
-                        <h:outputText value="Serviços: " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText value="Profissional " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText value="Data de Execução: " />
-                        <h:outputText  styleClass="outputLabel"/>
- 
-                        <h:outputText />
-                        <h:outputText />
-                    </h:panelGrid>
-                </h:panelGrid>
- 
-                <p:commandButton value="Salvar"  update="growl" process="@this"/>
-            </p:panel>
-        </p:tab>
-    </p:wizard>
- 
-</h:form>
 
-</ui:define>
+		<h:form id="form" styleClass="ui-fluid">
+
+
+			<div id="features"
+				style="padding: 10px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
+
+				<h1
+					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
+					de Funcionários</h1>
+			</div>
+
+			<p:focus context="form" />
+
+			<p:messages autoUpdate="true" closable="true" />
+
+			<p:toolbar style="margin-top:20px">
+				<p:toolbarGroup style="display: inline-flex;">
+
+					<p:button value="Novo" outcome="/funcionarios/CadastroFuncionario" />
+
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroFuncionarioBean.cadastrar}"
+						validateClient="true" update="form" />
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar"
+						outcome="/funcionarios/PesquisaFuncionarios" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+
+			<p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+				columnClasses="rotuloP, campoP"
+				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+
+				<p:outputLabel value="Nome: *" />
+				<p:inputText required="true" label="Nome"
+					value="#{cadastroFuncionarioBean.usuario.nome}"
+					styleClass="ui-g-12" size="110" />
+
+				<p:outputLabel value="Email: *" />
+				<p:inputText required="true" label="Email"
+					value="#{cadastroFuncionarioBean.usuario.email}"
+					styleClass="ui-g-12" />
+
+				<p:outputLabel value="CPF: *" />
+				<p:inputText required="true" label="Cpf"
+					value="#{cadastroFuncionarioBean.usuario.cpf}" styleClass="ui-g-12" />
+
+				<p:outputLabel value="Contato: " />
+				<p:inputMask value="#{cadastroFuncionarioBean.usuario.celular}"
+					mask="9999-99999" />
+
+
+				<p:outputLabel value="Sexo: " />
+				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.sexo}"
+					label="Sexo">
+					<f:selectItem itemLabel="Selecione o Sexo" />
+					<f:selectItems value="#{conversoresEnuns.sexoes}" var="status"
+						itemValue="#{status}" itemLabel="#{status.label}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Data Nascimento: " />
+				<p:calendar label="idade"
+					value="#{cadastroFuncionarioBean.usuario.dataNascimento}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
+
+				<p:outputLabel value="CTPS: *" />
+				<p:inputText required="true" label="Ctps"
+					value="#{cadastroFuncionarioBean.usuario.ctps}"
+					styleClass="ui-g-12" />
+
+
+				<p:outputText value="Rua: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}" />
+
+				<h:outputText value="Número: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
+
+				<p:outputText value="Bairro: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
+
+				<p:outputText value="Cidade: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
+
+				<p:outputText value="Estado: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
+
+				<p:outputText value="CEP: " />
+				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />
+
+
+				<p:outputText value="Função: " />
+				<p:inputText label="funcao" />
+
+				<p:outputText value="Admissão: " />
+				<p:calendar label="Admissão:"
+					value="#{cadastroFuncionarioBean.usuario.dataAdmissao}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:calendar>
+
+				<p:outputText value="Departamento: " />
+				<p:inputText value="#{cadastroFuncionarioBean.usuario.departamento_codigo.nome}"/>
+
+				<h:outputText value="Gerente Dep.: " />
+				<p:inputText />
+
+				<h:outputText value="Permissão de Acesso: " />
+				<p:inputText />
+
+
+
+			</p:panelGrid>
+		</h:form>
+
+	</ui:define>
 </ui:composition>
