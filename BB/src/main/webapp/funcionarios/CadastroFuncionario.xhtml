@@ -18,7 +18,7 @@
 	<h:outputStylesheet library="css" name="cadastro.css" /> -->
 
 
-		<h:form id="form" styleClass="ui-fluid">
+		<h:form id="form" styleClass="ui-fluid ui-g-12">
 
 
 			<div id="features"
@@ -31,7 +31,7 @@
 
 			<p:focus context="form" />
 
-			<p:messages autoUpdate="true" closable="true" />
+			<p:messages autoUpdate="true" closable="true"  id="msgs"/>
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -48,12 +48,18 @@
 					<p:button value="Pesquisar"
 						outcome="/funcionarios/PesquisaFuncionarios" />
 				</p:toolbarGroup>
-			</p:toolbar>
-
-
-			<p:panelGrid columns="2" id="painel"
-				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
-				columnClasses="rotuloP, campoP"
+			</p:toolbar>				
+				
+						
+						
+		<p:panel id="toggleable" header="Básicos" toggleable="true" closable="false" toggleSpeed="500" 
+		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px" styleClass="ui-g-12">
+ 
+        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}" />
+        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  />
+ 
+         <p:panelGrid columns="2" id="painel"
+				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
 				<p:outputLabel value="Nome: *" />
@@ -66,80 +72,148 @@
 					value="#{cadastroFuncionarioBean.usuario.email}"
 					styleClass="ui-g-12" />
 
-				<p:outputLabel value="CPF: *" />
-				<p:inputText required="true" label="Cpf"
-					value="#{cadastroFuncionarioBean.usuario.cpf}" styleClass="ui-g-12" />
-
-				<p:outputLabel value="Contato: " />
+				
+					<p:outputLabel value="CPF: *" />
+					<p:inputText required="true" label="Cpf"
+						value="#{cadastroFuncionarioBean.usuario.cpf}"
+						styleClass="ui-g-12" />
+						
+						
+					<p:outputLabel value="Contato: " />
 				<p:inputMask value="#{cadastroFuncionarioBean.usuario.celular}"
-					mask="9999-99999" />
+					mask="9999-99999"  />
 
+				
+					<p:outputLabel value="Sexo: " />
+					<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.sexo}"
+						label="Sexo" >
+						<f:selectItem itemLabel="Selecione o Sexo" />
+						<f:selectItems value="#{conversoresEnuns.sexoes}" var="status"
+							itemValue="#{status}" itemLabel="#{status.label}" />
+					</p:selectOneMenu>
 
-				<p:outputLabel value="Sexo: " />
-				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.sexo}"
-					label="Sexo">
-					<f:selectItem itemLabel="Selecione o Sexo" />
-					<f:selectItems value="#{conversoresEnuns.sexoes}" var="status"
-						itemValue="#{status}" itemLabel="#{status.label}" />
-				</p:selectOneMenu>
-
-				<p:outputLabel value="Data Nascimento: " />
-				<p:calendar label="idade"
-					value="#{cadastroFuncionarioBean.usuario.dataNascimento}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:calendar>
+					<p:outputLabel value="Data Nascimento: " />
+					<p:calendar label="idade"
+						value="#{cadastroFuncionarioBean.usuario.dataNascimento}"
+						>
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:calendar>	
+						
+					</p:panelGrid>
+ 
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panel').toggle()" />
+                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+    </p:panel>
+						
+						
+				<!-- Detahes Job  -->		
+						
+		<p:panel id="toggleableJob" header="Trabalhistas" toggleable="true" closable="false" 
+		toggleSpeed="500" closeSpeed="500" widgetVar="panelJob" style="margin-bottom:20px" styleClass="ui-g-12">
+ 
+        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}"  />
+        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  />
+ 
+         <p:panelGrid columns="2" id="painel2"
+				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
+				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
 				<p:outputLabel value="CTPS: *" />
-				<p:inputText required="true" label="Ctps"
-					value="#{cadastroFuncionarioBean.usuario.ctps}"
-					styleClass="ui-g-12" />
+					<p:inputText required="true" label="Ctps"
+						value="#{cadastroFuncionarioBean.usuario.ctps}"
+						styleClass="ui-g-12" size="110" />
+				
 
+				<p:outputLabel value="Função: " />
+				<p:inputText label="funcao" styleClass="ui-g-12" size="110" />
 
-				<p:outputText value="Rua: " />
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}" />
-
-				<h:outputText value="Número: " />
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
-
-				<p:outputText value="Bairro: " />
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
-
-				<p:outputText value="Cidade: " />
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
-
-				<p:outputText value="Estado: " />
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
-
-				<p:outputText value="CEP: " />
-				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />
-
-
-				<p:outputText value="Função: " />
-				<p:inputText label="funcao" />
-
-				<p:outputText value="Admissão: " />
+				<p:outputLabel value="Admissão: " />
 				<p:calendar label="Admissão:"
 					value="#{cadastroFuncionarioBean.usuario.dataAdmissao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</p:calendar>
 
-				<p:outputText value="Departamento: " />
-				<p:inputText value="#{cadastroFuncionarioBean.usuario.departamento_codigo.nome}"/>
+				<p:outputLabel value="Departamento: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.departamento_codigo.nome}" />
 
-				<h:outputText value="Gerente Dep.: " />
+				<p:outputLabel value="Gerente Dep.: " />
 				<p:inputText />
 
-				<h:outputText value="Permissão de Acesso: " />
+				<p:outputLabel value="Permissão de Acesso: " />
 				<p:inputText />
+				
+				
+						
+					</p:panelGrid>
+ 
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panelJob').toggle()" />
+                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panelJob').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+    </p:panel>				
+						
 
+			<!-- Detahes endereço  -->		
+						
+		<p:panel id="toggleableEnd" header="Endereço" toggleable="true" closable="false" 
+		toggleSpeed="500" closeSpeed="500" widgetVar="panelEnd" style="margin-bottom:20px" styleClass="ui-g-12">
+ 
+        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}" />
+        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}" />
+ 
+         <p:panelGrid columns="2" id="painel3"
+				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
+				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements ">
 
+				
+				<p:outputLabel value="Rua: " />
+				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}" 
+					styleClass="ui-g-12" size="110" />
 
-			</p:panelGrid>
+				<p:outputLabel value="Número: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
+
+				<p:outputLabel value="Bairro: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
+
+				<p:outputLabel value="Cidade: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
+
+				<p:outputLabel value="Estado: " />
+				<p:inputText
+					value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
+
+				<p:outputLabel value="CEP: " />
+				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />			
+				
+						
+					</p:panelGrid>
+ 
+        <f:facet name="options">
+            <p:menu>
+                <p:submenu label="Settings">
+                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panelEnd').toggle()" />
+                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panelEnd').close()" />
+                </p:submenu>
+            </p:menu>
+        </f:facet>
+    </p:panel>
+				
+
 		</h:form>
 
 	</ui:define>

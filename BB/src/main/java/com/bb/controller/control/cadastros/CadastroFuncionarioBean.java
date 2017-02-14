@@ -6,9 +6,14 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.primefaces.event.CloseEvent;
+import org.primefaces.event.ToggleEvent;
 
 import com.bb.controller.control.repository.Grupos;
 import com.bb.controller.security.GeradorSenha;
@@ -32,6 +37,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	
 	@Inject
 	private Grupos repositorioGrupos;
+	
 	
 	
 	private Funcionario usuario;
@@ -87,6 +93,18 @@ public class CadastroFuncionarioBean implements Serializable {
 		
 		return this.usuario.getCodigo()!= null;
 	}
+	
+	//Para funcioanr o painel
+	
+	public void onClose(CloseEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel Closed", "Closed panel id:'" + event.getComponent().getId() + "'");
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
+     
+    public void onToggle(ToggleEvent event) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, event.getComponent().getId() + " toggled", "Status:" + event.getVisibility().name());
+        FacesContext.getCurrentInstance().addMessage(null, message);
+    }
 	
 	
 	
