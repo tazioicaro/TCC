@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.inject.Inject;
 
 import com.bb.controller.control.repository.Funcionarios;
+import com.bb.controller.util.jpa.Transactional;
 import com.bb.models.Funcionario;
 
 public class CadastroFuncionarioServices implements Serializable{
@@ -15,6 +16,7 @@ public class CadastroFuncionarioServices implements Serializable{
 	private Funcionarios repositorioFuncionarios;
 	
 	
+	@Transactional
 	public Funcionario salvar  (Funcionario funcionario) throws NegocioException{
 		
 		if(repositorioFuncionarios.porNome(funcionario.getNome())!=null){
