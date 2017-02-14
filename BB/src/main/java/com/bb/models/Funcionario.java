@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.bb.models.Enumerators.Sexo;
 
@@ -30,8 +33,11 @@ public class Funcionario implements Serializable{
 	@Column(name="codigo")
 	private Integer codigo;
 	
+	@Size(max=100)
+	@NotBlank
 	private String nome;
 	
+	@NotBlank
 	@Column(nullable=false, length=14)
 	private String cpf;
 	
@@ -55,6 +61,7 @@ public class Funcionario implements Serializable{
 	@Column(name="data_nascimento")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
+	
 	
 	@Column (nullable=false, length=12)
 	private String funcao;

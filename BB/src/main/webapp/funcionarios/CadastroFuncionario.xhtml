@@ -21,10 +21,10 @@
 
 
 			<div id="features"
-				style="padding: 10px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 22px; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
 					de Funcionários</h1>
 			</div>
 
@@ -53,10 +53,10 @@
 						
 						
 		<p:panel id="toggleable" header="Básicos" toggleable="true" closable="false" toggleSpeed="500" 
-		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12">
+		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12" toggleTitle="Título">
  
-        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}"  update="msgs"/>
-        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  update="msgs"/>
+        <p:ajax event="close"   update="msgs"/>
+        <p:ajax event="toggle"  update="msgs"/>
  
          <p:panelGrid columns="2" id="painel"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
@@ -68,7 +68,7 @@
 					styleClass="ui-g-12" size="110" />
 
 				<p:outputLabel value="Email: *" />
-				<p:inputText required="true" label="Email"
+				<p:inputText required="false" label="Email"
 					value="#{cadastroFuncionarioBean.usuario.email}"
 					styleClass="ui-g-12" />
 
@@ -94,8 +94,7 @@
 
 					<p:outputLabel value="Data Nascimento: " />
 					<p:calendar label="idade"
-						value="#{cadastroFuncionarioBean.usuario.dataNascimento}"
-						>
+						value="#{cadastroFuncionarioBean.usuario.dataNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</p:calendar>	
 						
@@ -117,15 +116,15 @@
 		<p:panel id="toggleableJob" header="Trabalhistas" toggleable="true" closable="false" 
 		toggleSpeed="500" closeSpeed="500" widgetVar="panelJob" style="margin-bottom:20px" styleClass="ui-g-12">
  
-        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}"  update="msgs"/>
-        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}"  update="msgs"/>
+        <p:ajax event="close"  update="msgs"/>
+        <p:ajax event="toggle"   update="msgs"/>
  
          <p:panelGrid columns="2" id="painel2"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
 				<p:outputLabel value="CTPS: *" />
-					<p:inputText required="true" label="Ctps"
+					<p:inputText required="false" label="Ctps"
 						value="#{cadastroFuncionarioBean.usuario.ctps}"
 						styleClass="ui-g-12" size="110" />
 				
@@ -169,8 +168,8 @@
 		<p:panel id="toggleableEnd" header="Endereço" toggleable="true" closable="false" 
 		toggleSpeed="500" closeSpeed="500" widgetVar="panelEnd" style="margin-bottom:20px;" styleClass="ui-g-12">
  
-        <p:ajax event="close" listener="#{cadastroFuncionarioBean.onClose}" update="msgs"/>
-        <p:ajax event="toggle" listener="#{cadastroFuncionarioBean.onToggle}" update="msgs"/>
+        <p:ajax event="close"  update="msgs"/>
+        <p:ajax event="toggle"  update="msgs"/>
  
          <p:panelGrid columns="2" id="painel3"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
