@@ -51,11 +51,17 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 	
 	public void inicializar(){
-		if ( usuario == null){
-			limpar();
+		if (FacesUtil.notIsPostBack()) {
+			obterGrupos();
+			
+			
+              if (deps !=null){
+				
+            	  ObterDepartamento();
+			}
 		}
 		
-		obterGrupos();
+		
 	}
 	
 	public void cadastrar(){
@@ -69,11 +75,8 @@ public class CadastroFuncionarioBean implements Serializable {
 			
 		}catch(NegocioException | NoSuchAlgorithmException | UnsupportedEncodingException ne){
 			
-			FacesUtil.addErrorMessage(ne.getMessage());
-			
-		}
-		
-		
+			FacesUtil.addErrorMessage(ne.getMessage());			
+		}		
 	}
 	
 	
@@ -87,7 +90,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		usuario = new Funcionario();
 		listaGrupos = new ArrayList<>();
 		geradorSenha = new GeradorSenha();
-		setDeps(new ArrayList<>());
+		deps = new ArrayList<>();
 	}
 	
 	public boolean isEditando(){
@@ -97,7 +100,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	
 	public void ObterDepartamento(){	
 		
-		this.setDeps(repositorioDepartamos.porDepartamento());		
+		this.deps = repositorioDepartamos.porDepartamento();		
 		
 	}
 	
