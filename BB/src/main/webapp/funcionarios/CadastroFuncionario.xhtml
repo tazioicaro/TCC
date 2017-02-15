@@ -141,8 +141,13 @@
 				</p:calendar>
 
 				<p:outputLabel value="Departamento: " />
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.departamento_codigo.nome}" />
+				
+				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.departamento_codigo.nome}"
+						label="Sexo" >
+						<f:selectItem itemLabel="Selecione o Departamento" />
+						<f:selectItems value="#{cadastroFuncionarioBean.deps}" var="depto"
+							itemValue="#{depto}" itemLabel="#{dpto.nome}" />
+					</p:selectOneMenu>
 
 				<p:outputLabel value="Gerente Dep.: " />
 				<p:inputText />

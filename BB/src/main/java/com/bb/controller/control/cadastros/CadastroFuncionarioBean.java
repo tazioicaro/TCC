@@ -6,20 +6,17 @@ import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.CloseEvent;
-import org.primefaces.event.ToggleEvent;
-
+import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.control.repository.Grupos;
 import com.bb.controller.security.GeradorSenha;
 import com.bb.controller.services.CadastroFuncionarioServices;
 import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jsf.FacesUtil;
+import com.bb.models.Departamento;
 import com.bb.models.Funcionario;
 import com.bb.models.Grupo;
 
@@ -38,11 +35,14 @@ public class CadastroFuncionarioBean implements Serializable {
 	@Inject
 	private Grupos repositorioGrupos;
 	
+	@Inject
+	private Departamentos repositorioDepartamos;
 	
 	
 	private Funcionario usuario;
 	private List<Grupo> listaGrupos;
 	private GeradorSenha geradorSenha;
+	private List<Departamento> deps;
 	
 	
 	public CadastroFuncionarioBean(){	
@@ -87,11 +87,18 @@ public class CadastroFuncionarioBean implements Serializable {
 		usuario = new Funcionario();
 		listaGrupos = new ArrayList<>();
 		geradorSenha = new GeradorSenha();
+		setDeps(new ArrayList<>());
 	}
 	
 	public boolean isEditando(){
 		
 		return this.usuario.getCodigo()!= null;
+	}
+	
+	public void ObterDepartamento(){	
+		
+		this.setDeps(repositorioDepartamos.porDepartamento());		
+		
 	}
 	
 	//Para funcioanr as mensagens do  painel
@@ -120,6 +127,14 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
+	}
+
+	public List<Departamento> getDeps() {
+		return deps;
+	}
+
+	public void setDeps(List<Departamento> deps) {
+		this.deps = deps;
 	}	
 	
 	
