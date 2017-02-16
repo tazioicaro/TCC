@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -15,6 +16,7 @@ import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import com.bb.controller.control.repository.filter.FuncionarioFilter;
+import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jpa.Transactional;
 import com.bb.models.Funcionario;
 
@@ -73,8 +75,17 @@ public class Funcionarios implements Serializable {
 		return this.manage.merge(funcionario);
 	}
 	
+	
+	@Transactional
 	public void remover(Funcionario funcionario){
-		manage.remove(funcionario);
+		try{manage.remove(funcionario);
+		
+		manage.flush();
+		} catch(PersistenceException e){
+			
+			throw new NegocioException("Funcionário não pode ser excluído!");
+			
+		}
 		
 	}
 	

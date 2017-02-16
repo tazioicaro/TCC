@@ -33,7 +33,7 @@ public class Clientes implements Serializable {
 	public List<Cliente> porNome(String nome) {
 
 		return this.manage.createQuery("from Cliente where upper(nome)like =:nome", Cliente.class)
-				.setParameter("nome", nome.toLowerCase() + "%").getResultList();
+				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 
 	}
 
@@ -52,7 +52,7 @@ public class Clientes implements Serializable {
 
 		try {
 			return this.manage.createQuery("from Cliente  where upper (email) =:email", Cliente.class)
-					.setParameter("email", email.toLowerCase()).getSingleResult();
+					.setParameter("email", email.toUpperCase()).getSingleResult();
 
 		} catch (NoResultException e) {
 
@@ -64,7 +64,7 @@ public class Clientes implements Serializable {
 
 		try {
 			return this.manage
-					.createQuery("from Cliente where upper(documentoReceitaFederal) =:doc",
+					.createQuery("from Cliente where lower(documentoReceitaFederal) =:doc",
 							Cliente.class)
 					.setParameter("doc", documentoReceitaFederal.toLowerCase()).getSingleResult();
 		} catch (NoResultException e) {

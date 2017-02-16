@@ -39,13 +39,16 @@ public class CadastroFuncionarioBean implements Serializable {
 	@Inject
 	private Departamentos repositorioDepartamos;
 	
-	private String gerente;
+	
 	private Endereco endereco;
-	private Departamento departamento;
+	
 	private Funcionario usuario;
 	private List<Grupo> listaGrupos;
 	private GeradorSenha geradorSenha;
+	
+	private Departamento departamento;
 	private List<Departamento> deps;
+	private List<Departamento> gerentes;
 	
 	
 	public CadastroFuncionarioBean(){	
@@ -54,16 +57,20 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 	
 	public void inicializar(){
-		if (FacesUtil.notIsPostBack()) {
-			obterGrupos();
+		if (FacesUtil.notIsPostBack()) {	
 			
+		deps = repositorioDepartamos.porDepartamento();
+		
+		if (this.departamento !=null){
 			
-              if (deps !=null){
-				
-            	  ObterDepartamento();
-			}
+	      	  obterGerente();
+	      	  }		
 		}
 		
+	}
+	
+	public void obterGerente(){
+		gerentes = repositorioDepartamos.porGerente(departamento.getGerente());	
 		
 	}
 	
@@ -87,49 +94,19 @@ public class CadastroFuncionarioBean implements Serializable {
 		return this.listaGrupos = repositorioGrupos.porGrupos();		
 	}
 	
-     
-	public void obterGerente(){
-		
-		this.gerente = departamento.getGerente();
-		
-	}
-	
-	
-	
+  	
 	public void limpar(){
-		usuario = new Funcionario();
+		usuario = new Funcionario();			
+		departamento = null;
+		gerentes = new ArrayList<>();
+		
+		
 		listaGrupos = new ArrayList<>();
 		geradorSenha = new GeradorSenha();
-		deps = new ArrayList<>();
-		gerente= null;
-	}
-	
-	public boolean isEditando(){
-		
-		return this.usuario.getCodigo()!= null;
-	}
-	
-	public void ObterDepartamento(){	
-		
-		this.deps = repositorioDepartamos.porDepartamento();		
+			
 		
 	}
-	
-	
-	
-	
-	//Para funcioanr as mensagens do  painel
-	
-//	public void onClose(CloseEvent event) {
-//        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel Closed", "Closed panel id:'" + event.getComponent().getId() + "'");
-//        FacesContext.getCurrentInstance().addMessage(null, message);
-//    }
-//     
-//    public void onToggle(ToggleEvent event) {
-//        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, event.getComponent().getId() + " toggled", "Status:" + event.getVisibility().name());
-//        FacesContext.getCurrentInstance().addMessage(null, message);
-//    }
-	
+
 	
 	
 	//G&S
@@ -175,14 +152,16 @@ public class CadastroFuncionarioBean implements Serializable {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
+	
 
-	public String getGerente() {
-		return gerente;
+	public List<Departamento> getGerentes() {
+		return gerentes;
 	}
 
-	public void setGerente(String gerente) {
-		this.gerente = gerente;
-	}	
+	public void setGerentes(List<Departamento> gerentes) {
+		this.gerentes = gerentes;
+	}
+
 	
 	
 }

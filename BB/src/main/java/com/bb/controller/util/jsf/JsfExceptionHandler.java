@@ -52,7 +52,7 @@ public class JsfExceptionHandler extends ExceptionHandlerWrapper {
 
 	@Override
 	public ExceptionHandler getWrapped() {
-		// TODO Auto-generated method stub
+		
 		return this.wrapped;
 	}
 

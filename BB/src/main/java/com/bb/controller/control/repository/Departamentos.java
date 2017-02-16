@@ -34,6 +34,13 @@ public class Departamentos implements Serializable {
 	}
 	
 	
+	public List<Departamento> porGerente(String gerente) {
+	
+		return this.manager.createQuery("from Departamento where lower(gerente) :=ge", Departamento.class)
+				.setParameter("ge",gerente.toLowerCase()).getResultList();
+	}
+	
+	
 	
 	@Transactional
 	public  Departamento guardar (Departamento departamento){
@@ -46,6 +53,9 @@ public class Departamentos implements Serializable {
 		
 		return this.manager.find(Departamento.class, valor);
 	}
+
+
+	
 	
 	
 	

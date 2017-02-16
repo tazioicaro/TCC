@@ -145,26 +145,29 @@
 				</p:calendar>
 
 
-				<p:outputLabel value="Depto: " styleClass="ui-md-6"/>				
-				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.departamento_codigo}"
-						label="Sexo" >
+				<p:outputLabel value="Depto.: " styleClass="ui-md-6"/>				
+				<p:selectOneMenu value="#{cadastroFuncionarioBean.departamento}"
+						label="Dpto" >
 						<f:selectItem itemLabel="Selecione o Departamento" />
 						<f:selectItems value="#{cadastroFuncionarioBean.deps}" var="dpto"
 							itemValue="#{dpto}" itemLabel="#{dpto.nome}" />
 							
-							<p:ajax listener="#{cadastroFuncionarioBean.obterGerente}"
+							<p:ajax alistener="#{cadastroFuncionarioBean.obterGerente}"
 						update="gestor" />
 					</p:selectOneMenu>	
 			
-
-				<p:outputLabel value="Gerente: " for="gestor" />
-				<p:inputText styleClass="ui-g-12" size="110" 	
-				value="#{cadastroFuncionarioBean.gerente}" id="gestor"/>				
+ 
+				<p:outputLabel value="Gerente: " />					
+				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.departamento_codigo}"
+						label="gestor"  id="gestor">
+						<f:selectItem itemLabel="Selecione o Departamento" noSelectionOption="true" />
+						<f:selectItems value="#{cadastroFuncionarioBean.gerentes}" var="gnts"
+							itemValue="#{gnts}" itemLabel="#{gnts.gerente}" />
+							
+							</p:selectOneMenu>	
+				
 			
-	
 
-				<p:outputLabel value="Depto: " styleClass=" ui-md-6"/>
-				<p:inputText />
 
 				<p:outputLabel value="Permissões: " styleClass="ui-md-6"/>
 				<p:inputText />				
