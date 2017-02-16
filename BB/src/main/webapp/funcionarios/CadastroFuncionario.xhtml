@@ -11,6 +11,11 @@
 	<ui:define name="titulo">Novo Funcionário</ui:define>
 
 	<ui:define name="corpo">
+	
+	<f:metadata>
+    		<f:viewParam name="usuario" value="#{cadastroFuncionarioBean.usuario}" />
+    		<f:event listener="#{cadastroFuncionarioBean.inicializar}" type="preRenderView" />
+    	</f:metadata>
 
 
 		
@@ -55,7 +60,7 @@
 						
 						
 		<p:panel id="toggleable" header="Básicos" toggleable="true" closable="false" toggleSpeed="500" 
-		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12" toggleTitle="Título">
+		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12" >
  
         <p:ajax event="close"   update="msgs"/>
         <p:ajax event="toggle"  update="msgs"/>
@@ -64,29 +69,29 @@
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
-				<p:outputLabel value="Nome: *" />
+				<p:outputLabel value="Nome: *" styleClass="ui-md-6"/>
 				<p:inputText required="true" label="Nome"
 					value="#{cadastroFuncionarioBean.usuario.nome}"
 					styleClass="ui-g-12" size="110" />
 
-				<p:outputLabel value="Email: *" />
+				<p:outputLabel value="Email: *" styleClass="ui-md-6"/>
 				<p:inputText required="false" label="Email"
 					value="#{cadastroFuncionarioBean.usuario.email}"
 					styleClass="ui-g-12" />
 
 				
-					<p:outputLabel value="CPF: *" />
+					<p:outputLabel value="CPF: *" styleClass=" ui-md-6 ui-lg-3"/>
 					<p:inputMask id="cpf" mask="999.999.999-99" required="true"
 						value="#{cadastroFuncionarioBean.usuario.cpf}"
 						styleClass="ui-g-12" />
 						
 						
-					<p:outputLabel value="Contato: " />
+					<p:outputLabel value="Contato: " styleClass="ui-md-6"/>
 				<p:inputMask value="#{cadastroFuncionarioBean.usuario.celular}"
 					mask="9999-99999"  />
 
 				
-					<p:outputLabel value="Sexo: " />
+					<p:outputLabel value="Sexo: " styleClass="ui-md-6 ui-lg-3"/>
 					<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.sexo}"
 						label="Sexo" >
 						<f:selectItem itemLabel="Selecione o Sexo" />
@@ -94,7 +99,7 @@
 							itemValue="#{status}" itemLabel="#{status.label}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Data Nascimento: " />
+					<p:outputLabel value="Aniversário: " styleClass="ui-md-6"/>
 					<p:calendar label="idade"
 						value="#{cadastroFuncionarioBean.usuario.dataNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -111,8 +116,7 @@
             </p:menu>
         </f:facet>
     </p:panel>
-						
-						
+												
 				<!-- Detahes Job  -->		
 						
 		<p:panel id="toggleableJob" header="Trabalhistas" toggleable="true" closable="false" 
@@ -125,37 +129,45 @@
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
-				<p:outputLabel value="CTPS: *" />
+				<p:outputLabel value="CTPS: *" styleClass=" ui-md-6"/>
 					<p:inputText required="false" label="Ctps"
 						value="#{cadastroFuncionarioBean.usuario.ctps}"
 						styleClass="ui-g-12" size="110" />
 				
 
-				<p:outputLabel value="Função: " />
+				<p:outputLabel value="Função: " styleClass="ui-md-6"/>
 				<p:inputText label="funcao" styleClass="ui-g-12" size="110" />
 
-				<p:outputLabel value="Admissão: " />
+				<p:outputLabel value="Admissão: " styleClass="ui-lg-3"/>
 				<p:calendar label="Admissão:"
 					value="#{cadastroFuncionarioBean.usuario.dataAdmissao}">
 					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</p:calendar>
 
-				<p:outputLabel value="Departamento: " />
-				
-				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.departamento_codigo.nome}"
+
+				<p:outputLabel value="Depto: " styleClass="ui-md-6"/>				
+				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.departamento_codigo}"
 						label="Sexo" >
 						<f:selectItem itemLabel="Selecione o Departamento" />
-						<f:selectItems value="#{cadastroFuncionarioBean.deps}" var="depto"
-							itemValue="#{depto}" itemLabel="#{dpto.nome}" />
-					</p:selectOneMenu>
+						<f:selectItems value="#{cadastroFuncionarioBean.deps}" var="dpto"
+							itemValue="#{dpto}" itemLabel="#{dpto.nome}" />
+							
+							<p:ajax listener="#{cadastroFuncionarioBean.obterGerente}"
+						update="gestor" />
+					</p:selectOneMenu>	
+			
 
-				<p:outputLabel value="Gerente Dep.: " />
+				<p:outputLabel value="Gerente: " for="gestor" />
+				<p:inputText styleClass="ui-g-12" size="110" 	
+				value="#{cadastroFuncionarioBean.gerente}" id="gestor"/>				
+			
+	
+
+				<p:outputLabel value="Depto: " styleClass=" ui-md-6"/>
 				<p:inputText />
 
-				<p:outputLabel value="Permissão de Acesso: " />
-				<p:inputText />
-				
-				
+				<p:outputLabel value="Permissões: " styleClass="ui-md-6"/>
+				<p:inputText />				
 						
 					</p:panelGrid>
  
@@ -183,27 +195,27 @@
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements ">
 
 				
-				<p:outputLabel value="Rua: " />
+				<p:outputLabel value="Rua: "  styleClass=" ui-md-6 ui-lg-3"/>
 				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}" 
 					styleClass="ui-g-12" size="110" />
 
-				<p:outputLabel value="Número: " />
+				<p:outputLabel value="Número: " styleClass=" ui-md-6"/>
 				<p:inputText
 					value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
 
-				<p:outputLabel value="Bairro: " />
+				<p:outputLabel value="Bairro: " styleClass=" ui-md-6"/>
 				<p:inputText
 					value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
 
-				<p:outputLabel value="Cidade: " />
+				<p:outputLabel value="Cidade: " styleClass=" ui-md-6"/>
 				<p:inputText
 					value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
 
-				<p:outputLabel value="Estado: " />
+				<p:outputLabel value="Estado: " styleClass=" ui-md-6"/>
 				<p:inputText
 					value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
 
-				<p:outputLabel value="CEP: " />
+				<p:outputLabel value="CEP: " styleClass="ui-md-6"/>
 				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />			
 				
 						

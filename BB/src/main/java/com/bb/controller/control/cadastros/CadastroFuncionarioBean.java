@@ -17,6 +17,7 @@ import com.bb.controller.services.CadastroFuncionarioServices;
 import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Departamento;
+import com.bb.models.Endereco;
 import com.bb.models.Funcionario;
 import com.bb.models.Grupo;
 
@@ -38,7 +39,9 @@ public class CadastroFuncionarioBean implements Serializable {
 	@Inject
 	private Departamentos repositorioDepartamos;
 	
-	
+	private String gerente;
+	private Endereco endereco;
+	private Departamento departamento;
 	private Funcionario usuario;
 	private List<Grupo> listaGrupos;
 	private GeradorSenha geradorSenha;
@@ -84,6 +87,13 @@ public class CadastroFuncionarioBean implements Serializable {
 		return this.listaGrupos = repositorioGrupos.porGrupos();		
 	}
 	
+     
+	public void obterGerente(){
+		
+		this.gerente = departamento.getGerente();
+		
+	}
+	
 	
 	
 	public void limpar(){
@@ -91,6 +101,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		listaGrupos = new ArrayList<>();
 		geradorSenha = new GeradorSenha();
 		deps = new ArrayList<>();
+		gerente= null;
 	}
 	
 	public boolean isEditando(){
@@ -103,6 +114,9 @@ public class CadastroFuncionarioBean implements Serializable {
 		this.deps = repositorioDepartamos.porDepartamento();		
 		
 	}
+	
+	
+	
 	
 	//Para funcioanr as mensagens do  painel
 	
@@ -124,6 +138,12 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 	public void setUsuario(Funcionario usuario) {
 		this.usuario = usuario;
+		
+		
+		if (this.usuario != null) {
+			this.departamento = this.usuario.getDepartamento_codigo();
+		}
+		
 	}
 	public List<Grupo> getListaGrupos() {
 		return listaGrupos;
@@ -138,6 +158,30 @@ public class CadastroFuncionarioBean implements Serializable {
 
 	public void setDeps(List<Departamento> deps) {
 		this.deps = deps;
+	}
+
+	public Departamento getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(Departamento departamento) {
+		this.departamento = departamento;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public String getGerente() {
+		return gerente;
+	}
+
+	public void setGerente(String gerente) {
+		this.gerente = gerente;
 	}	
 	
 	
