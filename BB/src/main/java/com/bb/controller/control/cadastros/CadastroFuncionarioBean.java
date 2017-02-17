@@ -30,26 +30,22 @@ public class CadastroFuncionarioBean implements Serializable {
 
  
 	@Inject
-	private CadastroFuncionarioServices cadastroFuncionacioServices;
-	
-	
+	private CadastroFuncionarioServices cadastroFuncionacioServices;	
 	@Inject
-	private Grupos repositorioGrupos;
-	
+	private Grupos repositorioGrupos;	
 	@Inject
-	private Departamentos repositorioDepartamos;
+	private Departamentos repositorioDepartamos;	
 	
 	
-	private Endereco endereco;
 	
-	private Funcionario usuario;
+	private Funcionario usuario; //SelecOne 2°
+	private Departamento departamento; //SelectOne 1°
+	private List<Departamento> deps; //SelectItens 1°
+	private List<Departamento> gerentes; //SelectItens2°	
+	
+	
 	private List<Grupo> listaGrupos;
 	private GeradorSenha geradorSenha;
-	
-	private Departamento departamento;
-	private List<Departamento> deps;
-	private List<Departamento> gerentes;
-	
 	
 	public CadastroFuncionarioBean(){	
 			limpar();	
@@ -145,14 +141,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		this.departamento = departamento;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-	
+		
 
 	public List<Departamento> getGerentes() {
 		return gerentes;
