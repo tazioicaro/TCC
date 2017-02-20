@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.bb.models.Enumerators.Sexo;
@@ -38,6 +40,7 @@ public class Funcionario implements Serializable {
 
 	@Size(max = 100)
 	@NotBlank
+	@Column(nullable = false)
 	private String nome;
 
 	@NotBlank
@@ -58,29 +61,30 @@ public class Funcionario implements Serializable {
 	@Column(length = 12)
 	private String telefone;
 
-	@Column(nullable = false, length = 12)
+	@Column(nullable = true, length = 12)
 	private String celular;
 
 	@Column(name = "data_nascimento")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 
-	@Column(nullable = false, length = 12)
+	@Column(nullable = true, length = 12)
 	private String funcao;
 
-	@Column(nullable = false, length = 14)
+	@Column(nullable = true, length = 14)
 	private String rg;
 
-	@Column(nullable = false, length = 10)
+	@Column(nullable = true, length = 10)
 	private String orgaorg;
 
-	@Column(nullable = false, length = 16)
+	@Column(nullable = true, length = 16)
 	private String cargo;
 
-	@JoinColumn(nullable = true, name = "endereco_codigo") // Alterar para
-															// obrigatório o
-															// endereço
-	@OneToOne
+	
+	
+	@JoinColumn(nullable = true, name = "endereco_codigo") 
+	@OneToOne(optional=true, fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+	@Cascade({org.hibernate.annotations.CascadeType.MERGE})
 	private Endereco endereco;
 
 	@ManyToOne
@@ -90,10 +94,10 @@ public class Funcionario implements Serializable {
 	@Column(length = 40)
 	private String email;
 
-	@Column(length = 11)
+	@Column(length = 20)
 	private String login;
 
-	@Column(length = 20)
+	@Column(length = 255)
 	private String senha;
 
 	@Column(columnDefinition = "text")
@@ -103,7 +107,8 @@ public class Funcionario implements Serializable {
 	private String actotal;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
+	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
+	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 
 	public Integer getCodigo() {

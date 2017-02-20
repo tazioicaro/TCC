@@ -25,6 +25,13 @@ public class CadastroFuncionarioServices implements Serializable{
 			
 		}
 		
+
+		if(repositorioFuncionarios.porLogin(funcionario.getLogin())!=null){
+			
+			throw new NegocioException("Já existe um Funcionário com este mesmo nome: " + funcionario.getLogin());
+			
+		}
+		
 		if (repositorioFuncionarios.porCPF(funcionario.getCpf())!= null){
 			throw new NegocioException("O CPF "+ funcionario.getCpf() + " é utilizado por outro Funcionário.");
 		}

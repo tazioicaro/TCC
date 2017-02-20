@@ -88,8 +88,9 @@ public class CadastroFuncionarioBean implements Serializable {
 		usuario = new Funcionario();
 		departamentoPai = null;
 		gerentes = new ArrayList<>();
-		usuario.setEndereco(endereco);
 		endereco = new Endereco();
+		usuario.setEndereco(endereco);
+		
 
 		listaGrupos = new ArrayList<>();
 		geradorSenha = new GeradorSenha();

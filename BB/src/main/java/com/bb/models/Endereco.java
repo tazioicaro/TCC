@@ -40,8 +40,8 @@ public class Endereco implements Serializable{
 	private String referencia;
 		
 
-	@ManyToOne
-	@JoinColumn(name="cliente_codigo", nullable=false)
+	@ManyToOne(optional=true)
+	@JoinColumn(name="cliente_codigo", nullable=true)
 	private Cliente cliente;
 	
 	

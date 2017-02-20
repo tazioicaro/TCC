@@ -140,7 +140,13 @@
 
 
 					<p:outputLabel value="Função: " styleClass="ui-md-6" />
-					<p:inputText label="funcao" styleClass="ui-g-12" size="110" />
+					<p:inputText label="funcao" styleClass="ui-g-12" size="110"
+						value="#{cadastroFuncionarioBean.usuario.funcao}" />
+
+					<p:outputLabel value="Cargo: " styleClass="ui-md-6" for="cargo" />
+					<p:inputText label="cargo" styleClass="ui-g-12" size="110"
+						value="#{cadastroFuncionarioBean.usuario.cargo}" id="cargo" />
+
 
 					<p:outputLabel value="Admissão: " styleClass="ui-lg-3" />
 					<p:calendar label="Admissão:"
@@ -209,29 +215,23 @@
 
 
 					<p:outputLabel value="Rua: " styleClass=" ui-md-6 ui-lg-3" />
-					<p:inputText
-						value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}"
+					<p:inputText value="#{cadastroFuncionarioBean.endereco.logradouro}"
 						styleClass="ui-g-12" size="110" />
 
 					<p:outputLabel value="Número: " styleClass=" ui-md-6" />
-					<p:inputText
-						value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
+					<p:inputText value="#{cadastroFuncionarioBean.endereco.numero}" />
 
 					<p:outputLabel value="Bairro: " styleClass=" ui-md-6" />
-					<p:inputText
-						value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
+					<p:inputText value="#{cadastroFuncionarioBean.endereco.bairro}" />
 
 					<p:outputLabel value="Cidade: " styleClass=" ui-md-6" />
-					<p:inputText
-						value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
+					<p:inputText value="#{cadastroFuncionarioBean.endereco.cidade}" />
 
 					<p:outputLabel value="Estado: " styleClass=" ui-md-6" />
-					<p:inputText
-						value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
+					<p:inputText value="#{cadastroFuncionarioBean.endereco.estado}" />
 
 					<p:outputLabel value="CEP: " styleClass="ui-md-6" />
-					<p:inputText
-						value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />
+					<p:inputText value="#{cadastroFuncionarioBean.endereco.cep}" />
 
 
 				</p:panelGrid>
@@ -248,6 +248,42 @@
 				</f:facet>
 			</p:panel>
 
+
+			<!-- LOGIN -->
+
+			<p:panel id="toggleableLogin" header="Login" toggleable="true"
+				closable="false" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panelEnd" style="margin-bottom:20px;"
+				styleClass="ui-g-12">
+
+				<p:ajax event="close" update="msgs" />
+				<p:ajax event="toggle" update="msgs" />
+
+				<p:panelGrid columns="2" id="painel4"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements ">
+
+
+					<p:outputLabel value="Login: " styleClass="ui-md-6" />
+					<p:inputText value="#{cadastroFuncionarioBean.usuario.login}"
+						styleClass="ui-g-12" size="110" />
+
+					<p:outputLabel value="Senha: " styleClass=" ui-md-6" />
+					<p:inputText value="#{cadastroFuncionarioBean.usuario.senha}" />					
+
+				</p:panelGrid>
+
+				<f:facet name="options">
+					<p:menu>
+						<p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panelEnd').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panelEnd').close()" />
+						</p:submenu>
+					</p:menu>
+				</f:facet>
+			</p:panel>
 
 		</h:form>
 

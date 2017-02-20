@@ -55,6 +55,23 @@ public class Funcionarios implements Serializable {
 		
 	}
 	
+	
+
+	public Object porLogin(String login) {
+		
+		Funcionario funcionario = null;
+		
+		try{
+			funcionario = manage.createQuery("from Funcionario where lower(login) =:login " , Funcionario.class)
+					.setParameter("nome", login.toLowerCase()).getSingleResult();
+		}catch(NoResultException ne){
+			
+		}
+		
+		return funcionario;
+	}
+	
+	
 	public Funcionario porCPF (String cpf){
 		
 		Funcionario funcionario = null;
@@ -135,6 +152,7 @@ public class Funcionarios implements Serializable {
 		criteria.setProjection(Projections.rowCount());
 		return ((Number) criteria.uniqueResult()).intValue();
 	}
+
 	
 
 }
