@@ -28,7 +28,7 @@ public class CadastroFuncionarioServices implements Serializable{
 
 		if(repositorioFuncionarios.porLogin(funcionario.getLogin())!=null){
 			
-			throw new NegocioException("Já existe um Funcionário com este mesmo nome: " + funcionario.getLogin());
+			throw new NegocioException("Já existe um Funcionário com este mesmo Login: " + funcionario.getLogin());
 			
 		}
 		

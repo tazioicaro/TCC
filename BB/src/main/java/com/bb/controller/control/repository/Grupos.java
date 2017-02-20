@@ -26,6 +26,8 @@ public class Grupos  implements Serializable{
 		
 		return this.manager.find(Grupo.class, codigo);
 	}
+
+	
 	
 
 }

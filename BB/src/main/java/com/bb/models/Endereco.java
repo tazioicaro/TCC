@@ -18,22 +18,22 @@ public class Endereco implements Serializable{
 	@GeneratedValue
 	private Long codigo;
 	
-	@Column( nullable= false, length= 150)
+	@Column( nullable= true, length= 150)
 	private String logradouro;
 	
-	@Column(nullable= false, length= 20)
+	@Column(nullable= true, length= 20)
 	private String numero; 
 	
 	@Column(length=15)
 	private String bairro;
 	
-	@Column(nullable=false, length= 60)
+	@Column(nullable=true, length= 60)
 	private String cidade;
 	
-	@Column(nullable=false, length= 60)
+	@Column(nullable=true, length= 60)
 	private String estado;
 	
-	@Column(nullable=false, length=9)
+	@Column(nullable=true, length=9)
 	private String cep;
 	
 	@Column(length= 150)

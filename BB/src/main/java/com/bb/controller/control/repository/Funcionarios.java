@@ -63,7 +63,7 @@ public class Funcionarios implements Serializable {
 		
 		try{
 			funcionario = manage.createQuery("from Funcionario where lower(login) =:login " , Funcionario.class)
-					.setParameter("nome", login.toLowerCase()).getSingleResult();
+					.setParameter("login", login.toLowerCase()).getSingleResult();
 		}catch(NoResultException ne){
 			
 		}
@@ -121,8 +121,7 @@ public class Funcionarios implements Serializable {
 		if(filter.getGrupos()!= null && filter.getGrupos().size() > 0){
 			criteria.add(Restrictions.in("gp.descricao", filter.getGrupos()));
 		}
-		
-		
+			
 		
 		return criteria;
 		

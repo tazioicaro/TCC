@@ -36,7 +36,7 @@ public class Funcionario implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "codigo")
-	private Integer codigo;
+	private Long codigo;
 
 	@Size(max = 100)
 	@NotBlank
@@ -106,16 +106,17 @@ public class Funcionario implements Serializable {
 	@Column(length = 10)
 	private String actotal;
 
+		
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
 	private List<Grupo> grupos = new ArrayList<Grupo>();
 
-	public Integer getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -303,5 +304,7 @@ public class Funcionario implements Serializable {
 			return false;
 		return true;
 	}
+
+	
 
 }

@@ -28,19 +28,20 @@ public class CadastroFuncionarioBean implements Serializable {
 
 	@Inject
 	private CadastroFuncionarioServices cadastroFuncionacioServices;
-	@Inject
-	private Grupos repositorioGrupos;
-	@Inject
-	private Departamentos repositorioDepartamos;
-
 	private Funcionario usuario; // SelecOne 2°
 
+	@Inject
+	private Departamentos repositorioDepartamos;
 	private Departamento departamentoPai; // CategoriaPai
 	private List<Departamento> deps; // Categoria Raizes
 	private List<Departamento> gerentes = new ArrayList<>(); // subcategorias
 
-	private Endereco endereco;
+		
+	@Inject
+	private Grupos repositorioGrupos;
 	private List<Grupo> listaGrupos;
+	
+	private Endereco endereco;
 	private GeradorSenha geradorSenha;
 
 	public CadastroFuncionarioBean() {
@@ -69,6 +70,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		try {
 			this.usuario.setSenha("123");
 			this.usuario.setSenha(geradorSenha.geradorHash(this.usuario.getSenha()));
+			
 			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
 
 			FacesUtil.addInforMessage("Funcionário " + usuario.getNome() + " cadastrado com sucesso!");
