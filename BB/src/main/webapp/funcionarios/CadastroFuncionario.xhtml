@@ -179,7 +179,7 @@
 
 					<p:outputLabel value="Permissões: " styleClass="ui-md-6" />
 					<p:selectCheckboxMenu label="grupos" id="gp"
-						value="#{cadastroFuncionarioBean.usuario.grupos}" value="grupoConverter">
+						value="#{cadastroFuncionarioBean.usuario.grupos}" converter="grupoConverter">
 						<f:selectItems value="#{cadastroFuncionarioBean.listaGrupos}"
 							var="grupo" itemLabel="#{grupo.descricao}" itemValue="#{grupo}" />
 					</p:selectCheckboxMenu>
