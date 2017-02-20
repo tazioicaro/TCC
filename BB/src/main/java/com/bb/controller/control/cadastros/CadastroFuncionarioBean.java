@@ -41,7 +41,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	private Grupos repositorioGrupos;
 	private List<Grupo> listaGrupos;
 	
-	private Endereco endereco;
+   private Endereco endereco;
 	private GeradorSenha geradorSenha;
 
 	public CadastroFuncionarioBean() {
@@ -70,6 +70,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		try {
 			this.usuario.setSenha("123");
 			this.usuario.setSenha(geradorSenha.geradorHash(this.usuario.getSenha()));
+			this.usuario.setLogin(usuario.getCpf().toString());
 			
 			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
 
@@ -93,7 +94,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		endereco = new Endereco();
 		usuario.setEndereco(endereco);
 		
-
+		obterGrupos();
 		listaGrupos = new ArrayList<>();
 		geradorSenha = new GeradorSenha();
 

@@ -18,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
@@ -83,7 +82,7 @@ public class Funcionario implements Serializable {
 	
 	
 	@JoinColumn(nullable = true, name = "endereco_codigo") 
-	@OneToOne(optional=true, fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(optional=true, fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
 	@Cascade({org.hibernate.annotations.CascadeType.MERGE})
 	private Endereco endereco;
 

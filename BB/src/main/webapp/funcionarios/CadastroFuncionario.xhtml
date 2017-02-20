@@ -28,10 +28,12 @@
 
 
 			<div id="features"
-				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9;
+				 margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
+					display: inline-block; padding-bottom: 5px;">Cadastro
 					de Funcionários</h1>
 			</div>
 
@@ -253,7 +255,7 @@
 
 			<p:panel id="toggleableLogin" header="Login" toggleable="true"
 				closable="false" toggleSpeed="500" closeSpeed="500"
-				widgetVar="panelEnd" style="margin-bottom:20px;"
+				widgetVar="panelLogin" style="margin-bottom:20px;"
 				styleClass="ui-g-12">
 
 				<p:ajax event="close" update="msgs" />
@@ -277,9 +279,9 @@
 					<p:menu>
 						<p:submenu label="Settings">
 							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
-								onclick="PF('panelEnd').toggle()" />
+								onclick="PF('panelLogin').toggle()" />
 							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
-								onclick="PF('panelEnd').close()" />
+								onclick="PF('panelLogin').close()" />
 						</p:submenu>
 					</p:menu>
 				</f:facet>
