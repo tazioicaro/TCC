@@ -21,106 +21,99 @@ import com.bb.models.Endereco;
 import com.bb.models.Funcionario;
 import com.bb.models.Grupo;
 
-
-
 @Named
 @ViewScoped
 public class CadastroFuncionarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
- 
 	@Inject
-	private CadastroFuncionarioServices cadastroFuncionacioServices;	
+	private CadastroFuncionarioServices cadastroFuncionacioServices;
 	@Inject
-	private Grupos repositorioGrupos;	
+	private Grupos repositorioGrupos;
 	@Inject
-	private Departamentos repositorioDepartamos;	
-	
-	
-	
-	private Funcionario usuario; //SelecOne 2°
-	private Departamento departamento; //SelectOne 1°
-	private List<Departamento> deps; //SelectItens 1°
-	private List<Departamento> gerentes; //SelectItens2°	
-	
-	
+	private Departamentos repositorioDepartamos;
+
+	private Funcionario usuario; // SelecOne 2°
+
+	private Departamento departamentoPai; // CategoriaPai
+	private List<Departamento> deps; // Categoria Raizes
+	private List<Departamento> gerentes = new ArrayList<>(); // subcategorias
+
+	private Endereco endereco;
 	private List<Grupo> listaGrupos;
 	private GeradorSenha geradorSenha;
-	
-	public CadastroFuncionarioBean(){	
-			limpar();	
-		
-	}
-	
-	public void inicializar(){
-		if (FacesUtil.notIsPostBack()) {	
-			
-		deps = repositorioDepartamos.porDepartamento();
-		
-		if (this.departamento !=null){
-			
-	      	  obterGerente();
-	      	  }		
-		}
-		
-	}
-	
-	public void obterGerente(){
-		gerentes = repositorioDepartamos.porGerente(departamento.getGerente());	
-		
-	}
-	
-	public void cadastrar(){
-		
-		try{
-			this.usuario.setSenha(geradorSenha.geradorHash(this.usuario.getSenha()));
-			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
-			
-			FacesUtil.addInforMessage("Funcionário " + usuario.getNome() + " cadastrado com sucesso!");
-			limpar();
-			
-		}catch(NegocioException | NoSuchAlgorithmException | UnsupportedEncodingException ne){
-			
-			FacesUtil.addErrorMessage(ne.getMessage());			
-		}		
-	}
-	
-	
-	List<Grupo> obterGrupos(){		
-		return this.listaGrupos = repositorioGrupos.porGrupos();		
-	}
-	
-  	
-	public void limpar(){
-		usuario = new Funcionario();			
-		departamento = null;
-		gerentes = new ArrayList<>();
-		
-		
-		listaGrupos = new ArrayList<>();
-		geradorSenha = new GeradorSenha();
-			
-		
+
+	public CadastroFuncionarioBean() {
+		limpar();
+
 	}
 
-	
-	
-	//G&S
+	public void inicializar() {
+		if (FacesUtil.notIsPostBack()) {
+			deps = repositorioDepartamos.porDepartamento();
+			obterGrupos();
+
+			if (this.departamentoPai != null) {
+				obterGerente();
+			}
+		}
+	}
+
+	public void obterGerente() {
+		gerentes = repositorioDepartamos.porGerente(departamentoPai);
+
+	}
+
+	public void cadastrar() {
+
+		try {
+			this.usuario.setSenha("123");
+			this.usuario.setSenha(geradorSenha.geradorHash(this.usuario.getSenha()));
+			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
+
+			FacesUtil.addInforMessage("Funcionário " + usuario.getNome() + " cadastrado com sucesso!");
+			limpar();
+
+		} catch (NegocioException | NoSuchAlgorithmException | UnsupportedEncodingException ne) {
+
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
+	}
+
+	List<Grupo> obterGrupos() {
+		return this.listaGrupos = repositorioGrupos.porGrupos();
+	}
+
+	public void limpar() {
+		usuario = new Funcionario();
+		departamentoPai = null;
+		gerentes = new ArrayList<>();
+		usuario.setEndereco(endereco);
+		endereco = new Endereco();
+
+		listaGrupos = new ArrayList<>();
+		geradorSenha = new GeradorSenha();
+
+	}
+
+	// G&S
 	public Funcionario getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(Funcionario usuario) {
 		this.usuario = usuario;
-		
-		
+
 		if (this.usuario != null) {
-			this.departamento = this.usuario.getDepartamento_codigo();
+			this.departamentoPai = this.usuario.getDepartamento_codigo();
 		}
-		
+
 	}
+
 	public List<Grupo> getListaGrupos() {
 		return listaGrupos;
 	}
+
 	public void setListaGrupos(List<Grupo> listaGrupos) {
 		this.listaGrupos = listaGrupos;
 	}
@@ -133,15 +126,13 @@ public class CadastroFuncionarioBean implements Serializable {
 		this.deps = deps;
 	}
 
-	public Departamento getDepartamento() {
-		return departamento;
+	public Departamento getDepartamentoPai() {
+		return departamentoPai;
 	}
 
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
+	public void setDepartamentoPai(Departamento departamentoPai) {
+		this.departamentoPai = departamentoPai;
 	}
-
-		
 
 	public List<Departamento> getGerentes() {
 		return gerentes;
@@ -151,6 +142,12 @@ public class CadastroFuncionarioBean implements Serializable {
 		this.gerentes = gerentes;
 	}
 
-	
-	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 }

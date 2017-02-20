@@ -11,33 +11,33 @@
 	<ui:define name="titulo">Novo Funcionário</ui:define>
 
 	<ui:define name="corpo">
-	
-	<f:metadata>
-    		<f:viewParam name="usuario" value="#{cadastroFuncionarioBean.usuario}" />
-    		<f:event listener="#{cadastroFuncionarioBean.inicializar}" type="preRenderView" />
-    	</f:metadata>
+
+		<f:metadata>
+			<f:viewParam name="usuario"
+				value="#{cadastroFuncionarioBean.usuario}" />
+			<f:event listener="#{cadastroFuncionarioBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
 
 
-		
-	<h:outputStylesheet library="css" name="cadastroFuncionario.css" /> 
+
+		<h:outputStylesheet library="css" name="cadastroFuncionario.css" />
 
 
 		<h:form id="form" styleClass="ui-fluid ui-g-12">
 
 
 			<div id="features"
-				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9;
-				 margin-top: 10px;">
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
-					display: inline-block; padding-bottom: 5px;">Cadastro
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
 					de Funcionários</h1>
 			</div>
 
 			<p:focus context="form" />
 
-			<p:messages autoUpdate="true" closable="true"  id="msn"/>
+			<p:messages autoUpdate="true" closable="true" id="msn" />
 			<p:growl id="msgs" showDetail="true" />
 
 			<p:toolbar style="margin-top:20px">
@@ -55,187 +55,204 @@
 					<p:button value="Pesquisar"
 						outcome="/funcionarios/PesquisaFuncionarios" />
 				</p:toolbarGroup>
-			</p:toolbar>				
-				
-						
-						
-		<p:panel id="toggleable" header="Básicos" toggleable="true" closable="false" toggleSpeed="500" 
-		closeSpeed="500" widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12" >
- 
-        <p:ajax event="close"   update="msgs"/>
-        <p:ajax event="toggle"  update="msgs"/>
- 
-         <p:panelGrid columns="2" id="painel"
-				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
-				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+			</p:toolbar>
 
-				<p:outputLabel value="Nome: *" styleClass="ui-md-6"/>
-				<p:inputText required="true" label="Nome"
-					value="#{cadastroFuncionarioBean.usuario.nome}"
-					styleClass="ui-g-12" size="110" />
 
-				<p:outputLabel value="Email: *" styleClass="ui-md-6"/>
-				<p:inputText required="false" label="Email"
-					value="#{cadastroFuncionarioBean.usuario.email}"
-					styleClass="ui-g-12" />
 
-				
-					<p:outputLabel value="CPF: *" styleClass=" ui-md-6 ui-lg-3"/>
+			<p:panel id="toggleable" header="Básicos" toggleable="true"
+				closable="false" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panel" style="margin-bottom:20px;" styleClass="ui-g-12">
+
+				<p:ajax event="close" update="msgs" />
+				<p:ajax event="toggle" update="msgs" />
+
+				<p:panelGrid columns="2" id="painel"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+
+					<p:outputLabel value="Nome: *" styleClass="ui-md-6" />
+					<p:inputText required="true" label="Nome"
+						value="#{cadastroFuncionarioBean.usuario.nome}"
+						styleClass="ui-g-12" size="110" />
+
+					<p:outputLabel value="Email: *" styleClass="ui-md-6" />
+					<p:inputText required="false" label="Email"
+						value="#{cadastroFuncionarioBean.usuario.email}"
+						styleClass="ui-g-12" />
+
+
+					<p:outputLabel value="CPF: *" styleClass=" ui-md-6 ui-lg-3" />
 					<p:inputMask id="cpf" mask="999.999.999-99" required="true"
 						value="#{cadastroFuncionarioBean.usuario.cpf}"
 						styleClass="ui-g-12" />
-						
-						
-					<p:outputLabel value="Contato: " styleClass="ui-md-6"/>
-				<p:inputMask value="#{cadastroFuncionarioBean.usuario.celular}"
-					mask="9999-99999"  />
 
-				
-					<p:outputLabel value="Sexo: " styleClass="ui-md-6 ui-lg-3"/>
+
+					<p:outputLabel value="Contato: " styleClass="ui-md-6" />
+					<p:inputMask value="#{cadastroFuncionarioBean.usuario.celular}"
+						mask="9999-99999" />
+
+
+					<p:outputLabel value="Sexo: " styleClass="ui-md-6 ui-lg-3" />
 					<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.sexo}"
-						label="Sexo" >
+						label="Sexo">
 						<f:selectItem itemLabel="Selecione o Sexo" />
 						<f:selectItems value="#{conversoresEnuns.sexoes}" var="status"
 							itemValue="#{status}" itemLabel="#{status.label}" />
 					</p:selectOneMenu>
 
-					<p:outputLabel value="Aniversário: " styleClass="ui-md-6"/>
+					<p:outputLabel value="Aniversário: " styleClass="ui-md-6" />
 					<p:calendar label="idade"
 						value="#{cadastroFuncionarioBean.usuario.dataNascimento}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</p:calendar>	
-						
-					</p:panelGrid>
- 
-        <f:facet name="options">
-            <p:menu>
-                <p:submenu label="Settings">
-                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panel').toggle()" />
-                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panel').close()" />
-                </p:submenu>
-            </p:menu>
-        </f:facet>
-    </p:panel>
-												
-				<!-- Detahes Job  -->		
-						
-		<p:panel id="toggleableJob" header="Trabalhistas" toggleable="true" closable="false" 
-		toggleSpeed="500" closeSpeed="500" widgetVar="panelJob" style="margin-bottom:20px" styleClass="ui-g-12">
- 
-        <p:ajax event="close"  update="msgs"/>
-        <p:ajax event="toggle"   update="msgs"/>
- 
-         <p:panelGrid columns="2" id="painel2"
-				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
-				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+					</p:calendar>
 
-				<p:outputLabel value="CTPS: *" styleClass=" ui-md-6"/>
+				</p:panelGrid>
+
+				<f:facet name="options">
+					<p:menu>
+						<p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panel').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panel').close()" />
+						</p:submenu>
+					</p:menu>
+				</f:facet>
+			</p:panel>
+
+			<!-- Detahes Job  -->
+
+			<p:panel id="toggleableJob" header="Trabalhistas" toggleable="true"
+				closable="false" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panelJob" style="margin-bottom:20px" styleClass="ui-g-12">
+
+				<p:ajax event="close" update="msgs" />
+				<p:ajax event="toggle" update="msgs" />
+
+				<p:panelGrid columns="2" id="painel2"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+
+					<p:outputLabel value="CTPS: *" styleClass=" ui-md-6" />
 					<p:inputText required="false" label="Ctps"
 						value="#{cadastroFuncionarioBean.usuario.ctps}"
 						styleClass="ui-g-12" size="110" />
-				
-
-				<p:outputLabel value="Função: " styleClass="ui-md-6"/>
-				<p:inputText label="funcao" styleClass="ui-g-12" size="110" />
-
-				<p:outputLabel value="Admissão: " styleClass="ui-lg-3"/>
-				<p:calendar label="Admissão:"
-					value="#{cadastroFuncionarioBean.usuario.dataAdmissao}">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:calendar>
 
 
-				<p:outputLabel value="Depto.: " styleClass="ui-md-6"/>				
-				<p:selectOneMenu value="#{cadastroFuncionarioBean.departamento}"
-						label="Dpto" >
-						<f:selectItem itemLabel="Selecione o Departamento" />
+					<p:outputLabel value="Função: " styleClass="ui-md-6" />
+					<p:inputText label="funcao" styleClass="ui-g-12" size="110" />
+
+					<p:outputLabel value="Admissão: " styleClass="ui-lg-3" />
+					<p:calendar label="Admissão:"
+						value="#{cadastroFuncionarioBean.usuario.dataAdmissao}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:calendar>
+
+					<p:outputLabel value="Depto.: " for="dpto" />
+
+					<p:selectOneMenu id="dpto"
+						value="#{cadastroFuncionarioBean.departamentoPai}">
+						<f:selectItem itemLabel="Selecione o Departamento"
+							noSelectionOption="true" />
 						<f:selectItems value="#{cadastroFuncionarioBean.deps}" var="dpto"
 							itemValue="#{dpto}" itemLabel="#{dpto.nome}" />
-							
-							<p:ajax alistener="#{cadastroFuncionarioBean.obterGerente}"
-						update="gestor" />
-					</p:selectOneMenu>	
-			
- 
-				<p:outputLabel value="Gerente: " />					
-				<p:selectOneMenu value="#{cadastroFuncionarioBean.usuario.departamento_codigo}"
-						label="gestor"  id="gestor">
-						<f:selectItem itemLabel="Selecione o Departamento" noSelectionOption="true" />
-						<f:selectItems value="#{cadastroFuncionarioBean.gerentes}" var="gnts"
-							itemValue="#{gnts}" itemLabel="#{gnts.gerente}" />
-							
-							</p:selectOneMenu>	
-				
-			
+						<p:ajax listener="#{cadastroFuncionarioBean.obterGerente}"
+							update="gestor" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Gerente: " for="gestor" />
+					<p:selectOneMenu id="gestor"
+						value="#{cadastroFuncionarioBean.usuario.departamento_codigo}">
+						<f:selectItem itemLabel="Selecione o Gerente"
+							noSelectionOption="true" />
+						<f:selectItems value="#{cadastroFuncionarioBean.gerentes}"
+							var="gestor" itemLabel="#{gestor.nome}" itemValue="#{gestor}" />
+
+					</p:selectOneMenu>
 
 
-				<p:outputLabel value="Permissões: " styleClass="ui-md-6"/>
-				<p:inputText />				
-						
-					</p:panelGrid>
- 
-        <f:facet name="options">
-            <p:menu>
-                <p:submenu label="Settings">
-                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panelJob').toggle()" />
-                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panelJob').close()" />
-                </p:submenu>
-            </p:menu>
-        </f:facet>
-    </p:panel>				
-						
+					<p:outputLabel value="Permissões: " styleClass="ui-md-6" />
+					<p:selectCheckboxMenu label="grupos" id="gp"
+						value="#{cadastroFuncionarioBean.usuario.grupos}">
+						<f:selectItems value="#{cadastroFuncionarioBean.listaGrupos}"
+							var="grupo" itemLabel="#{grupo.descricao}" itemValue="#{grupo}" />
+					</p:selectCheckboxMenu>
 
-			<!-- Detahes endereço  -->		
-						
-		<p:panel id="toggleableEnd" header="Endereço" toggleable="true" closable="false" 
-		toggleSpeed="500" closeSpeed="500" widgetVar="panelEnd" style="margin-bottom:20px;" styleClass="ui-g-12">
- 
-        <p:ajax event="close"  update="msgs"/>
-        <p:ajax event="toggle"  update="msgs"/>
- 
-         <p:panelGrid columns="2" id="painel3"
-				style="width:100%; margin-top:20px; background-color: #f5f8f9;"				
-				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements ">
+				</p:panelGrid>
 
-				
-				<p:outputLabel value="Rua: "  styleClass=" ui-md-6 ui-lg-3"/>
-				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}" 
-					styleClass="ui-g-12" size="110" />
+				<f:facet name="options">
+					<p:menu>
+						<p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panelJob').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panelJob').close()" />
+						</p:submenu>
+					</p:menu>
+				</f:facet>
+			</p:panel>
 
-				<p:outputLabel value="Número: " styleClass=" ui-md-6"/>
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
 
-				<p:outputLabel value="Bairro: " styleClass=" ui-md-6"/>
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
+			<!-- Detahes endereço  -->
 
-				<p:outputLabel value="Cidade: " styleClass=" ui-md-6"/>
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
+			<p:panel id="toggleableEnd" header="Endereço" toggleable="true"
+				closable="false" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panelEnd" style="margin-bottom:20px;"
+				styleClass="ui-g-12">
 
-				<p:outputLabel value="Estado: " styleClass=" ui-md-6"/>
-				<p:inputText
-					value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
+				<p:ajax event="close" update="msgs" />
+				<p:ajax event="toggle" update="msgs" />
 
-				<p:outputLabel value="CEP: " styleClass="ui-md-6"/>
-				<p:inputText value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />			
-				
-						
-					</p:panelGrid>
- 
-        <f:facet name="options">
-            <p:menu>
-                <p:submenu label="Settings">
-                    <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="PF('panelEnd').toggle()" />
-                    <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="PF('panelEnd').close()" />
-                </p:submenu>
-            </p:menu>
-        </f:facet>
-    </p:panel>
-				
+				<p:panelGrid columns="2" id="painel3"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements ">
+
+
+					<p:outputLabel value="Rua: " styleClass=" ui-md-6 ui-lg-3" />
+					<p:inputText
+						value="#{cadastroFuncionarioBean.usuario.endereco.logradouro}"
+						styleClass="ui-g-12" size="110" />
+
+					<p:outputLabel value="Número: " styleClass=" ui-md-6" />
+					<p:inputText
+						value="#{cadastroFuncionarioBean.usuario.endereco.numero}" />
+
+					<p:outputLabel value="Bairro: " styleClass=" ui-md-6" />
+					<p:inputText
+						value="#{cadastroFuncionarioBean.usuario.endereco.bairro}" />
+
+					<p:outputLabel value="Cidade: " styleClass=" ui-md-6" />
+					<p:inputText
+						value="#{cadastroFuncionarioBean.usuario.endereco.cidade}" />
+
+					<p:outputLabel value="Estado: " styleClass=" ui-md-6" />
+					<p:inputText
+						value="#{cadastroFuncionarioBean.usuario.endereco.estado}" />
+
+					<p:outputLabel value="CEP: " styleClass="ui-md-6" />
+					<p:inputText
+						value="#{cadastroFuncionarioBean.usuario.endereco.cep}" />
+
+
+				</p:panelGrid>
+
+				<f:facet name="options">
+					<p:menu>
+						<p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panelEnd').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panelEnd').close()" />
+						</p:submenu>
+					</p:menu>
+				</f:facet>
+			</p:panel>
+
 
 		</h:form>
 
+
+
 	</ui:define>
 </ui:composition>
+

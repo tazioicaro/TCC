@@ -26,7 +26,7 @@ import com.bb.models.Enumerators.Sexo;
 			
 				Departamento departamento = new Departamento();
 				
-				departamento.setGerente("Tazio");
+//				departamento.setGerente("Tazio");
 				departamento.setNome("TI");
 				
 				manager.persist(departamento);				
