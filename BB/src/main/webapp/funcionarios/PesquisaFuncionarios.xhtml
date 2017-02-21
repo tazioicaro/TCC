@@ -44,15 +44,11 @@
 
 				<p:outputLabel value="Nome: " for="nome" />
 				<p:inputText id="nome"  styleClass="ui-g-12" size="110"
-				value="#{pesquisaFuncionarioBean.filter.nome}"/>
+				value="#{pesquisaFuncionarioBean.filtro.nome}"/>				
 
-				<p:outputLabel value="E-mail: " for="email" />
-				<p:inputText id="email" styleClass="ui-g-12"  
-				value="#{pesquisaFuncionarioBean.filter.email}"/>
-
-				<p:outputLabel value="CPF/CNPJ: " for="doc" />
+				<p:outputLabel value="CPF: " for="doc" />
 				<p:inputText id="doc" styleClass="ui-g-12" 
-				value="#{pesquisaFuncionarioBean.filter.cpf}"/>
+				value="#{pesquisaFuncionarioBean.filtro.cpf}"/>
 
 			</p:panelGrid>
 
@@ -102,7 +98,7 @@
 	    		<p:button value="Não" onclick="PF('confirmacaoExclusao').hide(); return false;" />
 	    		
 	    		<p:commandButton value="Sim" oncomplete="PF('confirmacaoExclusao').hide();"
-	    			action="#{pesquisaFuncionarioBean.excluir()}" process="@this"
+	    			action="#{pesquisaFuncionarioBean.excluir}" process="@this"
 	    			update=":form:funcionariosTable" />
 	    	</p:confirmDialog>					
 

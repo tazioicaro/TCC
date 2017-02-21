@@ -15,7 +15,11 @@ import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.control.repository.Funcionarios;
 import com.bb.controller.control.repository.Grupos;
 import com.bb.controller.control.repository.filter.FuncionarioFilter;
+import com.bb.controller.services.NegocioException;
+import com.bb.controller.util.jsf.FacesUtil;
+import com.bb.models.Departamento;
 import com.bb.models.Funcionario;
+import com.bb.models.Grupo;
 
 @Named	
 @ViewScoped
@@ -23,11 +27,9 @@ public class PesquisaFuncionarioBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
-	private Funcionarios repositorioFuncionario;
-	
+	private Funcionarios repositorioFuncionario;	
 	@Inject
-	private Grupos repositorioGrupos;
-	
+	private Grupos repositorioGrupos;	
 	@Inject
 	private Departamentos repositorioDepartamento;
 	
@@ -65,6 +67,23 @@ public class PesquisaFuncionarioBean implements Serializable {
 	}
 	
 	
+	public List<Grupo> getListGrupo(){
+		return repositorioGrupos.porGrupos();
+	}
+	
+	public List<Departamento> getListDepartamento(){
+		return repositorioDepartamento.porDepartamento();
+	}
+	
+	public void excluir(){
+		
+		try{repositorioFuncionario.remover(FuncionarioSelecionado);
+		FacesUtil.addInforMessage("Funcionário " + FuncionarioSelecionado.getNome() + " excluído com sucesso!");
+		} catch(NegocioException ne){
+			
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
+	}
 	
 
 	public FuncionarioFilter getFiltro() {

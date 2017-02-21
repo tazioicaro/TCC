@@ -39,7 +39,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		
 	@Inject
 	private Grupos repositorioGrupos;
-	private List<Grupo> listaGrupos;
+	private List<Grupo> listaGrupos = new ArrayList<>();
 	
    private Endereco endereco;
 	private GeradorSenha geradorSenha;
@@ -92,11 +92,9 @@ public class CadastroFuncionarioBean implements Serializable {
 		departamentoPai = null;
 		gerentes = new ArrayList<>();
 		endereco = new Endereco();
-		usuario.setEndereco(endereco);
-		
-		obterGrupos();
-		listaGrupos = new ArrayList<>();
+		usuario.setEndereco(endereco);		
 		geradorSenha = new GeradorSenha();
+		listaGrupos = new ArrayList<Grupo>();
 
 	}
 

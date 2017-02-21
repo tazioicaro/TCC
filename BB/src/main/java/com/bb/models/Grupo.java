@@ -29,6 +29,12 @@ public class Grupo implements Serializable {
 	private String descricao;
 	
 	
+	public Long getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 	public Long getId() {
 		return codigo;
 	}
@@ -47,6 +53,8 @@ public class Grupo implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

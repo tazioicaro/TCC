@@ -95,7 +95,10 @@ public class Funcionarios implements Serializable {
 	
 	@Transactional
 	public void remover(Funcionario funcionario){
-		try{manage.remove(funcionario);
+		try{
+			//As vezes o objeto perde a instancia com o manager e passa a ser detached. então é necessário fazer
+			// um merge para ele ficar realltach
+			manage.remove(manage.contains(funcionario) ? funcionario : manage.merge(funcionario));
 		
 		manage.flush();
 		} catch(PersistenceException e){
@@ -109,10 +112,10 @@ public class Funcionarios implements Serializable {
 	
 	public Criteria criarCriteriaParaFiltro(FuncionarioFilter filter){
 		
-		Session session = manage.unwrap(Session.class);
+		Session session = manage.unwrap(Session.class);	
 		
-		//Confirmar se existe grupos no banco
-		Criteria criteria = session.createCriteria(Funcionario.class).createAlias("Grupos", "gp");
+		Criteria criteria = session.createCriteria(Funcionario.class)
+				.createAlias("grupos", "gp");
 		
 		if(StringUtils.isNotBlank(filter.getNome())){
 			criteria.add(Restrictions.eq("nome", filter.getNome()));
@@ -120,8 +123,7 @@ public class Funcionarios implements Serializable {
 		
 		if(filter.getGrupos()!= null && filter.getGrupos().size() > 0){
 			criteria.add(Restrictions.in("gp.descricao", filter.getGrupos()));
-		}
-			
+		}			
 		
 		return criteria;
 		
@@ -130,8 +132,7 @@ public class Funcionarios implements Serializable {
 	@SuppressWarnings("unchecked")
 	public List<Funcionario> filtrados (FuncionarioFilter filter){
 		
-		Criteria criteria = criarCriteriaParaFiltro(filter);
-		
+		Criteria criteria = criarCriteriaParaFiltro(filter);		
 		criteria.setFirstResult(filter.getPrimeiroRegistro());
 		criteria.setMaxResults(filter.getQtdeRequistros());
 		

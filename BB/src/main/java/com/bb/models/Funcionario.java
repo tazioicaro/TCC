@@ -105,7 +105,7 @@ public class Funcionario implements Serializable {
 	@Column(length = 10)
 	private String actotal;
 
-		
+	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))

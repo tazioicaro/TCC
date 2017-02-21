@@ -3,6 +3,7 @@ package com.bb.controller.control.repository.filter;
 import java.io.Serializable;
 import java.util.List;
 
+import com.bb.models.Departamento;
 import com.bb.models.Grupo;
 
 public class FuncionarioFilter implements Serializable{
@@ -11,6 +12,7 @@ public class FuncionarioFilter implements Serializable{
 	private String nome;
 	private String cpf;
 	private List<Grupo>grupos;
+	private List<Departamento> departamentos;
 	
 	private int primeiroRegistro;
 	private int qtdeRequistros;
@@ -60,6 +62,12 @@ public class FuncionarioFilter implements Serializable{
 	}
 	public void setAscendente(boolean ascendente) {
 		this.ascendente = ascendente;
+	}
+	public List<Departamento> getDepartamentos() {
+		return departamentos;
+	}
+	public void setDepartamentos(List<Departamento> departamentos) {
+		this.departamentos = departamentos;
 	}
 	
 }
