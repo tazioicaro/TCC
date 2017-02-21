@@ -67,7 +67,7 @@ public class PesquisaFuncionarioBean implements Serializable {
 	}
 	
 	
-	public List<Grupo> getListGrupo(){
+	public List<Grupo> getListGrupos(){
 		return repositorioGrupos.porGrupos();
 	}
 	

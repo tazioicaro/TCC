@@ -49,6 +49,14 @@
 				<p:outputLabel value="CPF: " for="doc" />
 				<p:inputText id="doc" styleClass="ui-g-12" 
 				value="#{pesquisaFuncionarioBean.filtro.cpf}"/>
+				
+				<p:outputLabel value="Permissao Tipo..." for="nome" />
+				<p:selectManyCheckbox label="Selecione"
+					value="#{pesquisaFuncionarioBean.filtro.grupos}">
+					<f:selectItems value="#{pesquisaFuncionarioBean.listGrupos}"
+						var="grupos" itemValue="#{grupos}" itemLabel="#{grupos.descricao}" />
+
+				</p:selectManyCheckbox>
 
 			</p:panelGrid>
 
@@ -70,6 +78,21 @@
 
 				<p:column style="text-align:center; " headerText="CPF" priority="2">
 					<h:outputText  value="#{funcionario.cpf}"/>
+				</p:column>
+				
+				<p:column style="text-align:center; " headerText="Grupo" priority="2">					
+					<p:columnGroup>
+
+						<p:dataGrid columns="3" value="#{funcionario.grupos}"
+							emptyMessage="Funcionário sem permissões" var="func" layout="grid">
+							<p:column>
+								<h:outputText value="#{func.descricao}" />
+							</p:column>		
+
+
+						</p:dataGrid >
+
+					</p:columnGroup>
 				</p:column>
            
 

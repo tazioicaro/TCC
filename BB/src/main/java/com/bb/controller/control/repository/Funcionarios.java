@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
+import javax.persistence.criteria.JoinType;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -99,8 +100,7 @@ public class Funcionarios implements Serializable {
 			//As vezes o objeto perde a instancia com o manager e passa a ser detached. então é necessário fazer
 			// um merge para ele ficar realltach
 			manage.remove(manage.contains(funcionario) ? funcionario : manage.merge(funcionario));
-		
-		manage.flush();
+	
 		} catch(PersistenceException e){
 			
 			throw new NegocioException("Funcionário não pode ser excluído!");
@@ -125,7 +125,9 @@ public class Funcionarios implements Serializable {
 			criteria.add(Restrictions.in("gp.descricao", filter.getGrupos()));
 		}			
 		
-		return criteria;
+		return criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		//
 		
 	}
 	
