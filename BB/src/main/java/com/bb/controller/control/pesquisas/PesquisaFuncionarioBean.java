@@ -75,9 +75,11 @@ public class PesquisaFuncionarioBean implements Serializable {
 		return repositorioDepartamento.porDepartamento();
 	}
 	
+	
 	public void excluir(){
 		
 		try{repositorioFuncionario.remover(FuncionarioSelecionado);
+		
 		FacesUtil.addInforMessage("Funcionário " + FuncionarioSelecionado.getNome() + " excluído com sucesso!");
 		} catch(NegocioException ne){
 			
