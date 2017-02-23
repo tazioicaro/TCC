@@ -106,8 +106,7 @@ public class Funcionario implements Serializable {
 	private String actotal;
 		
 
-	@ManyToMany(cascade= {CascadeType.ALL},
-	fetch= FetchType.EAGER)
+	@ManyToMany(fetch= FetchType.LAZY)
 	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
 	private List<Grupo> grupos = new ArrayList<Grupo>();

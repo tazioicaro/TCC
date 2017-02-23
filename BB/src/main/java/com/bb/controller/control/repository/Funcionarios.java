@@ -93,9 +93,14 @@ public class Funcionarios implements Serializable {
 	}
 	
 	
-	@Transactional
+//	@Transactional
 	public void remover(Funcionario funcionario){
 		try{
+			
+//			manage.createQuery("DELETE FROM funcionario_grupo fg WHERE fg.funcionario_id =: funcionarioId")
+//			.setParameter("funcionarioId", funcionario.getCodigo());
+			
+			//manage.flush();			
 			//As vezes o objeto perde a instancia com o manager e passa a ser detached. então é necessário fazer
 			// um merge para ele ficar realltach
 			manage.remove(manage.contains(funcionario) ? funcionario : manage.merge(funcionario));
