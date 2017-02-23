@@ -26,7 +26,7 @@ public class CadastroClienteService implements Serializable {
 				&&  !usuarioExistenteNome.getCodigo().equals(cliente.getCodigo())) {
 			throw new NegocioException("Já existe um usuário com o nome informado. ");
 		}
-		if (usuarioExistenteEmail != null && usuarioExistenteEmail.getDocumentoReceitaFederal().equals(cliente.getEmail())
+		if (usuarioExistenteEmail != null && usuarioExistenteEmail.getEmail().equals(cliente.getEmail())
 				&&  !usuarioExistenteNome.getCodigo().equals(cliente.getCodigo())) {
 			throw new NegocioException("Já existe um usuário com o e-mail informado. ");
 		}

@@ -82,16 +82,12 @@
 				
 				<p:column style="text-align:center; " headerText="Grupo" priority="2">					
 					<p:columnGroup>
-
 						<p:dataGrid columns="3" value="#{funcionario.grupos}"
 							emptyMessage="Funcionário sem permissões" var="func" layout="grid">
 							<p:column>
 								<h:outputText value="#{func.descricao}" />
-							</p:column>		
-
-
+							</p:column>	
 						</p:dataGrid >
-
 					</p:columnGroup>
 				</p:column>
            
@@ -104,7 +100,7 @@
 				<p:column style=" text-align:center" headerText="Opções" width="50">
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/funcionarios/CadastroFuncionario" >
-						<f:param name="cliente" value="#{funcionario.codigo}"  />
+						<f:param name="usuario" value="#{funcionario.codigo}"  />
 					</p:button>
 					
 					<p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="PF('confirmacaoExclusao').show()"

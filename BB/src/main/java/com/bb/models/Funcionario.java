@@ -82,11 +82,11 @@ public class Funcionario implements Serializable {
 	
 	
 	@JoinColumn(nullable = true, name = "endereco_codigo") 
-	@ManyToOne(optional=true, fetch=FetchType.LAZY, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne(optional=true, fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
 	@Cascade({org.hibernate.annotations.CascadeType.MERGE})
 	private Endereco endereco;
 
-	@ManyToOne
+	@ManyToOne(optional=true, fetch=FetchType.EAGER)
 	@JoinColumn(nullable = true, name = "departamento_codigo")
 	private Departamento departamento_codigo;
 
@@ -106,7 +106,7 @@ public class Funcionario implements Serializable {
 	private String actotal;
 		
 
-	@ManyToMany(fetch= FetchType.LAZY)
+	@ManyToMany(fetch= FetchType.EAGER)
 	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
 	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
 	private List<Grupo> grupos = new ArrayList<Grupo>();

@@ -107,8 +107,13 @@ public class CadastroFuncionarioBean implements Serializable {
 		this.usuario = usuario;
 
 		if (this.usuario != null) {
-			this.departamentoPai = this.usuario.getDepartamento_codigo();
+			this.departamentoPai = this.usuario.getDepartamento_codigo().getDepartamentoPai();
+			
 		}
+		
+	
+		//	this.categoriaPai = this.produto.getCategoria().getCategoriaPai();
+		
 
 	}
 
