@@ -27,6 +27,8 @@ public class Funcionarios implements Serializable {
 	@Inject
 	private EntityManager manage;
 	
+
+	
 	
 	public Funcionario porID(Long id){
 		
@@ -89,11 +91,15 @@ public class Funcionarios implements Serializable {
 	
 	@Transactional
 	public Funcionario guardar (Funcionario funcionario){
+			
+//		Session session = manage.unwrap(Session.class);
+//		Criteria criteria = session.createCriteria(Funcionario.class);
+	
 		return this.manage.merge(funcionario);
 	}
 	
 	
-//	@Transactional
+	@Transactional
 	public void remover(Funcionario funcionario){
 		try{
 			

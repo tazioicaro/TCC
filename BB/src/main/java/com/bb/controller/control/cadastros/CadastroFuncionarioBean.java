@@ -74,8 +74,9 @@ public class CadastroFuncionarioBean implements Serializable {
 			
 			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
 
-			FacesUtil.addInforMessage("Funcionário " + usuario.getNome() + " cadastrado com sucesso!");
+			FacesUtil.addInforMessage("Funcionário " + usuario.getNome() + " cadastrado com sucesso!");			
 			limpar();
+			obterGrupos();
 
 		} catch (NegocioException | NoSuchAlgorithmException | UnsupportedEncodingException ne) {
 
@@ -94,7 +95,7 @@ public class CadastroFuncionarioBean implements Serializable {
 		endereco = new Endereco();
 		usuario.setEndereco(endereco);		
 		geradorSenha = new GeradorSenha();
-		listaGrupos = new ArrayList<Grupo>();
+		
 
 	}
 

@@ -20,21 +20,24 @@ public class CadastroFuncionarioServices implements Serializable {
 
 		Funcionario funcionarioExistente = repositorioFuncionarios.porCPF(funcionario.getCpf());
 
-		if (!funcionarioExistente.getCodigo().equals(funcionario.getCodigo())) {
+	
 
-			if (funcionarioExistente != null && funcionarioExistente.getNome().equals(funcionario.getNome())) {
+			if (funcionarioExistente != null && funcionarioExistente.getNome().equals(funcionario.getNome()) &&
+					!funcionarioExistente.getCodigo().equals(funcionario.getCodigo())) {
 
 				throw new NegocioException("Já existe um Funcionário com este mesmo nome: " + funcionario.getNome());
 
 			}
 
-			if (funcionarioExistente != null && funcionarioExistente.getLogin().equals(funcionario.getLogin())) {
+			if (funcionarioExistente != null && funcionarioExistente.getLogin().equals(funcionario.getLogin()) &&
+					!funcionarioExistente.getCodigo().equals(funcionario.getCodigo())) {
 
 				throw new NegocioException("Já existe um Funcionário com este mesmo Login: " + funcionario.getLogin());
 
 			}
 
-			if (funcionarioExistente != null && funcionarioExistente.getCpf().equals(funcionario.getCpf())) {
+			if (funcionarioExistente != null && funcionarioExistente.getCpf().equals(funcionario.getCpf()) &&
+					!funcionarioExistente.getCodigo().equals(funcionario.getCodigo())) {
 
 				throw new NegocioException("Já existe um Funcionário com este mesmo CPF: " + funcionario.getCpf());
 
@@ -45,7 +48,7 @@ public class CadastroFuncionarioServices implements Serializable {
 			// utilizado por outro Funcionário.");
 			// }
 
-		}
+		
 
 		funcionario = repositorioFuncionarios.guardar(funcionario);
 

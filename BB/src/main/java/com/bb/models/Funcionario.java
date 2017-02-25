@@ -77,18 +77,23 @@ public class Funcionario implements Serializable {
 	private String orgaorg;
 
 	@Column(nullable = true, length = 16)
-	private String cargo;
-
-	
+	private String cargo;	
 	
 	@JoinColumn(nullable = true, name = "endereco_codigo") 
-	@ManyToOne(optional=true, fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToOne( optional=true)
 	@Cascade({org.hibernate.annotations.CascadeType.MERGE})
 	private Endereco endereco;
 
-	@ManyToOne(optional=true, fetch=FetchType.EAGER)
+	@ManyToOne(optional=true, fetch= FetchType.EAGER)
 	@JoinColumn(nullable = true, name = "departamento_codigo")
 	private Departamento departamento_codigo;
+	
+
+	@ManyToMany(fetch= FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
+	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
+	private List<Grupo> grupos = new ArrayList<Grupo>();
+	
 
 	@Column(length = 40)
 	private String email;
@@ -104,12 +109,6 @@ public class Funcionario implements Serializable {
 
 	@Column(length = 10)
 	private String actotal;
-		
-
-	@ManyToMany(fetch= FetchType.EAGER)
-	@JoinTable(name = "funcionario_grupo", joinColumns = @JoinColumn(name = "funcionario_id"), 
-	inverseJoinColumns = @JoinColumn(name = "grupo_codigo"))
-	private List<Grupo> grupos = new ArrayList<Grupo>();
 
 	public Long getCodigo() {
 		return codigo;
