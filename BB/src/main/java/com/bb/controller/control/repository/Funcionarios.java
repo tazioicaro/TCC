@@ -27,8 +27,6 @@ public class Funcionarios implements Serializable {
 	@Inject
 	private EntityManager manage;
 	
-
-	
 	
 	public Funcionario porID(Long id){
 		
@@ -94,6 +92,9 @@ public class Funcionarios implements Serializable {
 			
 //		Session session = manage.unwrap(Session.class);
 //		Criteria criteria = session.createCriteria(Funcionario.class);
+		/*
+		 * TODO Está apresentando problemas de lazy load
+		 */
 	
 		return this.manage.merge(funcionario);
 	}
