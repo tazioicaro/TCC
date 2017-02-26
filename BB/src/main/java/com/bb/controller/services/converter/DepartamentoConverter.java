@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.models.Departamento;
 
-@FacesConverter(forClass = Departamento.class)
+@FacesConverter(forClass = Departamento.class, value="departamentoConverter")
 public class DepartamentoConverter implements Converter {
 
 	@Inject

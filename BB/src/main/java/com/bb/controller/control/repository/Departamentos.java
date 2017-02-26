@@ -10,6 +10,7 @@ import com.bb.controller.util.jpa.Transactional;
 import com.bb.models.Departamento;
 
 
+
 public class Departamentos implements Serializable {
 
  
