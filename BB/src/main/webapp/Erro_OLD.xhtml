@@ -1,0 +1,36 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" >
+
+
+	<ui:define name="titulo">Novo CLiente</ui:define>
+
+	<ui:define name="corpo">
+	
+	
+<body class="exception-body">
+	<div class="exception-panel">
+		<img id="j_idt7"
+			src="../resources/css/verona/images/logo-error.png.png"
+			alt="" />
+
+		<h1>Ops! Ocorreu um erro inesperado!</h1>
+		<p>Por favor, contacte o suporte.</p>
+		<button id="j_idt9" name="j_idt9" type="button"
+			class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only black-btn rounded-btn"
+			onclick="window.open('/verona/dashboard.xhtml','_self')">
+			<span class="ui-button-text ui-c">DASHBOARD</span>
+		</button>
+		<script id="j_idt9_s" type="text/javascript">
+			PrimeFaces.cw("Button", "widget_j_idt9", {
+				id : "j_idt9"
+			});
+		</script>
+	</div>
+</body>
+
+</ui:define>
+</ui:composition>

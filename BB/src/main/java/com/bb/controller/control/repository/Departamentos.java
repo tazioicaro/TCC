@@ -26,6 +26,10 @@ public List<Departamento> porDepartamento(){
  
 return this.manager.createQuery("from Departamento where departamentoPai is null", Departamento.class).getResultList();
 }
+
+public List<Departamento> todosGerentes(){
+	return this.manager.createQuery("from Departamento where departamentoPai is not null", Departamento.class).getResultList();
+}
  
  
 public Departamento porNome(String nome){

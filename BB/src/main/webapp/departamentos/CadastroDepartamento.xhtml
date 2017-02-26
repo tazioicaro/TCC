@@ -3,7 +3,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
 
 
@@ -20,19 +21,20 @@
 
 
 
-		<h:form id="form" styleClass="ui-fluid ui-g-12">
+		<h:form id="form" styleClass="ui-fluid ui-g-12" style="margin-bottom: 0px;">
 
 			<div id="features"
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro</h1>
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
+					display: inline-block; padding-bottom: 5px;">Cadastro de Departamento</h1>
 			</div>
 
 
 			<p:focus context="form" />
 
-			<p:messages autoUpdate="true" closable="true" id="msg" />
+			 <p:growl id="msgs" showDetail="true" escape="false" />
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -42,7 +44,7 @@
 
 					<p:commandButton value="Salvar" id="botaoSalvar"
 						action="#{cadastroDepartamentoBean.cadastrar}"
-						validateClient="true" update="form" />
+						validateClient="true" update="form :form2:displayThemes" />
 
 				</p:toolbarGroup>
 
@@ -52,23 +54,44 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-
+<p:panel id="toggleable" header="Salve o departamento para poder escolher um líder para ele." toggleable="true"
+				closable="false" toggleSpeed="500" closeSpeed="500"
+				widgetVar="panel" style="margin-bottom:0px; height: 15%;" styleClass="ui-g-12">
+				
 			<p:panelGrid columns="2" id="painel"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 				columnClasses="rotuloP, campoP"
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
-<p:columnGroup >
 
+	
+				
 				<p:outputLabel value="Nome: "/>	
 				<p:inputText required="true" label="Nome"
 					value="#{cadastroDepartamentoBean.departamento.nome}" style=" width: 91%;"/>
 					
-</p:columnGroup>
-<h:outputText />
+		</p:panelGrid>		
+		
+		
+				<!--	<f:facet name="options">
+					<p:menu>
+						 <p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panel').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panel').close()" />
+						</p:submenu>
+					</p:menu>
+				</f:facet>	 -->
+</p:panel>
+</h:form>
 
+<h:form id="form2" styleClass="ui-fluid ui-g-12"  style="margin-bottom: 0px;"> 
 
-<p:columnGroup>
+ <p:growl id="msg" showDetail="true" escape="false" />
+ 
+<p:fieldset legend="Atribua um líder ao departamento!" toggleable="true" toggleSpeed="500">
+		
 				<p:pickList id="PojoPickList"
 					value="#{cadastroDepartamentoBean.gerentes}" var="gerente"
 					effect="bounce" itemValue="#{gerente}" itemLabel="#{gerente.nome}"
@@ -77,8 +100,8 @@
 					showTargetFilter="true" filterMatchMode="contains"
 					converter="departamentoConverter">
 
-					<f:facet name="sourceCaption">Possíveis</f:facet>
-					<f:facet name="targetCaption">Selecionados</f:facet>
+					<f:facet name="sourceCaption">Lídere(s) Existente(s)</f:facet>
+					<f:facet name="targetCaption">Lídere(s) Selecionado(s)</f:facet>
 
 					<p:ajax event="transfer" listener="#{cadastroDepartamentoBean.onTransfer}"
 						update="msg" />
@@ -97,34 +120,34 @@
 						<h:outputText value="#{gerente.nome}" />
 					</p:column>
 				</p:pickList>
-
-</p:columnGroup>
-
-<h:outputText />
-
-				<p:commandButton id="pojoSubmit" value="Cadastrar Novo Gerente"
-					update="displayThemes" oncomplete="PF('themesDialog').show()"
-					style="margin-top:5px; background-color: #3ebaf8;"/>
-
-
+</p:fieldset>
 				<p:dialog modal="true" showEffect="fade" hideEffect="fade"
 					widgetVar="themesDialog">
 					<h:panelGrid id="displayThemes" columns="2">
 						<h:outputText value="Source: " style="font-weight:bold" />
-						<ui:repeat value="#{cadastroDepartamentoBean.gerentes.source}" var="theme">
-							<h:outputText value="#{theme.nome}" style="margin-right:5px" />
+						<ui:repeat value="#{cadastroDepartamentoBean.gerentes.source}" var="gerente">
+							<h:outputText value="#{gerente.nome}" style="margin-right:5px" />
 						</ui:repeat>
 
 						<h:outputText value="Target: " style="font-weight:bold" />
-						<ui:repeat value="#{cadastroDepartamentoBean.gerentes.target}" var="theme">
-							<h:outputText value="#{theme.name}" style="margin-right:5px" />
+						<ui:repeat value="#{cadastroDepartamentoBean.gerentes.target}" var="gerente">
+							<h:outputText value="#{gerente.nome}" style="margin-right:5px" />
 						</ui:repeat>
 					</h:panelGrid>
 				</p:dialog>
 
 
 
-			</p:panelGrid>
+<!-- 			</p:panelGrid> -->
+		</h:form>
+		
+		<h:form id="form3" styleClass="ui-fluid ui-g-4"  style="margin-bottom: 0px;">
+		
+		<p:fieldset legend="Não encontrou? Cadastre aqui!" toggleable="true" toggleSpeed="500">
+			<p:commandButton id="pojoSubmit" value="Cadastrar Novo Líder"
+					 oncomplete=""
+					style="margin-top:5px; background-color: #3ebaf8;" />
+		</p:fieldset>
 		</h:form>
 
 	</ui:define>

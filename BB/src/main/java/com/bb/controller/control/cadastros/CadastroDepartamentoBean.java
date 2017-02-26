@@ -50,7 +50,7 @@ public class CadastroDepartamentoBean implements Serializable {
 
    public void limpar(){
 	   
-	   List<Departamento> departamentosSource = repositorioDepartamentos.porDepartamento()  ;
+	   List<Departamento> departamentosSource = repositorioDepartamentos.todosGerentes() ;
 	     List<Departamento> departamentosTarget = new ArrayList<Departamento>();
 	     gerentes = new DualListModel<Departamento>(departamentosSource, departamentosTarget);
 	   
