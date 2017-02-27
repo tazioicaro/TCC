@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.models.Departamento;
 
-@FacesConverter(forClass = Departamento.class, value="departamentoConverter")
+@FacesConverter(forClass = Departamento.class)
 public class DepartamentoConverter implements Converter {
 
 	@Inject
@@ -22,7 +22,7 @@ public class DepartamentoConverter implements Converter {
 
 		Departamento retorno = null;
 
-		if (StringUtils.isNotEmpty(value)) {
+		if (StringUtils.isNoneEmpty(value)) {
 
 			Long codigo = new Long(value);
 			retorno = this.departamentos.porId(codigo);
