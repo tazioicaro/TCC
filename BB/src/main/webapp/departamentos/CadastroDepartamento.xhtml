@@ -9,11 +9,11 @@
 
 	<ui:define name="titulo">Novo CLiente</ui:define>
 
-	<ui:define name="corpo">
+	<ui:define name="corpo" >
 
 		<f:metadata>
 			<o:viewParam name="departamento"
-				value="#{cadastroDepartamentoBean.departamento}" />
+				value="#{cadastroDepartamentoBean.departamentoPai}" />
 			<f:event listener="#{cadastroDepartamentoBean.inicializar}"
 				type="preRenderView" />
 		</f:metadata>
@@ -42,8 +42,8 @@
 						outcome="/departamentos/CadastroDepartamento" />
 
 					<p:commandButton value="Salvar" id="botaoSalvar"
-						action="#{cadastroDepartamentoBean.cadastrar}"
-						validateClient="true" update="form">
+						action="#{cadastroDepartamentoBean.cadastrar}"						
+						validateClient="true"  update="@form :form2:gt">
 
 					</p:commandButton>
 
@@ -51,7 +51,7 @@
 
 				<p:toolbarGroup align="right">
 					<p:button value="Pesquisar"
-						outcome="/departamentos/PesquisaDepartamentos" />
+						outcome="/departamentos/PesquisaDepartamentos"  id="pesquisa"/>
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -65,35 +65,45 @@
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 					columnClasses="rotuloP, campoP"
 					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
-<p:columnGroup>
-					<p:outputLabel value="Nome: " />
-					<p:inputText required="true" label="Nome"
-						value="#{cadastroDepartamentoBean.departamento.nome}"
-						style=" width: 91%;" />
-						</p:columnGroup>
-						
-						<h:outputText/>
-				</p:panelGrid>
+					<p:columnGroup>
+						<p:outputLabel value="Nome: " />
+						<p:inputText required="true" label="Nome"
+							value="#{cadastroDepartamentoBean.departamentoPosSave.nome}"
+							style=" width: 91%;" />
+					</p:columnGroup>
+
+					<h:outputText />
+				</p:panelGrid>		
+				
 
 			</p:panel>
 
 		</h:form>
 
 		<h:form id="form2" styleClass="ui-fluid ui-g-12"
-			style="margin-bottom: 0px;">
-		
-		<p:growl id="msg" showDetail="true" escape="false" />
+			style="margin-bottom: 0px;" >
+
+			<p:growl id="msg" showDetail="true" escape="false" />
 
 			<p:fieldset legend="Atribua um líder ao departamento!"
 				toggleable="true" toggleSpeed="500">
-
+				
+				<div>
+						<p:outputLabel value="Departamento: " />
+						<p:inputText  label="Nome"
+							value="#{cadastroDepartamentoBean.departamentoPai.nome}"	
+							readonly="true"		style=" width: 81%; margin-bottom: 15px;  margin-top: 5px" 
+							id="gt"/>
+					</div>
+					
+					
 
 				<p:pickList id="PojoPickList"
 					value="#{cadastroDepartamentoBean.gerentes}" var="gerente"
 					effect="bounce" itemValue="#{gerente}" itemLabel="#{gerente.nome}"
 					showSourceControls="true" showTargetControls="true"
 					showCheckbox="true" responsive="true" showSourceFilter="true"
-					showTargetFilter="true" filterMatchMode="contains">
+					showTargetFilter="true" filterMatchMode="contains" converter="converterPickList">
 
 					<f:facet name="sourceCaption">Existentes</f:facet>
 					<f:facet name="targetCaption">Alocados</f:facet>
@@ -103,18 +113,18 @@
 					<p:ajax event="select"
 						listener="#{cadastroDepartamentoBean.onSelect}" update="msg" />
 					<p:ajax event="unselect"
-						listener="#{CadastroDepartamentoBean.onUnselect}" update="msg" />
+						listener="#{cadastroDepartamentoBean.onUnselect}" update="msg" />
 					<p:ajax event="reorder"
-						listener="#{CadastroDepartamentoBean.onReorder}" update="msg" />
+						listener="#{cadastroDepartamentoBean.onReorder}" update="msg" />
 
 
 					<p:column style="width:90%;">
 						<h:outputText value="#{gerente.nome}" />
 					</p:column>
 				</p:pickList>
-				
+
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
-					oncomplete="" style="margin-top:5px; background-color: #f18983;" />
+					oncomplete="" style="margin-top:5px; background-color: #f18983;" action="#{cadastroDepartamentoBean.cadastrarGerentes}"/>
 
 			</p:fieldset>
 
@@ -140,8 +150,8 @@ style="margin-top:5px" />  -->
 				</h:panelGrid>
 			</p:dialog>
 		</h:form>
-		<!-- rendered="#{CadastroDepartamentoBean.exibirPikeList}" -->
-	
+		<!--  -->
+
 		<h:form id="form3" styleClass="ui-fluid ui-g-4"
 			style="margin-bottom: 0px;" >
 
@@ -150,9 +160,9 @@ style="margin-top:5px" />  -->
 				<p:commandButton id="CadSubmit" value="Cadastrar Novo Líder"
 					oncomplete="" style="margin-top:5px; background-color: #985edb;" />
 			</p:fieldset>
-		</h:form>	
-		
-		
-		
+		</h:form>
+
+
+
 	</ui:define>
 </ui:composition>

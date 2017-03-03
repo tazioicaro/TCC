@@ -11,6 +11,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.hibernate.sql.ordering.antlr.GeneratedOrderByFragmentRendererTokenTypes;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.event.UnselectEvent;
@@ -30,16 +31,32 @@ public class CadastroDepartamentoBean implements Serializable {
 	@Inject
 	private Departamentos repositorioDepartamentos;
 
-	private Departamento departamento = new Departamento();
-	 private DualListModel<Departamento> gerentes;
+	private Departamento departamentoPai = new Departamento();
+	private Departamento departamentoPosSave;
+	private List<Departamento> gerentesSelecionados;
+	
+	//teste
+	private Departamento getente;
+	
+	
+	
+	private boolean exibirPikeList = false;
+	
+	private DualListModel<Departamento> gerentes;
 
 
-	public void inicializar() {		
+	public void inicializar() {	
+		
+		if (this.departamentoPosSave == null) {	
+			
+			limpar();
+			
+		}		
 		
 		List<Departamento> departamentosSource = repositorioDepartamentos.todosGerentes();
-		 List<Departamento> departamentosTarget = new ArrayList<Departamento>();	         
-	      setGerentes(new DualListModel<Departamento>(departamentosSource, departamentosTarget));
-
+		List<Departamento> departamentosTarget = new ArrayList<Departamento>();	         
+	    setGerentes(new DualListModel<Departamento>(departamentosSource, departamentosTarget));
+	    
 	}
 
 	public CadastroDepartamentoBean() {
@@ -48,28 +65,92 @@ public class CadastroDepartamentoBean implements Serializable {
 		
 
 	}
-
-	public void cadastrar() {
-
+	
+	
+	
+	
+	public void cadastrar(){
+		
 		try {
-			this.departamento = repositorioDepartamentos.guardar(this.departamento);
-
-			FacesUtil.addInforMessage("Departamento " + departamento.getNome() + " cadastrado com sucesso");
+			this.departamentoPai = repositorioDepartamentos.guardar(this.departamentoPosSave);
+			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
 			limpar();
-
-		} catch (NegocioException ne) {
+			
+			
+		}catch(NegocioException ne){
 			FacesUtil.addErrorMessage(ne.getMessage());
-
+			
 		}
-
+		
+		
 	}
+	
+	public void cadastrarGerentes(){
+		
+		gerentesSelecionados = gerentes.getTarget();
+		if (!gerentesSelecionados.isEmpty()){
+			for (Departamento dep : gerentesSelecionados){
+				
+				dep.setDepartamentoPai(departamentoPai);
+				
+				repositorioDepartamentos.guardar(dep);
+				FacesUtil.addInforMessage("Líder " + dep.getNome() + " cadastrado com sucesso");
+			}
+		
+		}
+		
+	
+	}
+	
+	
+
+//	public void cadastrar() {
+//
+//		try {
+//			this.departamentoPai = repositorioDepartamentos.guardar(this.departamentoPosSave);
+//
+//			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
+//			alterarExibirPikeList();
+//			limpar();
+//
+//		} catch (NegocioException ne) {
+//			FacesUtil.addErrorMessage(ne.getMessage());
+//
+//		}
+//
+//	}
+//	
+//	
+//	public void cadastrarGerentes(){
+//		
+//		gerentesSelecionados = gerentes.getTarget();
+//		
+//		
+//		if (!gerentesSelecionados.isEmpty()){
+//		for (Departamento dep : gerentesSelecionados){
+//			
+//			dep.setDepartamentoPai(departamentoPai);
+//			
+//			repositorioDepartamentos.guardar(dep);
+//		}
+//		
+//		}
+//		
+//	}
 
 	public void limpar() {	
 
-		departamento = new Departamento();		
+		departamentoPosSave = new Departamento();	
+		
 		
 
 	}
+	
+	public void alterarExibirPikeList(){
+		exibirPikeList = true;
+		
+	}	
+	
 
 	public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
@@ -87,12 +168,12 @@ public class CadastroDepartamentoBean implements Serializable {
  
     public void onSelect(SelectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Selected", event.getObject().toString()));
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Selecionado", event.getObject().toString()));
     }
      
     public void onUnselect(UnselectEvent event) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Unselected", event.getObject().toString()));
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item desselecionado", event.getObject().toString()));
     }
      
     public void onReorder() {
@@ -102,12 +183,12 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	// G&S
 
-	public Departamento getDepartamento() {
-		return departamento;
+	public Departamento getDepartamentoPai() {
+		return departamentoPai;
 	}
 
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
+	public void setDepartamentoPai(Departamento departamentoPai) {
+		this.departamentoPai = departamentoPai;
 	}
 
 	
@@ -120,6 +201,39 @@ public class CadastroDepartamentoBean implements Serializable {
 		this.gerentes = gerentes;
 	}
 
+	public boolean isExibirPikeList() {
+		return exibirPikeList;
+	}
+
+	public void setExibirPikeList(boolean exibirPikeList) {
+		this.exibirPikeList = exibirPikeList;
+	}
+
+	public Departamento getDepartamentoPosSave() {
+		return departamentoPosSave;
+	}
+
+	public void setDepartamentoPosSave(Departamento departamentoPosSave) {
+		this.departamentoPosSave = departamentoPosSave;
+	}
+
+	public List<Departamento> getGerentesSelecionados() {
+		return gerentesSelecionados;
+	}
+
+	public void setGerentesSelecionados(List<Departamento> gerentesSelecionados) {
+		this.gerentesSelecionados = gerentesSelecionados;
+	}
+
+	public Departamento getGetente() {
+		return getente;
+	}
+
+	public void setGetente(Departamento getente) {
+		this.getente = getente;
+	}
+
+	
 	
 	
 
