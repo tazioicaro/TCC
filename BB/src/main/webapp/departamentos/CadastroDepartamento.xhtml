@@ -65,18 +65,22 @@
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 					columnClasses="rotuloP, campoP"
 					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
-
+<p:columnGroup>
 					<p:outputLabel value="Nome: " />
 					<p:inputText required="true" label="Nome"
 						value="#{cadastroDepartamentoBean.departamento.nome}"
 						style=" width: 91%;" />
+						</p:columnGroup>
+						
+						<h:outputText/>
 				</p:panelGrid>
 
 			</p:panel>
 
 		</h:form>
 
-		<h:form id="form2">
+		<h:form id="form2" styleClass="ui-fluid ui-g-12"
+			style="margin-bottom: 0px;">
 		
 		<p:growl id="msg" showDetail="true" escape="false" />
 
@@ -108,6 +112,9 @@
 						<h:outputText value="#{gerente.nome}" />
 					</p:column>
 				</p:pickList>
+				
+				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
+					oncomplete="" style="margin-top:5px; background-color: #f18983;" />
 
 			</p:fieldset>
 
@@ -132,11 +139,20 @@ style="margin-top:5px" />  -->
 					</ui:repeat>
 				</h:panelGrid>
 			</p:dialog>
-
-
-
-
-
 		</h:form>
+		<!-- rendered="#{CadastroDepartamentoBean.exibirPikeList}" -->
+	
+		<h:form id="form3" styleClass="ui-fluid ui-g-4"
+			style="margin-bottom: 0px;" >
+
+			<p:fieldset legend="Não encontrou? Cadastre aqui!" toggleable="true"
+				toggleSpeed="500">
+				<p:commandButton id="CadSubmit" value="Cadastrar Novo Líder"
+					oncomplete="" style="margin-top:5px; background-color: #985edb;" />
+			</p:fieldset>
+		</h:form>	
+		
+		
+		
 	</ui:define>
 </ui:composition>
