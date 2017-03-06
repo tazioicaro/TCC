@@ -4,19 +4,16 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.hibernate.sql.ordering.antlr.GeneratedOrderByFragmentRendererTokenTypes;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.DualListModel;
-import org.springframework.ui.context.Theme;
 
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.services.NegocioException;
@@ -88,14 +85,22 @@ public class CadastroDepartamentoBean implements Serializable {
 	public void cadastrarGerentes(){
 		
 		gerentesSelecionados = gerentes.getTarget();
+		
 		if (!gerentesSelecionados.isEmpty()){
 			for (Departamento dep : gerentesSelecionados){
 				
-				dep.setDepartamentoPai(departamentoPai);
+				if(dep.getCodigo()!= null){
+					dep.setCodigo(null);
+				}
 				
+				dep.setDepartamentoPai(departamentoPai);	
+				
+			
 				repositorioDepartamentos.guardar(dep);
-				FacesUtil.addInforMessage("Líder " + dep.getNome() + " cadastrado com sucesso");
 			}
+			
+			
+			FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");			
 		
 		}
 		
@@ -160,15 +165,14 @@ public class CadastroDepartamentoBean implements Serializable {
          
         FacesMessage msg = new FacesMessage();
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setSummary("Items Transferred");
+        msg.setSummary("Itens Transferidos");
         msg.setDetail(builder.toString());
          
         FacesContext.getCurrentInstance().addMessage(null, msg);
     } 
  
     public void onSelect(SelectEvent event) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item Selecionado", event.getObject().toString()));
+    	FacesUtil.addInforMessage("Item " + event.getObject().toString()+ " Selecionado" );
     }
      
     public void onUnselect(UnselectEvent event) {
@@ -178,7 +182,7 @@ public class CadastroDepartamentoBean implements Serializable {
      
     public void onReorder() {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "List Reordered", null));
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Lista Reorganizada", null));
     } 
 
 	// G&S

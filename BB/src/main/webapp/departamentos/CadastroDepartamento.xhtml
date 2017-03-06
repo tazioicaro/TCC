@@ -33,7 +33,7 @@
 
 			<p:focus context="form" />
 
-			<p:growl id="msgs" showDetail="true" escape="false" />
+			<p:growl id="msgs" showDetail="false" escape="false" />
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -83,7 +83,7 @@
 		<h:form id="form2" styleClass="ui-fluid ui-g-12"
 			style="margin-bottom: 0px;" >
 
-			<p:growl id="msg" showDetail="true" escape="false" />
+			<p:growl id="msg" showDetail="false" escape="false" />
 
 			<p:fieldset legend="Atribua um líder ao departamento!"
 				toggleable="true" toggleSpeed="500">
@@ -124,7 +124,8 @@
 				</p:pickList>
 
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
-					oncomplete="" style="margin-top:5px; background-color: #f18983;" action="#{cadastroDepartamentoBean.cadastrarGerentes}"/>
+					oncomplete="PF('themesDialog').show()" style="margin-top:5px; background-color: #f18983;" 
+					action="#{cadastroDepartamentoBean.cadastrarGerentes}" update="displayThemes"/>
 
 			</p:fieldset>
 

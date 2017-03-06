@@ -37,7 +37,7 @@ public class Departamento implements Serializable{
 	@JoinColumn(name = "departamento_pai_codigo")
 	private Departamento departamentoPai;
 	
-	@OneToMany(mappedBy = "departamentoPai", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "departamentoPai")
 	private List<Departamento> gerentes = new ArrayList<>();//subcategorias
 	
 	

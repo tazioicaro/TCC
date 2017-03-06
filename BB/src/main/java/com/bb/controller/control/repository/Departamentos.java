@@ -54,6 +54,8 @@ return this.manager.merge(departamento);
 }
 
 
+
+
 public Departamento porId(Long valor) {
  
 return this.manager.find(Departamento.class, valor);
