@@ -9,6 +9,7 @@ public class DepartamentoFilter implements Serializable {
 	
 	private String nome;
 	private String gerente;
+	private String departamentoPai;
 	
 	
 	private int primeiroRegistro;
@@ -52,6 +53,12 @@ public class DepartamentoFilter implements Serializable {
 	}
 	public void setAscendente(boolean ascendente) {
 		this.ascendente = ascendente;
+	}
+	public String getDepartamentoPai() {
+		return departamentoPai;
+	}
+	public void setDepartamentoPai(String departamentoPai) {
+		this.departamentoPai = departamentoPai;
 	}
 	
 	

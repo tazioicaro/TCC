@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -69,8 +70,8 @@ public class Departamentos implements Serializable {
 
 		Criteria criteria = session.createCriteria(Departamento.class);
 
-		if (StringUtils.isNoneBlank(filtro.getNome())) {
-			criteria.add(Restrictions.ilike("nome", filtro.getNome()));
+		if (StringUtils.isNoneBlank(filtro.getNome()) && StringUtils.isBlank(filtro.getDepartamentoPai())) {
+			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 
 		return criteria;

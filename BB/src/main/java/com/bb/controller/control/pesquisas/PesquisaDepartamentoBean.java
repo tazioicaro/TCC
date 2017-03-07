@@ -30,6 +30,11 @@ public class PesquisaDepartamentoBean implements Serializable {
 	private DepartamentoFilter filtro;
 	
 	
+	public void excluir(){
+		
+	}
+	
+	
 	
 	public PesquisaDepartamentoBean(){
 		
