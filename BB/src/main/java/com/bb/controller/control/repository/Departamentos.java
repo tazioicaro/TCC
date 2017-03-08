@@ -70,7 +70,7 @@ public class Departamentos implements Serializable {
 
 		Criteria criteria = session.createCriteria(Departamento.class);
 
-		if (StringUtils.isNoneBlank(filtro.getNome()) && StringUtils.isBlank(filtro.getDepartamentoPai())) {
+		if (StringUtils.isNoneBlank(filtro.getNome()) && filtro.getDepartamentoPai()!= null) {
 			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 
