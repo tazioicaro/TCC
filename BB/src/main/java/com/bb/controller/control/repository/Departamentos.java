@@ -5,14 +5,19 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.CriteriaSpecification;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 
 import com.bb.controller.control.repository.filter.DepartamentoFilter;
 import com.bb.controller.util.jpa.Transactional;
@@ -31,9 +36,51 @@ public class Departamentos implements Serializable {
 				.getResultList();
 	}
 
-	public List<Departamento> todosGerentes() {
-		return this.manager.createQuery("from Departamento where departamentoPai is not null", Departamento.class)
-				.getResultList();
+
+	@SuppressWarnings("unchecked")
+	public List<Departamento> todosGerentes() {		
+
+		
+//	return this.manager.createQuery("FROM Departamento  WHERE departamentoPai is not null", Departamento.class)
+//			.getResultList();
+		
+		
+		Session session = manager.unwrap(Session.class);
+		
+		Criteria criteria = session.createCriteria(Departamento.class, "d");
+		criteria.add(Subqueries.notExists(
+				DetachedCriteria.forClass(Departamento.class, "c")
+				 .setProjection(Projections.id())
+				 .add(Restrictions.eqProperty("d.codigo", "c.departamentoPai"))	
+				              
+					        ))
+				  
+		;
+		
+		return criteria.list();
+	
+//		criteria.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+	
+/*	Vai servir para o Funcionário
+ * 
+ * Consultar todos os alunos que estão matriculados em dois curso (pt e matema)
+ * 
+ * public List<Aluno> alunosCursandoTodosOsCursos() {
+  Criteria criteria = session.createCriteria(Aluno.class, "a");
+  criteria.add(Subqueries.notExists(
+      DetachedCriteria.forClass(Curso.class, "c")
+        .setProjection(Projections.id())
+        .add(Subqueries.notExists(
+            DetachedCriteria.forClass(Matricula.class, "m")
+              .setProjection(Projections.id())
+              .add(Restrictions.eqProperty("m.curso.id", "c.id"))
+              .add(Restrictions.eqProperty("m.aluno.id", "a.id")                
+        ))
+      ));
+  return criteria.list();
+}
+	*/
+	
 	}
 
 	public Departamento porNome(String nome) {
@@ -73,7 +120,9 @@ public class Departamentos implements Serializable {
 		if ( StringUtils.isNoneBlank(filtro.getNome())) {
 			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 			}
-			criteria.add(Restrictions.isNull("departamentoPai"));
+			criteria.add(Restrictions.isNull("departamentoPai"));			
+			
+			
 
 		return criteria;
 

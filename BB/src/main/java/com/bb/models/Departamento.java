@@ -21,6 +21,7 @@ public class Departamento implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
@@ -73,6 +74,8 @@ public class Departamento implements Serializable{
 	public void setGerentes(List<Departamento> gerentes) {
 		this.gerentes = gerentes;
 	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
