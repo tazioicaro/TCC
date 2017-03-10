@@ -22,7 +22,7 @@ import com.bb.models.Departamento;
 
 @Named
 @ViewScoped
-public class CadastroDepartamentoBean implements Serializable {
+public class CadastroDepartamentoBean2 implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -30,15 +30,16 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	private Departamento departamentoPai = new Departamento();
 	private Departamento departamentoPosSave;
-	private List<String> gerentesSelecionados;
+	private List<Departamento> gerentesSelecionados;
 	
 	//teste
 	private Departamento getente;
 	
 	
 	
-	private boolean exibirPikeList = false;	
-	private DualListModel<String> gerentes;
+	private boolean exibirPikeList = false;
+	
+	private DualListModel<Departamento> gerentes;
 
 
 	public void inicializar() {	
@@ -49,20 +50,20 @@ public class CadastroDepartamentoBean implements Serializable {
 			
 		}		
 		
-		
-		
-		
-		List<String> departamentosSource = repositorioDepartamentos.todosGerentesString();
-		List<String> departamentosTarget = new ArrayList<String>();
-		gerentes = new DualListModel<String>(departamentosSource, departamentosTarget);
+		List<Departamento> departamentosSource = repositorioDepartamentos.todosGerentes();
+		List<Departamento> departamentosTarget = new ArrayList<Departamento>();	         
+	    setGerentes(new DualListModel<Departamento>(departamentosSource, departamentosTarget));
 	    
 	}
 
-	public CadastroDepartamentoBean() {
+	public CadastroDepartamentoBean2() {
 	
-			limpar();		
+			limpar();
+		
 
 	}
+	
+	
 	
 	
 	public void cadastrar(){
@@ -76,32 +77,36 @@ public class CadastroDepartamentoBean implements Serializable {
 		}catch(NegocioException ne){
 			FacesUtil.addErrorMessage(ne.getMessage());
 			
-		}		
+		}
+		
+		
 	}
 	
 	public void cadastrarGerentes(){
 		
 		gerentesSelecionados = gerentes.getTarget();
 		
-		Departamento dep;
-		
 		if (!gerentesSelecionados.isEmpty()){
-			for (String depo : gerentesSelecionados){
+			for (Departamento dep : gerentesSelecionados){
 				
-				dep = new Departamento();
+				if(dep.getCodigo()!= null){
+					dep.setCodigo(null);
+				}
 				
-				dep.setDepartamentoPai(departamentoPai);
-				dep.setNome(depo);
+				dep.setDepartamentoPai(departamentoPai);	
 				
 			
 				repositorioDepartamentos.guardar(dep);
-			}			
+			}
+			
 			
 			FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");			
 		
-		}	
+		}
+		
 	
-	}	
+	}
+	
 	
 
 //	public void cadastrar() {
@@ -140,7 +145,9 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	public void limpar() {	
 
-		departamentoPosSave = new Departamento();		
+		departamentoPosSave = new Departamento();	
+		
+		
 
 	}
 	
@@ -151,31 +158,31 @@ public class CadastroDepartamentoBean implements Serializable {
 	
 
 	public void onTransfer(TransferEvent event) {
-//        StringBuilder builder = new StringBuilder();
-//        for(Object item : event.getItems()) {
-//            builder.append(((Departamento) item).getNome()).append("<br />");
-//        }
-//         
-//        FacesMessage msg = new FacesMessage();
-//        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-//        msg.setSummary("Itens Transferidos");
-//        msg.setDetail(builder.toString());
-//         
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
+        StringBuilder builder = new StringBuilder();
+        for(Object item : event.getItems()) {
+            builder.append(((Departamento) item).getNome()).append("<br />");
+        }
+         
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Itens Transferidos");
+        msg.setDetail(builder.toString());
+         
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     } 
  
     public void onSelect(SelectEvent event) {
-//    	FacesUtil.addInforMessage("Item " + event.getObject().toString()+ " Selecionado" );
+    	FacesUtil.addInforMessage("Item " + event.getObject().toString()+ " Selecionado" );
     }
      
     public void onUnselect(UnselectEvent event) {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item desselecionado", event.getObject().toString()));
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item desselecionado", event.getObject().toString()));
     }
      
     public void onReorder() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Lista Reorganizada", null));
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Lista Reorganizada", null));
     } 
 
 	// G&S
@@ -190,11 +197,11 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	
 
-	public DualListModel<String> getGerentes() {
+	public DualListModel<Departamento> getGerentes() {
 		return gerentes;
 	}
 
-	public void setGerentes(DualListModel<String> gerentes) {
+	public void setGerentes(DualListModel<Departamento> gerentes) {
 		this.gerentes = gerentes;
 	}
 
@@ -214,11 +221,11 @@ public class CadastroDepartamentoBean implements Serializable {
 		this.departamentoPosSave = departamentoPosSave;
 	}
 
-	public List<String> getGerentesSelecionados() {
+	public List<Departamento> getGerentesSelecionados() {
 		return gerentesSelecionados;
 	}
 
-	public void setGerentesSelecionados(List<String> gerentesSelecionados) {
+	public void setGerentesSelecionados(List<Departamento> gerentesSelecionados) {
 		this.gerentesSelecionados = gerentesSelecionados;
 	}
 
