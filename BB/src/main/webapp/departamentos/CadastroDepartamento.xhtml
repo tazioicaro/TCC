@@ -101,7 +101,7 @@
 				<p:pickList id="PojoPickList"
 					value="#{cadastroDepartamentoBean.gerentes}" var="gerente"
 					effect="bounce" itemValue="#{gerente}" itemLabel="#{gerente}"				 
-					 responsive="true" 	 filterMatchMode="contains">
+					 responsive="true" 	 filterMatchMode="contains" styleClass="ui-g-12">
 
 					<f:facet name="sourceCaption">Existentes</f:facet>
 					<f:facet name="targetCaption">Alocados</f:facet>
@@ -122,8 +122,9 @@
 				</p:pickList>
 
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
-					oncomplete="PF('themesDialog').show()" style="margin-top:5px; background-color: #f18983;" 
-					action="#{cadastroDepartamentoBean.cadastrarGerentes}" update="displayThemes"/>
+					oncomplete="PF('themesDialog').show()" style="margin-top:5px;" 
+					action="#{cadastroDepartamentoBean.cadastrarGerentes}" update="displayThemes"
+					styleClass="ui-g-2"/>
 
 			</p:fieldset>
 

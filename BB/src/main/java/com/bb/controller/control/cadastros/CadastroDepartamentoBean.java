@@ -35,6 +35,9 @@ public class CadastroDepartamentoBean implements Serializable {
 	//teste
 	private Departamento getente;
 	
+	private List<String> departamentosSource;
+	private List<String> departamentosTarget;
+	
 	
 	
 	private boolean exibirPikeList = false;	
@@ -47,13 +50,17 @@ public class CadastroDepartamentoBean implements Serializable {
 			
 			limpar();
 			
-		}		
+		}	
+		
+		if (this.departamentoPai.getCodigo()!= null){
+			isEditando();
+		}
 		
 		
 		
-		
-		List<String> departamentosSource = repositorioDepartamentos.todosGerentesString();
-		List<String> departamentosTarget = new ArrayList<String>();
+				
+		departamentosSource = repositorioDepartamentos.todosGerentesString();	
+		departamentosTarget = new ArrayList<String>();	
 		gerentes = new DualListModel<String>(departamentosSource, departamentosTarget);
 	    
 	}
@@ -104,45 +111,28 @@ public class CadastroDepartamentoBean implements Serializable {
 	}	
 	
 
-//	public void cadastrar() {
-//
-//		try {
-//			this.departamentoPai = repositorioDepartamentos.guardar(this.departamentoPosSave);
-//
-//			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
-//			alterarExibirPikeList();
-//			limpar();
-//
-//		} catch (NegocioException ne) {
-//			FacesUtil.addErrorMessage(ne.getMessage());
-//
-//		}
-//
-//	}
-//	
-//	
-//	public void cadastrarGerentes(){
-//		
-//		gerentesSelecionados = gerentes.getTarget();
-//		
-//		
-//		if (!gerentesSelecionados.isEmpty()){
-//		for (Departamento dep : gerentesSelecionados){
-//			
-//			dep.setDepartamentoPai(departamentoPai);
-//			
-//			repositorioDepartamentos.guardar(dep);
-//		}
-//		
-//		}
-//		
-//	}
 
 	public void limpar() {	
 
 		departamentoPosSave = new Departamento();		
 
 	}
+	
+public boolean isEditando(){
+		
+			exibirPikeList = true;			
+			
+			List<String> parcial = new ArrayList<>();
+			for ( Departamento dep :departamentoPai.getGerentes()){	
+				
+				
+				parcial.add(dep.getNome());
+			}
+			departamentosTarget = parcial;
+					
+		return true;
+	}
+
 	
 	public void alterarExibirPikeList(){
 		exibirPikeList = true;
@@ -151,31 +141,18 @@ public class CadastroDepartamentoBean implements Serializable {
 	
 
 	public void onTransfer(TransferEvent event) {
-//        StringBuilder builder = new StringBuilder();
-//        for(Object item : event.getItems()) {
-//            builder.append(((Departamento) item).getNome()).append("<br />");
-//        }
-//         
-//        FacesMessage msg = new FacesMessage();
-//        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-//        msg.setSummary("Itens Transferidos");
-//        msg.setDetail(builder.toString());
-//         
-//        FacesContext.getCurrentInstance().addMessage(null, msg);
+
     } 
  
     public void onSelect(SelectEvent event) {
-//    	FacesUtil.addInforMessage("Item " + event.getObject().toString()+ " Selecionado" );
+
     }
      
     public void onUnselect(UnselectEvent event) {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item desselecionado", event.getObject().toString()));
+
     }
      
     public void onReorder() {
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Lista Reorganizada", null));
     } 
 
 	// G&S
@@ -186,9 +163,7 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	public void setDepartamentoPai(Departamento departamentoPai) {
 		this.departamentoPai = departamentoPai;
-	}
-
-	
+	}	
 
 	public DualListModel<String> getGerentes() {
 		return gerentes;
@@ -230,6 +205,7 @@ public class CadastroDepartamentoBean implements Serializable {
 		this.getente = getente;
 	}
 
+	
 	
 	
 	
