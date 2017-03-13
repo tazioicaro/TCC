@@ -52,11 +52,12 @@ public class CadastroDepartamentoBean implements Serializable {
 			
 		}	
 		
-		if (this.departamentoPai.getCodigo()!= null){
-			isEditando();
-		}
+		exibirPikeList = isEditando();
 		
-		
+//		if (this.departamentoPai.getCodigo()!= null){
+//			isEditando();
+//		}
+				
 		
 				
 		departamentosSource = repositorioDepartamentos.todosGerentesString();	
@@ -119,18 +120,22 @@ public class CadastroDepartamentoBean implements Serializable {
 	}
 	
 public boolean isEditando(){
-		
-			exibirPikeList = true;			
+	if (this.departamentoPai != null){				
 			
 			List<String> parcial = new ArrayList<>();
+		
 			for ( Departamento dep :departamentoPai.getGerentes()){	
 				
 				
-				parcial.add(dep.getNome());
+				departamentosTarget.add(dep.getNome());
 			}
-			departamentosTarget = parcial;
+//			departamentosTarget = parcial;
+			
 					
 		return true;
+	}
+	
+	return false;
 	}
 
 	
@@ -203,6 +208,22 @@ public boolean isEditando(){
 
 	public void setGetente(Departamento getente) {
 		this.getente = getente;
+	}
+
+	public List<String> getDepartamentosSource() {
+		return departamentosSource;
+	}
+
+	public void setDepartamentosSource(List<String> departamentosSource) {
+		this.departamentosSource = departamentosSource;
+	}
+
+	public List<String> getDepartamentosTarget() {
+		return departamentosTarget;
+	}
+
+	public void setDepartamentosTarget(List<String> departamentosTarget) {
+		this.departamentosTarget = departamentosTarget;
 	}
 
 	
