@@ -29,10 +29,7 @@ public class CadastroDepartamentoBean implements Serializable {
 	private Departamento departamentoPosSave;
 	private List<String> gerentesSelecionados;
 	
-	//teste
-	private Departamento getente;
-	
-		
+			
 	private boolean exibirPikeList = false;	
 	
 	private List<String> gerentes = new ArrayList<String>();
@@ -41,13 +38,15 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	public void inicializar() {	
 		
-		if (departamentoPai.getCodigo()!= null) {
-			edicaoGerentes();
-					}
-		
+		if(this.departamentoPai == null){
 		obterGerentes();
+		}
 		
-		
+		else if (this.departamentoPai.getCodigo()!= null) {
+			edicaoGerentes();
+			
+			exibirPikeList = true;
+					}	
 	    
 	}
 
@@ -98,6 +97,8 @@ public class CadastroDepartamentoBean implements Serializable {
 			FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");			
 		
 		}	
+		
+		departamentoPai= new Departamento();
 	
 	}	
 	
@@ -185,14 +186,7 @@ public class CadastroDepartamentoBean implements Serializable {
 		this.gerentesSelecionados = gerentesSelecionados;
 	}
 
-	public Departamento getGetente() {
-		return getente;
-	}
 
-	public void setGetente(Departamento getente) {
-		this.getente = getente;
-	}
-	
 
 	public List<String> getGerentesConvert() {
 		return gerentesConvert;

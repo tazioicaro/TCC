@@ -44,7 +44,7 @@
 
 					<p:commandButton value="Salvar" id="botaoSalvar"
 						action="#{cadastroDepartamentoBean.cadastrar}"						
-						validateClient="true"  update="@form :form2:gt">
+						validateClient="true"  update="@form :form2">
 
 					</p:commandButton>
 
@@ -82,7 +82,7 @@
 		</h:form>
 
 		<h:form id="form2" styleClass="ui-fluid ui-g-12"
-			style="margin-bottom: 0px;" >
+			style="margin-bottom: 0px;"  rendered="#{exibirPikeList}">
 
 			<p:growl id="msg" showDetail="false" escape="false" />
 
