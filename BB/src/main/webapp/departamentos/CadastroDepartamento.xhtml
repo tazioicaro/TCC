@@ -12,7 +12,7 @@
 	<ui:define name="corpo" >
 
 		<f:metadata>
-			<o:viewParam name="departamento"
+			<o:viewParam name="departamentoPai"
 				value="#{cadastroDepartamentoBean.departamentoPai}" />
 			<f:event listener="#{cadastroDepartamentoBean.inicializar}"
 				type="preRenderView" />
@@ -27,7 +27,8 @@
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
+					display: inline-block; padding-bottom: 5px;">Cadastro
 					de Departamento</h1>
 			</div>
 
@@ -97,34 +98,16 @@
 					</div>
 					
 					
-
-				<p:pickList id="PojoPickList"
-					value="#{cadastroDepartamentoBean.gerentes}" var="gerente"
-					effect="bounce" itemValue="#{gerente}" itemLabel="#{gerente}"				 
-					 responsive="true" 	 filterMatchMode="contains" styleClass="ui-g-12">
-
-					<f:facet name="sourceCaption">Existentes</f:facet>
-					<f:facet name="targetCaption">Alocados</f:facet>
-
-					<p:ajax event="transfer"
-						listener="#{cadastroDepartamentoBean.onTransfer}" update="msg" />
-					<p:ajax event="select"
-						listener="#{cadastroDepartamentoBean.onSelect}" update="msg" />
-					<p:ajax event="unselect"
-						listener="#{cadastroDepartamentoBean.onUnselect}" update="msg" />
-					<p:ajax event="reorder"
-						listener="#{cadastroDepartamentoBean.onReorder}" update="msg" />
-
-
-					<p:column style="width:90%;">
-						<h:outputText value="#{gerente}" />
-					</p:column>
-				</p:pickList>
+<p:selectCheckboxMenu label="grupos" id="gp"
+						value="#{cadastroDepartamentoBean.gerentesConvert}" >
+						<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
+							var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
+					</p:selectCheckboxMenu>
 
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
 					oncomplete="PF('themesDialog').show()" style="margin-top:5px;" 
-					action="#{cadastroDepartamentoBean.cadastrarGerentes}" update="displayThemes"
-					styleClass="ui-g-2"/>
+					action="#{cadastroDepartamentoBean.cadastrarGerentes}" 
+					styleClass="ui-g-2"/> <!-- update="displayThemes" -->
 
 			</p:fieldset>
 
@@ -132,25 +115,8 @@
 style="margin-top:5px" />  -->
 
 
-
-			<p:dialog modal="true" showEffect="fade" hideEffect="fade"
-				widgetVar="themesDialog">
-				<h:panelGrid id="displayThemes" columns="2">
-					<h:outputText value="Source: " style="font-weight:bold" />
-					<ui:repeat value="#{cadastroDepartamentoBean.gerentes.source}"
-						var="theme">
-						<h:outputText value="#{theme}" style="margin-right:5px" />
-					</ui:repeat>
-
-					<h:outputText value="Target: " style="font-weight:bold" />
-					<ui:repeat value="#{cadastroDepartamentoBean.gerentes.target}"
-						var="theme">
-						<h:outputText value="#{theme}" style="margin-right:5px" />
-					</ui:repeat>
-				</h:panelGrid>
-			</p:dialog>
 		</h:form>
-		<!--  -->
+		
 
 		<h:form id="form3" styleClass="ui-fluid ui-g-4"
 			style="margin-bottom: 0px;" >

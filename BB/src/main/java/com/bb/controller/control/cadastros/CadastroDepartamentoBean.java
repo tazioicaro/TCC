@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,7 +11,6 @@ import javax.inject.Named;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.TransferEvent;
 import org.primefaces.event.UnselectEvent;
-import org.primefaces.model.DualListModel;
 
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.services.NegocioException;
@@ -35,34 +32,22 @@ public class CadastroDepartamentoBean implements Serializable {
 	//teste
 	private Departamento getente;
 	
-	private List<String> departamentosSource;
-	private List<String> departamentosTarget;
-	
-	
-	
+		
 	private boolean exibirPikeList = false;	
-	private DualListModel<String> gerentes;
+	
+	private List<String> gerentes = new ArrayList<String>();
+	private List<String> gerentesConvert = new ArrayList<>();
 
 
 	public void inicializar() {	
 		
-		if (this.departamentoPosSave == null) {	
-			
-			limpar();
-			
-		}	
+		if (departamentoPai.getCodigo()!= null) {
+			edicaoGerentes();
+					}
 		
-		exibirPikeList = isEditando();
+		obterGerentes();
 		
-//		if (this.departamentoPai.getCodigo()!= null){
-//			isEditando();
-//		}
-				
 		
-				
-		departamentosSource = repositorioDepartamentos.todosGerentesString();	
-		departamentosTarget = new ArrayList<String>();	
-		gerentes = new DualListModel<String>(departamentosSource, departamentosTarget);
 	    
 	}
 
@@ -72,6 +57,11 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	}
 	
+	List<String> obterGerentes() {
+		return this.gerentes = repositorioDepartamentos.todosGerentesString();
+	}
+	
+	
 	
 	public void cadastrar(){
 		
@@ -79,6 +69,7 @@ public class CadastroDepartamentoBean implements Serializable {
 			this.departamentoPai = repositorioDepartamentos.guardar(this.departamentoPosSave);
 			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
 			limpar();
+			obterGerentes();
 			
 			
 		}catch(NegocioException ne){
@@ -87,14 +78,13 @@ public class CadastroDepartamentoBean implements Serializable {
 		}		
 	}
 	
-	public void cadastrarGerentes(){
-		
-		gerentesSelecionados = gerentes.getTarget();
+	
+	public void cadastrarGerentes(){	
 		
 		Departamento dep;
 		
-		if (!gerentesSelecionados.isEmpty()){
-			for (String depo : gerentesSelecionados){
+		if (!gerentesConvert.isEmpty()){
+			for (String depo : gerentesConvert){
 				
 				dep = new Departamento();
 				
@@ -119,23 +109,15 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	}
 	
-public boolean isEditando(){
-	if (this.departamentoPai != null){				
-			
-			List<String> parcial = new ArrayList<>();
-		
-			for ( Departamento dep :departamentoPai.getGerentes()){	
-				
-				
-				departamentosTarget.add(dep.getNome());
-			}
-//			departamentosTarget = parcial;
-			
-					
-		return true;
-	}
 	
-	return false;
+	public void edicaoGerentes(){		
+			
+			for ( Departamento dep : departamentoPai.getGerentes()){	
+				
+				gerentesConvert.add(dep.getNome());
+			
+		}
+		
 	}
 
 	
@@ -167,14 +149,15 @@ public boolean isEditando(){
 	}
 
 	public void setDepartamentoPai(Departamento departamentoPai) {
-		this.departamentoPai = departamentoPai;
+		this.departamentoPai = departamentoPai;	
+		
 	}	
 
-	public DualListModel<String> getGerentes() {
+	public List<String> getGerentes() {
 		return gerentes;
 	}
 
-	public void setGerentes(DualListModel<String> gerentes) {
+	public void setGerentes(List<String> gerentes) {
 		this.gerentes = gerentes;
 	}
 
@@ -209,21 +192,14 @@ public boolean isEditando(){
 	public void setGetente(Departamento getente) {
 		this.getente = getente;
 	}
+	
 
-	public List<String> getDepartamentosSource() {
-		return departamentosSource;
+	public List<String> getGerentesConvert() {
+		return gerentesConvert;
 	}
 
-	public void setDepartamentosSource(List<String> departamentosSource) {
-		this.departamentosSource = departamentosSource;
-	}
-
-	public List<String> getDepartamentosTarget() {
-		return departamentosTarget;
-	}
-
-	public void setDepartamentosTarget(List<String> departamentosTarget) {
-		this.departamentosTarget = departamentosTarget;
+	public void setGerentesConvert(List<String> gerentesConvert) {
+		this.gerentesConvert = gerentesConvert;
 	}
 
 	

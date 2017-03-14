@@ -100,8 +100,10 @@
 
 				<p:pickList id="PojoPickList"
 					value="#{cadastroDepartamentoBean.gerentes}" var="gerente"
-					effect="bounce" itemValue="#{gerente}" itemLabel="#{gerente}"				 
-					 responsive="true" 	 filterMatchMode="contains" styleClass="ui-g-12">
+					effect="bounce" itemValue="#{gerente}" itemLabel="#{gerente.nome}"
+					showSourceControls="true" showTargetControls="true"
+					showCheckbox="true" responsive="true" showSourceFilter="true"
+					showTargetFilter="true" filterMatchMode="contains" converter="converterPickList">
 
 					<f:facet name="sourceCaption">Existentes</f:facet>
 					<f:facet name="targetCaption">Alocados</f:facet>
@@ -117,14 +119,13 @@
 
 
 					<p:column style="width:90%;">
-						<h:outputText value="#{gerente}" />
+						<h:outputText value="#{gerente.nome}" />
 					</p:column>
 				</p:pickList>
 
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
-					oncomplete="PF('themesDialog').show()" style="margin-top:5px;" 
-					action="#{cadastroDepartamentoBean.cadastrarGerentes}" update="displayThemes"
-					styleClass="ui-g-2"/>
+					oncomplete="PF('themesDialog').show()" style="margin-top:5px; background-color: #f18983;" 
+					action="#{cadastroDepartamentoBean.cadastrarGerentes}" update="displayThemes"/>
 
 			</p:fieldset>
 
@@ -139,13 +140,13 @@ style="margin-top:5px" />  -->
 					<h:outputText value="Source: " style="font-weight:bold" />
 					<ui:repeat value="#{cadastroDepartamentoBean.gerentes.source}"
 						var="theme">
-						<h:outputText value="#{theme}" style="margin-right:5px" />
+						<h:outputText value="#{theme.nome}" style="margin-right:5px" />
 					</ui:repeat>
 
 					<h:outputText value="Target: " style="font-weight:bold" />
 					<ui:repeat value="#{cadastroDepartamentoBean.gerentes.target}"
 						var="theme">
-						<h:outputText value="#{theme}" style="margin-right:5px" />
+						<h:outputText value="#{theme.nome}" style="margin-right:5px" />
 					</ui:repeat>
 				</h:panelGrid>
 			</p:dialog>

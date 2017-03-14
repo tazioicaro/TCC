@@ -22,7 +22,7 @@ import com.bb.models.Departamento;
 
 @Named
 @ViewScoped
-public class CadastroDepartamentoBean2 implements Serializable {
+public class CadastroDepartamentoBeanOLD implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -30,18 +30,16 @@ public class CadastroDepartamentoBean2 implements Serializable {
 
 	private Departamento departamentoPai = new Departamento();
 	private Departamento departamentoPosSave;
-	private List<String> gerentesSelecionados;
+	private List<Departamento> gerentesSelecionados;
 	
 	//teste
 	private Departamento getente;
 	
-	private List<String> departamentosSource;
-	private List<String> departamentosTarget;
 	
 	
+	private boolean exibirPikeList = false;
 	
-	private boolean exibirPikeList = false;	
-	private DualListModel<String> gerentes;
+	private DualListModel<Departamento> gerentes;
 
 
 	public void inicializar() {	
@@ -50,27 +48,22 @@ public class CadastroDepartamentoBean2 implements Serializable {
 			
 			limpar();
 			
-		}	
+		}		
 		
-		exibirPikeList = isEditando();
-		
-//		if (this.departamentoPai.getCodigo()!= null){
-//			isEditando();
-//		}
-				
-		
-				
-		departamentosSource = repositorioDepartamentos.todosGerentesString();	
-		departamentosTarget = new ArrayList<String>();	
-		gerentes = new DualListModel<String>(departamentosSource, departamentosTarget);
+		List<Departamento> departamentosSource = repositorioDepartamentos.todosGerentes();
+		List<Departamento> departamentosTarget = new ArrayList<Departamento>();	         
+	    setGerentes(new DualListModel<Departamento>(departamentosSource, departamentosTarget));
 	    
 	}
 
-	public CadastroDepartamentoBean2() {
+	public CadastroDepartamentoBeanOLD() {
 	
-			limpar();		
+			limpar();
+		
 
 	}
+	
+	
 	
 	
 	public void cadastrar(){
@@ -84,65 +77,79 @@ public class CadastroDepartamentoBean2 implements Serializable {
 		}catch(NegocioException ne){
 			FacesUtil.addErrorMessage(ne.getMessage());
 			
-		}		
+		}
+		
+		
 	}
 	
 	public void cadastrarGerentes(){
 		
 		gerentesSelecionados = gerentes.getTarget();
 		
-		Departamento dep;
-		
 		if (!gerentesSelecionados.isEmpty()){
-			for (String depo : gerentesSelecionados){
+			for (Departamento dep : gerentesSelecionados){
 				
-				dep = new Departamento();
+				if(dep.getCodigo()!= null){
+					dep.setCodigo(null);
+				}
 				
-				dep.setDepartamentoPai(departamentoPai);
-				dep.setNome(depo);
+				dep.setDepartamentoPai(departamentoPai);	
 				
 			
 				repositorioDepartamentos.guardar(dep);
-			}			
+			}
+			
 			
 			FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");			
 		
-		}	
+		}
+		
 	
-	}	
+	}
+	
 	
 
+//	public void cadastrar() {
+//
+//		try {
+//			this.departamentoPai = repositorioDepartamentos.guardar(this.departamentoPosSave);
+//
+//			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
+//			alterarExibirPikeList();
+//			limpar();
+//
+//		} catch (NegocioException ne) {
+//			FacesUtil.addErrorMessage(ne.getMessage());
+//
+//		}
+//
+//	}
+//	
+//	
+//	public void cadastrarGerentes(){
+//		
+//		gerentesSelecionados = gerentes.getTarget();
+//		
+//		
+//		if (!gerentesSelecionados.isEmpty()){
+//		for (Departamento dep : gerentesSelecionados){
+//			
+//			dep.setDepartamentoPai(departamentoPai);
+//			
+//			repositorioDepartamentos.guardar(dep);
+//		}
+//		
+//		}
+//		
+//	}
 
 	public void limpar() {	
 
-		departamentoPosSave = new Departamento();		
-
-	}
-	
-public boolean isEditando(){
-	if (this.departamentoPai != null){				
-			
-		//	List<String> parcial = new ArrayList<>();
+		departamentoPosSave = new Departamento();	
 		
-	
 		
-			for ( Departamento dep : departamentoPai.getGerentes()){	
-				
-				System.out.println("Gerente Departamento:  " + dep.getNome());
-				
-				System.out.println("Departamento:  " + dep.getGerentes().toString());
-				
-				departamentosTarget.add(dep.getNome());
-			}
 
-			
-					
-		return true;
 	}
-	
-	return false;
-	}
-
 	
 	public void alterarExibirPikeList(){
 		exibirPikeList = true;
@@ -151,18 +158,31 @@ public boolean isEditando(){
 	
 
 	public void onTransfer(TransferEvent event) {
-
+        StringBuilder builder = new StringBuilder();
+        for(Object item : event.getItems()) {
+            builder.append(((Departamento) item).getNome()).append("<br />");
+        }
+         
+        FacesMessage msg = new FacesMessage();
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        msg.setSummary("Itens Transferidos");
+        msg.setDetail(builder.toString());
+         
+        FacesContext.getCurrentInstance().addMessage(null, msg);
     } 
  
     public void onSelect(SelectEvent event) {
-
+    	FacesUtil.addInforMessage("Item " + event.getObject().toString()+ " Selecionado" );
     }
      
     public void onUnselect(UnselectEvent event) {
-
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Item desselecionado", event.getObject().toString()));
     }
      
     public void onReorder() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Lista Reorganizada", null));
     } 
 
 	// G&S
@@ -173,13 +193,15 @@ public boolean isEditando(){
 
 	public void setDepartamentoPai(Departamento departamentoPai) {
 		this.departamentoPai = departamentoPai;
-	}	
+	}
 
-	public DualListModel<String> getGerentes() {
+	
+
+	public DualListModel<Departamento> getGerentes() {
 		return gerentes;
 	}
 
-	public void setGerentes(DualListModel<String> gerentes) {
+	public void setGerentes(DualListModel<Departamento> gerentes) {
 		this.gerentes = gerentes;
 	}
 
@@ -199,11 +221,11 @@ public boolean isEditando(){
 		this.departamentoPosSave = departamentoPosSave;
 	}
 
-	public List<String> getGerentesSelecionados() {
+	public List<Departamento> getGerentesSelecionados() {
 		return gerentesSelecionados;
 	}
 
-	public void setGerentesSelecionados(List<String> gerentesSelecionados) {
+	public void setGerentesSelecionados(List<Departamento> gerentesSelecionados) {
 		this.gerentesSelecionados = gerentesSelecionados;
 	}
 
@@ -215,23 +237,6 @@ public boolean isEditando(){
 		this.getente = getente;
 	}
 
-	public List<String> getDepartamentosSource() {
-		return departamentosSource;
-	}
-
-	public void setDepartamentosSource(List<String> departamentosSource) {
-		this.departamentosSource = departamentosSource;
-	}
-
-	public List<String> getDepartamentosTarget() {
-		return departamentosTarget;
-	}
-
-	public void setDepartamentosTarget(List<String> departamentosTarget) {
-		this.departamentosTarget = departamentosTarget;
-	}
-
-	
 	
 	
 	
