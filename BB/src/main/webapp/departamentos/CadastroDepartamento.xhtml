@@ -9,7 +9,7 @@
 
 	<ui:define name="titulo">Novo CLiente</ui:define>
 
-	<ui:define name="corpo" >
+	<ui:define name="corpo">
 
 		<f:metadata>
 			<o:viewParam name="departamentoPai"
@@ -27,8 +27,7 @@
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
-					display: inline-block; padding-bottom: 5px;">Cadastro
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Cadastro
 					de Departamento</h1>
 			</div>
 
@@ -43,8 +42,9 @@
 						outcome="/departamentos/CadastroDepartamento" />
 
 					<p:commandButton value="Salvar" id="botaoSalvar"
-						action="#{cadastroDepartamentoBean.cadastrar}"						
-						validateClient="true"  update="@form :form2">
+						actionListener="#{cadastroDepartamentoBean.cadastrar}"
+						validateClient="true" update="@form :form2:gt :form2:gp"
+						process="@this">						
 
 					</p:commandButton>
 
@@ -52,7 +52,7 @@
 
 				<p:toolbarGroup align="right">
 					<p:button value="Pesquisar"
-						outcome="/departamentos/PesquisaDepartamentos"  id="pesquisa"/>
+						outcome="/departamentos/PesquisaDepartamentos" id="pesquisa" />
 				</p:toolbarGroup>
 			</p:toolbar>
 
@@ -74,40 +74,43 @@
 					</p:columnGroup>
 
 					<h:outputText />
-				</p:panelGrid>		
-				
+				</p:panelGrid>
+
 
 			</p:panel>
 
 		</h:form>
 
 		<h:form id="form2" styleClass="ui-fluid ui-g-12"
-			style="margin-bottom: 0px;"  rendered="#{exibirPikeList}">
+			style="margin-bottom: 0px;" rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
 
-			<p:growl id="msg" showDetail="false" escape="false" />
+		<!-- 	<p:growl id="msg" showDetail="false" escape="false" /> -->
 
 			<p:fieldset legend="Atribua um líder ao departamento!"
 				toggleable="true" toggleSpeed="500">
-				
+
 				<div>
-						<p:outputLabel value="Departamento: " />
-						<p:inputText  label="Nome"
-							value="#{cadastroDepartamentoBean.departamentoPai.nome}"	
-							readonly="true"		style=" width: 81%; margin-bottom: 15px;  margin-top: 5px" 
-							id="gt"/>
-					</div>
+					<p:outputLabel value="Departamento: " />
+					<p:inputText label="Nome"
+						value="#{cadastroDepartamentoBean.departamentoPai.nome}"
+						readonly="true"
+						 id="gt"
+						/>
+				</div>
+
+
+				<p:selectCheckboxMenu label="grupos" id="gp"
 					
-					
-<p:selectCheckboxMenu label="grupos" id="gp"
-						value="#{cadastroDepartamentoBean.gerentesConvert}" >
-						<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
-							var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
-					</p:selectCheckboxMenu>
+					value="#{cadastroDepartamentoBean.gerentesConvert}">
+					<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
+						var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
+				</p:selectCheckboxMenu>
 
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
-					oncomplete="PF('themesDialog').show()" style="margin-top:5px;" 
-					action="#{cadastroDepartamentoBean.cadastrarGerentes}" 
-					styleClass="ui-g-2"/> <!-- update="displayThemes" -->
+					oncomplete="PF('themesDialog').show()" style="margin-top:5px;"
+					action="#{cadastroDepartamentoBean.cadastrarGerentes}"
+					styleClass="ui-g-2"  />
+				<!-- update="displayThemes" -->
 
 			</p:fieldset>
 
@@ -116,7 +119,7 @@ style="margin-top:5px" />  -->
 
 
 		</h:form>
-		
+
 
 		<h:form id="form3" styleClass="ui-fluid ui-g-4"
 			style="margin-bottom: 0px;" >

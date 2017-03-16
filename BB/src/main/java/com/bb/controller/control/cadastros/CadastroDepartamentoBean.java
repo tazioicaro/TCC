@@ -30,7 +30,7 @@ public class CadastroDepartamentoBean implements Serializable {
 	private List<String> gerentesSelecionados;
 	
 			
-	private boolean exibirPikeList = false;	
+	private boolean exibirPikeList;	
 	
 	private List<String> gerentes = new ArrayList<String>();
 	private List<String> gerentesConvert = new ArrayList<>();
@@ -40,6 +40,7 @@ public class CadastroDepartamentoBean implements Serializable {
 		
 		if(this.departamentoPai == null){
 		obterGerentes();
+		exibirPikeList= false;
 		}
 		
 		else if (this.departamentoPai.getCodigo()!= null) {
@@ -58,6 +59,7 @@ public class CadastroDepartamentoBean implements Serializable {
 	
 	List<String> obterGerentes() {
 		return this.gerentes = repositorioDepartamentos.todosGerentesString();
+		
 	}
 	
 	
@@ -69,6 +71,7 @@ public class CadastroDepartamentoBean implements Serializable {
 			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
 			limpar();
 			obterGerentes();
+			exibirPikeList = true;
 			
 			
 		}catch(NegocioException ne){
@@ -81,6 +84,8 @@ public class CadastroDepartamentoBean implements Serializable {
 	public void cadastrarGerentes(){	
 		
 		Departamento dep;
+		
+		try{
 		
 		if (!gerentesConvert.isEmpty()){
 			for (String depo : gerentesConvert){
@@ -99,6 +104,12 @@ public class CadastroDepartamentoBean implements Serializable {
 		}	
 		
 		departamentoPai= new Departamento();
+		exibirPikeList = false;
+		
+		} catch(NegocioException ne){
+			FacesUtil.addErrorMessage(ne.getMessage());
+			
+		}	
 	
 	}	
 	
