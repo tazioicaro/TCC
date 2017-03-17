@@ -115,9 +115,12 @@
 							<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
 								var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
 						</p:selectCheckboxMenu>
-					</p:columnGroup>
+					</p:columnGroup>		
+					
 
 <h:outputText />
+
+
 				</p:panelGrid>
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
 					oncomplete="PF('themesDialog').show()" style="margin-top:5px;"
