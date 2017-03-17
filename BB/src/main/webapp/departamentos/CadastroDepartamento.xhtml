@@ -43,8 +43,8 @@
 
 					<p:commandButton value="Salvar" id="botaoSalvar"
 						actionListener="#{cadastroDepartamentoBean.cadastrar}"
-						validateClient="true" update="@form :form2:gt :form2:gp"
-						process="@this">						
+						validateClient="true"  update="@all">		
+						 <p:ajax update="painel2, form3" listener="#{cadastroDepartamentoBean.alterarExibirPikeList}"/> 				
 
 					</p:commandButton>
 
@@ -80,9 +80,15 @@
 			</p:panel>
 
 		</h:form>
+		
+		<p:panelGrid columns="2" id="painel2"
+		tyle="width:100%; margin-top:20px; background-color: #f5f8f9;"
+		columnClasses="rotuloP, campoP" 	
+		styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements"
+		rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
 
 		<h:form id="form2" styleClass="ui-fluid ui-g-12"
-			style="margin-bottom: 0px;" rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
+			style="margin-bottom: 0px;" >
 
 		<!-- 	<p:growl id="msg" showDetail="false" escape="false" /> -->
 
@@ -119,10 +125,10 @@ style="margin-top:5px" />  -->
 
 
 		</h:form>
-
+</p:panelGrid>
 
 		<h:form id="form3" styleClass="ui-fluid ui-g-4"
-			style="margin-bottom: 0px;" >
+			style="margin-bottom: 0px;" rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
 
 			<p:fieldset legend="Não encontrou? Cadastre aqui!" toggleable="true"
 				toggleSpeed="500">
