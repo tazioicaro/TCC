@@ -29,11 +29,14 @@ public class CadastroDepartamentoBean implements Serializable {
 	private Departamento departamentoPosSave;
 	private List<String> gerentesSelecionados;
 	
+	private Departamento departamentoNovoGerente;
+	
 			
 	private boolean exibirPikeList;	
+	private boolean exibirNovoGerente;	
 	
 	private List<String> gerentes = new ArrayList<String>();
-	private List<String> gerentesConvert = new ArrayList<>();
+	private List<String> gerentesConvert = new ArrayList<String>();
 
 
 	public void inicializar() {	
@@ -41,11 +44,11 @@ public class CadastroDepartamentoBean implements Serializable {
 		if(this.departamentoPai == null){
 		obterGerentes();
 		exibirPikeList= false;
+		exibirNovoGerente = false;
 		}
 		
 		else if (this.departamentoPai.getCodigo()!= null) {
-			edicaoGerentes();
-			
+			edicaoGerentes();			
 			exibirPikeList = true;
 					}	
 	    
@@ -122,7 +125,8 @@ public class CadastroDepartamentoBean implements Serializable {
 	}
 	
 	
-	public void edicaoGerentes(){		
+	public void edicaoGerentes(){	
+		    obterGerentes();
 			
 			for ( Departamento dep : departamentoPai.getGerentes()){	
 				
@@ -130,8 +134,29 @@ public class CadastroDepartamentoBean implements Serializable {
 			
 		}
 		
-	}
+	}	
 
+	//Possibilita salvar paenas um líder por demartamento
+	public void cadastrarNovoGerente(){
+		
+		try{
+			departamentoNovoGerente.setDepartamentoPai(departamentoPai);
+			repositorioDepartamentos.guardar(departamentoNovoGerente);
+			
+			FacesUtil.addInforMessage("Líder " + departamentoNovoGerente.getNome()+" criado com sucesso "+
+					"e vinculado ao Departamento "+ departamentoPai.getNome()+" !");
+		}catch(NegocioException ne) {
+			
+			FacesUtil.addErrorMessage(ne.getMessage());			
+		}		
+	}	
+
+	public void liberarCadastroNovoGerente (){
+		
+		exibirNovoGerente = true;
+		departamentoNovoGerente = new Departamento();		
+		
+	}
 	
 	public void alterarExibirPikeList(){
 		exibirPikeList = true;
@@ -205,6 +230,22 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	public void setGerentesConvert(List<String> gerentesConvert) {
 		this.gerentesConvert = gerentesConvert;
+	}
+
+	public boolean isExibirNovoGerente() {
+		return exibirNovoGerente;
+	}
+
+	public void setExibirNovoGerente(boolean exibirNovoGerente) {
+		this.exibirNovoGerente = exibirNovoGerente;
+	}
+
+	public Departamento getDepartamentoNovoGerente() {
+		return departamentoNovoGerente;
+	}
+
+	public void setDepartamentoNovoGerente(Departamento departamentoNovoGerente) {
+		this.departamentoNovoGerente = departamentoNovoGerente;
 	}
 
 	

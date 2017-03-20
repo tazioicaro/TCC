@@ -83,15 +83,18 @@
 
 		</h:form>
 
+          <!--  FORM DE CADASTRO DO LIDER AO DEPARTAMENTO -->
 
-		<h:form id="form2" styleClass="ui-fluid ui-g-12"
-			style="margin-bottom: 0px;">
+		<h:form id="form2" styleClass="ui-fluid ui-g-8"
+			style="margin-bottom: 0px;" 
+			rendered="#{cadastroDepartamentoBean.exibirPikeList}">
+			
+			<p:growl id="msg2" showDetail="false" escape="false" />
 
 			<p:panel id="painel2" toggleable="true"
 				header="Atribua um líder ao departamento!" closable="false"
 				toggleSpeed="500" closeSpeed="500" widgetVar="panelJob"
-				style="margin-bottom:0px; height: 23%;" styleClass="ui-g-12"
-				rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
+				style="margin-bottom:0px; height: 25%;" styleClass="ui-g-12">
 
 				<p:panelGrid columns="2" id="painel3"
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
@@ -99,26 +102,26 @@
 					columnClasses="rotuloP, campoP">
 
 
-					<p:columnGroup>
-						<p:outputLabel value="Departamento: " styleClass="ui-md-6" />
+					<!-- <p:columnGroup> -->
+						<p:outputLabel value="Departamento: " />
 						<p:inputText label="Nome"
 							value="#{cadastroDepartamentoBean.departamentoPai.nome}"
-							readonly="true" id="gt" style=" width: 91%;" />
-					</p:columnGroup>
-					<h:outputText />
+							readonly="true" id="gt"  size="100"/>
+					<!-- </p:columnGroup>
+					<h:outputText /> -->
 
-					<p:columnGroup>
-						<p:outputLabel value="Líderes: " styleClass="ui-md-6" />
+				<!-- 	<p:columnGroup> -->
+						<p:outputLabel value="Líderes: " />
 						<p:selectCheckboxMenu label="grupos" id="gp"
 							value="#{cadastroDepartamentoBean.gerentesConvert}"
-							style=" width: 91%;">
+							style=" width: 86.5%;">
 							<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
 								var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
 						</p:selectCheckboxMenu>
-					</p:columnGroup>		
+		<!-- 			</p:columnGroup>		
 					
 
-<h:outputText />
+<h:outputText /> -->
 
 
 				</p:panelGrid>
@@ -126,38 +129,57 @@
 					oncomplete="PF('themesDialog').show()" style="margin-top:5px;"
 					action="#{cadastroDepartamentoBean.cadastrarGerentes}"
 					styleClass="ui-g-4" />
+					
+					<p:commandButton id="liderSubmit" value="Novo Líder"
+					oncomplete="" style="margin-top:5px; background-color: #985edb;"
+					action="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}"
+					styleClass="ui-g-4"  update="@form, :form3:painel4">					
+					
+					<p:ajax update="form3"
+							listener="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}" />
+					
+					</p:commandButton>
 			</p:panel>
 
 		</h:form>
+		
+		<!--  FORM DE CADASTRO DO LIDER -->
 
-		<h:form id="form3" styleClass="ui-fluid ui-g-12"
+		<h:form id="form3" styleClass="ui-fluid ui-g-4"
 			style="margin-bottom: 0px;"
-			rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
+			>
+			
+			<p:growl id="msg3" showDetail="false" escape="false" />
 
 
 			<p:panel id="painel4" toggleable="true"
-				header="Atribua um líder ao departamento!" closable="false"
+				header="Não encontrou? Cadastre aqui!" closable="false"
 				toggleSpeed="500" closeSpeed="500" widgetVar="panelJob"
-				style="margin-bottom:0px; height: 30%;" styleClass="ui-g-6"
-				rendered="#{not empty cadastroDepartamentoBean.departamentoPai.nome}">
+				style="margin-bottom:0px; height: 25%;" styleClass="ui-g-12"
+				rendered="#{cadastroDepartamentoBean.exibirNovoGerente}">
 
 				<p:panelGrid columns="2" id="painel5"
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements"
 					columnClasses="rotuloP, campoP">
+					
+					
+					<p:columnGroup>
+						<p:outputLabel value="Líder: " styleClass="ui-md-6" />
+						<p:inputText label="Gerente"							
+							 id="gent" style=" width: 80%;" 
+							value="#{cadastroDepartamentoBean.departamentoNovoGerente.nome}"/>
+					</p:columnGroup>
+					<h:outputText />
 
-
-
-
-					<p:fieldset legend="Não encontrou? Cadastre aqui!"
-						toggleable="true" toggleSpeed="500">
+</p:panelGrid>
+				
 						<p:commandButton id="CadSubmit" value="Cadastrar Novo Líder"
-							oncomplete="" style="margin-top:5px; background-color: #985edb;"
-							styleClass="ui-g-4" />
-					</p:fieldset>
+							oncomplete="" style="margin-top:5px;"
+							styleClass="ui-g-4"
+							action="#{cadastroDepartamentoBean.cadastrarNovoGerente}" />
 
-
-				</p:panelGrid>
+				
 			</p:panel>
 		</h:form>
 
