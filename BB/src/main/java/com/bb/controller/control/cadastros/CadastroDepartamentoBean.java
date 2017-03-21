@@ -145,6 +145,13 @@ public class CadastroDepartamentoBean implements Serializable {
 			
 			FacesUtil.addInforMessage("Líder " + departamentoNovoGerente.getNome()+" criado com sucesso "+
 					"e vinculado ao Departamento "+ departamentoPai.getNome()+" !");
+		
+		
+			departamentoPai= new Departamento();
+			departamentoNovoGerente = new Departamento();
+		/*	bloquearExibirPikeList();*/
+			bloquearCadastroNovoGerente();
+		
 		}catch(NegocioException ne) {
 			
 			FacesUtil.addErrorMessage(ne.getMessage());			
@@ -153,15 +160,27 @@ public class CadastroDepartamentoBean implements Serializable {
 
 	public void liberarCadastroNovoGerente (){
 		
-		exibirNovoGerente = true;
-		departamentoNovoGerente = new Departamento();		
+		exibirNovoGerente = true;		
+		departamentoNovoGerente = new Departamento();	
+		
 		
 	}
+	
+public void bloquearCadastroNovoGerente (){
+		
+	exibirNovoGerente = false;
+		
+}
 	
 	public void alterarExibirPikeList(){
 		exibirPikeList = true;
 		
 	}	
+	
+	public void bloquearExibirPikeList(){
+		exibirPikeList = false;
+		
+	}
 	
 
 	public void onTransfer(TransferEvent event) {

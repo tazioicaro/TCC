@@ -87,14 +87,14 @@
 
 		<h:form id="form2" styleClass="ui-fluid ui-g-8"
 			style="margin-bottom: 0px;" 
-			rendered="#{cadastroDepartamentoBean.exibirPikeList}">
+			>
 			
 			<p:growl id="msg2" showDetail="false" escape="false" />
 
 			<p:panel id="painel2" toggleable="true"
 				header="Atribua um líder ao departamento!" closable="false"
 				toggleSpeed="500" closeSpeed="500" widgetVar="panelJob"
-				style="margin-bottom:0px; height: 25%;" styleClass="ui-g-12">
+				style="margin-bottom:0px; height: 25%;" styleClass="ui-g-12" rendered="#{cadastroDepartamentoBean.exibirPikeList}">
 
 				<p:panelGrid columns="2" id="painel3"
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
@@ -102,38 +102,37 @@
 					columnClasses="rotuloP, campoP">
 
 
-					<!-- <p:columnGroup> -->
-						<p:outputLabel value="Departamento: " />
+					<p:columnGroup>
+						<p:outputLabel value="Departamento: " styleClass="ui-md-6" />
 						<p:inputText label="Nome"
 							value="#{cadastroDepartamentoBean.departamentoPai.nome}"
-							readonly="true" id="gt"  size="100"/>
-					<!-- </p:columnGroup>
-					<h:outputText /> -->
+							readonly="true" id="gt" style=" width: 80%;" />
+					</p:columnGroup>
+					<h:outputText />
 
-				<!-- 	<p:columnGroup> -->
-						<p:outputLabel value="Líderes: " />
+					<p:columnGroup>
+						<p:outputLabel value="Líderes: " styleClass="ui-md-6" />
 						<p:selectCheckboxMenu label="grupos" id="gp"
 							value="#{cadastroDepartamentoBean.gerentesConvert}"
 							style=" width: 86.5%;">
 							<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
 								var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
 						</p:selectCheckboxMenu>
-		<!-- 			</p:columnGroup>		
-					
+					</p:columnGroup>				
 
-<h:outputText /> -->
+<h:outputText />
 
 
 				</p:panelGrid>
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
 					oncomplete="PF('themesDialog').show()" style="margin-top:5px;"
 					action="#{cadastroDepartamentoBean.cadastrarGerentes}"
-					styleClass="ui-g-4" />
+					styleClass="ui-g-4" update="@form,:form:msgs"/>
 					
 					<p:commandButton id="liderSubmit" value="Novo Líder"
 					oncomplete="" style="margin-top:5px; background-color: #985edb;"
 					action="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}"
-					styleClass="ui-g-4"  update="@form, :form3:painel4">					
+					styleClass="ui-g-4" update="@form" >					
 					
 					<p:ajax update="form3"
 							listener="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}" />
@@ -177,7 +176,14 @@
 						<p:commandButton id="CadSubmit" value="Cadastrar Novo Líder"
 							oncomplete="" style="margin-top:5px;"
 							styleClass="ui-g-4"
-							action="#{cadastroDepartamentoBean.cadastrarNovoGerente}" />
+							action="#{cadastroDepartamentoBean.cadastrarNovoGerente}"  update="@form, :form:msgs">
+							
+							<p:ajax update=":form2:painel2"
+							listener="#{cadastroDepartamentoBean.bloquearExibirPikeList}" />
+					
+					</p:commandButton>
+							
+						
 
 				
 			</p:panel>
