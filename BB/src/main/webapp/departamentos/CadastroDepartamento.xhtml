@@ -43,8 +43,8 @@
 
 					<p:commandButton value="Salvar" id="botaoSalvar"
 						actionListener="#{cadastroDepartamentoBean.cadastrar}"
-						validateClient="true" update="@all">
-						<p:ajax update="form2:painel2, form3"
+						validateClient="true" update="@form, :form2">
+						<p:ajax update="form2:painel2"
 							listener="#{cadastroDepartamentoBean.alterarExibirPikeList}" />
 
 					</p:commandButton>
@@ -94,7 +94,8 @@
 			<p:panel id="painel2" toggleable="true"
 				header="Atribua um líder ao departamento!" closable="false"
 				toggleSpeed="500" closeSpeed="500" widgetVar="panelJob"
-				style="margin-bottom:0px; height: 25%;" styleClass="ui-g-12" rendered="#{cadastroDepartamentoBean.exibirPikeList}">
+				style="margin-bottom:0px; height: 24.5%;" styleClass="ui-g-12" 
+				rendered="#{cadastroDepartamentoBean.exibirPikeList}" >
 
 				<p:panelGrid columns="2" id="painel3"
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
@@ -106,7 +107,7 @@
 						<p:outputLabel value="Departamento: " styleClass="ui-md-6" />
 						<p:inputText label="Nome"
 							value="#{cadastroDepartamentoBean.departamentoPai.nome}"
-							readonly="true" id="gt" style=" width: 80%;" />
+							readonly="true" id="gt" style=" width: 75%;  border-color: black;" />
 					</p:columnGroup>
 					<h:outputText />
 
@@ -114,7 +115,7 @@
 						<p:outputLabel value="Líderes: " styleClass="ui-md-6" />
 						<p:selectCheckboxMenu label="grupos" id="gp"
 							value="#{cadastroDepartamentoBean.gerentesConvert}"
-							style=" width: 86.5%;">
+							style=" width: 81.5%;">
 							<f:selectItems value="#{cadastroDepartamentoBean.gerentes}"
 								var="gerente" itemLabel="#{gerente}" itemValue="#{gerente}" />
 						</p:selectCheckboxMenu>
@@ -123,21 +124,30 @@
 <h:outputText />
 
 
-				</p:panelGrid>
+	<f:facet name="footer">
+   
+  
+				
 				<p:commandButton id="pojoSubmit" value="Vincular ao Departamento"
-					oncomplete="PF('themesDialog').show()" style="margin-top:5px;"
+					oncomplete="" style="width: 76%;"
 					action="#{cadastroDepartamentoBean.cadastrarGerentes}"
-					styleClass="ui-g-4" update="@form,:form:msgs"/>
-					
-					<p:commandButton id="liderSubmit" value="Novo Líder"
-					oncomplete="" style="margin-top:5px; background-color: #985edb;"
-					action="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}"
-					styleClass="ui-g-4" update="@form" >					
-					
-					<p:ajax update="form3"
-							listener="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}" />
+					styleClass="ui-g-4" update="form2, :form, :form:msgs">
 					
 					</p:commandButton>
+					
+					<p:commandButton id="liderSubmit" value="Novo Líder"
+					oncomplete="" style="background-color: #985edb;width: 22%; margin-right: 0%;
+					margin-left: 1.7%;"
+					action="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}"
+					styleClass="ui-g-4" update="form2, :form3" >
+					
+					</p:commandButton>
+					
+				  </f:facet>	
+
+				</p:panelGrid>
+				
+			
 			</p:panel>
 
 		</h:form>
@@ -176,7 +186,7 @@
 						<p:commandButton id="CadSubmit" value="Cadastrar Novo Líder"
 							oncomplete="" style="margin-top:5px;"
 							styleClass="ui-g-4"
-							action="#{cadastroDepartamentoBean.cadastrarNovoGerente}"  update="@form, :form:msgs">
+							action="#{cadastroDepartamentoBean.cadastrarNovoGerente}"  update="form3, :form, :form2, :form:msgs">
 							
 							<p:ajax update=":form2:painel2"
 							listener="#{cadastroDepartamentoBean.bloquearExibirPikeList}" />
@@ -195,3 +205,8 @@
 <!-- update="displayThemes" -->
 <!-- <p:commandButton id="pojoSubmit" value="Submit" update="displayThemes" oncomplete="PF('themesDialog').show()"
 style="margin-top:5px" />  -->
+
+
+
+	<!-- <p:ajax update="form3"
+							listener="#{cadastroDepartamentoBean.liberarCadastroNovoGerente}" /> -->

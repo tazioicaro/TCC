@@ -134,11 +134,19 @@ public class Departamentos implements Serializable {
 		return this.manager.merge(departamento);
 	}
 	
-
+	/*@Transactional
 	public void removerDepartamento(Departamento departamentoSelecionado) {
 
 		manager.remove(manager.contains(departamentoSelecionado) ? departamentoSelecionado
 				: manager.merge(departamentoSelecionado));
+
+	}*/
+	@Transactional
+	public void removerDepartamento(Departamento departamentoSelecionado) {
+		
+		
+
+		manager.remove(porId(departamentoSelecionado.getCodigo()));
 
 	}
 

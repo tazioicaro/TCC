@@ -28,175 +28,196 @@ public class CadastroDepartamentoBean implements Serializable {
 	private Departamento departamentoPai = new Departamento();
 	private Departamento departamentoPosSave;
 	private List<String> gerentesSelecionados;
-	
+
 	private Departamento departamentoNovoGerente;
+	List<Departamento> listGerentes = new ArrayList<>();
+
 	
-			
-	private boolean exibirPikeList;	
-	private boolean exibirNovoGerente;	
-	
+
+	private boolean exibirPikeList;
+	private boolean exibirNovoGerente;
+	private boolean edicao= false; 
+
 	private List<String> gerentes = new ArrayList<String>();
 	private List<String> gerentesConvert = new ArrayList<String>();
 
+	public void inicializar() {
 
-	public void inicializar() {	
-		
-		if(this.departamentoPai == null){
-		obterGerentes();
-		exibirPikeList= false;
-		exibirNovoGerente = false;
+		if (this.departamentoPai == null) {
+			obterGerentes();
+			exibirPikeList = false;
+			exibirNovoGerente = false;
 		}
-		
-		else if (this.departamentoPai.getCodigo()!= null) {
-			edicaoGerentes();			
+
+		else if (this.departamentoPai.getCodigo() != null) {
+			edicaoGerentes();
 			exibirPikeList = true;
-					}	
-	    
+		}
+
 	}
 
 	public CadastroDepartamentoBean() {
-	
-			limpar();		
+
+		limpar();
 
 	}
-	
+
 	List<String> obterGerentes() {
 		return this.gerentes = repositorioDepartamentos.todosGerentesString();
-		
+
 	}
-	
-	
-	
-	public void cadastrar(){
-		
+
+	public void cadastrar() {
+
 		try {
 			this.departamentoPai = repositorioDepartamentos.guardar(this.departamentoPosSave);
 			FacesUtil.addInforMessage("Departamento " + departamentoPosSave.getNome() + " cadastrado com sucesso");
 			limpar();
 			obterGerentes();
 			exibirPikeList = true;
-			
-			
-		}catch(NegocioException ne){
+
+		} catch (NegocioException ne) {
 			FacesUtil.addErrorMessage(ne.getMessage());
-			
-		}		
-	}
-	
-	
-	public void cadastrarGerentes(){	
-		
-		Departamento dep;
-		
-		try{
-		
-		if (!gerentesConvert.isEmpty()){
-			for (String depo : gerentesConvert){
-				
-				dep = new Departamento();
-				
-				dep.setDepartamentoPai(departamentoPai);
-				dep.setNome(depo);
-				
-			
-				repositorioDepartamentos.guardar(dep);
-			}			
-			
-			FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");			
-		
-		}	
-		
-		departamentoPai= new Departamento();
-		exibirPikeList = false;
-		
-		} catch(NegocioException ne){
-			FacesUtil.addErrorMessage(ne.getMessage());
-			
-		}	
-	
-	}	
-	
 
-
-	public void limpar() {	
-
-		departamentoPosSave = new Departamento();		
-
-	}
-	
-	
-	public void edicaoGerentes(){	
-		    obterGerentes();
-			
-			for ( Departamento dep : departamentoPai.getGerentes()){	
-				
-				gerentesConvert.add(dep.getNome());
-			
 		}
-		
-	}	
+	}
 
-	//Possibilita salvar paenas um líder por demartamento
-	public void cadastrarNovoGerente(){
-		
-		try{
+	public void cadastrarGerentes() {
+
+		Departamento dep;
+
+		try {
+
+			if (!departamentoPai.getGerentes().isEmpty()) {
+				
+				
+				
+				for (Departamento dept : departamentoPai.getGerentes()){					
+					repositorioDepartamentos.removerDepartamento(dept);					
+				}
+				departamentoPai.getGerentes().clear();
+				
+				for (String depo : gerentesConvert) {
+					dep = new Departamento();						
+					dep.setNome(depo);
+					
+					
+					dep.setDepartamentoPai(departamentoPai);
+
+					departamentoPai.getGerentes().add(dep);
+					repositorioDepartamentos.guardar(dep);
+
+				}					
+				
+				edicao = true;
+			}
+
+			if (!edicao) {
+				for (String depo : gerentesConvert) {
+
+					dep = new Departamento();
+
+					dep.setDepartamentoPai(departamentoPai);
+					dep.setNome(depo);
+
+					repositorioDepartamentos.guardar(dep);
+				}
+
+				FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");
+
+				departamentoPai = new Departamento();
+				bloquearExibirPikeList();
+				limpar();
+				gerentesSelecionados = null;
+				departamentoNovoGerente = new Departamento();
+				gerentesConvert = new ArrayList<>();
+			}
+
+		} catch (NegocioException ne) {
+			FacesUtil.addErrorMessage(ne.getMessage());
+
+		}
+
+	}
+
+	// Possibilita salvar paenas um líder por demartamento
+	public void cadastrarNovoGerente() {
+
+		try {
 			departamentoNovoGerente.setDepartamentoPai(departamentoPai);
 			repositorioDepartamentos.guardar(departamentoNovoGerente);
-			
-			FacesUtil.addInforMessage("Líder " + departamentoNovoGerente.getNome()+" criado com sucesso "+
-					"e vinculado ao Departamento "+ departamentoPai.getNome()+" !");
-		
-		
-			departamentoPai= new Departamento();
-			departamentoNovoGerente = new Departamento();
-		/*	bloquearExibirPikeList();*/
-			bloquearCadastroNovoGerente();
-		
-		}catch(NegocioException ne) {
-			
-			FacesUtil.addErrorMessage(ne.getMessage());			
-		}		
-	}	
 
-	public void liberarCadastroNovoGerente (){
-		
-		exibirNovoGerente = true;		
-		departamentoNovoGerente = new Departamento();	
-		
-		
+			FacesUtil.addInforMessage("Líder " + departamentoNovoGerente.getNome() + " criado com sucesso "
+					+ "e vinculado ao Departamento " + departamentoPai.getNome() + " !");
+
+			departamentoPai = new Departamento();
+			departamentoNovoGerente = new Departamento();
+			gerentesSelecionados = null;
+			gerentesConvert = new ArrayList<>();
+			bloquearExibirPikeList();
+			bloquearCadastroNovoGerente();
+			limpar();
+
+		} catch (NegocioException ne) {
+
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 	}
-	
-public void bloquearCadastroNovoGerente (){
-		
-	exibirNovoGerente = false;
-		
-}
-	
-	public void alterarExibirPikeList(){
-		exibirPikeList = true;
-		
-	}	
-	
-	public void bloquearExibirPikeList(){
+
+	public void limpar() {
+
+		departamentoPosSave = new Departamento();
+
+	}
+
+	public void edicaoGerentes() {
+		obterGerentes();
+
+		for (Departamento dep : departamentoPai.getGerentes()) {
+
+			gerentesConvert.add(dep.getNome());
+
+		}
+
+	}
+
+	public void liberarCadastroNovoGerente() {
+		exibirNovoGerente = true;
 		exibirPikeList = false;
-		
+		departamentoNovoGerente = new Departamento();
+
 	}
-	
+
+	public void bloquearCadastroNovoGerente() {
+
+		exibirNovoGerente = false;
+
+	}
+
+	public void alterarExibirPikeList() {
+		exibirPikeList = true;
+
+	}
+
+	public void bloquearExibirPikeList() {
+		exibirPikeList = false;
+
+	}
 
 	public void onTransfer(TransferEvent event) {
 
-    } 
- 
-    public void onSelect(SelectEvent event) {
+	}
 
-    }
-     
-    public void onUnselect(UnselectEvent event) {
+	public void onSelect(SelectEvent event) {
 
-    }
-     
-    public void onReorder() {
-    } 
+	}
+
+	public void onUnselect(UnselectEvent event) {
+
+	}
+
+	public void onReorder() {
+	}
 
 	// G&S
 
@@ -205,9 +226,9 @@ public void bloquearCadastroNovoGerente (){
 	}
 
 	public void setDepartamentoPai(Departamento departamentoPai) {
-		this.departamentoPai = departamentoPai;	
-		
-	}	
+		this.departamentoPai = departamentoPai;
+
+	}
 
 	public List<String> getGerentes() {
 		return gerentes;
@@ -241,8 +262,6 @@ public void bloquearCadastroNovoGerente (){
 		this.gerentesSelecionados = gerentesSelecionados;
 	}
 
-
-
 	public List<String> getGerentesConvert() {
 		return gerentesConvert;
 	}
@@ -267,9 +286,20 @@ public void bloquearCadastroNovoGerente (){
 		this.departamentoNovoGerente = departamentoNovoGerente;
 	}
 
+	public boolean isEdicao() {
+		return edicao;
+	}
+
+	public void setEdicao(boolean edicao) {
+		this.edicao = edicao;
+	}
 	
-	
-	
-	
+	public List<Departamento> getListGerentes() {
+		return listGerentes;
+	}
+
+	public void setListGerentes(List<Departamento> listGerentes) {
+		this.listGerentes = listGerentes;
+	}
 
 }
