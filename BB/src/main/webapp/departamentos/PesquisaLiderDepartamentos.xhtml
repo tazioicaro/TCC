@@ -9,7 +9,7 @@
 
 	<ui:define name="corpo">
 
-		<h:form id="form" styleClass="ui-fluid ui-g-12">
+		<h:form id="form" styleClass="ui-fluid ui-g-8">
 
 			<div id="features"
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
@@ -31,7 +31,7 @@
 
 				<p:toolbarGroup align="right">
 					<p:button value="Novo"
-						outcome="/departamentos/CadastroDepartamento" />
+						outcome="/departamentos/CadastroLiderDepartamento" />
 				</p:toolbarGroup>
 
 			</p:toolbar>
@@ -39,20 +39,16 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 				columnClasses="rotuloP, campoP"
-				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
-
-				<p:outputLabel value="Nome: " for="nome" />
-				<p:inputText id="nome" styleClass="ui-g-12" size="110"
-					value="#{pesquisaDepartamentoBean.filtro.nome}" />
+				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">			
 
 				<p:outputLabel value="Responsavel: " for="responsavel" />
 				<p:inputText id="responsavel" styleClass="ui-g-12"
-					value="#{pesquisaDepartamentoBean.filtro.gerente}" />
+					value="#{pesquisaLiderDepartamentoBean.filtro.nome}" />
 
 			</p:panelGrid>
 
 			<p:dataTable id="departamentosTable"
-				value="#{pesquisaDepartamentoBean.model}" var="departamento"
+				value="#{pesquisaLiderDepartamentoBean.model}" var="departamento"
 				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
 				rows="10" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom" lazy="true"
@@ -61,57 +57,36 @@
 				<p:column style="width:20%;text-align:center;" headerText="Nome"
 					sortBy="#{departamento.nome}" priority="1">
 					<h:outputText value="#{departamento.nome}" />
-				</p:column>
-
-
-				<p:column headerText="Responsável">
-
-					<p:columnGroup>
-						<p:dataGrid columns="3" value="#{departamento.gerentes}"
-						emptyMessage="Departamento sem responsáveis" var="dpto" layout="grid"  >
-						<h:outputText/>
-						
-						<p:column>
-								<h:outputText value="#{dpto.nome}" />
-							</p:column>	
-
-
-						</p:dataGrid>
-
-
-					</p:columnGroup>
-
-
-				</p:column>
+				</p:column>				
 
 
 
 				<p:column style=" text-align:center" headerText="Opções" width="50">
 
 					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/departamentos/CadastroDepartamento">
-						<f:param name="departamentoPai" value="#{departamento.codigo}" />						
+						outcome="/departamentos/CadastroLiderDepartamento">
+						<f:param name="lider" value="#{departamento.codigo}" />						
 					</p:button>
 
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
 						update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
 						<f:setPropertyActionListener
-							target="#{pesquisaDepartamentoBean.departamentoSelecionado}"
+							target="#{pesquisaLiderDepartamentoBean.liderSelecionado}"
 							value="#{departamento}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
 			<p:confirmDialog header="Exclusão de cliente"
-				message="Tem certeza que deseja excluir o cliente #{pesquisaDepartamentoBean.departamentoSelecionado.nome}?"
+				message="Tem certeza que deseja excluir o cliente #{pesquisaLiderDepartamentoBean.liderSelecionado.nome}?"
 				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
 				<p:button value="Não"
 					onclick="PF('confirmacaoExclusao').hide(); return false;" />
 
 				<p:commandButton value="Sim"
 					oncomplete="PF('confirmacaoExclusao').hide();"
-					action="#{pesquisaDepartamentoBean.excluir}" process="@this"
+					action="#{pesquisaLiderDepartamentoBean.excluir}" process="@this"
 					update=":form:departamentosTable" />
 			</p:confirmDialog>
 

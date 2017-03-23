@@ -19,7 +19,7 @@ import com.bb.models.Departamento;
 
 @Named
 @ViewScoped
-public class PesquisaDepartamentoBean implements Serializable {
+public class PesquisaLiderDepartamentoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Inject
@@ -27,7 +27,7 @@ public class PesquisaDepartamentoBean implements Serializable {
 	
 	
 	private LazyDataModel<Departamento> model;
-	private Departamento departamentoSelecionado;
+	private Departamento liderSelecionado;
 	
 	private DepartamentoFilter filtro;
 	
@@ -35,18 +35,9 @@ public class PesquisaDepartamentoBean implements Serializable {
 	public void excluir(){
 		
 		try{
+			repositorioDepartamentos.removerDepartamento(liderSelecionado);
 			
-			for (Departamento dept : departamentoSelecionado.getGerentes()){	
-			repositorioDepartamentos.removerDepartamento(dept);
-			}	
-			
-			departamentoSelecionado.getGerentes().clear();
-			repositorioDepartamentos.removerDepartamento(departamentoSelecionado);
-			
-			FacesUtil.addInforMessage("Departamento " + departamentoSelecionado.getNome() + " removido com sucesso!" );
-			
-			 departamentoSelecionado = new Departamento();
-			 
+			FacesUtil.addInforMessage("Lider "+liderSelecionado.getNome()+" removido com sucesso!");
 		}catch(NegocioException ne){
 			FacesUtil.addErrorMessage(ne.getMessage());
 		}
@@ -55,7 +46,7 @@ public class PesquisaDepartamentoBean implements Serializable {
 	
 	
 	
-	public PesquisaDepartamentoBean(){
+	public PesquisaLiderDepartamentoBean(){
 		
 		filtro = new DepartamentoFilter();
 		
@@ -71,20 +62,20 @@ public class PesquisaDepartamentoBean implements Serializable {
                          filtro.setQuantidadeRegistros(pageSize);
                          filtro.setPropriedadeOrdenacao(sortField);
                          filtro.setAscendente(SortOrder.ASCENDING.equals(sortOrder));                         
-                         setRowCount(repositorioDepartamentos.quantidadeFiltrados(filtro));				
+                         setRowCount(repositorioDepartamentos.quantidadeFiltradosGerentes(filtro));				
 				
-				return repositorioDepartamentos.filtrados(filtro);
+				return repositorioDepartamentos.filtradosGerentes(filtro);
 			}
 			
 		};
 	}	
 	
 	//G&S
-	public Departamento getDepartamentoSelecionado() {
-		return departamentoSelecionado;
+	public Departamento getLiderSelecionado() {
+		return liderSelecionado;
 	}
-	public void setDepartamentoSelecionado(Departamento departamentoSelecionado) {
-		this.departamentoSelecionado = departamentoSelecionado;
+	public void setLiderSelecionado(Departamento liderSelecionado) {
+		this.liderSelecionado = liderSelecionado;
 	}
 	public LazyDataModel<Departamento> getModel() {
 		return model;

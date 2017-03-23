@@ -1,0 +1,87 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+
+
+	<ui:define name="titulo">Novo CLiente</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:metadata>
+			<o:viewParam name="lider"
+				value="#{cadastroLiderDepartamentoBean.lider}" />
+			<f:event listener="#{cadastroDepartamentoBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
+
+
+
+		<h:form id="form" styleClass="ui-fluid ui-g-12"
+			style="margin-bottom: 0px;">
+
+			<div id="features"
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9;
+				 margin-top: 10px;">
+
+				<h1
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0;
+					 display: inline-block; padding-bottom: 5px;">Cadastro
+					de Líder</h1>
+			</div>
+
+			<p:focus context="form" />
+
+			<p:growl id="msgs" showDetail="false" escape="false"  autoUpdate="true"/>
+
+			<p:toolbar style="margin-top:20px">
+				<p:toolbarGroup style="display: inline-flex;">
+
+					<p:button value="Novo"
+						outcome="/departamentos/CadastroLiderDepartamento" />
+
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						actionListener="#{cadastroLiderDepartamentoBean.cadastrar}"
+						validateClient="true" update="@form">			
+
+					</p:commandButton>
+
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar"
+						outcome="/departamentos/PesquisaLiderDepartamentos" id="pesquisa" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panel id="toggleable"
+				header=""
+				toggleable="true" closable="false" toggleSpeed="500"
+				closeSpeed="500" widgetVar="panel"
+				style="margin-bottom:0px;" styleClass="ui-g-12">
+
+				<p:panelGrid columns="2" id="painel"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					columnClasses="rotuloP, campoP"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+
+					<p:columnGroup>
+						<p:outputLabel value="Nome: " />
+						<p:inputText required="true" label="Nome"
+							value="#{cadastroLiderDepartamentoBean.lider.nome}"
+							style=" width: 91%;" />
+					</p:columnGroup>
+
+					<h:outputText />
+				</p:panelGrid>
+
+
+			</p:panel>
+
+		</h:form>	
+
+	</ui:define>
+</ui:composition>

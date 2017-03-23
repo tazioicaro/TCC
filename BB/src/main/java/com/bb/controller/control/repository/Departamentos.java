@@ -125,7 +125,57 @@ public class Departamentos implements Serializable {
 
 		return criteria.list();
 	}
+/*
+ * Criteria para Gerentes
+ */
 	
+	public Criteria criarCriteriaParaFiltroGerentes(DepartamentoFilter filtro) {
+
+		Session session = manager.unwrap(Session.class);
+
+		Criteria criteria = session.createCriteria(Departamento.class);
+
+		if (StringUtils.isNoneBlank(filtro.getNome())) {
+			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
+		}
+		criteria.add(Restrictions.isNotNull("departamentoPai"));
+
+		return criteria;
+
+	}
+	
+	
+	public int quantidadeFiltradosGerentes(DepartamentoFilter filtro) {
+
+		Criteria criteria = criarCriteriaParaFiltro(filtro);
+
+		criteria.setProjection(Projections.rowCount());
+
+		return ((Number) criteria.uniqueResult()).intValue();
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Departamento> filtradosGerentes(DepartamentoFilter filtro) {
+
+		Criteria criteria = criarCriteriaParaFiltro(filtro);
+		criteria.setFirstResult(filtro.getPrimeiroRegistro());
+		criteria.setMaxResults(filtro.getQuantidadeRegistros());
+
+		if (filtro.isAscendente() && filtro.getPropriedadeOrdenacao() != null) {
+			criteria.addOrder(Order.asc(filtro.getPropriedadeOrdenacao()));
+
+		} else if (filtro.getPropriedadeOrdenacao() != null) {
+			criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
+
+		}
+
+		return criteria.list();
+	}
+	
+	
+	/*
+	 * Fim Criteria para Gerentes
+	 */
 	
 
 	@Transactional
