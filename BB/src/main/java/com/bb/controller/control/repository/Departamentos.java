@@ -143,9 +143,6 @@ public class Departamentos implements Serializable {
 	}*/
 	@Transactional
 	public void removerDepartamento(Departamento departamentoSelecionado) {
-		
-		
-
 		manager.remove(porId(departamentoSelecionado.getCodigo()));
 
 	}

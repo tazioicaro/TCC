@@ -111,7 +111,7 @@
 
 				<p:commandButton value="Sim"
 					oncomplete="PF('confirmacaoExclusao').hide();"
-					action="#{pesquisaDepartamentoBean.excluir()}" process="@this"
+					action="#{pesquisaDepartamentoBean.excluir}" process="@this"
 					update=":form:departamentosTable" />
 			</p:confirmDialog>
 

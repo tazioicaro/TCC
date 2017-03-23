@@ -107,8 +107,9 @@ public class CadastroDepartamentoBean implements Serializable {
 					departamentoPai.getGerentes().add(dep);
 					repositorioDepartamentos.guardar(dep);
 
-				}					
-				
+				}	
+				FacesUtil.addInforMessage("Líder(es) vinculado(s) com sucesso");	
+				limparCadastrarGerentes();				
 				edicao = true;
 			}
 
@@ -123,15 +124,13 @@ public class CadastroDepartamentoBean implements Serializable {
 					repositorioDepartamentos.guardar(dep);
 				}
 
-				FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");
+				FacesUtil.addInforMessage("Líder(es) cadastrado(s) com sucesso");				
+				limparCadastrarGerentes();
 
-				departamentoPai = new Departamento();
-				bloquearExibirPikeList();
-				limpar();
-				gerentesSelecionados = null;
-				departamentoNovoGerente = new Departamento();
-				gerentesConvert = new ArrayList<>();
+				
 			}
+			
+			
 
 		} catch (NegocioException ne) {
 			FacesUtil.addErrorMessage(ne.getMessage());
@@ -150,13 +149,9 @@ public class CadastroDepartamentoBean implements Serializable {
 			FacesUtil.addInforMessage("Líder " + departamentoNovoGerente.getNome() + " criado com sucesso "
 					+ "e vinculado ao Departamento " + departamentoPai.getNome() + " !");
 
-			departamentoPai = new Departamento();
-			departamentoNovoGerente = new Departamento();
-			gerentesSelecionados = null;
-			gerentesConvert = new ArrayList<>();
-			bloquearExibirPikeList();
+			limparCadastrarGerentes();			
 			bloquearCadastroNovoGerente();
-			limpar();
+			gerentesConvert = new ArrayList<>();
 
 		} catch (NegocioException ne) {
 
@@ -164,11 +159,7 @@ public class CadastroDepartamentoBean implements Serializable {
 		}
 	}
 
-	public void limpar() {
-
-		departamentoPosSave = new Departamento();
-
-	}
+	
 
 	public void edicaoGerentes() {
 		obterGerentes();
@@ -178,6 +169,25 @@ public class CadastroDepartamentoBean implements Serializable {
 			gerentesConvert.add(dep.getNome());
 
 		}
+
+	}
+
+	public void limparCadastrarGerentes() {
+
+		departamentoPai = new Departamento();
+		departamentoNovoGerente = new Departamento();
+		gerentesSelecionados = null;
+		bloquearExibirPikeList();
+		limpar();
+		
+		
+		gerentesConvert = new ArrayList<>();
+
+	}
+	
+	public void limpar() {
+
+		departamentoPosSave = new Departamento();
 
 	}
 

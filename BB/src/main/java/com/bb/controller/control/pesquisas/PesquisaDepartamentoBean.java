@@ -13,6 +13,8 @@ import org.primefaces.model.SortOrder;
 
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.control.repository.filter.DepartamentoFilter;
+import com.bb.controller.services.NegocioException;
+import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Departamento;
 
 @Named
@@ -31,6 +33,23 @@ public class PesquisaDepartamentoBean implements Serializable {
 	
 	
 	public void excluir(){
+		
+		try{
+			
+			for (Departamento dept : departamentoSelecionado.getGerentes()){	
+			repositorioDepartamentos.removerDepartamento(dept);
+			}	
+			
+			departamentoSelecionado.getGerentes().clear();
+			repositorioDepartamentos.removerDepartamento(departamentoSelecionado);
+			
+			FacesUtil.addInforMessage("Departamento " + departamentoSelecionado.getNome() + " removido com sucesso!" );
+			
+			 departamentoSelecionado = new Departamento();
+			 
+		}catch(NegocioException ne){
+			FacesUtil.addErrorMessage(ne.getMessage());
+		}
 		
 	}
 	
