@@ -19,9 +19,9 @@
 					Departamentos</h1>
 			</div>
 
-			<p:focus context="form" />	
-			
-				<p:growl showDetail="false" escape="false"  autoUpdate="true"/>
+			<p:focus context="form" />
+
+			<p:growl showDetail="false" escape="false" autoUpdate="true" />
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -55,17 +55,67 @@
 				value="#{pesquisaDepartamentoBean.model}" var="departamento"
 				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
 				rows="10" paginator="true" paginatorAlwaysVisible="false"
-				paginatorPosition="bottom" lazy="true"
-				styleClass="ui-datatable-tablewrapper"  >
+				paginatorPosition="bottom" lazy="true" styleClass="ui-datatable-tablewrapper"
+				rowsPerPageTemplate="10,15,20,30,40,50">
+
+				<p:columnGroup type="header">
+
+					<p:row>
+						<p:column headerText="Departamento" />
+						<p:column headerText="Gerente(s)" />
+						<p:column headerText="Opções" width="60"/>
+
+					</p:row>
+				</p:columnGroup>
 
 
-				<p:column style="width:20%;text-align:center;" headerText="Nome"
+				<p:subTable var="gnt" value="#{departamento.gerentes}">
+
+					<f:facet name="header">				
+						<h:outputText value="#{departamento.nome}" />						
+					</f:facet>
+
+
+					<p:column>
+						<h:outputText value="" />
+					</p:column>
+
+
+					<p:column>
+						<h:outputText value="#{gnt.nome}" />
+					</p:column>
+
+
+
+					<p:column style=" text-align:center" width="25">
+
+						<p:button icon="ui-icon-pencil" title="Editar"
+							outcome="/departamentos/CadastroDepartamento">
+							<f:param name="departamentoPai" value="#{departamento.codigo}" />
+						</p:button>
+
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+							oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+							update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
+							<f:setPropertyActionListener
+								target="#{pesquisaDepartamentoBean.departamentoSelecionado}"
+								value="#{departamento}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:subTable>
+
+
+
+
+
+				<!-- 			<p:column style="width:20%;text-align:center;" headerText="Nome"
 					sortBy="#{departamento.nome}" priority="1" groupRow="true">
 					<h:outputText value="#{departamento.nome}" />
 				</p:column>
 
 
-				<p:column headerText="Gerente(s)">
+				<p:column headerText="Responsável">
 
 				<p:columnGroup>
 						<p:dataGrid columns="3" value="#{departamento.gerentes}"
@@ -100,7 +150,7 @@
 							target="#{pesquisaDepartamentoBean.departamentoSelecionado}"
 							value="#{departamento}" />
 					</p:commandButton>
-				</p:column>
+				</p:column> -->
 			</p:dataTable>
 
 			<p:confirmDialog header="Exclusão de cliente"

@@ -51,8 +51,12 @@
 				value="#{pesquisaLiderDepartamentoBean.model}" var="departamento"
 				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
 				rows="10" paginator="true" paginatorAlwaysVisible="false"
-				paginatorPosition="bottom" lazy="true"
-				styleClass="ui-datatable-tablewrapper">
+				paginatorPosition="bottom" lazy="true"	styleClass="ui-datatable-tablewrapper" 
+				rowsPerPageTemplate="10,15,20,30,40,50">
+				
+				<f:facet name="header">
+            Lista de gerentes cadastrados
+        </f:facet>
 
 				<p:column style="width:20%;text-align:center;" headerText="Nome"
 					sortBy="#{departamento.nome}" priority="1">

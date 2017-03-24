@@ -1,13 +1,16 @@
 package com.bb.controller.control.repository;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -61,7 +64,8 @@ public class Departamentos implements Serializable {
 	public List<String> todosGerentesString() {
 
 		
-		 return this.manager.createQuery("SELECT distinct d.nome  FROM Departamento d where d.departamentoPai is not null")
+		 return this.manager.createQuery("SELECT distinct d.nome  "
+		 		+ "FROM Departamento d where d.departamentoPai is not null")
 		 .getResultList();
 	}
 		 
@@ -134,11 +138,15 @@ public class Departamentos implements Serializable {
 		Session session = manager.unwrap(Session.class);
 
 		Criteria criteria = session.createCriteria(Departamento.class);
+		
+		
 
 		if (StringUtils.isNoneBlank(filtro.getNome())) {
 			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 		criteria.add(Restrictions.isNotNull("departamentoPai"));
+		criteria.createCriteria("distinct nome  "
+		 		+ "FROM Departamento  where departamentoPai is not null");
 
 		return criteria;
 
@@ -147,7 +155,7 @@ public class Departamentos implements Serializable {
 	
 	public int quantidadeFiltradosGerentes(DepartamentoFilter filtro) {
 
-		Criteria criteria = criarCriteriaParaFiltro(filtro);
+		Criteria criteria = criarCriteriaParaFiltroGerentes(filtro);
 
 		criteria.setProjection(Projections.rowCount());
 
@@ -157,7 +165,7 @@ public class Departamentos implements Serializable {
 	@SuppressWarnings("unchecked")
 	public List<Departamento> filtradosGerentes(DepartamentoFilter filtro) {
 
-		Criteria criteria = criarCriteriaParaFiltro(filtro);
+		Criteria criteria = criarCriteriaParaFiltroGerentes(filtro);
 		criteria.setFirstResult(filtro.getPrimeiroRegistro());
 		criteria.setMaxResults(filtro.getQuantidadeRegistros());
 
@@ -168,6 +176,7 @@ public class Departamentos implements Serializable {
 			criteria.addOrder(Order.desc(filtro.getPropriedadeOrdenacao()));
 
 		}
+
 
 		return criteria.list();
 	}
