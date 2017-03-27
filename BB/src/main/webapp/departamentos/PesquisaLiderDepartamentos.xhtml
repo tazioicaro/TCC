@@ -48,7 +48,7 @@
 			</p:panelGrid>
 
 			<p:dataTable id="departamentosTable"
-				value="#{pesquisaLiderDepartamentoBean.model}" var="departamento"
+				value="#{pesquisaLiderDepartamentoBean.todosGerentesString}" var="departamento"
 				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
 				rows="10" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom" lazy="true"	styleClass="ui-datatable-tablewrapper" 
@@ -59,18 +59,19 @@
         </f:facet>
 
 				<p:column style="width:20%;text-align:center;" headerText="Nome"
-					sortBy="#{departamento.nome}" priority="1">
-					<h:outputText value="#{departamento.nome}" />
+					sortBy="#{departamento}" priority="1">
+					<h:outputText value="#{departamento}" />
 				</p:column>				
 
 
 
 				<p:column style=" text-align:center" headerText="Opções" width="50">
 
-					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/departamentos/CadastroLiderDepartamento">
-						<f:param name="lider" value="#{departamento.codigo}" />						
-					</p:button>
+					<p:commandButton icon="ui-icon-pencil" title="Editar"
+						outcome="/departamentos/CadastroLiderDepartamento"
+						actionListener="">
+						<f:param name="lider" value="#{departamento}" />						
+					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="PF('confirmacaoExclusao').show()" process="@this"

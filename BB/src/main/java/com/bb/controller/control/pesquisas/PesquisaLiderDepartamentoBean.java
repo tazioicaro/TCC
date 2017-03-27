@@ -1,6 +1,7 @@
 package com.bb.controller.control.pesquisas;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,9 +28,10 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	
 	
 	private LazyDataModel<Departamento> model;
+	private List<String> todosGerentesString;
 	private Departamento liderSelecionado;
 	
-	private DepartamentoFilter filtro;
+	//private DepartamentoFilter filtro;
 	
 	
 	public void excluir(){
@@ -48,27 +50,12 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	
 	public PesquisaLiderDepartamentoBean(){
 		
-		filtro = new DepartamentoFilter();
+		//filtro = new DepartamentoFilter();
+		todosGerentesString = new ArrayList<>();
 		
-		model = new LazyDataModel<Departamento>(){			
-			private static final long serialVersionUID = 1L;
-			
-			@Override
-			public List<Departamento> load(int first, int pageSize, 
-					String sortField, SortOrder sortOrder,
-					Map<String, Object> filters) {
-
-                         filtro.setPrimeiroRegistro(first);
-                         filtro.setQuantidadeRegistros(pageSize);
-                         filtro.setPropriedadeOrdenacao(sortField);
-                         filtro.setAscendente(SortOrder.ASCENDING.equals(sortOrder));                         
-                         setRowCount(repositorioDepartamentos.quantidadeFiltradosGerentes(filtro));				
-				
-				return repositorioDepartamentos.filtradosGerentes(filtro);
-			}
-			
-		};
-	}	
+	
+	}		
+	
 	
 	//G&S
 	public Departamento getLiderSelecionado() {
@@ -83,11 +70,23 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	public void setModel(LazyDataModel<Departamento> model) {
 		this.model = model;
 	}
-	public DepartamentoFilter getFiltro() {
-		return filtro;
+//	public DepartamentoFilter getFiltro() {
+//		return filtro;
+//	}
+//	public void setFiltro(DepartamentoFilter filtro) {
+//		this.filtro = filtro;
+//	}
+
+
+
+	public List<String> getTodosGerentesString() {
+		return todosGerentesString;
 	}
-	public void setFiltro(DepartamentoFilter filtro) {
-		this.filtro = filtro;
+
+
+
+	public void setTodosGerentesString(List<String> todosGerentesString) {
+		this.todosGerentesString = todosGerentesString;
 	}
 
 }

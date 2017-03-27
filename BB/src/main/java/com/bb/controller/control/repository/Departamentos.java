@@ -131,7 +131,7 @@ public class Departamentos implements Serializable {
 	}
 /*
  * Criteria para Gerentes
- */
+
 	
 	public Criteria criarCriteriaParaFiltroGerentes(DepartamentoFilter filtro) {
 
@@ -145,9 +145,6 @@ public class Departamentos implements Serializable {
 			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 		criteria.add(Restrictions.isNotNull("departamentoPai"));
-		criteria.createCriteria("distinct nome  "
-		 		+ "FROM Departamento  where departamentoPai is not null");
-
 		return criteria;
 
 	}
@@ -181,10 +178,8 @@ public class Departamentos implements Serializable {
 		return criteria.list();
 	}
 	
-	
-	/*
-	 * Fim Criteria para Gerentes
 	 */
+
 	
 
 	@Transactional
