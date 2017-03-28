@@ -6,29 +6,14 @@
 	xmlns:p="http://primefaces.org/ui">
 	
 	
-	<Style>
-	
-	body .ui-panel .ui-panel-content {
-    height: 31.3% !important;
-    background: #dce2e7;
-   }
-   
-   form departamentosTable 0j_idt17_content{
-   }
-	
-	
-	</Style>
-	
-	<h:outputStylesheet library = "css" name = "dataGridPesquisas.css" />
 
-
-	<ui:define name="titulo">Pesquisa Departamentos</ui:define>
-	
+	<ui:define name="titulo">Pesquisa Departamentos</ui:define>	
 
 
 	<ui:define name="corpo">
 
 		<h:form id="form" styleClass="ui-fluid ui-g-12">
+		
 
 			<div id="features"
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
@@ -55,7 +40,7 @@
 
 			</p:toolbar>
 
-			<p:panelGrid columns="3" id="painel"
+				<p:panelGrid columns="2" id="painel"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 				columnClasses="rotuloP, campoP"
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
@@ -70,25 +55,24 @@
 
 			</p:panelGrid>
 
+<div style="height: 100%">
 			<p:dataGrid id="departamentosTable" layout="grid"
 				value="#{pesquisaDepartamentoBean.model}" var="departamento"
-				style="margin-top:20px;" emptyMessage="Nenhum usuário não encontrado"
+				style="margin-top:20px; height: 30%;" emptyMessage="Nenhum usuário não encontrado"
 				rows="12" paginator="true" paginatorAlwaysVisible="false"
-				lazy="true" rowsPerPageTemplate="6,12,16"	styleClass="ui-panelgrid-blank"			
+				lazy="true" rowsPerPageTemplate="6,12,16"	styleClass="panelPersonalizado"			
 				paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
 				 {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-				<f:facet name="header" >
+				<!-- <f:facet name="header" >
 				  Departamentos
-				</f:facet>
+				</f:facet> -->
 
 				<p:panel header="#{departamento.nome}" style="text-align:center" id="subpanel">
 					<h:panelGrid columns="1" style="width:100%; height: 100%;">
 						<p:graphicImage name="../resources/images/logoInicial_2.png" />
-
-
 						<p:columnGroup id="colum1">
-							<h:outputText value="Gerente(s)" id="gnt" />
+							<h:outputText value="Gerente(s): " id="gnt" />
 							<p:dataGrid columns="3" value="#{departamento.gerentes}"
 								emptyMessage="Departamento sem responsáveis" var="dpto"
 								layout="grid" id="grnd">
@@ -118,6 +102,7 @@
 					</h:panelGrid>
 				</p:panel>
 			</p:dataGrid>
+			</div>
 
 			<p:confirmDialog header="Exclusão de cliente"
 				message="Tem certeza que deseja excluir o cliente #{pesquisaDepartamentoBean.departamentoSelecionado.nome}?"
@@ -129,10 +114,11 @@
 					oncomplete="PF('confirmacaoExclusao').hide();"
 					action="#{pesquisaDepartamentoBean.excluir}" process="@this"
 					update=":form:departamentosTable" />
-			</p:confirmDialog>
+			</p:confirmDialog>			
 
 		</h:form>
 
+		
 
 
 	</ui:define>
