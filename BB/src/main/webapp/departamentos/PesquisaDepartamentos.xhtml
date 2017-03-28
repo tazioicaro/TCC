@@ -5,9 +5,22 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
 	
-	<link type="text/css" rel="stylesheet"
-	href="../resources/css/dataGridPesquisas.css" />
 	
+	<Style>
+	
+	body .ui-panel .ui-panel-content {
+    height: 31.3% !important;
+    background: #dce2e7;
+   }
+   
+   form departamentosTable 0j_idt17_content{
+   }
+	
+	
+	</Style>
+	
+	<h:outputStylesheet library = "css" name = "dataGridPesquisas.css" />
+
 
 	<ui:define name="titulo">Pesquisa Departamentos</ui:define>
 	
@@ -61,27 +74,27 @@
 				value="#{pesquisaDepartamentoBean.model}" var="departamento"
 				style="margin-top:20px;" emptyMessage="Nenhum usuário não encontrado"
 				rows="12" paginator="true" paginatorAlwaysVisible="false"
-				lazy="true" rowsPerPageTemplate="6,12,16"
-				
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+				lazy="true" rowsPerPageTemplate="6,12,16"	styleClass="ui-panelgrid-blank"			
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
+				 {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-				<f:facet name="header">
+				<f:facet name="header" >
 				  Departamentos
 				</f:facet>
 
-				<p:panel header="#{departamento.nome}" style="text-align:center">
-					<h:panelGrid columns="1" style="width:100%; height: 30%;">
+				<p:panel header="#{departamento.nome}" style="text-align:center" id="subpanel">
+					<h:panelGrid columns="1" style="width:100%; height: 100%;">
 						<p:graphicImage name="../resources/images/logoInicial_2.png" />
 
 
-						<p:columnGroup>
-							<h:outputText value="Gerente(s)" />
+						<p:columnGroup id="colum1">
+							<h:outputText value="Gerente(s)" id="gnt" />
 							<p:dataGrid columns="3" value="#{departamento.gerentes}"
 								emptyMessage="Departamento sem responsáveis" var="dpto"
-								layout="grid">
+								layout="grid" id="grnd">
 								
 								<p:column>
-								<h:outputText value="#{dpto.nome}" />
+								<h:outputText value="#{dpto.nome}" id="nomeGerente"/>
 							</p:column>	
 							</p:dataGrid>
 
