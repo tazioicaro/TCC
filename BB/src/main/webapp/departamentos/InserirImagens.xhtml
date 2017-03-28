@@ -17,85 +17,23 @@
 			<div class="ui-g">
 				<div class="ui-g-12">
 					<div class="card">
-						<h1>Sua foto!</h1>
-						<h:form id="j_idt37" name="j_idt37" 
-							action="/verona/file.xhtml"
-							enctype="application/x-www-form-urlencoded">
-							<input type="hidden" name="j_idt37" value="j_idt37">
-							</input>
-							<div id="j_idt37:j_idt38" class="ui-fileupload ui-widget"
-								style="width: 100%">
-								<div
-									class="ui-fileupload-buttonbar ui-widget-header ui-corner-top">
-									<span
-										class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-fileupload-choose"><span
-										class="ui-button-icon-left ui-icon ui-c ui-icon-plusthick"></span><span
-										id="j_idt37:j_idt38_label" class="ui-button-text ui-c">Buscar</span><input
-										type="file" id="j_idt37:j_idt38_input"
-										name="j_idt37:j_idt38_input" multiple="multiple"
-										aria-labelledby="j_idt37:j_idt38_label"></span>
-									<button type="button"
-										class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-fileupload-upload"
-										role="button" aria-disabled="true">
-										<span
-											class="ui-button-icon-left ui-icon ui-c ui-icon-arrowreturnthick-1-n"></span><span
-											class="ui-button-text ui-c">Upload</span>
-									</button>
-									<button type="button"
-										class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left ui-fileupload-cancel"
-										role="button" aria-disabled="true">
-										<span class="ui-button-icon-left ui-icon ui-c ui-icon-cancel"></span><span
-											class="ui-button-text ui-c">Cancelar</span>
-									</button>
-								</div>
-								<div
-									class="ui-fileupload-content ui-widget-content ui-corner-bottom">
-									<div class="ui-messages ui-widget ui-helper-hidden"
-										style="display: none;">
-										<div class="ui-messages-error ui-corner-all">
-											<a class="ui-messages-close" href="#"><span
-												class="ui-icon ui-icon-close"></span></a><span
-												class="ui-messages-error-icon"></span>
-											<ul></ul>
-										</div>
-									</div>
-									<table class="ui-fileupload-files">
-										<tbody>
-											<tr>
-												<td class="ui-fileupload-preview"><canvas width="80"
-														height="59"></canvas></td>
-												<td>kasinski-mirage-650-lateral-vinho.jpg</td>
-												<td>26.2 KB</td>
-												<td class="ui-fileupload-progress"><div
-														class="ui-progressbar ui-widget ui-widget-content ui-corner-all"
-														role="progressbar" aria-valuemin="0" aria-valuemax="100"
-														aria-valuenow="0">
-														<div
-															class="ui-progressbar-value ui-widget-header ui-corner-left"
-															style="display: none; width: 0%;"></div>
-													</div></td>
-												<td><button
-														class="ui-fileupload-cancel ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only">
-														<span
-															class="ui-button-icon-left ui-icon ui-icon ui-icon-close"></span><span
-															class="ui-button-text">ui-button</span>
-													</button></td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
-							<span id="j_idt37:messages"></span>
-							<input type="hidden"
-								name="javax.faces.ViewState" id="j_id1:javax.faces.ViewState:3"
-								value="82252495920050213:8637807327437937626" autocomplete="off"/>
+						<h1>Advanced</h1>
+						<h:form>
+						
+							<p:growl id="messages" showDetail="true" />
+							
+							
+							<p:fileUpload
+								fileUploadListener="#{cadastroLiderDepartamentoBean.handleFileUpload}"
+								mode="advanced" dragDropSupport="false" multiple="true"
+								update="messages" sizeLimit="100000" fileLimit="3"
+								allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+
+						
 						</h:form>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-
 	</ui:define>
 </ui:composition>
