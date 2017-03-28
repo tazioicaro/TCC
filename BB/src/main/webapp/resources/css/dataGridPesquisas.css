@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+
+
+body .ui-panel .ui-panel-content {
+    height: 100% !important;
+    background: #dce2e7;
+   }

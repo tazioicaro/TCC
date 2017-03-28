@@ -3,17 +3,13 @@ package com.bb.controller.control.pesquisas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortOrder;
-
 import com.bb.controller.control.repository.Departamentos;
-import com.bb.controller.control.repository.filter.DepartamentoFilter;
 import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jsf.FacesUtil;
 import com.bb.models.Departamento;
@@ -27,11 +23,11 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	private Departamentos repositorioDepartamentos;
 	
 	
-	private LazyDataModel<Departamento> model;
-	private List<String> todosGerentesString;
+
+	private List<String> todosGerentes;
 	private Departamento liderSelecionado;
 	
-	//private DepartamentoFilter filtro;
+
 	
 	
 	public void excluir(){
@@ -48,13 +44,17 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	
 	
 	
-	public PesquisaLiderDepartamentoBean(){
-		
-		//filtro = new DepartamentoFilter();
-		todosGerentesString = new ArrayList<>();
+	public PesquisaLiderDepartamentoBean(){	
+	
+		todosGerentes = new ArrayList<>();
 		
 	
-	}		
+	}	
+	
+	@PostConstruct
+	public void init(){
+		todosGerentes = repositorioDepartamentos.todosGerentesString();
+	}
 	
 	
 	//G&S
@@ -64,29 +64,17 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	public void setLiderSelecionado(Departamento liderSelecionado) {
 		this.liderSelecionado = liderSelecionado;
 	}
-	public LazyDataModel<Departamento> getModel() {
-		return model;
-	}
-	public void setModel(LazyDataModel<Departamento> model) {
-		this.model = model;
-	}
-//	public DepartamentoFilter getFiltro() {
-//		return filtro;
-//	}
-//	public void setFiltro(DepartamentoFilter filtro) {
-//		this.filtro = filtro;
-//	}
 
 
 
-	public List<String> getTodosGerentesString() {
-		return todosGerentesString;
+	public List<String> getTodosGerentes() {
+		return todosGerentes;
 	}
 
 
 
-	public void setTodosGerentesString(List<String> todosGerentesString) {
-		this.todosGerentesString = todosGerentesString;
+	public void setTodosGerentes(List<String> todosGerentes) {
+		this.todosGerentes = todosGerentes;
 	}
 
 }

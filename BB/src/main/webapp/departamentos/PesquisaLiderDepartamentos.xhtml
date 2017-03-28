@@ -9,7 +9,7 @@
 
 	<ui:define name="corpo">
 
-		<h:form id="form" styleClass="ui-fluid ui-g-8">
+		<h:form id="form" styleClass="ui-fluid ui-g-12">
 
 			<div id="features"
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
@@ -35,20 +35,10 @@
 				</p:toolbarGroup>
 
 			</p:toolbar>
-
-			<p:panelGrid columns="2" id="painel"
-				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
-				columnClasses="rotuloP, campoP"
-				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">			
-
-				<p:outputLabel value="Responsavel: " for="responsavel" />
-				<p:inputText id="responsavel" styleClass="ui-g-12"
-					value="#{pesquisaLiderDepartamentoBean.filtro.nome}" />
-
-			</p:panelGrid>
+		
 
 			<p:dataTable id="departamentosTable"
-				value="#{pesquisaLiderDepartamentoBean.todosGerentesString}" var="departamento"
+				value="#{pesquisaLiderDepartamentoBean.todosGerentes}" var="departamento"
 				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
 				rows="10" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom" lazy="true"	styleClass="ui-datatable-tablewrapper" 
@@ -58,19 +48,19 @@
             Lista de gerentes cadastrados
         </f:facet>
 
-				<p:column style="width:20%;text-align:center;" headerText="Nome"
+				<p:column style="width:20%;text-align:center;" headerText="Nome do gerente"
 					sortBy="#{departamento}" priority="1">
 					<h:outputText value="#{departamento}" />
 				</p:column>				
 
 
 
-				<p:column style=" text-align:center" headerText="Opções" width="50">
+				<p:column style=" text-align:center" headerText="Opções" width="5" priority="1">
 
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						outcome="/departamentos/CadastroLiderDepartamento"
-						actionListener="">
-						<f:param name="lider" value="#{departamento}" />						
+						>
+						<f:param name="departamento" value="#{departamento}" />						
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-trash" title="Excluir"

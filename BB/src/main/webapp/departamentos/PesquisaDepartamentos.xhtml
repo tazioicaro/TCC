@@ -4,8 +4,14 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui">
+	
+	<link type="text/css" rel="stylesheet"
+	href="../resources/css/dataGridPesquisas.css" />
+	
 
 	<ui:define name="titulo">Pesquisa Departamentos</ui:define>
+	
+
 
 	<ui:define name="corpo">
 
@@ -19,9 +25,9 @@
 					Departamentos</h1>
 			</div>
 
-			<p:focus context="form" />	
-			
-				<p:growl showDetail="false" escape="false"  autoUpdate="true"/>
+			<p:focus context="form" />
+
+			<p:growl showDetail="false" escape="false" autoUpdate="true" />
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -36,7 +42,7 @@
 
 			</p:toolbar>
 
-			<p:panelGrid columns="2" id="painel"
+			<p:panelGrid columns="3" id="painel"
 				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
 				columnClasses="rotuloP, campoP"
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
@@ -51,57 +57,54 @@
 
 			</p:panelGrid>
 
-			<p:dataTable id="departamentosTable"
+			<p:dataGrid id="departamentosTable" layout="grid"
 				value="#{pesquisaDepartamentoBean.model}" var="departamento"
-				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
-				rows="10" paginator="true" paginatorAlwaysVisible="false"
-				paginatorPosition="bottom" lazy="true"
-				styleClass="ui-datatable-tablewrapper"  >
+				style="margin-top:20px;" emptyMessage="Nenhum usuário não encontrado"
+				rows="12" paginator="true" paginatorAlwaysVisible="false"
+				lazy="true" rowsPerPageTemplate="6,12,16"
+				
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+
+				<f:facet name="header">
+				  Departamentos
+				</f:facet>
+
+				<p:panel header="#{departamento.nome}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%; height: 30%;">
+						<p:graphicImage name="../resources/images/logoInicial_2.png" />
 
 
-				<p:column style="width:20%;text-align:center;" headerText="Nome"
-					sortBy="#{departamento.nome}" priority="1" groupRow="true">
-					<h:outputText value="#{departamento.nome}" />
-				</p:column>
-
-
-				<p:column headerText="Gerente(s)">
-
-				<p:columnGroup>
-						<p:dataGrid columns="3" value="#{departamento.gerentes}"
-						emptyMessage="Departamento sem responsáveis" var="dpto" layout="grid"  >
-						<h:outputText/>
-						
-						<p:column>
+						<p:columnGroup>
+							<h:outputText value="Gerente(s)" />
+							<p:dataGrid columns="3" value="#{departamento.gerentes}"
+								emptyMessage="Departamento sem responsáveis" var="dpto"
+								layout="grid">
+								
+								<p:column>
 								<h:outputText value="#{dpto.nome}" />
 							</p:column>	
+							</p:dataGrid>
 
+						</p:columnGroup>
+						<p:column style=" text-align:center" headerText="Opções"
+							width="50">
 
-						</p:dataGrid>
+							<p:button icon="ui-icon-pencil" title="Editar"
+								outcome="/departamentos/CadastroDepartamento">
+								<f:param name="departamentoPai" value="#{departamento.codigo}" />
+							</p:button>
 
-
-					</p:columnGroup>
-
-				</p:column>
-
-
-
-				<p:column style=" text-align:center" headerText="Opções" width="50">
-
-					<p:button icon="ui-icon-pencil" title="Editar"
-						outcome="/departamentos/CadastroDepartamento">
-						<f:param name="departamentoPai" value="#{departamento.codigo}" />						
-					</p:button>
-
-					<p:commandButton icon="ui-icon-trash" title="Excluir"
-						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
-						update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
-						<f:setPropertyActionListener
-							target="#{pesquisaDepartamentoBean.departamentoSelecionado}"
-							value="#{departamento}" />
-					</p:commandButton>
-				</p:column>
-			</p:dataTable>
+							<p:commandButton icon="ui-icon-trash" title="Excluir"
+								oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+								update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
+								<f:setPropertyActionListener
+									target="#{pesquisaDepartamentoBean.departamentoSelecionado}"
+									value="#{departamento}" />
+							</p:commandButton>
+						</p:column>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
 
 			<p:confirmDialog header="Exclusão de cliente"
 				message="Tem certeza que deseja excluir o cliente #{pesquisaDepartamentoBean.departamentoSelecionado.nome}?"
