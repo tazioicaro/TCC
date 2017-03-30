@@ -74,7 +74,14 @@
 							value="#{cadastroLiderDepartamentoBean.lider.nome}"
 							style=" width: 91%;" />
 					</p:columnGroup>
-
+					<h:outputText />
+					
+						<p:columnGroup>
+						<p:outputLabel value="Descrição: " />
+						<p:inputText required="true" label="Descrição"
+							value="#{cadastroLiderDepartamentoBean.lider.descricao}"
+							style=" width: 91%;" />
+					</p:columnGroup>
 					<h:outputText />
 				</p:panelGrid>
 

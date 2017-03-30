@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +40,8 @@ public class Departamento implements Serializable{
 	@OneToMany(mappedBy = "departamentoPai")
 	private List<Departamento> gerentes = new ArrayList<>();//subcategorias
 	
-	
+	@Column(length=254)
+	private String descricao;	
 	
 	
 	public Long getCodigo() {
@@ -98,6 +98,12 @@ public class Departamento implements Serializable{
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+	public String getDescricao() {
+		return descricao;
+	}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	

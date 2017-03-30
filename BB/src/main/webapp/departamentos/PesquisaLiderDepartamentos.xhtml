@@ -36,25 +36,27 @@
 
 			</p:toolbar>
 		
-
-			<p:dataTable id="departamentosTable"
+<div style="height:100%">
+			<p:dataGrid  id="departamentosTablePai" layout="grid"
 				value="#{pesquisaLiderDepartamentoBean.todosGerentes}" var="departamento"
-				style="margin-top:20px" emptyMessage="Nenhum usuário não encontrado"
-				rows="10" paginator="true" paginatorAlwaysVisible="false"
-				paginatorPosition="bottom" lazy="true"	styleClass="ui-datatable-tablewrapper" 
-				rowsPerPageTemplate="10,15,20,30,40,50">
+				style="margin-top:20px; height:30%" emptyMessage="Nenhum usuário encontrado"
+				rows="12" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" lazy="true" 	rowsPerPageTemplate="6,12,16"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
+				 {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 				
-				<f:facet name="header">
-            Lista de gerentes cadastrados
-        </f:facet>
-
+<p:panel header="#{departamento}" style="text-align:center" id="subpanel">
+					<h:panelGrid columns="1" style="width:100%; height: 100%;">
+					
+					
+						<p:graphicImage name="../resources/images/logoInicial_2.png" />
+						
+						
 				<p:column style="width:20%;text-align:center;" headerText="Nome do gerente"
 					sortBy="#{departamento}" priority="1">
 					<h:outputText value="#{departamento}" />
-				</p:column>				
-
-
-
+				</p:column>		
+						
 				<p:column style=" text-align:center" headerText="Opções" width="5" priority="1">
 
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
@@ -71,8 +73,17 @@
 							value="#{departamento}" />
 					</p:commandButton>
 				</p:column>
-			</p:dataTable>
-
+							
+				
+				
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>				
+				
+				
+				</div>
+				
+		
 			<p:confirmDialog header="Exclusão de cliente"
 				message="Tem certeza que deseja excluir o cliente #{pesquisaLiderDepartamentoBean.liderSelecionado.nome}?"
 				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
@@ -82,7 +93,7 @@
 				<p:commandButton value="Sim"
 					oncomplete="PF('confirmacaoExclusao').hide();"
 					action="#{pesquisaLiderDepartamentoBean.excluir}" process="@this"
-					update=":form:departamentosTable" />
+					update=":form:departamentosTablePai" />
 			</p:confirmDialog>
 
 		</h:form>
