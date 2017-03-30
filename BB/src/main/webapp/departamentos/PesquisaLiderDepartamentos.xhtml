@@ -48,14 +48,17 @@
 <p:panel header="#{departamento}" style="text-align:center" id="subpanel">
 					<h:panelGrid columns="1" style="width:100%; height: 100%;">
 					
+					<f:facet name="header">
+        <p:graphicImage name="..//resources/images/logoInicial_2.png" />
+    </f:facet>
 					
-						<p:graphicImage name="../resources/images/logoInicial_2.png" />
 						
 						
-				<p:column style="width:20%;text-align:center;" headerText="Nome do gerente"
+						
+			<!-- 	<p:column style="width:20%;text-align:center;" headerText="Nome do gerente"
 					sortBy="#{departamento}" priority="1">
 					<h:outputText value="#{departamento}" />
-				</p:column>		
+				</p:column>		 -->
 						
 				<p:column style=" text-align:center" headerText="Opções" width="5" priority="1">
 
