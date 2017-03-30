@@ -40,7 +40,7 @@ public class Departamento implements Serializable{
 	@OneToMany(mappedBy = "departamentoPai")
 	private List<Departamento> gerentes = new ArrayList<>();//subcategorias
 	
-	@Column(length=254)
+	@Column(nullable = true, length=254)
 	private String descricao;	
 	
 	

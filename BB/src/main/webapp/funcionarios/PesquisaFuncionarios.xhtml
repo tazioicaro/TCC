@@ -38,7 +38,7 @@
 			</p:toolbar>
 
 			<p:panelGrid columns="2" id="painel"
-				style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+				style="width:100%; background-color: #f5f8f9;"
 				columnClasses="rotuloP, campoP"
 				styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
@@ -66,23 +66,23 @@
 				paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom" lazy="true"  styleClass="ui-datatable-tablewrapper">
 
-				<p:column style="width:20%;text-align:center;"  headerText="Nome"
+				<p:column style="text-align:center;"  headerText="Nome" width="24%"
 					sortBy="#{funcionario.nome}" priority="1">
 					<h:outputText value="#{funcionario.nome}" />
 				</p:column>
 
-				<p:column style="width:24%; text-align:center; " headerText="E-mail"
+				<p:column style="width:23%; text-align:center; " headerText="E-mail"
 					sortBy="#{cliente.email}" >
 					<h:outputText value="#{funcionario.email}" />
 				</p:column>
 
-				<p:column style="text-align:center; " headerText="CPF" priority="2">
+				<p:column style="text-align:center; " headerText="CPF" priority="2" width="15.5%">
 					<h:outputText  value="#{funcionario.cpf}"/>
 				</p:column>
 				
-				<p:column style="text-align:center; " headerText="Grupo" priority="2">					
+				<p:column style="text-align:center; " headerText="Grupo" priority="2" width="15%">					
 					<p:columnGroup>
-						<p:dataGrid columns="3" value="#{funcionario.grupos}"
+						<p:dataGrid columns="1" value="#{funcionario.grupos}"
 							emptyMessage="Funcionário sem permissões" var="func" layout="grid">
 							<p:column>
 								<h:outputText value="#{func.descricao}" />
@@ -92,12 +92,12 @@
 				</p:column>
            
 
-				<p:column style=" text-align:center; " headerText="Contato">
+				<p:column style=" text-align:center;" headerText="Contato" width="13%">
 					<h:outputText value="#{funcionario.celular}"/>
 				</p:column>
 				
 
-				<p:column style=" text-align:center" headerText="Opções" width="50">
+				<p:column style=" text-align:center" headerText="Opções" width="8%">
 					<p:button icon="ui-icon-pencil" title="Editar"
 						outcome="/funcionarios/CadastroFuncionario" >
 						<f:param name="usuario" value="#{funcionario.codigo}"  />
