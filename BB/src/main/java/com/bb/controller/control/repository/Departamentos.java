@@ -1,16 +1,13 @@
 package com.bb.controller.control.repository;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -67,8 +64,11 @@ public class Departamentos implements Serializable {
 		 return this.manager.createQuery("SELECT distinct d.nome  "
 		 		+ "FROM Departamento d where d.departamentoPai is not null")
 		 .getResultList();
-	}
 		 
+		 //Fazer consulta com o resultante da string, para buscar apenas os Gerentes individuais)
+	}
+	
+	 
 		
 
 	public Departamento porNome(String nome) {
@@ -196,9 +196,17 @@ public class Departamentos implements Serializable {
 
 	}*/
 	@Transactional
-	public void removerDepartamento(Departamento departamentoSelecionado) {
-		manager.remove(porId(departamentoSelecionado.getCodigo()));
+	public void removerDepartamento(Departamento departamentoSelecionado) {	
 
+		if (departamentoSelecionado.getCodigo() == null){		
+			
+			this.manager.remove(porNome(departamentoSelecionado.getNome()));
+			
+		}
+		else
+		this.manager.remove(porId(departamentoSelecionado.getCodigo()));
+
+	
 	}
 
 }

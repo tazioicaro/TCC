@@ -25,14 +25,18 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	
 
 	private List<String> todosGerentes;
-	private Departamento liderSelecionado;
 	
+	private String liderSelecionadoString;
+	
+	private Departamento liderSelecionado;
+
 
 	
 	
 	public void excluir(){
 		
-		try{
+		try{		
+			liderSelecionado.setNome(liderSelecionadoString);
 			repositorioDepartamentos.removerDepartamento(liderSelecionado);
 			
 			FacesUtil.addInforMessage("Lider "+liderSelecionado.getNome()+" removido com sucesso!");
@@ -54,6 +58,7 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	@PostConstruct
 	public void init(){
 		todosGerentes = repositorioDepartamentos.todosGerentesString();
+		
 	}
 	
 	
@@ -76,5 +81,18 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	public void setTodosGerentes(List<String> todosGerentes) {
 		this.todosGerentes = todosGerentes;
 	}
+
+
+
+	public String getLiderSelecionadoString() {
+		return liderSelecionadoString;
+	}
+
+
+
+	public void setLiderSelecionadoString(String liderSelecionadoString) {
+		this.liderSelecionadoString = liderSelecionadoString;
+	}
+
 
 }

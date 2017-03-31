@@ -12,11 +12,13 @@
 		<h:form id="form" styleClass="ui-fluid ui-g-12">
 
 			<div id="features"
-				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9;
+				 margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Pesquisa
-					Departamentos</h1>
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
+					display: inline-block; padding-bottom: 5px;">Pesquisa
+					Líderes</h1>
 			</div>
 
 			<p:focus context="form" />	
@@ -50,8 +52,7 @@
 					
 					<f:facet name="header">
         <p:graphicImage name="..//resources/images/logoInicial_2.png" />
-    </f:facet>
-					
+    </f:facet>			
 						
 						
 						
@@ -72,7 +73,7 @@
 						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
 						update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
 						<f:setPropertyActionListener
-							target="#{pesquisaLiderDepartamentoBean.liderSelecionado}"
+							target="#{pesquisaLiderDepartamentoBean.liderSelecionadoString}"
 							value="#{departamento}" />
 					</p:commandButton>
 				</p:column>
