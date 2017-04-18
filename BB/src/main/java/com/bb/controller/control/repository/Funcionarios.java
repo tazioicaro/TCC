@@ -11,6 +11,7 @@ import javax.persistence.PersistenceException;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -131,7 +132,7 @@ public class Funcionarios implements Serializable {
 				.createAlias("grupos", "gp");
 		
 		if(StringUtils.isNotBlank(filter.getNome())){
-			criteria.add(Restrictions.eq("nome", filter.getNome()));
+			criteria.add(Restrictions.ilike("nome", filter.getNome(), MatchMode.ANYWHERE));
 		}
 		
 		if(filter.getGrupos()!= null && filter.getGrupos().size() > 0){

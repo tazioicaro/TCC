@@ -22,6 +22,7 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 	@Inject
 	private Departamentos repositorioDepartamentos;
 	private Departamento lider = new Departamento();
+	private String departamento;
 	
 	private UploadedFile foto;
 	 
@@ -31,8 +32,8 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 
 		if(lider == null)		
 		limpar();
-
-	}
+	
+}
 
 	public CadastroLiderDepartamentoBean() {
 
@@ -65,6 +66,16 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 	        FacesUtil.addInforMessage("Sucesso! " + event.getFile().getFileName());
 	    }
 
+	 public String redirecionar(){
+		 
+		 lider = repositorioDepartamentos.porNomeGerente(departamento);
+		 
+		 System.out.println(">>>>>>>>>>>>>>  DEPARTAMENTO <<<<<<<<<<<<<<<<<< " + departamento);
+		 
+		 return"CadastroLiderDepartamento";
+	 }
+	 
+	 //FacesContext.getCurrentInstance().getExternalContext().redirect("listar.xhtml");
 	
 	public void limpar() {
 
@@ -89,6 +100,14 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 
 	public void setFoto(UploadedFile foto) {
 		this.foto = foto;
+	}
+
+	public String getDepartamento() {
+		return departamento;
+	}
+
+	public void setDepartamento(String departamento) {
+		this.departamento = departamento;
 	}	
 	
 	

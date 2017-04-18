@@ -65,8 +65,8 @@
 
 					<p:commandButton icon="ui-icon-pencil" title="Editar"
 						outcome="/departamentos/CadastroLiderDepartamento"
-						>
-						<f:param name="departamento" value="#{departamento}" />						
+						value="#{cadastroLiderDepartamentoBean.departamento}" action="#{cadastroLiderDepartamentoBean.redirecionar}" ajax="false">
+												
 					</p:commandButton>
 
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
@@ -88,8 +88,8 @@
 				</div>
 				
 		
-			<p:confirmDialog header="Exclusão de cliente"
-				message="Tem certeza que deseja excluir o cliente #{pesquisaLiderDepartamentoBean.liderSelecionado.nome}?"
+			<p:confirmDialog header="Exclusão de Gerentes"
+				message="Tem certeza que deseja excluir o Gerente #{pesquisaLiderDepartamentoBean.liderSelecionado.nome}?"
 				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
 				<p:button value="Não"
 					onclick="PF('confirmacaoExclusao').hide(); return false;" />

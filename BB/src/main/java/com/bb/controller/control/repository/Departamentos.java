@@ -76,6 +76,12 @@ public class Departamentos implements Serializable {
 		return this.manager.createQuery("from Departamento where lower(nome) =:nome", Departamento.class)
 				.setParameter("nome", nome.toLowerCase()).getSingleResult();
 	}
+	
+	public Departamento porNomeGerente(String nome) {
+
+		return this.manager.createQuery("from Departamento where lower(nome) =:nome and departamentoPai is not null" , Departamento.class)
+				.setParameter("nome", nome.toLowerCase()).getSingleResult();
+	}
 
 	public List<Departamento> porGerente(Departamento departamentoPai) {
 		return manager.createQuery("from Departamento where departamentoPai = :raiz", Departamento.class)
