@@ -9,6 +9,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.bb.controller.control.cadastros.CadastroLiderDepartamentoBean;
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.services.NegocioException;
 import com.bb.controller.util.jsf.FacesUtil;
@@ -21,14 +22,13 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	
 	@Inject
 	private Departamentos repositorioDepartamentos;
-	
-	
 
-	private List<String> todosGerentes;
-	
-	private String liderSelecionadoString;
-	
+	private List<String> todosGerentes;	
+	private String liderSelecionadoString;	
 	private Departamento liderSelecionado;
+	private String gerente;	
+	
+	private CadastroLiderDepartamentoBean cadastro;
 
 
 	
@@ -61,6 +61,7 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 		
 	}
 	
+		
 	
 	//G&S
 	public Departamento getLiderSelecionado() {
@@ -92,6 +93,30 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 
 	public void setLiderSelecionadoString(String liderSelecionadoString) {
 		this.liderSelecionadoString = liderSelecionadoString;
+	}
+
+
+
+	public String getGerente() {
+		return gerente;
+	}
+
+
+
+	public void setGerente(String gerente) {
+		this.gerente = gerente;
+	}
+
+
+
+	public CadastroLiderDepartamentoBean getCadastro() {
+		return cadastro;
+	}
+
+
+
+	public void setCadastro(CadastroLiderDepartamentoBean cadastro) {
+		this.cadastro = cadastro;
 	}
 
 

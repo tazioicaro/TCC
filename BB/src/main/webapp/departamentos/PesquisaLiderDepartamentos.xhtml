@@ -63,9 +63,12 @@
 						
 				<p:column style=" text-align:center" headerText="Opções" width="5" priority="1">
 
-					<p:commandButton icon="ui-icon-pencil" title="Editar"
-						outcome="/departamentos/CadastroLiderDepartamento"
-						value="#{cadastroLiderDepartamentoBean.departamento}" action="#{cadastroLiderDepartamentoBean.redirecionar}" ajax="false">
+					<p:commandButton icon="ui-icon-pencil" title="Editar"						
+						 action="#{cadastroLiderDepartamentoBean.redirecionar}">
+						 
+						<f:setPropertyActionListener
+							target="#{cadastroLiderDepartamentoBean.gerenteSelecionadoString}"
+							value="#{departamento}" />
 												
 					</p:commandButton>
 

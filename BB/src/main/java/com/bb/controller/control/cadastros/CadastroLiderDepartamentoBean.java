@@ -1,13 +1,13 @@
 package com.bb.controller.control.cadastros;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 import com.bb.controller.control.repository.Departamentos;
 import com.bb.controller.services.NegocioException;
@@ -21,25 +21,35 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 
 	@Inject
 	private Departamentos repositorioDepartamentos;
-	private Departamento lider = new Departamento();
-	private String departamento;
+	private Departamento gerente;
+	private List<Departamento> gerentesEdicao;
 	
-	private UploadedFile foto;
+	private String gerenteSelecionadoString;
+
+	
+/*	private UploadedFile foto;*/
 	 
    
-
-	public void inicializar() {
-
-		if(lider == null)		
+	public CadastroLiderDepartamentoBean() {
+		
+		if(gerenteSelecionadoString == null){
 		limpar();
+		}
+
+	}
+	
+
+	public void inicializar() {	
+		
+
+		if(gerente == null )	{
+			limpar();
+			}		
+ 
 	
 }
 
-	public CadastroLiderDepartamentoBean() {
-
-		limpar();
-
-	}
+	
 
 	
 
@@ -47,11 +57,13 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 
 		try {
 			
-			repositorioDepartamentos.guardar(this.lider);
+			repositorioDepartamentos.guardar(this.gerente);
 			
-			FacesUtil.addInforMessage("Líder "+ lider.getNome()+ " alterado com sucesso!");
+			FacesUtil.addInforMessage("Líder "+ gerente.getNome()+ " alterado com sucesso!");
 			
 			limpar();
+			/*gerenteSelecionadoString = null;
+			gerentesEdicao.clear();*/
 
 		} catch (NegocioException ne) {
 			FacesUtil.addErrorMessage(ne.getMessage());
@@ -60,56 +72,81 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 	}
 	
 	
-	 public void handleFileUpload(FileUploadEvent event) {
+	/* public void handleFileUpload(FileUploadEvent event) {
 		 
 		 foto = event.getFile();
 	        FacesUtil.addInforMessage("Sucesso! " + event.getFile().getFileName());
-	    }
+	    }*/
 
-	 public String redirecionar(){
 		 
-		 lider = repositorioDepartamentos.porNomeGerente(departamento);
-		 
-		 System.out.println(">>>>>>>>>>>>>>  DEPARTAMENTO <<<<<<<<<<<<<<<<<< " + departamento);
-		 
-		 return"CadastroLiderDepartamento";
-	 }
-	 
-	 //FacesContext.getCurrentInstance().getExternalContext().redirect("listar.xhtml");
 	
 	public void limpar() {
 
-	 lider = new Departamento();
+		gerente = new Departamento();
 
 	}
+	
+	
+	
+	
+	public void redirecionar() {		
+		gerentesEdicao = repositorioDepartamentos.porNomeGerente(gerenteSelecionadoString);		
+		gerente = gerentesEdicao.get(0);
+			 
+//			 System.out.println(">>>>>>>>>>>>>>  DEPARTAMENTO <<<<<<<<<<<<<<<<<< " + gerente.getNome());
+			 
+			 try {					 
+					      
+//				 FacesContext.getCurrentInstance().getExternalContext().getFlash()
+//	                .put("gerente", gerente);
+				FacesContext.getCurrentInstance().getExternalContext().redirect("CadastroLiderDepartamento.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
+	
+	
 
 	// G&S
 
-	public Departamento getLider() {
-		return lider;
+	public Departamento getGerente() {
+		return gerente;
 	}
 
-	public void setLider(Departamento lider) {
-		this.lider = lider;
+	public void setGerente(Departamento gerente) {
+		this.gerente = gerente;
 
 	}
 
-	public UploadedFile getFoto() {
-		return foto;
-	}
+//	public UploadedFile getFoto() {
+//		return foto;
+//	}
+//
+//	public UploadedFile getFoto() {
+//		return foto;
+//	}
 
-	public void setFoto(UploadedFile foto) {
+	/*public void setFoto(UploadedFile foto) {
 		this.foto = foto;
+	}*/
+
+	public String getGerenteSelecionadoString() {
+		return gerenteSelecionadoString;
 	}
 
-	public String getDepartamento() {
-		return departamento;
+	public void setGerenteSelecionadoString(String gerenteSelecionadoString) {
+		this.gerenteSelecionadoString = gerenteSelecionadoString;
 	}
-
-	public void setDepartamento(String departamento) {
-		this.departamento = departamento;
-	}	
 	
+
+	public List<Departamento> getGerentesEdicao() {
+		return gerentesEdicao;
+	}
+
+	public void setGerentesEdicao(List<Departamento> gerentesEdicao) {
+		this.gerentesEdicao = gerentesEdicao;
+	}
 	
 
 }
