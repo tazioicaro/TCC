@@ -32,8 +32,8 @@ public class CadastroLiderDepartamentoBean implements Serializable {
    
 	public CadastroLiderDepartamentoBean() {
 		
-		if(gerenteSelecionadoString == null){
-		limpar();
+		if(gerenteSelecionadoString != null){
+			gerente.setNome(gerenteSelecionadoString);
 		}
 
 	}
@@ -89,22 +89,6 @@ public class CadastroLiderDepartamentoBean implements Serializable {
 	
 	
 	
-	public void redirecionar() {		
-		gerentesEdicao = repositorioDepartamentos.porNomeGerente(gerenteSelecionadoString);		
-		gerente = gerentesEdicao.get(0);
-			 
-//			 System.out.println(">>>>>>>>>>>>>>  DEPARTAMENTO <<<<<<<<<<<<<<<<<< " + gerente.getNome());
-			 
-			 try {					 
-					      
-//				 FacesContext.getCurrentInstance().getExternalContext().getFlash()
-//	                .put("gerente", gerente);
-				FacesContext.getCurrentInstance().getExternalContext().redirect("CadastroLiderDepartamento.xhtml");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		 }
 	
 	
 

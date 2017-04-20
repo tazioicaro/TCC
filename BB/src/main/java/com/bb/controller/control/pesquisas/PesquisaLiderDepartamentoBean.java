@@ -1,10 +1,12 @@
 package com.bb.controller.control.pesquisas;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -61,6 +63,24 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 		
 	}
 	
+	
+
+	public void redirecionar() {		
+		gerentesEdicao = repositorioDepartamentos.porNomeGerente(gerente.getNome());		
+		gerente = gerentesEdicao.get(0);
+			 
+//			 System.out.println(">>>>>>>>>>>>>>  DEPARTAMENTO <<<<<<<<<<<<<<<<<< " + gerente.getNome());
+			 
+			 try {					 
+					      
+//				 FacesContext.getCurrentInstance().getExternalContext().getFlash()
+//	                .put("gerente", gerente);
+				FacesContext.getCurrentInstance().getExternalContext().redirect("CadastroLiderDepartamento.xhtml");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
 		
 	
 	//G&S

@@ -11,19 +11,19 @@
 
 		<h:form id="form" styleClass="ui-fluid ui-g-12">
 
+
+
 			<div id="features"
-				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9;
-				 margin-top: 10px;">
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
 				<h1
-					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; 
-					display: inline-block; padding-bottom: 5px;">Pesquisa
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">Pesquisa
 					Líderes</h1>
 			</div>
 
-			<p:focus context="form" />	
-			
-				<p:growl showDetail="false" escape="false"  autoUpdate="true"/>
+			<p:focus context="form" />
+
+			<p:growl showDetail="false" escape="false" autoUpdate="true" />
 
 			<p:toolbar style="margin-top:20px">
 				<p:toolbarGroup style="display: inline-flex;">
@@ -37,60 +37,69 @@
 				</p:toolbarGroup>
 
 			</p:toolbar>
-		
-<div style="height:100%">
-			<p:dataGrid  id="departamentosTablePai" layout="grid"
-				value="#{pesquisaLiderDepartamentoBean.todosGerentes}" var="departamento"
-				style="margin-top:20px; height:30%" emptyMessage="Nenhum usuário encontrado"
-				rows="12" paginator="true" paginatorAlwaysVisible="false"
-				paginatorPosition="bottom" lazy="true" 	rowsPerPageTemplate="6,12,16"
-				paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
+
+			<div style="height: 100%">
+				<p:dataGrid id="departamentosTablePai" layout="grid"
+					value="#{pesquisaLiderDepartamentoBean.todosGerentes}"
+					var="departamento" style="margin-top:20px; height:30%"
+					emptyMessage="Nenhum usuário encontrado" rows="12" paginator="true"
+					paginatorAlwaysVisible="false" paginatorPosition="bottom"
+					lazy="true" rowsPerPageTemplate="6,12,16"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink}
 				 {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
-				
-<p:panel header="#{departamento}" style="text-align:center" id="subpanel">
-					<h:panelGrid columns="1" style="width:100%; height: 100%;">
-					
-					<f:facet name="header">
-        <p:graphicImage name="..//resources/images/logoInicial_2.png" />
-    </f:facet>			
-						
-						
-						
-			<!-- 	<p:column style="width:20%;text-align:center;" headerText="Nome do gerente"
+
+					<p:panel header="#{departamento}" style="text-align:center"
+						id="subpanel">
+						<h:panelGrid columns="1" style="width:100%; height: 100%;">
+
+							<f:facet name="header">
+								<p:graphicImage name="..//resources/images/logoInicial_2.png" />
+							</f:facet>
+
+
+
+							<!-- 	<p:column style="width:20%;text-align:center;" headerText="Nome do gerente"
 					sortBy="#{departamento}" priority="1">
 					<h:outputText value="#{departamento}" />
 				</p:column>		 -->
-						
-				<p:column style=" text-align:center" headerText="Opções" width="5" priority="1">
 
-					<p:commandButton icon="ui-icon-pencil" title="Editar"						
+							<p:column style=" text-align:center" headerText="Opções"
+								width="5" priority="1">
+
+								<!-- <p:commandButton icon="ui-icon-pencil" title="Editar"						
 						 action="#{cadastroLiderDepartamentoBean.redirecionar}">
 						 
 						<f:setPropertyActionListener
 							target="#{cadastroLiderDepartamentoBean.gerenteSelecionadoString}"
 							value="#{departamento}" />
 												
-					</p:commandButton>
+					</p:commandButton> -->
+								<p:button icon="ui-icon-pencil" title="Editar"
+									outcome="/departamentos/CadastroLiderDepartamento">
+									<f:param name="gerenteSelecionadoString" value="#{departamento}" />
+								</p:button>
+								
+								
+								<p:commandButton icon="ui-icon-trash" title="Excluir"
+									oncomplete="PF('confirmacaoExclusao').show()" process="@this"
+									update=":form:confirmacaoExclusaoDialog"
+									style="margin-top: 2px">
+									<f:setPropertyActionListener
+										target="#{pesquisaLiderDepartamentoBean.liderSelecionadoString}"
+										value="#{departamento}" />
+								</p:commandButton>
+							</p:column>
 
-					<p:commandButton icon="ui-icon-trash" title="Excluir"
-						oncomplete="PF('confirmacaoExclusao').show()" process="@this"
-						update=":form:confirmacaoExclusaoDialog" style="margin-top: 2px">
-						<f:setPropertyActionListener
-							target="#{pesquisaLiderDepartamentoBean.liderSelecionadoString}"
-							value="#{departamento}" />
-					</p:commandButton>
-				</p:column>
-							
-				
-				
-					</h:panelGrid>
-				</p:panel>
-			</p:dataGrid>				
-				
-				
-				</div>
-				
-		
+
+
+						</h:panelGrid>
+					</p:panel>
+				</p:dataGrid>
+
+
+			</div>
+
+
 			<p:confirmDialog header="Exclusão de Gerentes"
 				message="Tem certeza que deseja excluir o Gerente #{pesquisaLiderDepartamentoBean.liderSelecionado.nome}?"
 				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
