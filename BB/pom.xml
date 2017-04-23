@@ -45,11 +45,11 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Prime Faces 5.2 -->
+		<!-- Prime Faces 6.1 -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
-			<version>6.0</version>
+			<version>6.1</version>
 			<scope>compile</scope>
 		</dependency>
 
