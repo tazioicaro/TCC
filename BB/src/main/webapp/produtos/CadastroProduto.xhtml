@@ -13,207 +13,221 @@
 
 	<ui:define name="corpo">
 
-   
-<!-- 
+
+		<!-- 
 		<h:outputStylesheet library="css" name="cadastro.css" />
 		
 		<h:outputStylesheet library="css" name="/login/login.css" />	
 	<h:outputStylesheet library="css" name="/login/primefaces.css" /> -->
 
+		<h:outputStylesheet library="css" name="cadastroFuncionario.css" />
+
 
 		<h:form id="form">
 
-			<h1>#{cadastroProdutoBean.editando ? 'Edição de Produto': 'Novo Produto'}</h1>
+			<div id="features"
+				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
 
-			<p:growl id="growl" sticky="true" showDetail="true" />
-
-			<p:wizard styleClass="menus"
-				style="background-color:#fdbb4b!important;" id="passoApasso"
-				nextLabel="Próximo" backLabel="Voltar">
-				<!-- flowListener="#{userWizard.onFlowProcess}" -->
-
-				<p:tab id="personal" title="Dados do Produto">
-
-					<p:panel
-						style="border:0px !important; padding-top: 0.5%; padding-bottom: 0.5%;"
-						styleClass="formMenu">
-						<p:messages  autoUpdate="true" closable="true"/>
-						<h:panelGrid columns="2" columnClasses="label, value">
-							
-							<p:outputLabel value="SKU: " for="sku"/>
-							<p:inputText required="true" label="sku" id="sku" value="#{cadastroProdutoBean.produto.sku}"/>
-
-							<p:outputLabel value="Nome: " for="nome"/>
-							<p:inputText required="true" label="Nome" id="nome" value="#{cadastroProdutoBean.produto.nome}"/>
-
-							<p:outputLabel value="Unid. de Medida: " for="medida"/>							                   
-                               <p:selectOneMenu value="#{cadastroProdutoBean.produto.unidade}" label="medida" id="medida" >
-                               <f:selectItem itemLabel="Selecione o Unidade" noSelectionOption="true"/>
-                                <f:selectItems value="#{cadastroProdutoBean.listaUnidade}" var="mdd" itemValue="#{mdd}" itemLabel="#{mdd.descricao}" />
-                            </p:selectOneMenu>  
-										
-
-							<p:outputLabel value="Volume Conteúdo " for="tamanho"/>
-							<p:inputText required="true" id="tamanho"  value="#{cadastroProdutoBean.produto.volumeConteudo}" styleClass="moeda">
-							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
-							</p:inputText>
-
-							<p:outputLabel value="Qtde: " for="qtde"/>
-							<p:inputText required="true" id="qtde" value="#{cadastroProdutoBean.produto.estoque}"/>
-							
-							<p:outputLabel value="Qtde Crítica " for="qtdeC"/>
-							<p:inputText required="true" id="qtdeC" value="#{cadastroProdutoBean.produto.critico}"/>
-
-					
-					        <p:outputLabel value="Vlr. Compra " for="vlrc"/>
-							<p:inputText required="true" id="vlrc" value="#{cadastroProdutoBean.produto.vlrcompra}" styleClass="moeda">
-							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
-							</p:inputText>
-							
-							<p:outputLabel value="Vlr. Venda " for="vlrv"/>
-							<p:inputText required="true" id="vlrv" value="#{cadastroProdutoBean.produto.vlrvenda}" styleClass="moeda">
-							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
-							</p:inputText>
-							
-							<p:outputLabel value="Descrição: " for="descricao" />
-							<p:inputTextarea rows="3" cols="22" id="descricao" label="descricao" value="#{cadastroProdutoBean.produto.descricao}"/>
+				<h1
+					style="color: #6a6a7d; font-size: 1.7em; border-bottom: 3px solid #afafc0; display: inline-block; padding-bottom: 5px;">#{cadastroProdutoBean.editando
+					? 'Edição de Produto': 'Novo Produto'}</h1>
+			</div>
 
 
-							<!-- <p:outputLabel value="Pular para o Final: " /> -->
-							<h:selectBooleanCheckbox />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
+			<p:growl id="growl" sticky="true" showDetail="true" autoUpdate="true" />
 
-				<p:tab id="contact" title="Dados do Fornecedor">
+			<p:toolbar style="margin-top:20px">
+				<p:toolbarGroup style="display: inline-flex;">
 
-					<p:panel>
-						<p:messages autoUpdate="true" closable="true"/>
-						<h:panelGrid columns="2" columnClasses="label, value">
+					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
 
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroFuncionarioBean.cadastrar}"
+						validateClient="true" update="form" />
 
-							<p:outputLabel value="Fornecedor: " for="fornecedor"/>													                   
-                               <p:selectOneMenu  label="fornecedor" id="fornecedor" value="#{cadastroProdutoBean.produto.fornecedor}" >
-                               <f:selectItem itemLabel="Selecione o Fornecedor" noSelectionOption="true"/> 
-                               <f:selectItems value="#{cadastroProdutoBean.fornecedores}" var="fornecedores" itemValue="#{fornecedores}" 
-                               itemLabel="#{fornecedores.nome}"/>                               
-                              <p:ajax listener="#{cadastroProdutoBean.carregarDadosFornecedor}" update="codigo, celular, email"/>
-                            </p:selectOneMenu>  
-							
+				</p:toolbarGroup>
 
-							<p:outputLabel value="Codigo: *" for="codigo"/>
-							<p:inputText id="codigo" label="codigo" value="#{cadastroProdutoBean.fornecedor.codigo}"/>
-
-							<p:outputLabel value="Celular: " for="celular"/>
-							<p:inputText label="celular" id="celular"  value="#{cadastroProdutoBean.fornecedor.celular}"/>
-
-							<p:outputLabel value="E-mail: " for="email"/>
-							<p:inputText id="email"  value="#{cadastroProdutoBean.fornecedor.email}"/>
-
-							<!-- <p:outputLabel value="Pular para o Final: " /> 
-							<h:selectBooleanCheckbox />-->
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
-
-				<p:tab id="services" title="Associar a serviços">
-					<p:panel>
-						<p:messages autoUpdate="true" closable="true"/>
-						<h:panelGrid columns="2" columnClasses="label, value">
-
-						
-				  <p:outputLabel value="Categoria de Serviço:: " for="categoria"/>
-                        <p:selectOneMenu id="categoria" value="#{cadastroProdutoBean.categoriaPai}">
-                        <f:selectItem itemLabel="Selecione a Especialidade" />
-                        <f:selectItems value="#{cadastroProdutoBean.categoriaRaizes}" var="especialidade" itemValue="#{especialidade}" itemLabel="#{especialidade.descricao}" />
-                  
-                       <p:ajax listener="#{cadastroProdutoBean.carregarCategoriasDe}" update="subcategoria"/>
-                   </p:selectOneMenu>              
-                   
- 
-                    <p:outputLabel value="Serviço: "  for="subcategoria"/>
-                  	<p:selectOneMenu id="subcategoria" value="#{cadastroProdutoBean.produto.especialidade}">
-					    <f:selectItem itemLabel="Selecione o Serviço" />
-					    <f:selectItems value="#{cadastroProdutoBean.subCategorias}" var="categorias"
-					    itemValue="#{categorias}" itemLabel="#{categorias.descricao}"/>
-				    </p:selectOneMenu>  
-
-                   			
-							<p:outputLabel value="Consumo por Serviço: " for="consumoservico"/>
-							<p:inputText id="consumoservico"  value="#{cadastroProdutoBean.sp.consumo}" styleClass="moeda">
-							<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
-							</p:inputText>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisar" outcome="/produtos/PesquisaProdutos" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
 
-							<p:outputLabel value="Detalhes: " for="detalhes"/>
-							<p:inputTextarea rows="5" cols="22" id="detalhes" />
-						</h:panelGrid>
-					</p:panel>
-				</p:tab>
+			<p:panel id="primeiro" header="primeiro" toggleable="true"
+				closable="false" toggleSpeed="500" widgetVar="panel1"
+				style="margin-bottom:20px;" styleClass="ui-g-12" closeSpeed="500">
 
-				<p:tab id="confirm" title="Confirmação">
-					<p:panel >
-						<h:panelGrid id="confirmation" columns="3"
-							columnClasses="grid,grid,grid">
-							<h:panelGrid columns="2" columnClasses="label, value">
-							
-								<p:outputLabel value="SKU: " />
-								<h:outputText styleClass="outputLabel"  value="#{cadastroProdutoBean.produto.sku}"/>
+				<p:ajax event="close" update="growl" />
+				<p:ajax event="toggle" update="growl" />
 
-								<p:outputLabel value="Nome: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.nome}"/>
+				<p:panelGrid columns="2" id="panel1"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
 
-								<p:outputLabel value="Unid. Medida: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.unidade}"/>
+					<p:outputLabel value="SKU: " for="sku" />
+					<p:inputText required="true" label="sku" id="sku"
+						value="#{cadastroProdutoBean.produto.sku}" />
 
-								<p:outputLabel value="Tamanho: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.volumeConteudo}"/>
+					<p:outputLabel value="Nome: " for="nome" />
+					<p:inputText required="true" label="Nome" id="nome"
+						value="#{cadastroProdutoBean.produto.nome}" />
 
-								<p:outputLabel value="Qtde: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.estoque}"/>
+					<p:outputLabel value="Unid. de Medida: " for="medida" />
+					<p:selectOneMenu value="#{cadastroProdutoBean.produto.unidade}"
+						label="medida" id="medida">
+						<f:selectItem itemLabel="Selecione o Unidade"
+							noSelectionOption="true" />
+						<f:selectItems value="#{cadastroProdutoBean.listaUnidade}"
+							var="mdd" itemValue="#{mdd}" itemLabel="#{mdd.descricao}" />
+					</p:selectOneMenu>
 
-								<p:outputLabel value="Categoria do Produto: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.especialidade}"/>
-								
-								<p:outputLabel value="Descrição: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.descricao}"/>
-							</h:panelGrid>
 
-							<h:panelGrid columns="2" columnClasses="label, value">
-								
-								<p:outputLabel value="Fornecedor: " />
-								<h:outputText styleClass="outputLabel"  value="#{cadastroProdutoBean.produto.fornecedor.nome}"/>
+					<p:outputLabel value="Volume Conteúdo " for="tamanho" />
+					<p:inputText required="true" id="tamanho"
+						value="#{cadastroProdutoBean.produto.volumeConteudo}"
+						styleClass="moeda">
+						<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+					</p:inputText>
 
-								<p:outputLabel value="Código: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.fornecedor.codigo}"/>
+					<p:outputLabel value="Qtde: " for="qtde" />
+					<p:inputText required="true" id="qtde"
+						value="#{cadastroProdutoBean.produto.estoque}" />
 
-								<p:outputLabel value="Celular: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.fornecedor.celular}" />
-								
-								<p:outputLabel value="E-mail: " />
-								<h:outputText styleClass="outputLabel" value="#{cadastroProdutoBean.produto.fornecedor.email}"/>
-							</h:panelGrid>
+					<p:outputLabel value="Qtde Crítica " for="qtdeC" />
+					<p:inputText required="true" id="qtdeC"
+						value="#{cadastroProdutoBean.produto.critico}" />
 
-							<h:panelGrid columns="2" columnClasses="label, value">
-							
-								<p:outputLabel value="Categoria de Serviço: " />
-								<h:outputText styleClass="outputLabel" />
 
-								<p:outputLabel value="Serviços: " />
-								<h:outputText styleClass="outputLabel" />
+					<p:outputLabel value="Vlr. Compra " for="vlrc" />
+					<p:inputText required="true" id="vlrc"
+						value="#{cadastroProdutoBean.produto.vlrcompra}"
+						styleClass="moeda">
+						<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+					</p:inputText>
 
-								<p:outputLabel value="Consumo por Serviço: " />
-								<h:outputText styleClass="outputLabel" />
+					<p:outputLabel value="Vlr. Venda " for="vlrv" />
+					<p:inputText required="true" id="vlrv"
+						value="#{cadastroProdutoBean.produto.vlrvenda}" styleClass="moeda">
+						<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+					</p:inputText>
 
-								<p:outputLabel value="Detalhes: "/>
-								<h:outputText styleClass="outputLabel" />
-							</h:panelGrid>
-						</h:panelGrid>					
+					<p:outputLabel value="Descrição: " for="descricao" />
+					<p:inputTextarea rows="3" cols="22" id="descricao"
+						label="descricao" value="#{cadastroProdutoBean.produto.descricao}" />
 
-						<p:commandButton value="Gravar" update="growl"  process="@this" action="#{cadastroProdutoBean.salvar}" />
-					</p:panel>
-				</p:tab>
-			</p:wizard>
+
+				</p:panelGrid>
+
+				<f:facet name="options">
+					<p:menu>
+						<p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panel').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panel').close()" />
+						</p:submenu>
+					</p:menu>
+
+				</f:facet>
+
+			</p:panel>
+
+			<p:panel id="segundo" header="Segundo" toggleable="true"
+				toggleSpeed="500" closable="false" widgetVar="panel2"
+				closeSpeed="500" style="margin-bottom:20px" styleClass="ui-g-12">
+
+
+				<p:ajax event="close" update="growl" />
+				<p:ajax event="toggle" update="growl" />
+
+				<p:panelGrid id="panelG2" columns="2"
+					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+
+					<p:outputLabel value="Fornecedor: " for="fornecedor" />
+					<p:selectOneMenu label="fornecedor" id="fornecedor"
+						value="#{cadastroProdutoBean.produto.fornecedor}">
+						<f:selectItem itemLabel="Selecione o Fornecedor"
+							noSelectionOption="true" />
+						<f:selectItems value="#{cadastroProdutoBean.fornecedores}"
+							var="fornecedores" itemValue="#{fornecedores}"
+							itemLabel="#{fornecedores.nome}" />
+						<p:ajax listener="#{cadastroProdutoBean.carregarDadosFornecedor}"
+							update="codigo, celular, email" />
+					</p:selectOneMenu>
+
+
+					<p:outputLabel value="Codigo: *" for="codigo" />
+					<p:inputText id="codigo" label="codigo"
+						value="#{cadastroProdutoBean.fornecedor.codigo}" />
+
+					<p:outputLabel value="Celular: " for="celular" />
+					<p:inputText label="celular" id="celular"
+						value="#{cadastroProdutoBean.fornecedor.celular}" />
+
+					<p:outputLabel value="E-mail: " for="email" />
+					<p:inputText id="email"
+						value="#{cadastroProdutoBean.fornecedor.email}" />
+
+				</p:panelGrid>
+
+				<f:facet name="options">
+					<p:menu>
+						<p:submenu label="Settings">
+							<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
+								onclick="PF('panelJob').toggle()" />
+							<p:menuitem value="Remove" url="#" icon="ui-icon-close"
+								onclick="PF('panelJob').close()" />
+						</p:submenu>
+					</p:menu>
+				</f:facet>
+			</p:panel>
+<!-- 
+
+			<p:tab id="services" title="Associar a serviços">
+				<p:panel>
+					<p:messages autoUpdate="true" closable="true" />
+					<h:panelGrid columns="2" columnClasses="label, value">
+
+
+						<p:outputLabel value="Categoria de Serviço:: " for="categoria" />
+						<p:selectOneMenu id="categoria"
+							value="#{cadastroProdutoBean.categoriaPai}">
+							<f:selectItem itemLabel="Selecione a Especialidade" />
+							<f:selectItems value="#{cadastroProdutoBean.categoriaRaizes}"
+								var="especialidade" itemValue="#{especialidade}"
+								itemLabel="#{especialidade.descricao}" />
+
+							<p:ajax listener="#{cadastroProdutoBean.carregarCategoriasDe}"
+								update="subcategoria" />
+						</p:selectOneMenu>
+
+
+						<p:outputLabel value="Serviço: " for="subcategoria" />
+						<p:selectOneMenu id="subcategoria"
+							value="#{cadastroProdutoBean.produto.especialidade}">
+							<f:selectItem itemLabel="Selecione o Serviço" />
+							<f:selectItems value="#{cadastroProdutoBean.subCategorias}"
+								var="categorias" itemValue="#{categorias}"
+								itemLabel="#{categorias.descricao}" />
+						</p:selectOneMenu>
+
+
+						<p:outputLabel value="Consumo por Serviço: " for="consumoservico" />
+						<p:inputText id="consumoservico"
+							value="#{cadastroProdutoBean.sp.consumo}" styleClass="moeda">
+							<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+						</p:inputText>
+
+
+						<p:outputLabel value="Detalhes: " for="detalhes" />
+						<p:inputTextarea rows="5" cols="22" id="detalhes" />
+					</h:panelGrid>
+				</p:panel>
+			</p:tab>
+
+ -->
+			
 
 		</h:form>
 
