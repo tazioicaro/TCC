@@ -29,6 +29,7 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	private String liderSelecionadoString;	
 	private Departamento liderSelecionado;
 	private String gerente;	
+	private List<Departamento> ListaLiderSelecionado;
 	
 	private CadastroLiderDepartamentoBean cadastro;
 
@@ -66,8 +67,8 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 	
 
 	public void redirecionar() {		
-		gerentesEdicao = repositorioDepartamentos.porNomeGerente(gerente.getNome());		
-		gerente = gerentesEdicao.get(0);
+		ListaLiderSelecionado = repositorioDepartamentos.porNomeGerente(liderSelecionado.getNome());		
+		liderSelecionado = ListaLiderSelecionado.get(0);
 			 
 //			 System.out.println(">>>>>>>>>>>>>>  DEPARTAMENTO <<<<<<<<<<<<<<<<<< " + gerente.getNome());
 			 
@@ -137,6 +138,18 @@ public class PesquisaLiderDepartamentoBean implements Serializable {
 
 	public void setCadastro(CadastroLiderDepartamentoBean cadastro) {
 		this.cadastro = cadastro;
+	}
+
+
+
+	public List<Departamento> getListaLiderSelecionado() {
+		return ListaLiderSelecionado;
+	}
+
+
+
+	public void setListaLiderSelecionado(List<Departamento> listaLiderSelecionado) {
+		ListaLiderSelecionado = listaLiderSelecionado;
 	}
 
 
