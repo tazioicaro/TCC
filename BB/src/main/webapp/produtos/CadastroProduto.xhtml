@@ -10,20 +10,13 @@
 
 
 	<ui:define name="titulo">#{cadastroProdutoBean.editando ? 'Edição de Produto': 'Novo Produto'}</ui:define>
-
 	<ui:define name="corpo">
 
-
-		<!-- 
-		<h:outputStylesheet library="css" name="cadastro.css" />
-		
-		<h:outputStylesheet library="css" name="/login/login.css" />	
-	<h:outputStylesheet library="css" name="/login/primefaces.css" /> -->
 
 		<h:outputStylesheet library="css" name="cadastroFuncionario.css" />
 
 
-		<h:form id="form">
+		<h:form id="form" styleClass="ui-fluid ui-g-12">
 
 			<div id="features"
 				style="padding: 2px 0; text-align: center; text-align: center; background-color: #f5f8f9; margin-top: 10px;">
@@ -62,7 +55,8 @@
 
 				<p:panelGrid columns="2" id="panel1"
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
-					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements"
+					columnClasses="ui-g-3 ui-lg-2, ui-g-9 ui-md-8">
 
 					<p:outputLabel value="SKU: " for="sku" />
 					<p:inputText required="true" label="sku" id="sku"
@@ -142,7 +136,8 @@
 
 				<p:panelGrid id="panelG2" columns="2"
 					style="width:100%; margin-top:20px; background-color: #f5f8f9;"
-					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements">
+					styleClass="ui-panelgrid ui-widget ui-panelgrid-blank form-group form-elements"
+					columnClasses="ui-g-3 ui-lg-2, ui-g-9 ui-md-8">
 
 					<p:outputLabel value="Fornecedor: " for="fornecedor" />
 					<p:selectOneMenu label="fornecedor" id="fornecedor"
@@ -182,51 +177,6 @@
 					</p:menu>
 				</f:facet>
 			</p:panel>
-<!-- 
-
-			<p:tab id="services" title="Associar a serviços">
-				<p:panel>
-					<p:messages autoUpdate="true" closable="true" />
-					<h:panelGrid columns="2" columnClasses="label, value">
-
-
-						<p:outputLabel value="Categoria de Serviço:: " for="categoria" />
-						<p:selectOneMenu id="categoria"
-							value="#{cadastroProdutoBean.categoriaPai}">
-							<f:selectItem itemLabel="Selecione a Especialidade" />
-							<f:selectItems value="#{cadastroProdutoBean.categoriaRaizes}"
-								var="especialidade" itemValue="#{especialidade}"
-								itemLabel="#{especialidade.descricao}" />
-
-							<p:ajax listener="#{cadastroProdutoBean.carregarCategoriasDe}"
-								update="subcategoria" />
-						</p:selectOneMenu>
-
-
-						<p:outputLabel value="Serviço: " for="subcategoria" />
-						<p:selectOneMenu id="subcategoria"
-							value="#{cadastroProdutoBean.produto.especialidade}">
-							<f:selectItem itemLabel="Selecione o Serviço" />
-							<f:selectItems value="#{cadastroProdutoBean.subCategorias}"
-								var="categorias" itemValue="#{categorias}"
-								itemLabel="#{categorias.descricao}" />
-						</p:selectOneMenu>
-
-
-						<p:outputLabel value="Consumo por Serviço: " for="consumoservico" />
-						<p:inputText id="consumoservico"
-							value="#{cadastroProdutoBean.sp.consumo}" styleClass="moeda">
-							<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-						</p:inputText>
-
-
-						<p:outputLabel value="Detalhes: " for="detalhes" />
-						<p:inputTextarea rows="5" cols="22" id="detalhes" />
-					</h:panelGrid>
-				</p:panel>
-			</p:tab>
-
- -->
 			
 
 		</h:form>

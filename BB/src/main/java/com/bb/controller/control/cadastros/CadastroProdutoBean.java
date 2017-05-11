@@ -109,6 +109,7 @@ public class CadastroProdutoBean implements Serializable {
 		spId = new ServicosProdutosId_OLD();
 		subCategorias = new ArrayList<Especialidade>();
 		categoriaPai = null;
+		listaUnidade = new ArrayList<Unidade>();
 
 	}
 
