@@ -71,7 +71,7 @@ public class CadastroFuncionarioBean implements Serializable {
 			
 			this.usuario.setSenha("123");
 			this.usuario.setSenha(geradorSenha.geradorHash(this.usuario.getSenha()));
-//			this.usuario.setLogin(usuario.getCpf().toString());
+			this.usuario.setLogin(usuario.getCpf().toString());
 			
 			this.usuario = cadastroFuncionacioServices.salvar(this.usuario);
 
