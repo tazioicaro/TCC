@@ -32,17 +32,24 @@ public class CadastroProdutoBean implements Serializable {
 	
 	@Inject
 	private CadastroProdutoService produtoService;
-	private Produto produto;
-	
 	@Inject
 	private UnidadesMedidas unidades;
+	@Inject
+	private FornecedorRepository fornecedorRp;
+	@Inject
+	private Especialidades categorias;
+	
+	
+	private Produto produto;
+	
+	
 	private List<Unidade> listaUnidade;
 	
 	
 	private Fornecedor fornecedor;
 	private List<Fornecedor> fornecedores;
-	@Inject
-	private FornecedorRepository fornecedorRp;
+	
+	
 	
 	private TipoProduto tipoProduto;
 	
@@ -55,8 +62,7 @@ public class CadastroProdutoBean implements Serializable {
 	private List<Especialidade> categoriaRaizes;
 	private List<Especialidade> subCategorias;
 	
-	@Inject
-	private Especialidades categorias;
+	
 
 	
 

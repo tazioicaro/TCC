@@ -14,6 +14,8 @@ public class FornecedorRepository  implements Serializable{
 	@Inject
 	private EntityManager manager;
 	
+	
+	
 	public Fornecedor porCodigo(Long codigo){		
 		 return manager.find(Fornecedor.class, codigo);		
 	}
