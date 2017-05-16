@@ -11,6 +11,13 @@
 
 	<ui:define name="titulo">#{cadastroProdutoBean.editando ? 'Edição de Produto': 'Novo Produto'}</ui:define>
 	<ui:define name="corpo">
+	
+	<f:metadata>
+			<f:viewParam name="produto"
+				value="#{cadastroProdutoBean.produto}" />
+			<f:event listener="#{cadastroProdutoBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
 
 
 		<h:outputStylesheet library="css" name="cadastroFuncionario.css" />
