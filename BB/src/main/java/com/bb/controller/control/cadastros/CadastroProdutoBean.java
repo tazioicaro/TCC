@@ -119,7 +119,7 @@ public class CadastroProdutoBean implements Serializable {
 
 	}
 
-	public void salvar() {
+	public void cadastrar() {
 		
 		this.produto.setDataInclusao(new Date());
 		this.produto = produtoService.salvar(this.produto);
