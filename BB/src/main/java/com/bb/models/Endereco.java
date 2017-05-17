@@ -44,6 +44,10 @@ public class Endereco implements Serializable{
 	@JoinColumn(name="cliente_codigo", nullable=true)
 	private Cliente cliente;
 	
+	@ManyToOne( optional=true)
+	@JoinColumn(name="funcionario_codigo", nullable=true)
+	private Funcionario funcionario;
+	
 	
 	public Long getCodigo() {
 		return codigo;
@@ -123,6 +127,12 @@ public class Endereco implements Serializable{
 		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
+	}
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
 	
 	

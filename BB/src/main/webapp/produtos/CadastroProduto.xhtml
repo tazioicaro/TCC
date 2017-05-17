@@ -67,7 +67,12 @@
 
 					<p:outputLabel value="SKU: " for="sku" />
 					<p:inputText required="true" label="sku" id="sku"
-						value="#{cadastroProdutoBean.produto.sku}" />
+						value="#{cadastroProdutoBean.produto.sku}" >
+						
+						<p:clientValidator event="keyup" />
+					<f:validateRegex pattern="^(([a-zA-Z]{2})+(\d{4,18}))$" />
+					
+						</p:inputText>
 
 					<p:outputLabel value="Nome: " for="nome" />
 					<p:inputText required="true" label="Nome" id="nome"
@@ -86,7 +91,7 @@
 					<p:outputLabel value="Volume Conteúdo " for="tamanho" />
 					<p:inputText required="true" id="tamanho"
 						value="#{cadastroProdutoBean.produto.volumeConteudo}"
-						styleClass="moeda">
+						styleClass="moeda" size="5" maxlength="5">
 						<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 					</p:inputText>
 
