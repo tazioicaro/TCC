@@ -89,11 +89,12 @@
 
 
 					<p:outputLabel value="Volume Conteúdo " for="tamanho" />
-					<p:inputText required="true" id="tamanho"
+					<p:inputMask required="true" id="tamanho"
 						value="#{cadastroProdutoBean.produto.volumeConteudo}"
-						styleClass="moeda" size="5" maxlength="5">
+						styleClass="moeda" size="6" maxlength="6"  mask="99,99">
 						<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-					</p:inputText>
+						
+					</p:inputMask>
 
 					<p:outputLabel value="Qtde: " for="qtde" />
 					<p:inputText required="true" id="qtde"
